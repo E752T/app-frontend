@@ -1,0 +1,618 @@
+<ion-item *ngIf="message" style="font-size: small">
+  <div
+    slot="start"
+    [class]="!message.avaiable ? 'dot dot-unread' : 'dot'"
+  ></div>
+  <p>
+    <ion-grid>
+      <ion-row>
+        <ion-card color="secondary" class="dimensioni-oggetto">
+          <ion-card-header>
+            <ion-text class="titolo-oggetto">
+              {{ message.title }}
+            </ion-text>
+
+            <ion-card-subtitle class="genere-oggetto">
+              {{ message.genere }}
+            </ion-card-subtitle>
+
+            <ion-card-subtitle style="color: palegoldenrod"
+              >{{ message.avaiable ? "Disponibile " : "Non disponibile " }}
+              <img
+                src="{{
+                  message.avaiable
+                    ? '/assets/icon/correct.png'
+                    : '/assets/icon/not_correct.png'
+                }}"
+                class="logo-disponibilita-oggetto"
+              />
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <img
+              src="{{ message.cover }}"
+              alt="test image"
+              class="immagine-copertina"
+            />
+          </ion-card-content>
+
+          <ion-button
+            id="bottone-modifica-oggetto+{{ message.objectID }}"
+            style="color: palegoldenrod"
+            fill="clear"
+          >
+            <svg style="width: 50px !important ; height: 50px !important">
+              <path
+                xmlns="http://www.w3.org/2000/svg"
+                d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z"
+                stroke="#000000"
+                stroke-width="2"
+                fill="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </ion-button>
+
+          <ion-modal
+            trigger="bottone-modifica-oggetto+{{ message.objectID }}"
+            (willDismiss)="onWillDismissObject($event)"
+            class="ion-padding"
+          >
+            <ng-template style="height: 290px; border-radius: 100px">
+              <ion-header>
+                <ion-title class="modale-modifica-oggetto">
+                  <ion-text class="center">
+                    Modifica l'oggetto
+                  </ion-text></ion-title
+                >
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="cancelObject()" [strong]="true"
+                      ><ion-icon name="arrow-undo-outline"></ion-icon
+                    ></ion-button>
+                  </ion-buttons>
+
+                  <ion-buttons slot="end">
+                    <ion-button (click)="confirmModifyObject()" [strong]="true"
+                      >Conferma</ion-button
+                    >
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+
+              <ion-content
+                class="ion-padding"
+                style="padding-top: 3%; font-size: 15px"
+              >
+                <div>
+                  <ion-item>
+                    <svg
+                      fill="#000000"
+                      class="icone-aggiungi-oggetto"
+                      viewBox="0 0 1920 1920"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1801.441 0v1920H219.03v-439.216h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.47 56.515-56.47h56.514V1029.02h-56.514c-31.196 0-56.515-25.3-56.515-56.471 0-31.172 25.319-56.47 56.515-56.47h56.514V577.254h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.471 56.515-56.471h56.514V0h1582.412Zm-113.03 112.941H332.06v351.373h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.3 56.514 56.471 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.471-56.514 56.471H332.06v326.275h1356.353V112.94ZM640.289 425.201H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Zm0 534.845H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Z"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+
+                    <ion-label class="titoli-modale"> Titolo </ion-label>
+
+                    <ion-input
+                      style="
+                        background-color: rgb(255, 255, 255);
+                        margin-top: 10px;
+                        box-sizing: border-box;
+                        padding: 20px;
+                        border-radius: 5%;
+                      "
+                      labelPlacement="stacked"
+                      type="text"
+                      [(ngModel)]="message.title"
+                      id="{{ bodyAddObject.title }}"
+                      value="{{ message.title }}"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+
+                <ion-item>
+                  <svg
+                    fill="#000000"
+                    class="icone-aggiungi-oggetto"
+                    viewBox="0 0 1920 1920"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1801.441 0v1920H219.03v-439.216h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.47 56.515-56.47h56.514V1029.02h-56.514c-31.196 0-56.515-25.3-56.515-56.471 0-31.172 25.319-56.47 56.515-56.47h56.514V577.254h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.471 56.515-56.471h56.514V0h1582.412Zm-113.03 112.941H332.06v351.373h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.3 56.514 56.471 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.471-56.514 56.471H332.06v326.275h1356.353V112.94ZM640.289 425.201H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Zm0 534.845H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+
+                  <ion-label class="titoli-modale"> Sottotitolo </ion-label>
+
+                  <ion-input
+                    style="
+                      background-color: rgb(255, 255, 255);
+                      margin-top: 10px;
+                      box-sizing: border-box;
+                      padding: 20px;
+                      border-radius: 5%;
+                    "
+                    [(ngModel)]="message.subtitle"
+                    id="{{ bodyAddObject.subtitle }}"
+                    value="{{ message.subtitle }}"
+                  >
+                  </ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    fill="#000000"
+                    class="icone-aggiungi-oggetto"
+                    viewBox="0 0 1920 1920"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1801.441 0v1920H219.03v-439.216h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.47 56.515-56.47h56.514V1029.02h-56.514c-31.196 0-56.515-25.3-56.515-56.471 0-31.172 25.319-56.47 56.515-56.47h56.514V577.254h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.471 56.515-56.471h56.514V0h1582.412Zm-113.03 112.941H332.06v351.373h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.3 56.514 56.471 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.471-56.514 56.471H332.06v326.275h1356.353V112.94ZM640.289 425.201H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Zm0 534.845H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <ion-label class="titoli-modale"> Note: </ion-label>
+                  <ion-textarea
+                    class="testo-form-autori"
+                    [(ngModel)]="message.objectNotes"
+                    id="{{ bodyAddObject.objectNotes }}"
+                    value="{{ message.objectNotes }}"
+                  >
+                  </ion-textarea>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    fill="#000000"
+                    class="icone-aggiungi-oggetto"
+                    viewBox="0 0 1920 1920"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1801.441 0v1920H219.03v-439.216h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.47 56.515-56.47h56.514V1029.02h-56.514c-31.196 0-56.515-25.3-56.515-56.471 0-31.172 25.319-56.47 56.515-56.47h56.514V577.254h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.471 56.515-56.471h56.514V0h1582.412Zm-113.03 112.941H332.06v351.373h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.3 56.514 56.471 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.471-56.514 56.471H332.06v326.275h1356.353V112.94ZM640.289 425.201H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Zm0 534.845H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <ion-label class="titoli-modale">
+                    Descrizione dell'autore:
+                  </ion-label>
+                  <ion-textarea
+                    class="testo-form-autori"
+                    [(ngModel)]="message.authorDescription"
+                    id="{{ bodyAddObject.authorDescription }}"
+                    value="{{ message.authorDescription }}"
+                  >
+                  </ion-textarea>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    class="icone-aggiungi-oggetto"
+                    viewBox="-3 0 20 20"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <title>pin_rounded_circle [#619]</title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g
+                      id="Page-1"
+                      stroke="none"
+                      stroke-width="1"
+                      fill="none"
+                      fill-rule="evenodd"
+                    >
+                      <g
+                        id="Dribbble-Light-Preview"
+                        transform="translate(-423.000000, -5439.000000)"
+                        fill="#000000"
+                      >
+                        <g
+                          id="icons"
+                          transform="translate(56.000000, 160.000000)"
+                        >
+                          <path
+                            d="M376,5286.219 C376,5287.324 375.105,5288.219 374,5288.219 C372.895,5288.219 372,5287.324 372,5286.219 C372,5285.114 372.895,5284.219 374,5284.219 C375.105,5284.219 376,5285.114 376,5286.219 M374,5297 C372.178,5297 369,5290.01 369,5286 C369,5283.243 371.243,5281 374,5281 C376.757,5281 379,5283.243 379,5286 C379,5290.01 375.822,5297 374,5297 M374,5279 C370.134,5279 367,5282.134 367,5286 C367,5289.866 370.134,5299 374,5299 C377.866,5299 381,5289.866 381,5286 C381,5282.134 377.866,5279 374,5279"
+                            id="pin_rounded_circle-[#619]"
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  <ion-label class="titoli-modale">
+                    Posizione trovata:
+                  </ion-label>
+                  <ion-input
+                    class="testo-form-autori"
+                    [(ngModel)]="message.position"
+                    id="{{ bodyAddObject.position }}"
+                    value="{{ message.position }}"
+                  >
+                  </ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    class="icone-aggiungi-oggetto"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M5 3C3.89543 3 3 3.89543 3 5V6.83772L1.49006 11.3675C1.10052 12.5362 1.8474 13.7393 3 13.963V20C3 21.1046 3.89543 22 5 22H9H10H14H15H19C20.1046 22 21 21.1046 21 20V13.963C22.1526 13.7393 22.8995 12.5362 22.5099 11.3675L21 6.83772V5C21 3.89543 20.1046 3 19 3H5ZM15 20H19V14H17.5H12H6.5H5V20H9V17C9 15.3431 10.3431 14 12 14C13.6569 14 15 15.3431 15 17V20ZM11 20H13V17C13 16.4477 12.5523 16 12 16C11.4477 16 11 16.4477 11 17V20ZM3.38743 12L4.72076 8H6.31954L5.65287 12H4H3.38743ZM7.68046 12L8.34713 8H11V12H7.68046ZM13 12V8H15.6529L16.3195 12H13ZM18.3471 12L17.6805 8H19.2792L20.6126 12H20H18.3471ZM19 5V6H16.5H12H7.5H5V5H19Z"
+                      fill="#000000"
+                    />
+                  </svg>
+                  <ion-label class="titoli-modale">
+                    Stanza del magazzino:
+                  </ion-label>
+                  <ion-input
+                    class="testo-form-autori"
+                    [(ngModel)]="message.warehouseRoom"
+                    id="{{ bodyAddObject.warehouseRoom }}"
+                    value="{{ message.warehouseRoom }}"
+                  >
+                  </ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    class="icone-aggiungi-oggetto"
+                    viewBox="0 0 16 16"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <title>number_sign [#110]</title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g
+                      id="Page-1"
+                      stroke="none"
+                      stroke-width="1"
+                      fill="none"
+                      fill-rule="evenodd"
+                    >
+                      <g
+                        id="Dribbble-Light-Preview"
+                        transform="translate(-382.000000, -7721.000000)"
+                        fill="#000000"
+                      >
+                        <g
+                          id="icons"
+                          transform="translate(56.000000, 160.000000)"
+                        >
+                          <path
+                            d="M332,7571 L336,7571 L336,7567 L332,7567 L332,7571 Z M342,7567 L342,7565 L338,7565 L338,7561 L336,7561 L336,7565 L332,7565 L332,7561 L330,7561 L330,7565 L326,7565 L326,7567 L330,7567 L330,7571 L326,7571 L326,7573 L330,7573 L330,7577 L332,7577 L332,7573 L336,7573 L336,7577 L338,7577 L338,7573 L342,7573 L342,7571 L338,7571 L338,7567 L342,7567 Z"
+                            id="number_sign-[#110]"
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  <ion-label class="titoli-modale"> Ordinamento: </ion-label>
+                  <ion-input
+                    class="testo-form-autori"
+                    [(ngModel)]="message.sortOrder"
+                    id="{{ bodyAddObject.sortOrder }}"
+                    value="{{ message.sortOrder }}"
+                  >
+                  </ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    class="icone-aggiungi-oggetto"
+                    viewBox="0 0 16 16"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <title>number_sign [#110]</title>
+                    <desc>Created with Sketch.</desc>
+                    <defs></defs>
+                    <g
+                      id="Page-1"
+                      stroke="none"
+                      stroke-width="1"
+                      fill="none"
+                      fill-rule="evenodd"
+                    >
+                      <g
+                        id="Dribbble-Light-Preview"
+                        transform="translate(-382.000000, -7721.000000)"
+                        fill="#000000"
+                      >
+                        <g
+                          id="icons"
+                          transform="translate(56.000000, 160.000000)"
+                        >
+                          <path
+                            d="M332,7571 L336,7571 L336,7567 L332,7567 L332,7571 Z M342,7567 L342,7565 L338,7565 L338,7561 L336,7561 L336,7565 L332,7565 L332,7561 L330,7561 L330,7565 L326,7565 L326,7567 L330,7567 L330,7571 L326,7571 L326,7573 L330,7573 L330,7577 L332,7577 L332,7573 L336,7573 L336,7577 L338,7577 L338,7573 L342,7573 L342,7571 L338,7571 L338,7567 L342,7567 Z"
+                            id="number_sign-[#110]"
+                          ></path>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+
+                  <ion-label class="titoli-modale">
+                    Numero dell'armadio:
+                  </ion-label>
+                  <ion-input
+                    class="testo-form-autori"
+                    [(ngModel)]="message.rackNumber"
+                    id="{{ bodyAddObject.rackNumber }}"
+                    value="{{ message.rackNumber }}"
+                  >
+                  </ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    class="icone-aggiungi-oggetto-modified"
+                    version="1.1"
+                    id="svg2"
+                    xmlns:dc="http://purl.org/dc/elements/1.1/"
+                    xmlns:cc="http://creativecommons.org/ns#"
+                    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                    xmlns:svg="http://www.w3.org/2000/svg"
+                    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+                    sodipodi:docname="ok.svg"
+                    inkscape:version="0.48.4 r9939"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 1200 1200"
+                    enable-background="new 0 0 1200 1200"
+                    xml:space="preserve"
+                  >
+                    <path
+                      id="path15124"
+                      inkscape:connector-curvature="0"
+                      d="M1004.237,99.152l-611.44,611.441L194.492,512.288L0,706.779  l198.305,198.306l195.762,195.763L588.56,906.355L1200,294.916L1004.237,99.152z"
+                    />
+                  </svg>
+
+                  <ion-label class="titoli-modale">
+                    Disponibile in magazzino:
+                  </ion-label>
+                  <ion-toggle value="{{ message.avaiable }}"> </ion-toggle>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    class="icone-aggiungi-oggetto-modified"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 9H21M17 13.0014L7 13M10.3333 17.0005L7 17M7 3V5M17 3V5M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                  <ion-label
+                    class="titoli-modale"
+                    style="
+                      text-align: center;
+                      margin-left: 20px;
+                      margin-right: 15px;
+                    "
+                  >
+                    Anno di aggiunta:
+                  </ion-label>
+                  <ion-text style="text-align: center; margin-left: 20px">{{
+                    message.addedDate ? message.addedDate : "NOT FOUND"
+                  }}</ion-text>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    class="icone-aggiungi-oggetto-modified"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 9H21M17 13.0014L7 13M10.3333 17.0005L7 17M7 3V5M17 3V5M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                  <ion-label class="titoli-modale">
+                    Data dell'ultimo aggiornamento:
+                  </ion-label>
+                  <ion-text
+                    style="
+                      text-align: center;
+                      margin-left: 20px;
+                      margin-right: 15px;
+                    "
+                  >
+                    {{
+                      message.discoveryDate
+                        ? message.discoveryDate
+                        : "NOT FOUND"
+                    }}
+                  </ion-text>
+                </ion-item>
+
+                <ion-item class="titoli-modale">
+                  <svg
+                    height="40px"
+                    width="40px"
+                    version="1.1"
+                    id="_x32_"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 512 512"
+                    xml:space="preserve"
+                  >
+                    <style type="text/css">
+                      .st0 {
+                        fill: #000000;
+                      }
+                    </style>
+                    <g>
+                      <path
+                        class="st0"
+                        d="M293.686,333.324c5.976,52.529,58.497,59.684,74.014,59.684c15.521,0,68.042-7.155,74.01-59.684   c-9.545,8.358-40.582,22.691-74.01,22.691C334.276,356.014,303.239,341.681,293.686,333.324z"
+                      />
+                      <path
+                        class="st0"
+                        d="M312.681,272.069c12.31,1.33,23.671,5.338,33.591,11.37c0.394-17.695-12.824-33.041-30.747-34.969   c-17.827-1.92-33.926,10.126-37.423,27.344C288.894,272.189,300.622,270.778,312.681,272.069z"
+                      />
+                      <path
+                        class="st0"
+                        d="M389.129,283.439c9.919-6.032,21.285-10.039,33.587-11.37c12.067-1.291,23.786,0.12,34.579,3.745   c-3.498-17.218-19.596-29.264-37.42-27.344C401.948,250.398,388.73,265.744,389.129,283.439z"
+                      />
+                      <path
+                        class="st0"
+                        d="M511.724,171.919c0,0-0.02-0.216-0.036-0.327l-0.02-0.104l-0.02-0.144c-0.948-6.86-5.975-12.389-13.05-13.106   c-5.765-0.59-11.586,2.35-17.119,3.673c-11.405,2.693-22.97,4.74-34.535,6.462c-30.085,4.478-60.56,6.549-90.964,5.832   c-23.604-0.55-47.223-2.621-70.552-6.278c-8.7-36.101-23.006-95.259-27.058-112.023c-0.82-3.402-1.43-8.724-8.29-3.792   c-4.96,3.593-54.665,28.874-118.249,44.243C68.247,111.724,12.475,111.916,6.42,111c-8.346-1.275-6.466,3.744-5.641,7.146   C5.133,136.16,21.294,203.039,29.7,237.777c20.496,84.87,111.994,128.117,164.213,115.489c11.242-2.717,22.918-8.573,34.125-16.939   c11.282,46.108,43.136,86.902,84.714,109.784c13.413,7.378,28.077,12.979,43.311,15.027c14.935,2.023,29.942-0.167,44.14-5.02   c27.938-9.56,52.665-28.213,71.624-50.649c18.481-21.886,31.731-48.227,37.172-76.408c2.506-12.964,2.848-25.934,2.848-39.073   V186.977C511.848,182.029,512.262,176.842,511.724,171.919z M61.156,185.351c11.358,0.972,23.082-0.398,34.487-4.493   c11.656-4.176,21.776-10.733,29.99-18.932c4.534,17.098-4.705,35.129-21.679,41.2C87.086,209.182,68.606,201.262,61.156,185.351z    M223.564,256.612c-13.808-2.852-33.539-3.991-52.84,0.685c-28.596,6.908-52.18,25.576-58.625,34.691   c-5.744-46.156,37.694-63.134,50.98-66.354c10.202-2.47,40.001-5.832,60.485,12.629V256.612z M231.835,159.648   c-1.932,3.928-4.581,7.466-7.844,10.406c-5.008,4.526-11.405,7.633-18.6,8.581c-17.875,2.327-34.324-9.489-38.108-26.794   c11.07,3.554,23.046,4.764,35.328,3.171c12.019-1.57,23.082-5.705,32.734-11.76C235.564,149.083,234.289,154.677,231.835,159.648z    M488.574,284.937c0,12.708,0.16,25.337-2.079,37.91c-1.933,10.867-5.247,21.448-9.72,31.519c-0.056,0.104-0.112,0.231-0.164,0.358   c-0.015,0.048-0.055,0.104-0.071,0.175c-0.088,0.183-0.164,0.374-0.251,0.557c-0.159,0.374-0.339,0.749-0.518,1.14   c0.048-0.144,0.123-0.263,0.179-0.415c-11.354,24.644-29.67,46.164-51.892,61.66c-12.302,8.589-26.109,15.593-40.813,18.939   c-13.732,3.155-27.284,1.825-40.57-2.701c-27.826-9.506-52.032-29.814-69.01-53.526c-13.286-18.564-22.277-40.076-25.496-62.576   c-0.88-6.103-1.326-12.302-1.326-18.516V184.149c14.274,3.513,28.83,6.102,43.438,8.07c9.314,1.275,18.676,2.295,27.986,3.14   c31.193,2.805,62.548,2.964,93.757,0.43c25.66-2.079,51.514-5.497,76.551-11.656V284.937z"
+                      />
+                    </g>
+                  </svg>
+
+                  <ion-label class="titoli-modale"> Genere: </ion-label>
+
+                  <ion-list
+                    style="
+                      margin-right: 10px;
+                      margin-left: 20px;
+                      min-width: 220px;
+                    "
+                  >
+                    <ion-select
+                      class="center"
+                      aria-label="generi"
+                      placeholder="Generi"
+                      [multiple]="false"
+                      color="primary"
+                      value="{{ message.genere }}"
+                    >
+                      <ion-select-option value="Romanzo"
+                        >Romanzo</ion-select-option
+                      >
+                      <ion-select-option value="Avventura"
+                        >Avventura</ion-select-option
+                      >
+                      <ion-select-option value="SciFi">SciFi</ion-select-option>
+                      <ion-select-option value="Fantasy"
+                        >Fantasy</ion-select-option
+                      >
+                      <ion-select-option value="Giallo"
+                        >Giallo</ion-select-option
+                      >
+                      <ion-select-option value="Manuale"
+                        >Manuale</ion-select-option
+                      >
+                      <ion-select-option value="Viaggio"
+                        >Viaggio</ion-select-option
+                      >
+                    </ion-select>
+                  </ion-list>
+                </ion-item>
+
+                <ion-item>
+                  <svg
+                    class="icone-aggiungi-oggetto"
+                    style="height: 35px; width: 35px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.2639 15.9375L12.5958 14.2834C11.7909 13.4851 11.3884 13.086 10.9266 12.9401C10.5204 12.8118 10.0838 12.8165 9.68048 12.9536C9.22188 13.1095 8.82814 13.5172 8.04068 14.3326L4.04409 18.2801M14.2639 15.9375L14.6053 15.599C15.4112 14.7998 15.8141 14.4002 16.2765 14.2543C16.6831 14.126 17.12 14.1311 17.5236 14.2687C17.9824 14.4251 18.3761 14.8339 19.1634 15.6514L20 16.4934M14.2639 15.9375L18.275 19.9565M18.275 19.9565C17.9176 20 17.4543 20 16.8 20H7.2C6.07989 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4.12796 18.7313 4.07512 18.5321 4.04409 18.2801M18.275 19.9565C18.5293 19.9256 18.7301 19.8727 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V16.4934M4.04409 18.2801C4 17.9221 4 17.4575 4 16.8V7.2C4 6.0799 4 5.51984 4.21799 5.09202C4.40973 4.71569 4.71569 4.40973 5.09202 4.21799C5.51984 4 6.07989 4 7.2 4H16.8C17.9201 4 18.4802 4 18.908 4.21799C19.2843 4.40973 19.5903 4.71569 19.782 5.09202C20 5.51984 20 6.0799 20 7.2V16.4934M17 8.99989C17 10.1045 16.1046 10.9999 15 10.9999C13.8954 10.9999 13 10.1045 13 8.99989C13 7.89532 13.8954 6.99989 15 6.99989C16.1046 6.99989 17 7.89532 17 8.99989Z"
+                      stroke="#000000"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                  <ion-label class="titoli-modale"> Copertina: </ion-label>
+
+                  <input type="file" id="fileImageInput" accept="image/*" />
+                  <img
+                    id="imagePreview"
+                    src="#"
+                    alt="Anteprima Immagine"
+                    style="display: none; max-width: 100px; max-height: 10 0px"
+                  />
+                </ion-item>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+
+          <ion-button
+            id="bottone-elimina-oggetto+{{ message.objectID }}"
+            style="align-items: end; color: palegoldenrod"
+            fill="clear"
+          >
+            <svg class="icona-esterna">
+              <path
+                xmlns="http://www.w3.org/2000/svg"
+                d="M10 12L14 16M14 12L10 16M18 6L17.1991 18.0129C17.129 19.065 17.0939 19.5911 16.8667 19.99C16.6666 20.3412 16.3648 20.6235 16.0011 20.7998C15.588 21 15.0607 21 14.0062 21H9.99377C8.93927 21 8.41202 21 7.99889 20.7998C7.63517 20.6235 7.33339 20.3412 7.13332 19.99C6.90607 19.5911 6.871 19.065 6.80086 18.0129L6 6M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6"
+                stroke="#000000"
+                stroke-width="2"
+                fill="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </ion-button>
+          <ion-modal trigger="bottone-elimina-oggetto+{{ message.objectID }}">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="cancel()" [strong]="true"
+                      ><ion-icon name="arrow-undo-outline"></ion-icon
+                    ></ion-button>
+                  </ion-buttons>
+
+                  <ion-buttons slot="end">
+                    <ion-button (click)="confirmDeleteObject()" [strong]="true"
+                      >Conferma</ion-button
+                    >
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-text
+                class="ion-text-center"
+                style="margin-bottom: 50%; font-family: serif"
+              >
+                <ion-title
+                  >Sei sicuro di voler eliminare il seguente
+                  elemento?</ion-title
+                >
+                <p></p>
+                <h1>{{ message.title }}</h1>
+              </ion-text>
+            </ng-template>
+          </ion-modal>
+        </ion-card>
+      </ion-row>
+    </ion-grid>
+  </p>
+</ion-item>

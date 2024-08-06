@@ -1,0 +1,195 @@
+      <ion-button
+        color="secondary"
+        id="modify-element-button-2"
+        class="center"
+        style="width: 80%"
+        (click)="showPopover('modify', this.showModifyPopover)"
+        >Modifica</ion-button
+      >
+      <ion-popover
+        class="ion-popover-left"
+        trigger="modify-element-button-2"
+        triggerAction="clickModifica"
+        style="max-width: 800px; padding-left: 5%; padding-right: 5%"
+        isOpen="{{showModifyPopover}}"
+      >
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Modifica un elemento</ion-title>
+            </ion-toolbar>
+
+            <ion-buttons>
+              <ion-button
+                (click)="showPopover('modify', this.showModifyPopover)"
+              >
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-header>
+
+          <ion-content class="ionic-padding" color="light">
+            <ion-list *ngFor="let item of filteredObjects" [inset]="true">
+              <ion-item class="nameBook">
+                <ion-item style="padding-right: 2.5%">
+                  {{item.title}}
+                </ion-item>
+                <br />
+                <button
+                  style="background-color: bisque"
+                  class="modifyButton"
+                  id="{{'modify'+item.objectID}}"
+                  item-end
+                  danger
+                >
+                  <ion-icon
+                    style="background-color: bisque"
+                    name="arrow-forward-outline"
+                  ></ion-icon>
+                  Modifica
+
+                  <ion-popover
+                    class="ion-popover-left"
+                    trigger="{{'modify'+item.objectID}}"
+                    triggerAction="clickModifica"
+                    style="font-size: 1em; max-width: 800px"
+                  >
+                    <ng-template>
+                      <ion-content class="ion-padding">
+                        <ion-content color="light">
+                          <ion-list [inset]="true">
+                            <ion-item>
+                              <ion-input
+                                label="Titolo"
+                                value="{{item.title}}"
+                              ></ion-input>
+                            </ion-item>
+
+                            <ion-item position="right">
+                              <ion-label position="stacked">Autore</ion-label>
+
+                              <ion-select [(ngModel)]="choosenAuthorName">
+                                <ion-select-option
+                                  *ngFor="let author of allAuthors"
+                                  >{{ author.name }}</ion-select-option
+                                >
+                              </ion-select>
+                            </ion-item>
+
+                            <ion-item position="right">
+                              <ion-label position="stacked"> Genere </ion-label>
+                              <ion-select
+                                [(ngModel)]="item.genere"
+                                value="{{item.genere}}"
+                              >
+                                <ion-select-option
+                                  *ngFor="let genere of allGenres"
+                                  >{{ genere }}</ion-select-option
+                                >
+                              </ion-select>
+                            </ion-item>
+                          </ion-list>
+                          <br />
+                          <ion-item
+                            style="
+                              padding-left: 5%;
+                              padding-right: 5%;
+                              font-family: 'tahoma';
+                              font-weight: lighter;
+                            "
+                          >
+                            <br />
+                            <div class="ion-text-center">
+                              <br />
+                              <ion-text style="font-weight: bold"
+                                >Data di pubblicazione</ion-text
+                              >
+                              <br />
+                              <ion-datetime
+                                presentation="month-year"
+                                preferWheel="true"
+                                [(ngModel)]="bodyModifyObject.discoveryDate"
+                              ></ion-datetime>
+                              <br />
+                            </div>
+                          </ion-item>
+
+                          <ion-item
+                            style="
+                              padding-left: 5%;
+                              padding-right: 5%;
+                              margin-top: 20px;
+                            "
+                          >
+                            <ion-input
+                              style="
+                                margin-top: 20px;
+                                margin-bottom: 20px;
+                                font-weight: bold;
+                                font-size: 15px;
+                              "
+                              type="file"
+                              id="cover-image"
+                            >
+                              Carica un immagine</ion-input
+                            >
+                          </ion-item>
+
+                          <ion-list [inset]="true">
+                            <ion-item>
+                              <ion-textarea
+                                label="Descrizione del libro"
+                                labelPlacement="floating"
+                                value="{{item.htmlDescription1}}"
+                                id="{{bodyModifyObject.htmlDescription2}}"
+                                rows="5"
+                              ></ion-textarea>
+                            </ion-item>
+
+                            <ion-item>
+                              <ion-textarea
+                                label="Descrizione del autore"
+                                value="{{item.authorDescription}}"
+                                id="{{bodyModifyObject.authorDescription}}"
+                                labelPlacement="floating"
+                                rows="5"
+                              ></ion-textarea>
+                            </ion-item>
+                            <ion-item
+                              style="padding-bottom: 2%; margin-bottom: 2%"
+                            >
+                              <ion-toggle
+                                checked="{{item.avaiable ? 'true' : 'false'}}"
+                              >
+                                <ion-label>Disponibile </ion-label>
+                              </ion-toggle></ion-item
+                            >
+                            <br />
+                            <ion-button
+                              id="modify-modified-alert-3"
+                              (click)="UpdateObjectArchiveAPI()"
+                              color="secondary"
+                              id="modify-element-button"
+                              class="center"
+                              style="width: 50%"
+                              >Modifica</ion-button
+                            >
+                            <ion-alert
+                              trigger="modify-modified-alert-3"
+                              header="Elemento Aggiunto"
+                              message="Elemento aggiunto nello store"
+                              [buttons]="modifyButtons"
+                            ></ion-alert>
+
+                            <p></p>
+                          </ion-list>
+                        </ion-content>
+                      </ion-content>
+                    </ng-template>
+                  </ion-popover>
+                </button>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>

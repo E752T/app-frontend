@@ -1,0 +1,66 @@
+.item-autori {
+  border-radius: 104px 104px 104px 104px;
+  -webkit-border-radius: 104px 104px 104px 104px;
+  -moz-border-radius: 104px 104px 104px 104px;
+}
+
+.bottone-update-autori {
+  padding-right: 3%;
+}
+
+.toast-autori {
+  max-width: 250px;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
+.text-conferma-elimina {
+  margin-bottom: 50%;
+  font-family: serif;
+}
+
+.label-autori {
+  font-weight: bold;
+  padding-bottom: 2%;
+}
+
+.datetime-item {
+  padding-left: 15%;
+  padding-right: 15%;
+  min-width: 300px;
+  margin: 0;
+  position: absolute;
+  top: 20%;
+}
+
+.datetime-title {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.icone-autori {
+  width: 20px;
+  height: 20px;
+  margin-bottom: -4px;
+}
+
+.testo-form-autori {
+  margin-left: 11px;
+}
+
+.div-svg-input:hover .icone-autori-edit {
+  display: block;
+  position: absolute;
+  margin-bottom: 20px;
+  top: 330px;
+  right: 0px;
+  width: 35px;
+  height: 20px;
+}
+
+.icone-autori-edit {
+  display: none;
+  position: absolute;
+  margin-top: -50px;
+}

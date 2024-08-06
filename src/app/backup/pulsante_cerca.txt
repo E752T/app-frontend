@@ -1,0 +1,9 @@
+<ion-button
+color="secondary"
+id="filter-button"
+class="center"
+style="width: 80%"
+(click)="getItems(searchInput)"
+>
+Cerca
+</ion-button>

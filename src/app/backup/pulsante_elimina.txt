@@ -1,0 +1,71 @@
+     <ion-button
+        color="secondary"
+        id="delete-element-button"
+        class="center"
+        style="width: 80%"
+        (click)="showPopover('delete', this.showDeletePopover)"
+        >Elimina</ion-button
+      >
+      <ion-popover
+        class="ion-popover-left"
+        trigger="delete-element-button"
+        triggerAction="clickElimina"
+        isOpen="{{showDeletePopover}}"
+      >
+        <ng-template style="margin-right: auto; margin-left: auto">
+          <ion-header>
+            <ion-toolbar>
+              <ion-title class="center">Elimina gli elementi</ion-title>
+              <ion-buttons>
+                <ion-button
+                  (click)="showPopover('delete', this.showDeletePopover)"
+                >
+                  <ion-icon name="close-circle-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+
+          <ion-content
+            class="ionic-padding"
+            color="light"
+            style="margin-left: auto; margin-right: 0"
+          >
+            <ion-list *ngFor="let item of filteredObjects" [inset]="true">
+              <button
+                class="deleteButton"
+                style="
+                  background-color: white;
+                  align-content: safe;
+                  text-align: left;
+                "
+                item-end
+                danger
+                (click)="DeleteObjectArchiveAPI(item)"
+              >
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="3">
+                      <ion-icon
+                        size="large"
+                        color="danger"
+                        name="trash-outline"
+                      ></ion-icon>
+                    </ion-col>
+                    <ion-col size="12">
+                      <ion-text
+                        style="
+                          color: black;
+                          font-family: 'Franklin Gothic Medium', 'Arial Narrow',
+                            Arial, sans-serif;
+                        "
+                        >{{item.title}}</ion-text
+                      >
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </button>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>

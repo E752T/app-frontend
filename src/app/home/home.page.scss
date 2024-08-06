@@ -1,0 +1,388 @@
+ion-range {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.ion-popover-left {
+  &::part(content) {
+    width: 80%;
+    height: 110%;
+    position: center;
+    padding: 20px;
+    top: 3%;
+    bottom: 3%;
+    left: 3%;
+    right: 3%;
+  }
+}
+.bg-style {
+  background: red;
+}
+
+ion-popover ion-content {
+  --background: rgba(40, 173, 218, 0.6);
+}
+
+ion-popover::part(backdrop) {
+  background-color: rgb(6, 14, 106);
+}
+
+ion-radio {
+  --border-radius: 2px;
+  --inner-border-radius: 2px;
+
+  --color: #ddd;
+  --color-checked: #6815ec;
+}
+
+ion-radio.ios::part(container) {
+  width: 10px;
+  height: 10px;
+
+  border: 2px solid #ddd;
+  border-radius: 2px;
+}
+
+.radio-checked.ios::part(container) {
+  border-color: #6815ec;
+}
+
+.bottoniGestionale {
+  flex-direction: column;
+}
+
+.bottoniGestionale ion-button {
+  width: 100%;
+}
+/* Solid border */
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+
+ion-content {
+  --offset-bottom: auto !important;
+  --overflow: auto;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
+  }
+
+  &::-webkit-scrollbar-track:hover {
+    background: #35d703;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(75, 75, 75);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #94173a;
+  }
+
+  .inner-scroll {
+    scrollbar-width: thin;
+  }
+}
+
+.titolo-store {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 40px;
+  letter-spacing: 1.4px;
+  word-spacing: 0px;
+  color: #ffffff;
+  font-weight: 400;
+  text-decoration: rgb(232, 230, 227);
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+}
+
+.logo-store {
+  color: rgb(255, 132, 0);
+  text-align: left;
+  justify-content: flex-end;
+}
+.bottone-accedi {
+  float: right;
+  margin-right: 1%;
+  max-width: 200px;
+  background-color: #fffefd;
+  flex: 1;
+}
+.bottone-accedi ion-text {
+  color: #000000;
+  font-family: "Times New Roman", Times, serif;
+  border-radius: 20px;
+}
+
+.ng-template-custom {
+  height: 290px;
+  border-radius: 100px;
+}
+
+.ionic-title-custom {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.ionic-text-custom {
+  margin-top: 5%;
+  font-size: 15px;
+}
+
+.credenziali-login {
+  font-size: 22px;
+}
+
+.credenziali-dimenticate {
+  color: black;
+  width: fit-content;
+  font-size: smaller;
+  padding-top: 5%;
+}
+
+.bottone-contatti {
+  float: right;
+  font-family: serif;
+  margin-right: 2%;
+  max-width: 200px;
+  font-size: 18px;
+  flex: 1;
+  border-radius: 10px;
+  background-color: #ffffff;
+  background: white;
+}
+
+.contatti-testo {
+  color: #000000;
+  border-radius: 20px;
+}
+
+ion-button.bottone-accedi {
+  background: white;
+}
+
+.ionic-text-credenziali {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.titolo-filtri-ricerca {
+  font-family: Georgia, serif;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #000000;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  margin: auto;
+  text-align: center;
+}
+
+.card-filtri-ricerca {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.label-anni {
+  padding: 10px;
+}
+
+.searchbar-custom {
+  width: 100%;
+  font-size: smaller;
+}
+
+.titolo-categoria {
+  margin-top: 80px;
+  text-align: left;
+  padding-bottom: 2%;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  letter-spacing: 3px;
+  word-spacing: -0.8px;
+  color: #000000;
+  font-weight: 400;
+  text-decoration: rgb(232, 230, 227);
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+
+.titolo-aggiungi-oggetto{
+ margin-top: 20px;
+}
+
+
+.card-oggetti-archivio {
+  min-width: 400px;
+  width: 100%;
+  text-align: left;
+}
+
+.ultimo-elemento {
+  margin-bottom: 100px;
+}
+.sidebar {
+  will-change: auto;
+}
+
+.background-title-bar {
+  background: rgb(13, 110, 214);
+  padding-bottom: 3%;
+  padding-top: 3%;
+}
+
+.titolo-icona {
+  font-size: larger;
+}
+
+.header-titolo {
+  background: rgb(0, 45, 116);
+}
+
+.stile-titolo {
+  color: rgb(232, 23, 23);
+}
+
+.header-menu-home {
+  margin-top: 95px;
+  margin-bottom: 200px;
+}
+
+.header-menu-button {
+  margin-right: 20px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.searchbar-menu {
+  width: 100%;
+}
+
+.label-years {
+  padding: 5px;
+}
+
+.bottone-categoria {
+  margin: auto;
+  width: 80%;
+}
+
+.accordion-gestionale {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.testo-contatti {
+  margin-top: 5%;
+  font-size: 15px;
+  margin-bottom: 5%;
+}
+
+.bottone-aggiungi-nuovo-oggetto {
+  margin-bottom: 2%;
+  width: fit-content;
+  min-width: 150px;
+  padding-left: 5%;
+  border-radius: 15%;
+  color: #000000;
+}
+
+.icona-aggiungi-nuovo-oggetto {
+  justify-content: flex-start;
+  padding-right: 20px;
+}
+
+.toast-nuovo-elemento-aggiunto {
+  max-width: 250px;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
+.testo-input {
+  font-size: 15px;
+}
+
+.testo-input-edited {
+  font-size: 22px;
+}
+
+.ion-item-text {
+  padding-top: 3%;
+  font-size: 12px;
+}
+
+.testo-aggiungi-nuovo {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 21px;
+  letter-spacing: 1.4px;
+  word-spacing: 0px;
+  color: #000000;
+  font-weight: 400;
+  text-decoration: rgb(232, 230, 227);
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+}
+
+.modale-modifica-oggetto {
+  font-weight: bolder;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.icone-autori {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.titoli-modale {
+  margin-bottom: 15px;
+  display: flex;
+  min-width: 100px;
+  margin-top: 15px; 
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.icone-aggiungi-oggetto {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+}
+
+.icone-aggiungi-oggetto-modified {
+  width: 30px;
+  height: 30px;
+}
+
+.testo-form-autori {
+  margin-left: 11px;
+  display: flex !important;
+  align-content: center !important;
+  align-items: center !important;
+}

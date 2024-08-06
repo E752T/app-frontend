@@ -1,0 +1,205 @@
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+ion-label {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+ion-item h2 {
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+ion-item p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 95%;
+}
+
+ion-item .date {
+  align-items: center;
+  display: flex;
+}
+
+ion-item ion-icon {
+  color: #c9c9ca;
+}
+
+ion-item ion-note {
+  font-size: 0.9375rem;
+  margin-right: 8px;
+  font-weight: normal;
+}
+
+ion-item ion-note.md {
+  margin-right: 14px;
+}
+
+.dot {
+  display: block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  align-self: start;
+  margin: 16px 10px 16px 16px;
+}
+
+.dot-unread {
+  background: var(--ion-color-primary);
+}
+
+ion-footer ion-title {
+  font-size: 12px;
+  font-weight: normal;
+}
+ion-card {
+  width: 16vw;
+  ion-card-content {
+    width: 100%;
+  }
+}
+
+ion-item {
+  width: 100%;
+}
+ion-radio {
+  --border-radius: 4px;
+  --inner-border-radius: 4px;
+  --color: #ddd;
+  --color-checked: #6815ec;
+}
+
+ion-radio.ios::part(container) {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+}
+
+.radio-checked.ios::part(container) {
+  border-color: #6815ec;
+}
+
+.titolo-oggetto {
+  color: #ffffff;
+  float: left;
+  font-size-adjust: 0.5;
+  margin-right: 2%;
+}
+
+.dimensioni-oggetto {
+  min-width: 200px;
+  min-width: 300px;
+}
+
+.genere-oggetto {
+  color: rgb(255, 255, 0);
+}
+
+.logo-disponibilita-oggetto {
+  width: 20px;
+  height: 20px;
+}
+
+.immagine-copertina {
+  width: 220px;
+  height: 220px;
+}
+
+.immagine-copertina-modale {
+  margin-bottom: 70px;
+  max-width: 200px;
+  max-height: 300px;
+  margin-bottom: 70px;
+}
+
+.modale-modifica-oggetto {
+  font-weight: bolder;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.titoli-modale {
+  margin-bottom: 15px;
+  display: flex;
+  min-width: 100px;
+  margin-top: 15px; 
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.modale-date {
+  padding-left: 25%;
+  padding-bottom: 35%;
+  padding-right: 25%;
+  min-width: 300px;
+}
+
+.icone-aggiungi-oggetto-modified {
+  width: 30px;
+  height: 30px;
+}
+
+.icona-esterna {
+  width: 50px !important ;
+  height: 50px !important;
+}
+
+.sidebar {
+  will-change: auto;
+}
+
+.datetime-title {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.testo-form-autori {
+  margin-left: 11px;
+}
+
+.div-svg-input:hover .icone-autori-edit {
+  display: block;
+  position: absolute;
+  margin-bottom: 20px;
+  top: 330px;
+  right: 0px;
+  width: 35px;
+  height: 20px;
+}
+
+.icone-autori-edit {
+  display: none;
+  position: absolute;
+  margin-top: -50px;
+}
+
+.icone-autori {
+  width: 20px;
+  height: 20px;
+  margin-bottom: -4px;
+}
+
+.datetime-item {
+  padding-left: 15%;
+  padding-right: 15%;
+  min-width: 300px;
+  margin: 0;
+  position: absolute;
+  top: 20%;
+}
+
+.icone-aggiungi-oggetto {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+}

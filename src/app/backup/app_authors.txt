@@ -1,0 +1,10 @@
+      <ion-grid>
+        <ion-row>
+          <app-authors
+            style="min-width: 400px; width: 100%; text-align: left"
+            *ngFor="let element of filteredAuthors "
+            [author]="element"
+          >
+          </app-authors>
+        </ion-row>
+      </ion-grid>
