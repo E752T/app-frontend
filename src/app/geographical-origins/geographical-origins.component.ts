@@ -10,12 +10,12 @@ import {
 import { Platform } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { OverlayEventDetail } from '@ionic/core';
 
+import { GeographicalOrigin } from '../services/interfaces.service';
 import { baseURL, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
-import { OverlayEventDetail } from '@ionic/core';
-import { GeographicalOrigin } from '../services/interfaces.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-geographical-origin',
@@ -23,7 +23,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./geographical-origins.component.scss'],
 })
 export class GeographicalOriginComponent {
-  [x: string]: any;
 
   constructor(
     private http: HttpClient,
@@ -65,36 +64,6 @@ export class GeographicalOriginComponent {
     description: '',
   };
 
-  /////////////////////////////////////////////////////////////
-
-  
-  DeleteElement(objectID: any) {
-    this.publishers.filter(
-      (element: GeographicalOrigin) => element.geographicalOriginID !== objectID
-    );
-    var elementToDelete = console.log(this.publishers);
-    this.updatePublishers.emit(elementToDelete);
-    return PostRequest(baseURL + 'DeleteCategory/' + objectID);
-  }
-
-  confirmDeleteElement() {
-    this.DeleteElement(this.publisher?.publisherID);
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
-
-  UpdateAPI(): Promise<any> {
-    return PostRequest(baseURL + 'UpdatePublisher/', this.publisher);
-  }
-
-  getNewID(elementList: Array<Publisher>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].publisherID > highestID) {
-        highestID = elementList[i].publisherID;
-      }
-    }
-    return highestID + 1;
-  }
 
   confirm() {
     this.modalController.dismiss({ confirmed: true });

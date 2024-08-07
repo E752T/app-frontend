@@ -4,9 +4,9 @@
       <ion-accordion-group>
         <ion-accordion
           value="first"
-          style="padding-right: 50px; margin-left: 30px"
+          class="accordion-oggetto"
         >
-          <ion-item slot="header" color="primary" class="item-autori">
+          <ion-item slot="header" color="primary" class="oggetto-anteprima">
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label style="min-width: 200px">{{ author.name }} </ion-label>
             <ion-button
@@ -29,8 +29,8 @@
 
                   <ion-buttons slot="end">
                     <ion-button
-                      (click)="confirmDeleteAuthor()"
-                      id="confirmDeleteAuthor-'{{ author.authorID }}'"
+                      (click)="confirmDelete()"
+                      id="conferma-elimina-'{{ author.authorID }}'"
                       [strong]="true"
                       >Conferma</ion-button
                     >
@@ -46,7 +46,7 @@
                 <h1>{{ author.name }}</h1>
               </ion-text>
               <ion-toast
-                trigger="confirmDeleteAuthor-'{{ author.authorID }}'"
+                trigger="conferma-elimina-'{{ author.authorID }}'"
                 message="Elemento eliminato"
                 class="toast-autori"
                 [duration]="2000"
@@ -73,7 +73,7 @@
             <ion-input
               class="input-form"
               [(ngModel)]="author.name"
-              id="{{ bodyModifyAuthor.name }}"
+              id="{{ body_update_author.name }}"
               value="{{ author.name }}"
             >
             </ion-input>
@@ -112,7 +112,7 @@
             <ion-input
               class="input-form"
               [(ngModel)]="author.description"
-              id="{{ bodyModifyAuthor.description }}"
+              id="{{ body_update_author.description }}"
               value="{{ author.description }}"
             >
             </ion-input>
@@ -157,7 +157,7 @@
                 class="input-form"
                 type="email"
                 [(ngModel)]="author.email"
-                id="{{ bodyModifyAuthor.email }}"
+                id="{{ body_update_author.email }}"
                 value="{{ author.email }}"
               >
               </ion-input>
@@ -201,7 +201,7 @@
                 class="input-form"
                 type="tel"
                 [(ngModel)]="author.telephone1"
-                id="{{ bodyModifyAuthor.telephone1 }}"
+                id="{{ body_update_author.telephone1 }}"
                 value="{{ author.telephone1 }}"
               >
               </ion-input>
@@ -243,7 +243,7 @@
               class="input-form"
               type="tel"
               [(ngModel)]="author.telephone2"
-              id="{{ bodyModifyAuthor.telephone2 }}"
+              id="{{ body_update_author.telephone2 }}"
               value="{{ author.telephone2 }}"
             >
             </ion-input>
@@ -386,15 +386,15 @@
           <div slot="content">
             <ion-button
               color="secondary"
-              class="bottone-update-autori"
+              class="bottone-update"
               id="button-UpdateAuthorAPI-'{{ author.authorID }}'"
-              (click)="UpdateAuthorAPI()"
+              (click)="UpdateElement()"
               >Salva</ion-button
             >
 
             <ion-button
               id="elimina-autore-'{{ author.authorID }}'"
-              (click)="confirmDeleteAuthor()"
+              (click)="confirmDelete()"
               color="danger"
             >
               Elimina

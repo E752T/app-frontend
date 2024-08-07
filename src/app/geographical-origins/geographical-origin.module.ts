@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import {  } from './geographical-origins.component';
+import { GeographicalOriginComponent } from './geographical-origins.component';
 
 @NgModule({
-  declarations: [EditorsComponent],
+  declarations: [GeographicalOriginComponent],
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
-  exports: [EditorsComponent],
+  exports: [GeographicalOriginComponent],
 })
 export class GeographicalOriginModule { }

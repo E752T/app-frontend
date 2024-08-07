@@ -41,7 +41,7 @@ export class AuthorsComponent {
   @ViewChild(IonModal)
   modal!: IonModal;
 
-  bodyAddAuthor: Author = {
+  body_add_author: Author = {
     authorID: 0,
     name: '',
     addedDate: today,
@@ -53,7 +53,7 @@ export class AuthorsComponent {
     notes: '',
   };
 
-  bodyModifyAuthor: Author = {
+  body_update_author: Author = {
     authorID: 0,
     name: '',
     addedDate: today,
@@ -65,34 +65,25 @@ export class AuthorsComponent {
     notes: '',
   };
 
-  DeleteAuthor(authorID: any) {
+  DeleteElement(authorID: any) {
     console.log('POST DeleteAuthor : body =>', this.author);
-
-    this.authors.filter((element: Author) => element.authorID !== authorID);
-    var authorToDelete = console.log(this.authors);
-    this.updateAuthors.emit(authorToDelete);
-
+    // Filtrare gli autori in base all'authorID
+    this.authors = this.authors.filter(
+      (element: Author) => element.authorID !== authorID
+    );
+    // Emettere un evento per aggiornare gli autori
+    this.updateAuthors.emit(this.authors);
+    // Effettuare una richiesta di eliminazione dell'autore
     return PostRequest(baseURL + 'DeleteAuthor/' + authorID);
   }
 
-  confirmDeleteAuthor() {
-    this.DeleteAuthor(this.author?.authorID);
+  confirmDelete() {
+    this.DeleteElement(this.author?.authorID);
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
-  UpdateAuthorAPI(): Promise<any> {
-    console.log('POST UpdateAuthorAPI : body =>', this.author);
+  UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdateAuthor/', this.author);
-  }
-
-  getNewAuthorID(elementList: Array<Author>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].authorID > highestID) {
-        highestID = elementList[i].authorID;
-      }
-    }
-    return highestID + 1;
   }
 
   confirm() {

@@ -23,7 +23,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent {
-
   constructor(
     private http: HttpClient,
     private modalController: ModalController
@@ -40,8 +39,6 @@ export class CategoriesComponent {
 
   @Output()
   updateCategories = new EventEmitter<any>();
-
-
 
   @ViewChild(IonModal)
   modal!: IonModal;
@@ -83,7 +80,6 @@ export class CategoriesComponent {
   }
 
   UpdateCategoryAPI(): Promise<any> {
-    console.log('POST UpdateCategory : body =>', this.category);
     return PostRequest(baseURL + 'UpdateCategory/', this.category);
   }
 

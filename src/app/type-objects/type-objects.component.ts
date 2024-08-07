@@ -23,7 +23,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./type-objects.component.scss'],
 })
 export class TypeObject {
-
   constructor(
     private http: HttpClient,
     private modalController: ModalController
@@ -48,7 +47,7 @@ export class TypeObject {
 
   modalCtrl: any;
 
-  bodyAddShopkeeper: TypeObject = {
+  body_add_shopkeeper: TypeObject = {
     typeID: 0,
     name: '',
     addedDate: today,
@@ -56,7 +55,7 @@ export class TypeObject {
     description: '',
   };
 
-  bodyModifyShopkeeper: TypeObject = {
+  body_update_shopkeeper: TypeObject = {
     typeID: 0,
     name: '',
     addedDate: today,
@@ -67,16 +66,16 @@ export class TypeObject {
   ////////////////////////////////////////////////
 
   DeleteElement(objectID: any) {
-    this.publishers.filter(
-      (element: Publisher) => element.publisherID !== objectID
+    this.type_objects.filter(
+      (element: TypeObject) => element.typeID !== objectID
     );
-    var elementToDelete = console.log(this.publishers);
+    var elementToDelete = console.log(this.type_objects);
     this.updatePublishers.emit(elementToDelete);
     return PostRequest(baseURL + 'DeleteCategory/' + objectID);
   }
 
   confirmDeleteElement() {
-    this.DeleteElement(this.publisher?.publisherID);
+    this.DeleteElement(this.type_objects?.ty);
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
