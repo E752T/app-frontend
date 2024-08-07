@@ -225,7 +225,7 @@ ion-button.bottone-accedi {
 }
 
 
-.card-oggetti-archivio {
+.carta-elemento {
   min-width: 400px;
   width: 100%;
   text-align: left;
@@ -324,7 +324,7 @@ ion-button.bottone-accedi {
   font-size: 22px;
 }
 
-.ion-item-text {
+.testo-form {
   padding-top: 3%;
   font-size: 12px;
 }
@@ -382,7 +382,13 @@ ion-button.bottone-accedi {
   height: 30px;
 }
 
-.testo-form-autori {
+
+.input-form{
+  background-color: rgb(255, 255, 255);
+  margin-top: 10px;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 5%;
   margin-left: 11px;
   display: flex !important;
   align-content: center !important;

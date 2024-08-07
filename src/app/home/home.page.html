@@ -232,10 +232,7 @@
           </ion-button>
         </div>
       </div>
-      <br />
       <hr class="solid" />
-      <br />
-      <br />
       <ion-button
         color="secondary"
         id="filter-button"
@@ -245,9 +242,6 @@
       >
         Archivio
       </ion-button>
-
-      <p></p>
-      <p></p>
 
       <ion-accordion-group class="accordion-gestionale">
         <ion-accordion value="first">
@@ -285,11 +279,9 @@
           </ion-buttons>
         </ion-accordion>
       </ion-accordion-group>
-      <br />
 
       <hr class="solid" />
 
-      <p></p>
       <ion-button
         class="center"
         style="width: 80%"
@@ -523,13 +515,7 @@
                   <ion-label class="titoli-modale"> Sottotitolo </ion-label>
 
                   <ion-input
-                    style="
-                      background-color: rgb(255, 255, 255);
-                      margin-top: 10px;
-                      box-sizing: border-box;
-                      padding: 20px;
-                      border-radius: 5%;
-                    "
+                    class="input-form"
                     labelPlacement="stacked"
                     type="text"
                     [(ngModel)]="bodyAddObject.subtitle"
@@ -551,7 +537,7 @@
 
                   <ion-label class="titoli-modale"> Note </ion-label>
                   <ion-input
-                    class="testo-form-autori"
+                    class="input-form"
                     maxlength="200"
                     [(ngModel)]="bodyAddObject.objectNotes"
                     id="{{ bodyAddObject.objectNotes }}"
@@ -576,7 +562,7 @@
                     Descrizione dell' autore
                   </ion-label>
                   <ion-input
-                    class="testo-form-autori"
+                    class="input-form"
                     [(ngModel)]="bodyAddObject.authorDescription"
                     id="{{ bodyAddObject.authorDescription }}"
                   >
@@ -622,14 +608,9 @@
                     Posizione trovata
                   </ion-label>
                   <ion-input
-                    style="
-                      background-color: rgb(255, 255, 255);
-                      margin-top: 10px;
-                      box-sizing: border-box;
-                      padding: 20px;
-                      border-radius: 5%;
-                    "
-                    class="testo-form-autori"
+                    class="input-form"
+
+                    class="input-form"
                     id="{{ bodyAddObject.position }}"
                   >
                   </ion-input>
@@ -661,7 +642,7 @@
                       padding: 20px;
                       border-radius: 5%;
                     "
-                    class="testo-form-autori"
+                    class="input-form"
                     id="{{ bodyAddObject.warehouseRoom }}"
                   >
                   </ion-input>
@@ -704,7 +685,7 @@
                   </svg>
                   <ion-label class="titoli-modale"> Ordinamento: </ion-label>
                   <ion-input
-                    class="testo-form-autori"
+                    class="input-form"
                     id="{{ bodyAddObject.sortOrder }}"
                     value="{{ bodyAddObject.sortOrder }}"
                   >
@@ -758,7 +739,7 @@
                       padding: 20px;
                       border-radius: 5%;
                     "
-                    class="testo-form-autori"
+                    class="input-form"
                     id="{{ bodyAddObject.rackNumber }}"
                   >
                   </ion-input>
@@ -925,7 +906,7 @@
           <ion-title class="titolo-categoria">Autori </ion-title>
           <ion-row>
             <app-authors
-              class="card-oggetti-archivio"
+              class="carta-elemento"
               *ngFor="let element of filteredAuthors"
               [author]="element"
               [authors]="filteredAuthors"
@@ -939,10 +920,8 @@
         <ion-col size="12">
           <ion-title class="titolo-categoria">Categorie </ion-title>
           <ion-row>
-            <br />
-            <br />
             <app-categories
-              class="card-oggetti-archivio"
+              class="carta-elemento"
               *ngFor="let element of filteredCategories "
               [category]="element"
               [categories]="filteredCategories"
@@ -956,10 +935,8 @@
         <ion-col size="12">
           <ion-title class="titolo-categoria">Editori </ion-title>
           <ion-row>
-            <br />
-            <br />
             <app-editors
-              class="card-oggetti-archivio"
+              class="carta-elemento"
               *ngFor="let element of filteredPublishers "
               [publisher]="element"
               [publishers]="filteredPublishers"
@@ -1037,7 +1014,7 @@
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <ion-item clase="ion-item-text">
+          <ion-item clase="testo-form">
             <ion-input
               class="testo-input"
               label="Nome"
@@ -1046,7 +1023,7 @@
               [(ngModel)]="bodyAddAuthor.name"
             ></ion-input>
           </ion-item>
-          <ion-item clase="ion-item-text">
+          <ion-item clase="testo-form">
             <ion-input
               class="testo-input"
               label="Descrizione"
@@ -1056,7 +1033,7 @@
             ></ion-input>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-input
               class="testo-input"
               label="Note"
@@ -1066,7 +1043,7 @@
             ></ion-input>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-input
               class="testo-input"
               label="Telefono primario"
@@ -1076,7 +1053,7 @@
             ></ion-input>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-input
               class="testo-input"
               label="Telefono secondario"
@@ -1086,7 +1063,7 @@
             ></ion-input>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-input
               class="testo-input"
               label="Email"
@@ -1096,7 +1073,7 @@
             ></ion-input>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-label> Data di creazione </ion-label>
             <ion-datetime
               class="testo-input"
@@ -1106,7 +1083,7 @@
             ></ion-datetime>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-label> Data dell'ultimo aggiornamento </ion-label>
             <ion-datetime
               [preferWheel]="true"
@@ -1123,7 +1100,7 @@
     <ion-grid>
       <ion-row>
         <app-authors
-          class="card-oggetti-archivio"
+          class="carta-elemento"
           *ngFor="let element of filteredAuthors"
           [author]="element"
           [authors]="filteredAuthors"
@@ -1140,7 +1117,7 @@
     <ion-title class="titolo-categoria">Categorie </ion-title>
 
     <ion-button
-      id="add-new-category-button"
+      id="bottone-aggiungi-nuova-categoria"
       class="bottone-aggiungi-nuovo-oggetto"
       color="lighter"
       ><ion-icon
@@ -1155,7 +1132,7 @@
       </ion-text>
     </ion-button>
     <ion-modal
-      trigger="add-new-category-button"
+      trigger="bottone-aggiungi-nuova-categoria"
       (willDismiss)="onWillDismiss($event)"
       class="ion-padding"
     >
@@ -1190,7 +1167,7 @@
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-input
               class="testo-input"
               label="Nome"
@@ -1199,7 +1176,7 @@
               [(ngModel)]="bodyAddCategory.name"
             ></ion-input>
           </ion-item>
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-input
               class="testo-input"
               label="Descrizione"
@@ -1209,7 +1186,7 @@
             ></ion-input>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-label> Data di creazione </ion-label>
             <ion-datetime
               class="testo-input"
@@ -1219,7 +1196,7 @@
             ></ion-datetime>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-label> Data dell'ultimo aggiornamento </ion-label>
             <ion-datetime
               [preferWheel]="true"
@@ -1237,7 +1214,7 @@
       <ion-grid>
         <ion-row>
           <app-categories
-            class="card-oggetti-archivio"
+            class="carta-elemento"
             *ngFor="let element of allCategories "
             [category]="element"
             [categories]="allCategories"
@@ -1304,7 +1281,7 @@
           </ion-toolbar>
         </ion-header>
         <ion-content class="ion-padding">
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-input
               class="testo-input"
               label="Nome"
@@ -1313,7 +1290,7 @@
               [(ngModel)]="bodyAddCategory.name"
             ></ion-input>
           </ion-item>
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-input
               class="testo-input"
               label="Descrizione"
@@ -1323,7 +1300,7 @@
             ></ion-input>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-label> Data di creazione </ion-label>
             <ion-datetime
               class="testo-input"
@@ -1333,7 +1310,7 @@
             ></ion-datetime>
           </ion-item>
 
-          <ion-item class="ion-item-text">
+          <ion-item class="testo-form">
             <ion-label> Data dell'ultimo aggiornamento </ion-label>
             <ion-datetime
               [preferWheel]="true"
@@ -1351,11 +1328,11 @@
       <ion-grid>
         <ion-row>
           <app-editors
-            class="card-oggetti-archivio"
+            class="carta-elemento"
             *ngFor="let element of allPublishers "
             [publisher]="element"
             [publishers]="allPublishers"
-            (updateCategories)="updateItems(this.allPublishers, element, 'publisherID');"
+            (updatePublishers)="updateItems(this.allPublishers, element, 'publisherID');"
             [search_input]="searchInput"
           >
           </app-editors>

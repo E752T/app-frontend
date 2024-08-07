@@ -92,7 +92,7 @@
             </svg>
             <ion-label style="font-weight: bold"> Autore: </ion-label>
             <ion-input
-              class="testo-form-autori"
+              class="input-form"
               [(ngModel)]="publisher.name"
               id="{{ bodyAddPublisher.name }}"
               value="{{ publisher.name }}"
@@ -115,7 +115,7 @@
 
             <ion-label style="font-weight: bold"> Descrizione: </ion-label>
             <ion-input
-              class="testo-form-autori"
+              class="input-form"
               [(ngModel)]="publisher.description"
               id="{{ bodyModifyPublisher.description }}"
               value="{{ publisher.description }}"
@@ -173,7 +173,7 @@
             </ion-label>
             <br />
             <ion-text
-              class="testo-form-autori"
+              class="input-form"
               id="open-modal-addedDate-Category-'{{ publisher.publisherID }}'"
               color="lighter"
               style="color: black; margin-top: 10px; margin-bottom: 10px"
@@ -233,7 +233,7 @@
             </ion-label>
             <br />
             <ion-text
-              class="testo-form-autori"
+              class="input-form"
               id="open-modal-lastUpdateDate-Category-'{{
                 publisher.publisherID
               }}'"

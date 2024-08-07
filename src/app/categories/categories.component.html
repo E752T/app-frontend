@@ -89,7 +89,7 @@
             </svg>
             <ion-label style="font-weight: bold"> Autore: </ion-label>
             <ion-input
-              class="testo-form-autori"
+              class="input-form"
               [(ngModel)]="category.name"
               id="{{ bodyAddCategory.name }}"
               value="{{ category.name }}"
@@ -112,7 +112,7 @@
 
             <ion-label style="font-weight: bold"> Descrizione: </ion-label>
             <ion-input
-              class="testo-form-autori"
+              class="input-form"
               [(ngModel)]="category.description"
               id="{{ bodyModifyCategory.description }}"
               value="{{ category.description }}"
@@ -170,7 +170,7 @@
             </ion-label>
             <br />
             <ion-text
-              class="testo-form-autori"
+              class="input-form"
               id="open-modal-addedDate-Category-'{{ category.categoryID }}'"
               color="lighter"
               style="color: black;margin-top: 10px;margin-bottom: 10px;"
@@ -230,7 +230,7 @@
             </ion-label>
             <br />
             <ion-text
-              class="testo-form-autori"
+              class="input-form"
               id="open-modal-lastUpdateDate-Category-'{{
                 category.categoryID
               }}'"
