@@ -14,15 +14,15 @@ import { ModalController } from '@ionic/angular';
 import { baseURL, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core';
-import { Publisher } from '../services/interfaces.service';
+import { GeographicalOrigin } from '../services/interfaces.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-editors',
-  templateUrl: './editors.component.html',
-  styleUrls: ['./editors.component.scss'],
+  selector: 'app-geographical-origin',
+  templateUrl: './geographical-origins.component.html',
+  styleUrls: ['./geographical-origins.component.scss'],
 })
-export class EditorsComponent {
+export class GeographicalOriginComponent {
   [x: string]: any;
 
   constructor(
@@ -33,10 +33,10 @@ export class EditorsComponent {
   private platform = inject(Platform);
 
   @Input()
-  publisher!: Publisher;
+  publisher!: GeographicalOrigin;
 
   @Input()
-  publishers!: Array<Publisher>;
+  publishers!: Array<GeographicalOrigin>;
 
   @Input()
   search_input!: string | null | undefined;
@@ -49,33 +49,28 @@ export class EditorsComponent {
 
   modalCtrl: any;
 
-  bodyAddPublisher: Publisher = {
-    publisherID: 0,
+  bodyAddGeographicalOrigin: GeographicalOrigin = {
+    geographicalOriginID: 0,
     name: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
   };
 
-  bodyModifyPublisher: Publisher = {
-    publisherID: 0,
+  bodyModifyGeographicalOrigin: GeographicalOrigin = {
+    geographicalOriginID: 0,
     name: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
   };
 
+  /////////////////////////////////////////////////////////////
+
+  
   DeleteElement(objectID: any) {
     this.publishers.filter(
-      (element: Publisher) => element.publisherID !== objectID
+      (element: GeographicalOrigin) => element.geographicalOriginID !== objectID
     );
     var elementToDelete = console.log(this.publishers);
     this.updatePublishers.emit(elementToDelete);

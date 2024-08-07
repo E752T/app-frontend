@@ -14,16 +14,15 @@ import { ModalController } from '@ionic/angular';
 import { baseURL, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core';
-import { Publisher } from '../services/interfaces.service';
+import { Shopkeeper } from '../services/interfaces.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-editors',
-  templateUrl: './editors.component.html',
-  styleUrls: ['./editors.component.scss'],
+  selector: 'app-shopkeepers',
+  templateUrl: './shopkeepers.component.html',
+  styleUrls: ['./shopkeepers.component.scss'],
 })
-export class EditorsComponent {
-  [x: string]: any;
+export class ShopkeeperComponent {
 
   constructor(
     private http: HttpClient,
@@ -33,45 +32,39 @@ export class EditorsComponent {
   private platform = inject(Platform);
 
   @Input()
-  publisher!: Publisher;
+  shopkeeper!: Shopkeeper;
 
   @Input()
-  publishers!: Array<Publisher>;
+  shopkeepers!: Array<Shopkeeper>;
 
   @Input()
   search_input!: string | null | undefined;
 
   @Output()
-  updatePublishers = new EventEmitter<any>();
+  updateShopkeepers = new EventEmitter<any>();
 
   @ViewChild(IonModal)
   modal!: IonModal;
 
   modalCtrl: any;
 
-  bodyAddPublisher: Publisher = {
-    publisherID: 0,
+  bodyAddShopkeeper: Shopkeeper = {
+    shopkeeperID: 0,
     name: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
   };
 
-  bodyModifyPublisher: Publisher = {
-    publisherID: 0,
+  bodyModifyShopkeeper: Shopkeeper = {
+    shopkeeperID: 0,
     name: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
   };
+
+  /////////////////////////////////////////////////////////////
 
   DeleteElement(objectID: any) {
     this.publishers.filter(

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { G } from './geographical-origins.component';
+import {  } from './geographical-origins.component';
 
 @NgModule({
   declarations: [EditorsComponent],
