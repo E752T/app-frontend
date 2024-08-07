@@ -557,6 +557,77 @@ export class HomePage implements OnInit {
     );
   }
 
+  getPublishers(input: string | undefined | null) {
+    this.filteredProvenances = this.filterData(
+      input,
+      this.allProvenances,
+      this.filterByYears
+    );
+  }
+
+  filterByYearsCompact<T extends { addedDate: Date }>(filteredItems: T[]): T[] {
+    let result: T[] = filteredItems;
+
+    result = filteredItems.filter((item) => {
+      if (item.addedDate != null) {
+        const year = new Date(item.addedDate).getFullYear();
+
+        if (isNaN(this.searchYears.lower)) {
+          this.searchYears.lower = 1800;
+        }
+
+        if (isNaN(this.searchYears.upper)) {
+          console.log('Errore con il valore massimo, il valore è NaN');
+          return false;
+        }
+
+        return (
+          year >= new Date(this.searchYears.lower, 0, 1).getFullYear() &&
+          year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
+        );
+      } else {
+        return true;
+      }
+    });
+
+    if (isNaN(this.searchYears.upper)) {
+      console.log('Errore con il valore massimo, il valore è NaN');
+    }
+    return result;
+  }
+
+  filterByYears<T extends { addedDate: Date }>(filteredItems: T[]): T[] {
+    return filteredItems.filter((item) => {
+      if (item.addedDate != null) {
+        const year = new Date(item.addedDate).getFullYear();
+        const lowerYear = Number.isNaN(this.searchYears.lower)
+          ? 1800
+          : this.searchYears.lower;
+        const upperYear = Number.isNaN(this.searchYears.upper)
+          ? new Date().getFullYear()
+          : this.searchYears.upper;
+
+        return (
+          year >= new Date(lowerYear, 0, 1).getFullYear() &&
+          year <= new Date(upperYear, 0, 1).getFullYear()
+        );
+      }
+      return true; // Include items with null addedDate
+    });
+  }
+
+  filterObjectsByYears(filteredObjects: DatabaseObject[]) {
+    var result: DatabaseObject[] = filteredObjects;
+    result = filteredObjects.filter((object) => {
+      const year = new Date(object.discoveryDate).getFullYear();
+      return (
+        year >= new Date(this.searchYears.lower, 0, 1).getFullYear() &&
+        year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
+      );
+    });
+    return result;
+  }
+
   filterAuthorByYears(filteredAuthors: Author[]) {
     let result: Author[] = filteredAuthors;
 
@@ -578,7 +649,7 @@ export class HomePage implements OnInit {
           year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
         );
       } else {
-        return true; // Include authors with null addedDate
+        return true;
       }
     });
     return result;
@@ -614,8 +685,6 @@ export class HomePage implements OnInit {
     return items;
   }
 
-  //---------------- FILTERS -----------------------------------------
-
   filterByAvaiability(filteredObjects: DatabaseObject[]) {
     var result: DatabaseObject[] = filteredObjects;
     if (this.availability == 'solo_disponibili') {
@@ -626,18 +695,6 @@ export class HomePage implements OnInit {
     } else {
       return result;
     }
-  }
-
-  filterByYears(filteredObjects: DatabaseObject[]) {
-    var result: DatabaseObject[] = filteredObjects;
-    result = filteredObjects.filter((object) => {
-      const year = new Date(object.discoveryDate).getFullYear();
-      return (
-        year >= new Date(this.searchYears.lower, 0, 1).getFullYear() &&
-        year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
-      );
-    });
-    return result;
   }
 
   filterByGeneres(filteredObjects: DatabaseObject[]) {
