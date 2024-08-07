@@ -2,13 +2,10 @@
   <ion-row>
     <ion-col>
       <ion-accordion-group>
-        <ion-accordion
-          value="first"
-          class="accordion-oggetto"
-        >
+        <ion-accordion value="first" class="accordion-oggetto">
           <ion-item slot="header" color="primary" class="oggetto-anteprima">
             <ion-icon name="caret-forward-outline"></ion-icon>
-            <ion-label style="min-width: 200px">{{ author.name }} </ion-label>
+            <ion-label class="cartellino-nome">{{ author.name }} </ion-label>
             <ion-button
               id="elimina-autore-'{{ author.authorID }}'"
               color="danger"
@@ -30,7 +27,7 @@
                   <ion-buttons slot="end">
                     <ion-button
                       (click)="confirmDelete()"
-                      id="conferma-elimina-'{{ author.authorID }}'"
+                      id="conferma-elimina-autore-'{{ author.authorID }}'"
                       [strong]="true"
                       >Conferma</ion-button
                     >
@@ -46,9 +43,9 @@
                 <h1>{{ author.name }}</h1>
               </ion-text>
               <ion-toast
-                trigger="conferma-elimina-'{{ author.authorID }}'"
+                trigger="conferma-elimina-autore-'{{ author.authorID }}'"
                 message="Elemento eliminato"
-                class="toast-autori"
+                class="toast-elemento"
                 [duration]="2000"
                 expand="block"
                 color="danger"
@@ -403,7 +400,7 @@
             <ion-toast
               trigger="button-UpdateAuthorAPI-'{{ author.authorID }}'"
               message="Nuovo elemento salvato"
-              class="toast-autor"
+              class="toast-elemento"
               color="success"
               [duration]="2000"
               expand="block"

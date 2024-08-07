@@ -35,9 +35,6 @@ export class HomePage implements OnInit {
   [x: string]: any;
   $event: any;
 
-  // JWT tokens
-  faCoffee = faCoffee;
-
   ngOnInit() {
     this.getScreenSize();
   }
@@ -48,27 +45,16 @@ export class HomePage implements OnInit {
     return myScreen;
   }
 
-  // Call the function to get the screen size
   screenSize = this.checkScreenSize();
 
   getScreenSize() {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-
     console.log('Larghezza dello schermo: ' + screenWidth + 'px');
     console.log('Altezza dello schermo: ' + screenHeight + 'px');
   }
 
-  get_authors(updatedArray: Author[]) {
-    this.filteredAuthors = updatedArray;
-  }
-
   openFirstMenu() {
-    /**
-     * Open the menu by menu-id
-     * We refer to the menu using an ID
-     * because multiple "start" menus exist.
-     */
     this.menuCtrl.open('first-menu');
   }
 
@@ -90,22 +76,11 @@ export class HomePage implements OnInit {
   searchAuthorYears = { lower: 1800, upper: 2024 };
 
   //----------------- Scelta della sezione ----------------------------
-  choosenAuthorName: string = '';
-  choosenWarehouseName: string = '';
-  choosenCategoryName: string = '';
-  choosenPublisherName: string = '';
-  choosenProvenanceName: string = '';
-  choosenGeographicalOriginName: string = '';
-  choosenTypeObjectName: string = '';
-  choosenShopkeeperName: string = '';
-
-  allGenres: Array<string> = ['Commedia', 'Avventura', 'SciFi', 'Romanzo'];
 
   isOpen: boolean = false;
   fileEvent: Event | undefined;
 
   //  //  //  //  //  //  //  //  //  //  //  //
-
   //  DATABASE INITIALIZATION
 
   allDatabase: Array<DatabaseObject> = [];
@@ -134,10 +109,6 @@ export class HomePage implements OnInit {
 
   allProvenances: Array<Provenance> = [];
   filteredProvenances: Array<Provenance> = [];
-
-  //  //  //  //  //  //  //  //  //  //  //  //
-
-  //  //  //  //  //  //  //  //  //  //  //  //
 
   bodyAddObject: DatabaseObject = {
     objectID: 1,
@@ -173,7 +144,7 @@ export class HomePage implements OnInit {
     htmlDescription2: '',
   };
 
-  bodyLogin: LoginObject = {
+  body_login: LoginObject = {
     username: '',
     password: '',
   };
@@ -221,20 +192,16 @@ export class HomePage implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  confirm() {
-    this.modalCtrl.dismiss(this.bodyLogin.username, 'confirm');
-  }
-
   confirmLogin() {
-    this.modalCtrl.dismiss(this.bodyLogin.username, 'confirm');
-    console.log(this.bodyLogin);
-    PostRequest(baseURL + 'Login/', this.bodyLogin);
+    this.modalCtrl.dismiss(this.body_login.username, 'confirm');
+    console.log(this.body_login);
+    PostRequest(baseURL + 'Login/', this.body_login);
   }
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.messageDismissModal = `Hello, ${this.bodyLogin.username}!`;
+      this.messageDismissModal = `Hello, ${this.body_login.username}!`;
     }
   }
   printErrors(obj: any) {
@@ -317,7 +284,6 @@ export class HomePage implements OnInit {
     return (this.allShopkeepers = res);
   });
 
-  /////////// QUESTE SONO DIVERSE
   promiseallAuthors: Promise<Author[]> = GetRequest(
     baseURL + 'GetAuthors'
   ).then((res) => {
@@ -335,8 +301,6 @@ export class HomePage implements OnInit {
   });
 
   //  //  //  //  //  //  //  //  //  //  //  // //  //  //  //  //  //  //  //  //  //  //  //
-
-  //------------------ API CALLS ----------------------------
 
   AddElementAPI(
     elementType: string,
@@ -358,7 +322,6 @@ export class HomePage implements OnInit {
     // Chiudi il modal
     this.modalCtrl.dismiss();
 
-    // Esegui la richiesta POST per aggiungere l'elemento
     PostRequest(baseURL + `Add${elementType}/`, body).then((response) => {
       // Resetta il corpo per il prossimo inserimento
       body = {
@@ -375,116 +338,18 @@ export class HomePage implements OnInit {
     });
   }
 
-  //  //  //  //  //  //  //  //  //  //  //  // //  //  //  //  //  //  //  //  //  //  //  //
-
-  getNewWarehouseID(elementList: Array<Warehouse>): number {
-    let highestID = 0;
-
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].warehouseID > highestID) {
-        highestID = elementList[i].warehouseID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  getNewPublisherID(elementList: Array<Publisher>): number {
-    let highestID = 0;
-
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].publisherID > highestID) {
-        highestID = elementList[i].publisherID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  getNewProvenanceID(elementList: Array<Provenance>): number {
-    let highestID = 0;
-
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].provenanceID > highestID) {
-        highestID = elementList[i].provenanceID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  getNewCategoryID(elementList: Array<Category>): number {
-    let highestID = 0;
-
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].categoryID > highestID) {
-        highestID = elementList[i].categoryID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  getNewGeographicalOriginID(elementList: Array<GeographicalOrigin>): number {
-    let highestID = 0;
-
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].geographicalOriginID > highestID) {
-        highestID = elementList[i].geographicalOriginID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  getNewAuthorID(elementList: Array<Author>): number {
-    let highestID = 0;
-
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].authorID > highestID) {
-        highestID = elementList[i].authorID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  getNewTypeObjectID(elementList: Array<TypeObject>): number {
-    let highestID = 0;
-
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].typeID > highestID) {
-        highestID = elementList[i].typeID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  getNewShopkeeperID(elementList: Array<Shopkeeper>): number {
-    let highestID = 0;
-
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].shopkeeperID > highestID) {
-        highestID = elementList[i].shopkeeperID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  //  //  //  //  //  //  //  //  //  //  //  // //  //  //  //  //  //  //  //  //  //  //  //
-  //  REMOVE API
-
-  DeleteObjectArchiveAPI(object: DatabaseObject): Promise<any> {
+  DeleteElement(object: DatabaseObject): Promise<any> {
     for (var i = 0; i < this.filteredObjects.length; i++) {
       if (this.filteredObjects[i] == object) {
         this.filteredObjects.splice(i, 1);
       }
     }
-    console.log(this.filteredObjects);
     return PostRequest(baseURL + 'DeleteObject/' + object.objectID);
   }
 
-  // ----------- UPDATE API ----------------------------------------------
-
-  UpdateObjectArchiveAPI(): Promise<any> {
+  UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdateObjectArchive/', bodyModifyObject);
   }
-
-  //----------- ADD API ----------------------------------------------
 
   presentPopover(e: Event) {
     this.popover.event = e;
@@ -495,7 +360,6 @@ export class HomePage implements OnInit {
     if (input !== undefined && input !== null) {
       this.searchInput = input;
     } else {
-      // Gestione dei casi in cui input è undefined o null
       this.searchInput = ''; // oppure this.searchInput = 'valore predefinito';
     }
   }

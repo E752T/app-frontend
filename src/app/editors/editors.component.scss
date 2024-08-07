@@ -51,4 +51,24 @@
     top: 20%;
   }
   
-  
+  .oggetto-anteprima {
+    border-radius: 104px 104px 104px 104px;
+    -webkit-border-radius: 104px 104px 104px 104px;
+    -moz-border-radius: 104px 104px 104px 104px;
+  }
+
+.cartellino-nome{
+  min-width: 200px;
+  margin-left: 2%;
+  font-family: Georgia, 'Times New Roman', Times, serif;}
+
+  .testo-conferma-elimina {
+    margin-bottom: 50%;
+    font-family: serif;
+  }
+
+.toast-elemento{
+  max-width: 250px;
+  margin-left: 40%;
+  margin-right: 40%;
+}

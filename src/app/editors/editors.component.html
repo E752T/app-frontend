@@ -6,24 +6,9 @@
           value="first"
           style="padding-right: 50px; margin-left: 30px"
         >
-          <ion-item
-            slot="header"
-            color="success"
-            style="
-              border-radius: 104px 104px 104px 104px;
-              -webkit-border-radius: 104px 104px 104px 104px;
-              -moz-border-radius: 104px 104px 104px 104px;
-            "
-          >
+          <ion-item slot="header" color="success" class="oggetto-anteprima">
             <ion-icon name="caret-forward-outline"></ion-icon>
-            <ion-label
-              style="
-                font-weight: lighter;
-                margin-left: 2%;
-                font-family: Georgia, 'Times New Roman', Times, serif;
-              "
-              >{{ publisher.name }}
-            </ion-label>
+            <ion-label class="cartellino-nome">{{ publisher.name }} </ion-label>
             <ion-button
               id="elimina-categoria-'{{ publisher.publisherID }}'"
               (click)="DeleteElement(publisher.publisherID)"
@@ -45,18 +30,17 @@
 
                   <ion-buttons slot="end">
                     <ion-button
-                      (click)="confirmDeleteElement()"
-                      id="confirmDeleteCategory-'{{ publisher.publisherID }}'"
+                      (click)="confirmDelete()"
+                      id="conferma-elimina-editore-'{{
+                        publisher.publisherID
+                      }}'"
                       [strong]="true"
                       >Conferma</ion-button
                     >
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
-              <ion-text
-                class="ion-text-center"
-                style="margin-bottom: 50%; font-family: serif"
-              >
+              <ion-text class="ion-text-center" class="testo-conferma-elimina">
                 <ion-title
                   >Sei sicuro di voler eliminare il seguente
                   elemento?</ion-title
@@ -65,9 +49,9 @@
                 <h1>{{ publisher.name }}</h1>
               </ion-text>
               <ion-toast
-                class="toast-autori"
+                class="toast-elemento-eliminato"
                 trigger="confirmDeleteCategory-'{{ publisher.publisherID }}'"
-                message=" Elemento Eliminato "
+                message=" Elemento eliminato "
                 style="max-width: 250px; margin-left: 40%; margin-right: 40%"
                 [duration]="2000"
                 expand="block"
@@ -268,7 +252,7 @@
               color="danger"
               style="padding-right: 3%"
               id="confirmDeleteCategory-'{{ publisher.publisherID }}'"
-              (click)="confirmDeleteElement()"
+              (click)="confirmDelete()"
             >
               Elimina</ion-button
             >

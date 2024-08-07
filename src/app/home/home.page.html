@@ -135,7 +135,6 @@
             (click)="getItems(searchInput)"
             (click)="getAuthors(searchInput)"
             (click)="getPublishers(searchInput)"
-
             [(ngModel)]="searchInput"
           >
             Cerca
@@ -158,13 +157,6 @@
           [(ngModel)]="searchInput"
         >
         </ion-searchbar>
-        <style>
-          .centered {
-            display: flex;
-            justify-content: center;
-          }
-        </style>
-        <p></p>
         <ion-text color="dark" class="centered"> Anno di aggiunta</ion-text>
         <div class="centered" color="success">
           <small>
@@ -192,15 +184,6 @@
             <ion-datetime id="datetime"></ion-datetime>
           </ng-template>
         </ion-modal>
-        <p></p>
-        <style>
-          .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-          }
-        </style>
 
         <div *ngIf="sectionToShow === 'Author'">
           <ion-button
@@ -283,8 +266,7 @@
       <hr class="solid" />
 
       <ion-button
-        class="center"
-        style="width: 80%"
+        class="center bottone-accedi"
         id="login-button"
         color="secondary"
       >
@@ -300,7 +282,7 @@
       >
         <ng-template class="ng-template-custom">
           <ion-header>
-            <ion-title class="ionic-title-custom" style="width: 100%">
+            <ion-title class="ionic-title-custom">
               <ion-text style="width: 100%">
                 Accedi con il tuo profilo</ion-text
               ></ion-title
@@ -326,7 +308,7 @@
                 [clearInput]="true"
                 labelPlacement="stacked"
                 type="text"
-                [(ngModel)]="bodyLogin.username"
+                [(ngModel)]="body_login.username"
               ></ion-input>
             </ion-item>
             <ion-item class="ionic-text-custom">
@@ -336,22 +318,21 @@
                 [clearInput]="true"
                 labelPlacement="stacked"
                 type="password"
-                [(ngModel)]="bodyLogin.password"
+                [(ngModel)]="body_login.password"
               ></ion-input>
             </ion-item>
 
             <ion-button
-              class="ionic-text-credenziali"
+              class="bottone-credenziali"
               class="center"
               color="secondary"
-              style="margin-top: 25px; min-width: 300px; font-size: 12px"
+              style=
               >Registra un nuovo account</ion-button
             >
             <ion-button
-              class="ionic-text-credenziali"
+              class="bottone-credenziali"
               class="center"
               color="secondary"
-              style="margin-top: 25px; min-width: 300px; font-size: 12px"
               >Hai dimenticato le credenziali?</ion-button
             >
           </ion-content>
@@ -374,7 +355,7 @@
         (willDismiss)="onWillDismiss($event)"
         class="ion-padding"
       >
-        <ng-template style="border-radius: 100px">
+        <ng-template class="template-angular">
           <ion-header>
             <ion-toolbar>
               <ion-title
@@ -392,8 +373,7 @@
           </ion-header>
           <ion-content class="ion-padding">
             <ion-text
-              class="center"
-              style="margin-top: 5%; font-size: 15px; margin-bottom: 5%"
+              class="center testo-contatti"
             >
               <b>Posizione</b> <br /><br />
               Roma, Italia, Viale Castro Pretorio, 105 00185 <br /><br />
@@ -486,13 +466,7 @@
                   <ion-label class="titoli-modale"> Titolo </ion-label>
 
                   <ion-input
-                    style="
-                      background-color: rgb(255, 255, 255);
-                      margin-top: 10px;
-                      box-sizing: border-box;
-                      padding: 20px;
-                      border-radius: 5%;
-                    "
+                    class="input-form"
                     labelPlacement="stacked"
                     type="text"
                     [(ngModel)]="bodyAddObject.title"
@@ -609,8 +583,6 @@
                   </ion-label>
                   <ion-input
                     class="input-form"
-
-                    class="input-form"
                     id="{{ bodyAddObject.position }}"
                   >
                   </ion-input>
@@ -635,13 +607,6 @@
                     Stanza del magazzino
                   </ion-label>
                   <ion-input
-                    style="
-                      background-color: rgb(255, 255, 255);
-                      margin-top: 10px;
-                      box-sizing: border-box;
-                      padding: 20px;
-                      border-radius: 5%;
-                    "
                     class="input-form"
                     id="{{ bodyAddObject.warehouseRoom }}"
                   >
@@ -732,13 +697,6 @@
                     Numero dell'armadio
                   </ion-label>
                   <ion-input
-                    style="
-                      background-color: rgb(255, 255, 255);
-                      margin-top: 10px;
-                      box-sizing: border-box;
-                      padding: 20px;
-                      border-radius: 5%;
-                    "
                     class="input-form"
                     id="{{ bodyAddObject.rackNumber }}"
                   >
@@ -1229,7 +1187,6 @@
 
   <div *ngIf="sectionToShow === 'Publisher'">
     <ion-title class="titolo-categoria">Editori </ion-title>
-
     <ion-button
       id="add-new-publisher-button"
       class="bottone-aggiungi-nuovo-oggetto"
@@ -1238,8 +1195,6 @@
         style="justify-content: flex-start"
         name="add-circle-outline"
       ></ion-icon>
-
-      <p style="padding-left: 20px"></p>
 
       <ion-text class="testo-aggiungi-nuovo">
         Aggiungi un nuovo Editore
@@ -1339,18 +1294,6 @@
         </ion-row>
       </ion-grid>
     </div>
-  </div>
-
-  <div *ngIf="sectionToShow === 'Shopkeeper'">
-    <ion-grid>
-      <ion-row>
-        <ion-text>Shopkeeper</ion-text>
-        <!-- <app-message
-            *ngFor="let message of filteredObjects "
-            [message]="message">
-          </app-message> -->
-      </ion-row>
-    </ion-grid>
   </div>
 
   <div *ngIf="sectionToShow === 'TypeObject'">

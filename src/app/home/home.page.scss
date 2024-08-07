@@ -3,22 +3,6 @@ ion-range {
   padding-right: 1px;
 }
 
-.ion-popover-left {
-  &::part(content) {
-    width: 80%;
-    height: 110%;
-    position: center;
-    padding: 20px;
-    top: 3%;
-    bottom: 3%;
-    left: 3%;
-    right: 3%;
-  }
-}
-.bg-style {
-  background: red;
-}
-
 ion-popover ion-content {
   --background: rgba(40, 173, 218, 0.6);
 }
@@ -41,6 +25,22 @@ ion-radio.ios::part(container) {
 
   border: 2px solid #ddd;
   border-radius: 2px;
+}
+
+.ion-popover-left {
+  &::part(content) {
+    width: 80%;
+    height: 110%;
+    position: center;
+    padding: 20px;
+    top: 3%;
+    bottom: 3%;
+    left: 3%;
+    right: 3%;
+  }
+}
+.bg-style {
+  background: red;
 }
 
 .radio-checked.ios::part(container) {
@@ -169,9 +169,11 @@ ion-button.bottone-accedi {
   background: white;
 }
 
-.ionic-text-credenziali {
+.bottone-credenziali {
   margin-top: 30px;
   text-align: center;
+  min-width: 300px;
+  font-size: 12px;
 }
 
 .titolo-filtri-ricerca {
@@ -220,10 +222,9 @@ ion-button.bottone-accedi {
   text-transform: capitalize;
 }
 
-.titolo-aggiungi-oggetto{
- margin-top: 20px;
+.titolo-aggiungi-oggetto {
+  margin-top: 20px;
 }
-
 
 .carta-elemento {
   min-width: 400px;
@@ -366,7 +367,7 @@ ion-button.bottone-accedi {
   margin-bottom: 15px;
   display: flex;
   min-width: 100px;
-  margin-top: 15px; 
+  margin-top: 15px;
   font-size: 18px;
   margin-left: 20px;
 }
@@ -382,8 +383,7 @@ ion-button.bottone-accedi {
   height: 30px;
 }
 
-
-.input-form{
+.input-form {
   background-color: rgb(255, 255, 255);
   margin-top: 10px;
   box-sizing: border-box;
@@ -393,4 +393,12 @@ ion-button.bottone-accedi {
   display: flex !important;
   align-content: center !important;
   align-items: center !important;
+}
+
+.bottone-accedi {
+  width: 80%;
+}
+
+.template-angular {
+  border-radius: 100px;
 }

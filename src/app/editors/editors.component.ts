@@ -82,7 +82,7 @@ export class EditorsComponent {
     return PostRequest(baseURL + 'DeleteCategory/' + objectID);
   }
 
-  confirmDeleteElement() {
+  confirmDelete() {
     this.DeleteElement(this.publisher?.publisherID);
     this.modalCtrl.dismiss({ confirmed: true });
   }

@@ -8,7 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { MessageComponentModule } from '../message/message.module';
 import { AuthorsModule } from '../authors/authors.module';
 import { CategoriesModule } from '../categories/categories.module';
-import { EditorsModule } from "../editors/editors.module";
+import { EditorsModule } from '../editors/editors.module';
 
 @NgModule({
   imports: [
@@ -19,8 +19,8 @@ import { EditorsModule } from "../editors/editors.module";
     HomePageRoutingModule,
     AuthorsModule,
     CategoriesModule,
-    EditorsModule
-],
+    EditorsModule,
+  ],
   declarations: [HomePage],
   providers: [IonModal, AuthorsModule, CategoriesModule],
 })
