@@ -12,6 +12,19 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'not-found',
+
+    loadChildren: () =>
+      import('./not-found/not-found.module').then((m) => m.NotFoundPageModule),
+  },
+  {
+    path: 'reset-credentials',
+    loadChildren: () =>
+      import('./reset-credentials/reset-credentials.module').then(
+        (m) => m.ResetCredentialsPageModule
+      ),
+  },
 ];
 
 @NgModule({

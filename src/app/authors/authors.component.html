@@ -2,7 +2,7 @@
   <ion-row>
     <ion-col>
       <ion-accordion-group>
-        <ion-accordion value="first" style="padding-right: 50px">
+        <ion-accordion value="first" style="padding-right: 50px;margin-left: 30px;">
           <ion-item slot="header" color="primary" class="item-autori">
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label style="min-width: 200px">{{ author.name }} </ion-label>
@@ -309,16 +309,12 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-button
-              fill="book-outline"
+            <ion-text
+              class="testo-form-autori"
               id="open-modal-addedDate-'{{ author.authorID }}'"
               color="lighter"
-              style="color: black"
-              >{{
-                author.addedDate
-                  ? author.addedDate
-                  : "Clicca per aggiungere una data"
-              }}</ion-button
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
+              >{{ author.addedDate ? author.addedDate : "NOT FOUND" }}</ion-text
             >
           </div>
 
@@ -371,89 +367,17 @@
               Data dell'ultimo aggiornamento:
             </ion-label>
             <br />
-            <ion-button
-              fill="book-outline"
+            <ion-text
+              class="testo-form-autori"
               id="open-modal-lastUpdateDate-'{{ author.authorID }}'"
               color="lighter"
-              style="color: black"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
                 author.lastUpdateDate
                   ? author.lastUpdateDate
                   : "Clicca per aggiungere una data"
-              }}</ion-button
+              }}</ion-text
             >
-          </div>
-
-          <div slot="content">
-            <ion-modal
-              trigger="open-modal-addedDate-'{{ author.authorID }}'"
-              (willDismiss)="onWillDismiss($event)"
-            >
-              <ng-template>
-                <ion-header>
-                  <ion-title class="datetime-title"
-                    >Scegli la data di aggiunta</ion-title
-                  >
-                  <ion-toolbar>
-                    <ion-buttons slot="start">
-                      <ion-button (click)="cancel()" [strong]="true"
-                        ><ion-icon name="arrow-undo-outline"></ion-icon
-                      ></ion-button>
-                    </ion-buttons>
-
-                    <ion-buttons slot="end">
-                      <ion-button (click)="confirm()" [strong]="true"
-                        >Conferma</ion-button
-                      >
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ion-header>
-
-                <ion-item class="datetime-item">
-                  <ion-datetime
-                    presentation="month-year"
-                    [(ngModel)]="author.addedDate"
-                    id="{{ author.addedDate }}"
-                  ></ion-datetime>
-                </ion-item>
-              </ng-template>
-            </ion-modal>
-          </div>
-
-          <div slot="content">
-            <ion-modal
-              trigger="open-modal-lastUpdateDate-'{{ author.authorID }}'"
-              (willDismiss)="onWillDismiss($event)"
-            >
-              <ng-template>
-                <ion-header>
-                  <ion-title class="datetime-title"
-                    >Scegli la data dell'ultimo aggiornamento</ion-title
-                  >
-                  <ion-toolbar>
-                    <ion-buttons slot="start">
-                      <ion-button (click)="cancel()"
-                        ><ion-icon name="arrow-undo-outline"></ion-icon
-                      ></ion-button>
-                    </ion-buttons>
-
-                    <ion-buttons slot="end">
-                      <ion-button (click)="confirm()" [strong]="true"
-                        >Conferma</ion-button
-                      >
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ion-header>
-
-                <ion-item class="datetime-item">
-                  <ion-datetime
-                    presentation="month-year"
-                    [(ngModel)]="author.lastUpdateDate"
-                    id="{{ author.lastUpdateDate }}"
-                  ></ion-datetime>
-                </ion-item>
-              </ng-template>
-            </ion-modal>
           </div>
 
           <div slot="content">

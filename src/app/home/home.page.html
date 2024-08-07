@@ -306,13 +306,11 @@
       >
         <ng-template class="ng-template-custom">
           <ion-header>
-            <ion-title class="center" style="font-weight: bolder">
-              <ion-title class="ionic-title-custom">
-                <ion-text style="text-align: center">
-                  Accedi con il tuo profilo</ion-text
-                ></ion-title
-              >
-            </ion-title>
+            <ion-title class="ionic-title-custom" style="width: 100%">
+              <ion-text style="width: 100%">
+                Accedi con il tuo profilo</ion-text
+              ></ion-title
+            >
             <ion-toolbar>
               <ion-buttons slot="start">
                 <ion-button (click)="cancel()" [strong]="true"
@@ -352,14 +350,14 @@
               class="ionic-text-credenziali"
               class="center"
               color="secondary"
-              style="margin-top: 25px"
+              style="margin-top: 25px; min-width: 300px; font-size: 12px"
               >Registra un nuovo account</ion-button
             >
             <ion-button
               class="ionic-text-credenziali"
               class="center"
               color="secondary"
-              style="margin-top: 25px"
+              style="margin-top: 25px; min-width: 300px; font-size: 12px"
               >Hai dimenticato le credenziali?</ion-button
             >
           </ion-content>
@@ -705,7 +703,6 @@
                   <ion-label class="titoli-modale"> Ordinamento: </ion-label>
                   <ion-input
                     class="testo-form-autori"
-                    [(ngModel)]="bodyAddObject.sortOrder"
                     id="{{ bodyAddObject.sortOrder }}"
                     value="{{ bodyAddObject.sortOrder }}"
                   >
@@ -838,7 +835,13 @@
 
                   <ion-label class="titoli-modale"> Genere: </ion-label>
 
-                  <ion-list style="margin-right: 10px;margin-left: 20px; min-width: 220px">
+                  <ion-list
+                    style="
+                      margin-right: 10px;
+                      margin-left: 20px;
+                      min-width: 220px;
+                    "
+                  >
                     <ion-select
                       class="center"
                       aria-label="generi"

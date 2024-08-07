@@ -2,7 +2,7 @@
   <ion-row>
     <ion-col>
       <ion-accordion-group>
-        <ion-accordion value="first" style="padding-right: 50px">
+        <ion-accordion value="first" style="padding-right: 50px;margin-left: 30px;">
           <ion-item
             slot="header"
             color="tertiary"
@@ -169,16 +169,14 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-button
-              fill="book-outline"
+            <ion-text
+              class="testo-form-autori"
               id="open-modal-addedDate-Category-'{{ category.categoryID }}'"
               color="lighter"
-              style="color: black"
+              style="color: black;margin-top: 10px;margin-bottom: 10px;"
               >{{
-                category.addedDate
-                  ? category.addedDate
-                  : "Clicca per aggiungere una data"
-              }}</ion-button
+                category.addedDate ? category.addedDate : "NOT FOUND"
+              }}</ion-text
             >
           </div>
 
@@ -231,96 +229,19 @@
               Data dell'ultimo aggiornamento:
             </ion-label>
             <br />
-            <ion-button
-              fill="book-outline"
+            <ion-text
+              class="testo-form-autori"
               id="open-modal-lastUpdateDate-Category-'{{
                 category.categoryID
               }}'"
               color="lighter"
-              style="color: black"
+              style="color: black;margin-top: 10px;margin-bottom: 10px;"
               >{{
-                category.lastUpdateDate
-                  ? category.lastUpdateDate
-                  : "Clicca per aggiungere una data"
-              }}</ion-button
+                category.lastUpdateDate ? category.lastUpdateDate : "NOT FOUND"
+              }}</ion-text
             >
           </div>
 
-          <div slot="content">
-            <ion-modal
-              trigger="open-modal-addedDate-Category-'{{
-                category.categoryID
-              }}'"
-              (willDismiss)="onWillDismiss($event)"
-            >
-              <ng-template>
-                <ion-header>
-                  <ion-title class="datetime-title"
-                    >Scegli la data di aggiunta</ion-title
-                  >
-                  <ion-toolbar>
-                    <ion-buttons slot="start">
-                      <ion-button (click)="cancel()"
-                        ><ion-icon name="arrow-undo-outline"></ion-icon
-                      ></ion-button>
-                    </ion-buttons>
-
-                    <ion-buttons slot="end">
-                      <ion-button (click)="confirm()" [strong]="true"
-                        >Conferma</ion-button
-                      >
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ion-header>
-
-                <ion-item class="datetime-item">
-                  <ion-datetime
-                    presentation="month-year"
-                    [(ngModel)]="category.addedDate"
-                    id="{{ category.addedDate }}"
-                  ></ion-datetime>
-                </ion-item>
-              </ng-template>
-            </ion-modal>
-          </div>
-
-          <div slot="content">
-            <ion-modal
-              trigger="open-modal-lastUpdateDate-Category-'{{
-                category.categoryID
-              }}'"
-              (willDismiss)="onWillDismiss($event)"
-            >
-              <ng-template>
-                <ion-header>
-                  <ion-title class="datetime-title"
-                    >Scegli la data dell'ultimo aggiornamento</ion-title
-                  >
-                  <ion-toolbar>
-                    <ion-buttons slot="start">
-                      <ion-button (click)="cancel()"
-                        ><ion-icon name="arrow-undo-outline"></ion-icon
-                      ></ion-button>
-                    </ion-buttons>
-
-                    <ion-buttons slot="end">
-                      <ion-button (click)="confirm()" [strong]="true"
-                        >Conferma</ion-button
-                      >
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ion-header>
-
-                <ion-item class="datetime-item">
-                  <ion-datetime
-                    presentation="month-year"
-                    [(ngModel)]="category.lastUpdateDate"
-                    id="{{ category.lastUpdateDate }}"
-                  ></ion-datetime>
-                </ion-item>
-              </ng-template>
-            </ion-modal>
-          </div>
           <div slot="content" style="padding-bottom: 1%; padding-top: 1%">
             <ion-button
               color="secondary"
