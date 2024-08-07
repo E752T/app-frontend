@@ -1,0 +1,52 @@
+
+
+  AddCategoryAPI(): any {
+    this.bodyAddCategory.categoryID = this.getNewCategoryID(this.allCategories);
+    this.allCategories.unshift(this.bodyAddCategory);
+    this.filteredCategories = this.allCategories;
+    this.getCategories(this.searchInput); // Get on screen new and filtered resultsù
+    this.modalCtrl.dismiss();
+
+    PostRequest(baseURL + 'AddCategory/', this.bodyAddCategory).then(
+      (bodyAddCategory) => {
+        this.bodyAddCategory = {
+          categoryID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+      }
+    );
+  }
+
+  AddAuthorAPI(): any {
+    // Get the Last ID and make + 1
+    this.bodyAddAuthor.authorID = this.getNewAuthorID(this.allAuthors);
+    this.allAuthors.unshift(this.bodyAddAuthor);
+    this.filteredAuthors = this.allAuthors;
+
+    this.getAuthors(this.searchInput); // Get on screen new and filtered results
+
+    this.modalCtrl.dismiss();
+
+    console.log('New Author ID : ', this.bodyAddAuthor.authorID);
+    console.log('POST request AddAuthorAPI() -> body ', this.bodyAddAuthor);
+
+    // post the new object
+    PostRequest(baseURL + 'AddAuthor/', this.bodyAddAuthor).then(
+      (bodyAddAuthor) => {
+        this.bodyAddAuthor = {
+          authorID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+          email: '',
+          telephone1: '',
+          telephone2: '',
+          notes: '',
+        };
+      }
+    );
+  }

@@ -460,14 +460,14 @@
                   <ion-buttons slot="end">
                     <ion-button
                       id="button-AddObjectAPI"
-                      (click)="AddAuthorAPI()"
+                      (click)="AddElementAPI('Author', this.bodyAddAuthor, this.allAuthors, this.getNewAuthorID, this.getAuthors, this.searchInput!);"
                       [strong]="true"
                       >Conferma</ion-button
                     >
                     <ion-toast
                       trigger="button-AddObjectAPI"
                       message="Nuovo Elemento Aggiunto"
-                      class="toast-nuovo-elemento-aggiunto"
+                      class="toast-nuovo-elemento"
                       [duration]="2000"
                       expand="block"
                       color="success"
@@ -927,14 +927,14 @@
               *ngFor="let element of filteredAuthors"
               [author]="element"
               [authors]="filteredAuthors"
-              (updateAuthors)="updateAuthors(element)"
+              (updateAuthors)="updateItems(this.allAuthors, element, 'authorID');"
               [search_input]="searchInput"
             >
             </app-authors>
           </ion-row>
         </ion-col>
 
-        <ion-col class="ultimo-elemento">
+        <ion-col size="12">
           <ion-title class="titolo-categoria">Categorie </ion-title>
           <ion-row>
             <br />
@@ -944,10 +944,27 @@
               *ngFor="let element of filteredCategories "
               [category]="element"
               [categories]="filteredCategories"
-              (updateCategories)="updateCategories(element)"
+              (updateCategories)="updateItems(this.allCategories, element, 'categoryID');"
               [search_input]="searchInput"
             >
             </app-categories>
+          </ion-row>
+        </ion-col>
+
+        <ion-col size="12">
+          <ion-title class="titolo-categoria">Editori </ion-title>
+          <ion-row>
+            <br />
+            <br />
+            <app-editors
+              class="card-oggetti-archivio"
+              *ngFor="let element of filteredPublishers "
+              [publisher]="element"
+              [publishers]="filteredPublishers"
+              (updatePublishers)="updateItems(this.allPublishers, element, 'publisherID');"
+              [search_input]="searchInput"
+            >
+            </app-editors>
           </ion-row>
         </ion-col>
       </ion-row>
@@ -1002,14 +1019,14 @@
             <ion-buttons slot="end">
               <ion-button
                 id="button-AddAuthorAPI"
-                (click)="AddAuthorAPI()"
+                (click)="AddElementAPI('Author', this.bodyAddAuthor, this.allAuthors, this.getNewAuthorID, this.getAuthors, this.searchInput!);"
                 [strong]="true"
                 >Conferma</ion-button
               >
               <ion-toast
                 trigger="button-AddAuthorAPI"
                 message="Nuovo Elemento Aggiunto"
-                class="toast-nuovo-elemento-aggiunto"
+                class="toast-nuovo-elemento"
                 [duration]="2000"
                 expand="block"
                 color="success"
@@ -1108,7 +1125,7 @@
           *ngFor="let element of filteredAuthors"
           [author]="element"
           [authors]="filteredAuthors"
-          (updateAuthors)="updateAuthors(element)"
+          (updateAuthors)="updateItems(this.allAuthors, element, 'authorID');"
           [search_input]="searchInput"
         >
         </app-authors>
@@ -1154,15 +1171,15 @@
             </ion-buttons>
             <ion-buttons slot="end">
               <ion-button
-                id="button-AddCategoryAPI"
-                (click)="AddCategoryAPI()"
+                id="bottone-aggiungi-categoria"
+                (click)="AddElementAPI('Category', this.bodyAddCategory, this.allCategories, this.getNewAuthorID, this.getAuthors, this.searchInput!);"
                 [strong]="true"
                 >Conferma</ion-button
               >
               <ion-toast
-                trigger="button-AddCategoryAPI"
+                trigger="bottone-aggiungi-categoria"
                 message="Nuovo Elemento Aggiunto"
-                class="toast-nuovo-elemento-aggiunto"
+                class="toast-nuovo-elemento"
                 [duration]="2000"
                 expand="block"
                 color="success"
@@ -1222,7 +1239,7 @@
             *ngFor="let element of allCategories "
             [category]="element"
             [categories]="allCategories"
-            (updateCategories)="updateCategories(element)"
+            (updateCategories)="updateItems(this.allCategories, element, 'categoryID');"
             [search_input]="searchInput"
           >
           </app-categories>
@@ -1232,15 +1249,117 @@
   </div>
 
   <div *ngIf="sectionToShow === 'Publisher'">
-    <ion-grid>
-      <ion-row>
-        <ion-text>Publisher</ion-text>
-        <!-- <app-message
-            *ngFor="let message of filteredObjects "
-            [message]="message">
-          </app-message> -->
-      </ion-row>
-    </ion-grid>
+    <ion-title class="titolo-categoria">Editori </ion-title>
+
+    <ion-button
+      id="add-new-publisher-button"
+      class="bottone-aggiungi-nuovo-oggetto"
+      color="lighter"
+      ><ion-icon
+        style="justify-content: flex-start"
+        name="add-circle-outline"
+      ></ion-icon>
+
+      <p style="padding-left: 20px"></p>
+
+      <ion-text class="testo-aggiungi-nuovo">
+        Aggiungi un nuovo Editore
+      </ion-text>
+    </ion-button>
+    <ion-modal
+      trigger="add-new-publisher-button"
+      (willDismiss)="onWillDismiss($event)"
+      class="ion-padding"
+    >
+      <ng-template>
+        <ion-header>
+          <ion-title class="center" style="margin-top: 20px"
+            >Aggiungi un nuovo Editore</ion-title
+          >
+
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()" [strong]="true"
+                ><ion-icon name="arrow-undo-outline"></ion-icon
+              ></ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button
+                id="bottone-aggiungi-categoria"
+                (click)="AddElementAPI('Category', this.bodyAddCategory, this.allCategories, this.getNewCategoryID, this.getCategories, this.searchInput!);"
+                [strong]="true"
+                >Conferma</ion-button
+              >
+              <ion-toast
+                trigger="bottone-aggiungi-categoria"
+                message="Nuovo Elemento Aggiunto"
+                class="toast-nuovo-elemento"
+                [duration]="2000"
+                expand="block"
+                color="success"
+              ></ion-toast>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-item class="ion-item-text">
+            <ion-input
+              class="testo-input"
+              label="Nome"
+              labelPlacement="stacked"
+              type="text"
+              [(ngModel)]="bodyAddCategory.name"
+            ></ion-input>
+          </ion-item>
+          <ion-item class="ion-item-text">
+            <ion-input
+              class="testo-input"
+              label="Descrizione"
+              labelPlacement="stacked"
+              type="text"
+              [(ngModel)]="bodyAddCategory.description"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item class="ion-item-text">
+            <ion-label> Data di creazione </ion-label>
+            <ion-datetime
+              class="testo-input"
+              [preferWheel]="true"
+              presentation="month-year"
+              [(ngModel)]="bodyAddCategory.addedDate"
+            ></ion-datetime>
+          </ion-item>
+
+          <ion-item class="ion-item-text">
+            <ion-label> Data dell'ultimo aggiornamento </ion-label>
+            <ion-datetime
+              [preferWheel]="true"
+              class="testo-input"
+              presentation="month-year"
+              placeholder="Seleziona la data dell'ultimo aggiornamento"
+              [(ngModel)]="bodyAddCategory.lastUpdateDate"
+            ></ion-datetime>
+          </ion-item>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <div style="margin-bottom: 150px">
+      <ion-grid>
+        <ion-row>
+          <app-editors
+            class="card-oggetti-archivio"
+            *ngFor="let element of allPublishers "
+            [publisher]="element"
+            [publishers]="allPublishers"
+            (updateCategories)="updateItems(this.allPublishers, element, 'publisherID');"
+            [search_input]="searchInput"
+          >
+          </app-editors>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 
   <div *ngIf="sectionToShow === 'Shopkeeper'">

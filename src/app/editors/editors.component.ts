@@ -14,15 +14,15 @@ import { ModalController } from '@ionic/angular';
 import { baseURL, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core';
-import { Category } from '../services/interfaces.service';
+import { Publisher } from '../services/interfaces.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss'],
+  selector: 'app-editors',
+  templateUrl: './editors.component.html',
+  styleUrls: ['./editors.component.scss'],
 })
-export class CategoriesComponent {
+export class EditorsComponent {
   [x: string]: any;
 
   constructor(
@@ -33,70 +33,69 @@ export class CategoriesComponent {
   private platform = inject(Platform);
 
   @Input()
-  category!: Category;
+  publisher!: Publisher;
 
   @Input()
-  categories!: Array<Category>;
+  publishers!: Array<Publisher>;
 
   @Input()
   search_input!: string | null | undefined;
 
   @Output()
-  updateCategories = new EventEmitter<any>();
-
-  @Output()
   updatePublishers = new EventEmitter<any>();
-
 
   @ViewChild(IonModal)
   modal!: IonModal;
 
   modalCtrl: any;
 
-  bodyAddCategory: Category = {
-    categoryID: 0,
+  bodyAddPublisher: Publisher = {
+    publisherID: 0,
     name: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
   };
 
-  bodyModifyCategory: Category = {
-    categoryID: 0,
+  bodyModifyPublisher: Publisher = {
+    publisherID: 0,
     name: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
   };
 
-  DeleteCategory(categoryID: any) {
-    console.log('POST DeleteAuthor : body =>', this.category);
-
-    this.categories.filter(
-      (element: Category) => element.categoryID !== categoryID
+  DeleteElement(objectID: any) {
+    this.publishers.filter(
+      (element: Publisher) => element.publisherID !== objectID
     );
-
-    var categoryToDelete = console.log(this.categories);
-    this.updateCategories.emit(categoryToDelete);
-
-    return PostRequest(baseURL + 'DeleteCategory/' + categoryID);
+    var elementToDelete = console.log(this.publishers);
+    this.updatePublishers.emit(elementToDelete);
+    return PostRequest(baseURL + 'DeleteCategory/' + objectID);
   }
 
-  confirmDeleteCategory() {
-    this.DeleteCategory(this.category?.categoryID);
+  confirmDeleteElement() {
+    this.DeleteElement(this.publisher?.publisherID);
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
-  UpdateCategoryAPI(): Promise<any> {
-    console.log('POST UpdateCategory : body =>', this.category);
-    return PostRequest(baseURL + 'UpdateCategory/', this.category);
+  UpdateAPI(): Promise<any> {
+    return PostRequest(baseURL + 'UpdatePublisher/', this.publisher);
   }
 
-  getNewCategoryID(elementList: Array<Category>): number {
+  getNewID(elementList: Array<Publisher>): number {
     let highestID = 0;
     for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].categoryID > highestID) {
-        highestID = elementList[i].categoryID;
+      if (elementList[i].publisherID > highestID) {
+        highestID = elementList[i].publisherID;
       }
     }
     return highestID + 1;

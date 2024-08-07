@@ -338,55 +338,41 @@ export class HomePage implements OnInit {
 
   //------------------ API CALLS ----------------------------
 
-  AddCategoryAPI(): any {
-    this.bodyAddCategory.categoryID = this.getNewCategoryID(this.allCategories);
-    this.allCategories.unshift(this.bodyAddCategory);
-    this.filteredCategories = this.allCategories;
-    this.getCategories(this.searchInput); // Get on screen new and filtered resultsù
+  AddElementAPI(
+    elementType: string,
+    body: any,
+    allElements: any[],
+    getNewElementID: Function,
+    getElements: Function,
+    searchInput: string
+  ) {
+    // Ottieni il nuovo ID per l'elemento
+    body[`${elementType}ID`] = getNewElementID(allElements);
+
+    // Aggiungi l'elemento alla lista
+    allElements.unshift(body);
+
+    // Aggiorna gli elementi filtrati
+    getElements(searchInput);
+
+    // Chiudi il modal
     this.modalCtrl.dismiss();
 
-    PostRequest(baseURL + 'AddCategory/', this.bodyAddCategory).then(
-      (bodyAddCategory) => {
-        this.bodyAddCategory = {
-          categoryID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-        };
-      }
-    );
-  }
-
-  AddAuthorAPI(): any {
-    // Get the Last ID and make + 1
-    this.bodyAddAuthor.authorID = this.getNewAuthorID(this.allAuthors);
-    this.allAuthors.unshift(this.bodyAddAuthor);
-    this.filteredAuthors = this.allAuthors;
-
-    this.getAuthors(this.searchInput); // Get on screen new and filtered results
-
-    this.modalCtrl.dismiss();
-
-    console.log('New Author ID : ', this.bodyAddAuthor.authorID);
-    console.log('POST request AddAuthorAPI() -> body ', this.bodyAddAuthor);
-
-    // post the new object
-    PostRequest(baseURL + 'AddAuthor/', this.bodyAddAuthor).then(
-      (bodyAddAuthor) => {
-        this.bodyAddAuthor = {
-          authorID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-          email: '',
-          telephone1: '',
-          telephone2: '',
-          notes: '',
-        };
-      }
-    );
+    // Esegui la richiesta POST per aggiungere l'elemento
+    PostRequest(baseURL + `Add${elementType}/`, body).then((response) => {
+      // Resetta il corpo per il prossimo inserimento
+      body = {
+        [`${elementType}ID`]: 0,
+        name: '',
+        addedDate: today,
+        lastUpdateDate: today,
+        description: '',
+        email: '',
+        telephone1: '',
+        telephone2: '',
+        notes: '',
+      };
+    });
   }
 
   //  //  //  //  //  //  //  //  //  //  //  // //  //  //  //  //  //  //  //  //  //  //  //
@@ -506,7 +492,12 @@ export class HomePage implements OnInit {
   }
 
   setInput(input: string | undefined | null) {
-    this.searchInput = input;
+    if (input !== undefined && input !== null) {
+      this.searchInput = input;
+    } else {
+      // Gestione dei casi in cui input è undefined o null
+      this.searchInput = ''; // oppure this.searchInput = 'valore predefinito';
+    }
   }
 
   getItems(input: string | undefined | null) {
@@ -530,90 +521,40 @@ export class HomePage implements OnInit {
     }
   }
 
-  getAuthors(input: string | undefined | null) {
-    this.filteredAuthors = this.allAuthors;
+  filterData(
+    input: string | undefined | null,
+    allData: any[],
+    filterFunction: (data: any[]) => any[]
+  ): any[] {
+    let filteredData = allData;
 
     if (!input) {
-      this.filteredAuthors = this.filterAuthorByYears(this.filteredAuthors);
+      filteredData = filterFunction(filteredData);
     } else {
       const searchTerm = input.toLowerCase();
-      this.filteredAuthors = this.allAuthors.filter((author) =>
-        author.name.toLowerCase().includes(searchTerm)
+      filteredData = allData.filter((data) =>
+        data.name.toLowerCase().includes(searchTerm)
       );
-      this.filteredAuthors = this.filterAuthorByYears(this.filteredAuthors);
+      filteredData = filterFunction(filteredData);
     }
+
+    return filteredData;
+  }
+
+  getAuthors(input: string | undefined | null) {
+    this.filteredAuthors = this.filterData(
+      input,
+      this.allAuthors,
+      this.filterAuthorByYears
+    );
   }
 
   getCategories(input: string | undefined | null) {
-    this.filteredCategories = this.allCategories;
-    console.log('start of getCategories()', this.filteredCategories);
-    if (!input) {
-      this.filteredCategories = this.filterCategoryByYears(
-        this.filteredCategories
-      );
-    } else {
-      const searchTerm = input.toLowerCase();
-      this.filteredCategories = this.allCategories.filter((category) =>
-        category.name.toLowerCase().includes(searchTerm)
-      );
-      this.filteredCategories = this.filterCategoryByYears(
-        this.filteredCategories
-      );
-    }
-    console.log('end of getCategories()', this.filteredCategories);
-  }
-
-  filterCategoryByYears(filteredCategories: Category[]) {
-    var result: Category[] = filteredCategories;
-
-    result = filteredCategories.filter((object) => {
-      if (object.addedDate != null) {
-        const year = new Date(object.addedDate).getFullYear();
-
-        if (Number.isNaN(this.searchYears.lower)) {
-          this.searchYears.lower = 1800;
-        }
-        return (
-          year >= new Date(this.searchYears.lower, 0, 1).getFullYear() &&
-          year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
-        );
-      } else {
-        return object;
-      }
-    });
-
-    if (Number.isNaN(this.searchYears.upper)) {
-      console.log('Error with the upper pin, the pin value is Nan ');
-    }
-    return result;
-  }
-
-  updateAuthors(authorToDelete: Author) {
-    this.allAuthors = this.allAuthors.filter(
-      (element: Author) => element.authorID !== authorToDelete.authorID
+    this.filteredCategories = this.filterData(
+      input,
+      this.allCategories,
+      this.filterCategoryByYears
     );
-    this.filteredAuthors = this.allAuthors;
-  }
-
-  updateCategories(categoryToDelete: Category) {
-    this.allCategories = this.allCategories.filter(
-      (element: Category) => element.categoryID !== categoryToDelete.categoryID
-    );
-    this.filteredCategories = this.allCategories;
-  }
-
-  //---------------- FILTERS -----------------------------------------
-
-  filterByAvaiability(filteredObjects: DatabaseObject[]) {
-    var result: DatabaseObject[] = filteredObjects;
-    if (this.availability == 'solo_disponibili') {
-      result = filteredObjects.filter((object) => {
-        return object.avaiable == true;
-      });
-      return result;
-    } else {
-      return result;
-    }
   }
 
   filterAuthorByYears(filteredAuthors: Author[]) {
@@ -641,6 +582,50 @@ export class HomePage implements OnInit {
       }
     });
     return result;
+  }
+
+  filterCategoryByYears(filteredCategories: Category[]) {
+    var result: Category[] = filteredCategories;
+
+    result = filteredCategories.filter((object) => {
+      if (object.addedDate != null) {
+        const year = new Date(object.addedDate).getFullYear();
+
+        if (Number.isNaN(this.searchYears.lower)) {
+          this.searchYears.lower = 1800;
+        }
+        return (
+          year >= new Date(this.searchYears.lower, 0, 1).getFullYear() &&
+          year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
+        );
+      } else {
+        return object;
+      }
+    });
+
+    if (Number.isNaN(this.searchYears.upper)) {
+      console.log('Error with the upper pin, the pin value is Nan ');
+    }
+    return result;
+  }
+
+  updateItems(items: any[], itemToDelete: any, key: string) {
+    items = items.filter((element) => element[key] !== itemToDelete[key]);
+    return items;
+  }
+
+  //---------------- FILTERS -----------------------------------------
+
+  filterByAvaiability(filteredObjects: DatabaseObject[]) {
+    var result: DatabaseObject[] = filteredObjects;
+    if (this.availability == 'solo_disponibili') {
+      result = filteredObjects.filter((object) => {
+        return object.avaiable == true;
+      });
+      return result;
+    } else {
+      return result;
+    }
   }
 
   filterByYears(filteredObjects: DatabaseObject[]) {
