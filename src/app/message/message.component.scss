@@ -131,7 +131,7 @@ ion-radio.ios::part(container) {
   margin-bottom: 15px;
   display: flex;
   min-width: 100px;
-  margin-top: 15px; 
+  margin-top: 15px;
   font-size: 18px;
   margin-left: 20px;
 }
@@ -172,7 +172,8 @@ ion-radio.ios::part(container) {
   margin-left: 11px;
   display: flex !important;
   align-content: center !important;
-  align-items: center !important;}
+  align-items: center !important;
+}
 
 .div-svg-input:hover .icone-autori-edit {
   display: block;

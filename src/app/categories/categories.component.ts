@@ -23,14 +23,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent {
-  [x: string]: any;
 
   constructor(
     private http: HttpClient,
     private modalController: ModalController
   ) {}
-
-  private platform = inject(Platform);
 
   @Input()
   category!: Category;
@@ -44,8 +41,6 @@ export class CategoriesComponent {
   @Output()
   updateCategories = new EventEmitter<any>();
 
-  @Output()
-  updatePublishers = new EventEmitter<any>();
 
 
   @ViewChild(IonModal)
