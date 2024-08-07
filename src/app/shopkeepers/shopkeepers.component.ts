@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
-@Component({
-  selector: 'app-shopkeepers',
-  templateUrl: './shopkeepers.component.html',
-  styleUrls: ['./shopkeepers.component.scss'],
+import { EditorsComponent } from './editors.component';
+
+@NgModule({
+  declarations: [EditorsComponent],
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
+  exports: [EditorsComponent],
 })
-export class ShopkeepersComponent  implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {}
-
-}
+export class EditorsModule {}

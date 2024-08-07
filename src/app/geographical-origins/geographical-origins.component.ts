@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
-@Component({
-  selector: 'app-geographical-origins',
-  templateUrl: './geographical-origins.component.html',
-  styleUrls: ['./geographical-origins.component.scss'],
+import { EditorsComponent } from './editors.component';
+
+@NgModule({
+  declarations: [EditorsComponent],
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
+  exports: [EditorsComponent],
 })
-export class GeographicalOriginsComponent  implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {}
-
-}
+export class EditorsModule {}
