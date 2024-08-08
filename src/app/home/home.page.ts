@@ -31,6 +31,8 @@ import {
   templateUrl: 'home.page.html', // page html
   styleUrls: ['home.page.scss'], // page style
 })
+
+
 export class HomePage implements OnInit {
   [x: string]: any;
   $event: any;
@@ -38,6 +40,24 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.getScreenSize();
   }
+
+  constructor(
+    private http: HttpClient,
+    private modalCtrl: ModalController,
+    private menuCtrl: MenuController
+  ) {}
+
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////// FRONTEND FEATURES /////////////////////////
+  isOpen: boolean = false;
+  fileEvent: Event | undefined;
+  // PopOver
+  showAddPopover: boolean = false;
+  showModifyPopover: boolean = false;
+  showDeletePopover: boolean = false;
+  // VIEWS TO SHOW
+  sectionToShow: string = 'Store'; // initial value = Store
+  messageDismissModal: string = '';
 
   checkScreenSize(): string {
     const screenWidth = window.innerWidth;
@@ -58,6 +78,44 @@ export class HomePage implements OnInit {
     this.menuCtrl.open('first-menu');
   }
 
+  @ViewChild('popover') popover: any;
+
+  cancel() {
+    this.modalCtrl.dismiss(null, 'cancel');
+  }
+
+  confirmLogin() {
+    this.modalCtrl.dismiss(this.body_login.username, 'confirm');
+    console.log(this.body_login);
+    PostRequest(baseURL + 'Login/', this.body_login);
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.messageDismissModal = `Hello, ${this.body_login.username}!`;
+    }
+  }
+
+  switchToView(value: string) {
+    console.log('view BEFORE ', this.sectionToShow);
+    this.sectionToShow = value;
+    console.log('view AFTER ', this.sectionToShow);
+  }
+
+  presentPopover(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////// LOGIN /////////////////////////////////////
+
+  body_login: LoginObject = {
+    username: '',
+    password: '',
+  };
+
   AdminTables: Array<string> = [
     'Author',
     'Publisher',
@@ -68,43 +126,22 @@ export class HomePage implements OnInit {
     'Provenance',
     'GeographicalOrigin',
   ];
-  //-----------------  FILTERS  ------------------------
-  availability: string = 'tutti'; // initial aviability filter checkbox
-  searchInput: string | undefined | null = ''; // initial search input
-  searchGeneres: Array<string> = []; // array for containing choosen generes
-  searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
 
-  //----------------- Scelta della sezione ----------------------------
-
-  isOpen: boolean = false;
-  fileEvent: Event | undefined;
-
-  //  //  //  //  //  //  //  //  //  //  //  //
-  //  DATABASE INITIALIZATION
-
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////// OBJECTS ///////////////////////////////////
+  
   allDatabase: Array<DatabaseObject> = [];
   filteredObjects: Array<DatabaseObject> = [];
 
-  allCategories: Array<Category> = [];
-  filteredCategories: Array<Category> = [];
+  promiseDatabase: Promise<DatabaseObject[]> | undefined = GetRequest(
+    baseURL + 'GetObjects'
+  ).then((res) => {
+    console.log('Oggetti inviati dal database', res);
+    this.allDatabase = res;
+    console.log('Database degli Oggetti', this.allDatabase);
 
-  allWarehouses: Array<Warehouse> = [];
-  filteredWarehouses: Array<Warehouse> = [];
-
-  allPublishers: Array<Publisher> = [];
-  filteredPublishers: Array<Publisher> = [];
-
-  allGeographicalOrigins: Array<GeographicalOrigin> = [];
-  filteredGeographicalOrigins: Array<GeographicalOrigin> = [];
-
-  allTypeObjects: Array<TypeObject> = [];
-  filteredTypeObjects: Array<TypeObject> = [];
-
-  allShopkeepers: Array<Shopkeeper> = [];
-  filteredShopkeepers: Array<Shopkeeper> = [];
-
-  allProvenances: Array<Provenance> = [];
-  filteredProvenances: Array<Provenance> = [];
+    return (this.filteredObjects = this.allDatabase);
+  });
 
   bodyAddObject: DatabaseObject = {
     objectID: 1,
@@ -140,133 +177,6 @@ export class HomePage implements OnInit {
     htmlDescription2: '',
   };
 
-  body_login: LoginObject = {
-    username: '',
-    password: '',
-  };
-
-  bodyAddCategory: Category = {
-    categoryID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-
-  //  //  //  //  //  //  //  //  //  //  //  //
-
-  // PopOver
-  showAddPopover: boolean = false;
-  showModifyPopover: boolean = false;
-  showDeletePopover: boolean = false;
-
-  // VIEWS TO SHOW
-  sectionToShow: string = 'Store'; // initial value = Store
-  messageDismissModal: string = '';
-
-  constructor(
-    private http: HttpClient,
-    private modalCtrl: ModalController,
-    private menuCtrl: MenuController
-  ) {}
-
-  @ViewChild('popover') popover: any;
-
-  cancel() {
-    this.modalCtrl.dismiss(null, 'cancel');
-  }
-
-  confirmLogin() {
-    this.modalCtrl.dismiss(this.body_login.username, 'confirm');
-    console.log(this.body_login);
-    PostRequest(baseURL + 'Login/', this.body_login);
-  }
-
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-      this.messageDismissModal = `Hello, ${this.body_login.username}!`;
-    }
-  }
-
-  switchToView(value: string) {
-    console.log('view BEFORE ', this.sectionToShow);
-    this.sectionToShow = value;
-    console.log('view AFTER ', this.sectionToShow);
-  }
-
-  promiseDatabase: Promise<DatabaseObject[]> | undefined = GetRequest(
-    baseURL + 'GetObjects'
-  ).then((res) => {
-    console.log('Oggetti inviati dal database', res);
-    this.allDatabase = res;
-    console.log('Database degli Oggetti', this.allDatabase);
-
-    return (this.filteredObjects = this.allDatabase);
-  });
-
-  promiseallWarehouses: Promise<Warehouse[]> | undefined = GetRequest(
-    baseURL + 'GetWarehouses'
-  ).then((res) => {
-    console.log('Warehouse inviati dal database', res);
-    return (this.allWarehouses = res);
-  });
-
-  promiseallPublishers: Promise<Publisher[]> | undefined = GetRequest(
-    baseURL + 'GetPublishers'
-  ).then((res) => {
-    console.log('Publisher inviati dal database', res);
-    return (this.allPublishers = res);
-  });
-
-  promiseallProvenances: Promise<Provenance[]> | undefined = GetRequest(
-    baseURL + 'GetProvenances'
-  ).then((res) => {
-    console.log('Provenance inviati dal database', res);
-    return (this.allProvenances = res);
-  });
-
-  promiseallGeographicalOrigins: Promise<GeographicalOrigin[]> | undefined =
-    GetRequest(baseURL + 'GetGeographicalOrigins').then((res) => {
-      console.log('GeographicalOrigin inviati dal database', res);
-      return (this.allGeographicalOrigins = res);
-    });
-
-  promiseallTypeObjects: Promise<TypeObject[]> | undefined = GetRequest(
-    baseURL + 'GetTypeObjects'
-  ).then((res) => {
-    console.log('TypeObject inviati dal database', res);
-    return (this.allTypeObjects = res);
-  });
-
-  promiseallShopkeepers: Promise<Shopkeeper[]> | undefined = GetRequest(
-    baseURL + 'GetShopkeepers'
-  ).then((res) => {
-    console.log('Shopkeeper inviati dal database', res);
-    return (this.allShopkeepers = res);
-  });
-
-  promiseallCategories: Promise<Category[]> | undefined = GetRequest(
-    baseURL + 'getCategories'
-  ).then((res) => {
-    console.log('Categorie inviati dal database', res);
-    this.allCategories = res;
-    return (this.filteredCategories = this.allCategories);
-  });
-
-  presentPopover(e: Event) {
-    this.popover.event = e;
-    this.isOpen = true;
-  }
-
-  setInput(input: string | undefined | null) {
-    if (input !== undefined && input !== null) {
-      this.searchInput = input;
-    } else {
-      this.searchInput = ''; // oppure this.searchInput = 'valore predefinito';
-    }
-  }
-
   getItems(input: string | undefined | null) {
     console.log('Filter Object results');
     // Get all the items from the database request
@@ -288,36 +198,6 @@ export class HomePage implements OnInit {
     }
   }
 
-  filterData(
-    input: string | undefined | null,
-    allData: any[],
-    filterFunction: (data: any[]) => any[]
-  ): any[] {
-    let filteredData = allData;
-
-    if (!input) {
-      filteredData = filterFunction(filteredData);
-    } else {
-      const searchTerm = input.toLowerCase();
-      filteredData = allData.filter((data) =>
-        data.name.toLowerCase().includes(searchTerm)
-      );
-      filteredData = filterFunction(filteredData);
-    }
-
-    return filteredData;
-  }
-
-  getCategories(input: string | undefined | null) {
-    this.filteredCategories = this.filterData(
-      input,
-      this.allCategories,
-      this.filterByYears
-    );
-  }
-
-  CreateCategory() {}
-
   ///////////////////////////////////////////////////////////////
   /////////////////       AUTORI      ///////////////////////////
 
@@ -332,7 +212,7 @@ export class HomePage implements OnInit {
     return (this.filteredAuthors = this.allAuthors);
   });
 
-  bodyAddAuthor: Author = {
+  body_add_author: Author = {
     authorID: 0,
     name: '',
     addedDate: today,
@@ -363,15 +243,15 @@ export class HomePage implements OnInit {
   }
 
   CreateAuthor(): Promise<any> {
-    this.bodyAddAuthor.authorID = this.getNewIDAuthor(this.allAuthors);
-    let newAuthor = this.bodyAddAuthor;
+    this.body_add_author.authorID = this.getNewIDAuthor(this.allAuthors);
+    let newAuthor = this.body_add_author;
     this.allAuthors.unshift(newAuthor);
-    console.log('POST api/AddAuthor/ ', this.bodyAddAuthor);
+    console.log('POST api/AddAuthor/ ', this.body_add_author);
     // Perform the PostRequest
-    return PostRequest(baseURL + 'AddAuthor/', this.bodyAddAuthor)
+    return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
       .then((response) => {
         // Reset bodyAddAuthor to null after the PostRequest
-        this.bodyAddAuthor = {
+        this.body_add_author = {
           authorID: 0,
           name: '',
           addedDate: today,
@@ -399,32 +279,285 @@ export class HomePage implements OnInit {
   }
 
   ///////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////
+  /////////////////       CATEGORIE      ///////////////////////////
+
+  allCategories: Array<Category> = [];
+  filteredCategories: Array<Category> = [];
+
+  promiseallCategories: Promise<Category[]> = GetRequest(
+    baseURL + 'GetCategories'
+  ).then((res) => {
+    console.log('Category inviati dal database', res);
+    this.allCategories = res;
+    return (this.filteredCategories = this.allCategories);
+  });
+
+  body_add_category: Category = {
+    categoryID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  getCategories(input: string | undefined | null) {
+    this.filteredCategories = this.filterData(
+      input,
+      this.allCategories,
+      this.filterByYears
+    );
+  }
+
+  getNewIDCategory(elementList: Array<Category>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].categoryID > highestID) {
+        highestID = elementList[i].categoryID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateCategory(): Promise<any> {
+    this.body_add_category.categoryID = this.getNewIDCategory(this.allCategories);
+    let new_element = this.body_add_category;
+    this.allCategories.unshift(new_element);
+    console.log('POST api/AddCategory/ ', this.body_add_category);
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddCategory/', this.body_add_category)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_category = {
+          categoryID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
 
   updateCategories(items: any[], itemToDelete: any, key: string) {
     items = items.filter((element) => element[key] !== itemToDelete[key]);
     console.log(' Update Authors', items);
-    this.filteredAuthors = items;
-    return items;
+    this.allAuthors = items;
+    this.filteredAuthors = this.allAuthors;
+    return this.filteredAuthors;
+  }
+
+
+
+  ///////////////////////////////////////////////////////////////
+  /////////////////       CATEGORIE      ///////////////////////////
+
+  allPublishers: Array<Publisher> = [];
+  filteredPublishers: Array<Publisher> = [];
+
+  promiseallPublishers: Promise<Publisher[]> = GetRequest(
+    baseURL + 'GetPublishers'
+  ).then((res) => {
+    console.log('Publisher inviati dal database', res);
+    this.allPublishers = res;
+    return (this.filteredPublishers = this.allPublishers);
+  });
+
+  body_add_publisher: Publisher = {
+    publisherID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
+
+  getPublishers(input: string | undefined | null) {
+    this.filteredPublishers = this.filterData(
+      input,
+      this.allPublishers,
+      this.filterByYears
+    );
+  }
+
+  getNewIDPublisher(elementList: Array<Publisher>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].publisherID > highestID) {
+        highestID = elementList[i].publisherID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreatePublisher(): Promise<any> {
+    this.body_add_category.categoryID = this.getNewIDPublisher(this.allPublishers);
+    let new_element = this.body_add_category;
+    this.allCategories.unshift(new_element);
+    console.log('POST api/AddCategory/ ', this.body_add_category);
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddCategory/', this.body_add_category)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_category = {
+          categoryID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
   }
 
   updatePublishers(items: any[], itemToDelete: any, key: string) {
     items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update Authors', items);
-    this.filteredAuthors = items;
-    return items;
+    console.log(' Update Publishers', items);
+    this.allPublishers = items;
+    this.filteredPublishers = this.allPublishers;
+    return this.filteredPublishers;
   }
 
-  ///////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////
 
-  getPublishers(input: string | undefined | null) {
-    this.filteredProvenances = this.filterData(
+
+  
+  ///////////////////////////////////////////////////////////////
+  /////////////////       ESERCENTI      ///////////////////////////
+
+  allShopkeepers: Array<Shopkeeper> = [];
+  filteredShopkeepers: Array<Shopkeeper> = [];
+
+  promiseallShopkeepers: Promise<Shopkeeper[]> = GetRequest(
+    baseURL + 'GetShopkeepers'
+  ).then((res) => {
+    console.log('Shopkeeper inviati dal database', res);
+    this.allShopkeepers = res;
+    return (this.filteredShopkeepers = this.allShopkeepers);
+  });
+
+  body_add_shopkeeper: Shopkeeper = {
+    shopkeeperID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  getShopkeepers(input: string | undefined | null) {
+    this.filteredShopkeepers = this.filterData(
       input,
-      this.allProvenances,
+      this.allShopkeepers,
       this.filterByYears
     );
+  }
+
+  getNewIDShopkeeper(elementList: Array<Shopkeeper>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].shopkeeperID > highestID) {
+        highestID = elementList[i].shopkeeperID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateShopkeeper(): Promise<any> {
+    this.body_add_shopkeeper.shopkeeperID = this.getNewIDShopkeeper(this.allShopkeepers);
+    let new_element = this.body_add_shopkeeper;
+    this.allShopkeepers.unshift(new_element);
+    console.log('POST api/AddShopkeeper/ ', this.body_add_shopkeeper);
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddShopkeeper/', this.body_add_shopkeeper)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_shopkeeper = {
+          shopkeeperID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateShopkeepers(items: any[], itemToDelete: any, key: string) {
+    items = items.filter((element) => element[key] !== itemToDelete[key]);
+    console.log(' Update Shopkeeper', items);
+    this.allShopkeepers = items;
+    this.filteredShopkeepers = this.allShopkeepers;
+    return this.filteredShopkeepers;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ///////////////////////////////////////////////////////////////
+  ////////////////////// FILTRI DI RICERCA /////////////////////
+
+  availability: string = 'tutti'; // initial aviability filter checkbox
+  searchInput: string | undefined | null = ''; // initial search input
+  searchGeneres: Array<string> = []; // array for containing choosen generes
+  searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
+
+
+  setInput(input: string | undefined | null) {
+    if (input !== undefined && input !== null) {
+      this.searchInput = input;
+    } else {
+      this.searchInput = ''; // oppure this.searchInput = 'valore predefinito';
+    }
+  }
+
+
+  filterData(
+    input: string | undefined | null,
+    allData: any[],
+    filterFunction: (data: any[]) => any[]
+  ): any[] {
+    let filteredData = allData;
+
+    if (!input) {
+      filteredData = filterFunction(filteredData);
+    } else {
+      const searchTerm = input.toLowerCase();
+      filteredData = allData.filter((data) =>
+        data.name.toLowerCase().includes(searchTerm)
+      );
+      filteredData = filterFunction(filteredData);
+    }
+
+    return filteredData;
   }
 
   filterByYears<T extends { addedDate: Date }>(filteredItems: T[]): T[] {

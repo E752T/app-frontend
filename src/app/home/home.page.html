@@ -977,7 +977,7 @@
               label="Nome"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddAuthor.name"
+              [(ngModel)]="body_add_author.name"
             ></ion-input>
           </ion-item>
           <ion-item clase="testo-form">
@@ -986,7 +986,7 @@
               label="Descrizione"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddAuthor.description"
+              [(ngModel)]="body_add_author.description"
             ></ion-input>
           </ion-item>
 
@@ -996,7 +996,7 @@
               label="Note"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddAuthor.notes"
+              [(ngModel)]="body_add_author.notes"
             ></ion-input>
           </ion-item>
 
@@ -1006,7 +1006,7 @@
               label="Telefono primario"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddAuthor.telephone1"
+              [(ngModel)]="body_add_author.telephone1"
             ></ion-input>
           </ion-item>
 
@@ -1016,7 +1016,7 @@
               label="Telefono secondario"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddAuthor.telephone2"
+              [(ngModel)]="body_add_author.telephone2"
             ></ion-input>
           </ion-item>
 
@@ -1026,7 +1026,7 @@
               label="Email"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddAuthor.email"
+              [(ngModel)]="body_add_author.email"
             ></ion-input>
           </ion-item>
 
@@ -1036,7 +1036,7 @@
               class="testo-input"
               [preferWheel]="true"
               presentation="month-year"
-              [(ngModel)]="bodyAddAuthor.addedDate"
+              [(ngModel)]="body_add_author.addedDate"
             ></ion-datetime>
           </ion-item>
 
@@ -1047,7 +1047,7 @@
               class="testo-input"
               presentation="month-year"
               placeholder="Seleziona la data dell'ultimo aggiornamento"
-              [(ngModel)]="bodyAddAuthor.lastUpdateDate"
+              [(ngModel)]="body_add_author.lastUpdateDate"
             ></ion-datetime>
           </ion-item>
         </ion-content>
@@ -1130,7 +1130,7 @@
               label="Nome"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddCategory.name"
+              [(ngModel)]="body_add_category.name"
             ></ion-input>
           </ion-item>
           <ion-item class="testo-form">
@@ -1139,7 +1139,7 @@
               label="Descrizione"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddCategory.description"
+              [(ngModel)]="body_add_category.description"
             ></ion-input>
           </ion-item>
 
@@ -1149,7 +1149,7 @@
               class="testo-input"
               [preferWheel]="true"
               presentation="month-year"
-              [(ngModel)]="bodyAddCategory.addedDate"
+              [(ngModel)]="body_add_category.addedDate"
             ></ion-datetime>
           </ion-item>
 
@@ -1160,7 +1160,7 @@
               class="testo-input"
               presentation="month-year"
               placeholder="Seleziona la data dell'ultimo aggiornamento"
-              [(ngModel)]="bodyAddCategory.lastUpdateDate"
+              [(ngModel)]="body_add_category.lastUpdateDate"
             ></ion-datetime>
           </ion-item>
         </ion-content>
@@ -1241,7 +1241,7 @@
               label="Nome"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddCategory.name"
+              [(ngModel)]="body_add_category.name"
             ></ion-input>
           </ion-item>
           <ion-item class="testo-form">
@@ -1250,29 +1250,24 @@
               label="Descrizione"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="bodyAddCategory.description"
+              [(ngModel)]="body_add_category.description"
             ></ion-input>
           </ion-item>
 
           <ion-item class="testo-form">
             <ion-label> Data di creazione </ion-label>
-            <ion-datetime
+            <ion-text
               class="testo-input"
-              [preferWheel]="true"
-              presentation="month-year"
-              [(ngModel)]="bodyAddCategory.addedDate"
-            ></ion-datetime>
+              [(ngModel)]="body_add_category.addedDate"
+            ></ion-text>
           </ion-item>
 
           <ion-item class="testo-form">
             <ion-label> Data dell'ultimo aggiornamento </ion-label>
-            <ion-datetime
-              [preferWheel]="true"
+            <ion-text
               class="testo-input"
-              presentation="month-year"
-              placeholder="Seleziona la data dell'ultimo aggiornamento"
-              [(ngModel)]="bodyAddCategory.lastUpdateDate"
-            ></ion-datetime>
+              [(ngModel)]="body_add_category.lastUpdateDate"
+            ></ion-text>
           </ion-item>
         </ion-content>
       </ng-template>
@@ -1294,6 +1289,26 @@
       </ion-grid>
     </div>
   </div>
+
+
+  <div style="margin-bottom: 150px">
+    <ion-grid>
+      <ion-row>
+        <app-shopkeepers
+          class="carta-elemento"
+          *ngFor="let element of allShopkeepers "
+          [shopkeeper]="element"
+          [shopkeepers]="allShopkeepers"
+          (updateShopkeepers)="updateShopkeepers(this.allShopkeepers, element, 'shopkeeperID');"
+          [search_input]="searchInput"
+        >
+        </app-shopkeepers>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>
+
+
 
   <div *ngIf="sectionToShow === 'TypeObject'">
     <ion-grid>
