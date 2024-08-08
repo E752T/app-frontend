@@ -73,7 +73,6 @@ export class HomePage implements OnInit {
   searchInput: string | undefined | null = ''; // initial search input
   searchGeneres: Array<string> = []; // array for containing choosen generes
   searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
-  searchAuthorYears = { lower: 1800, upper: 2024 };
 
   //----------------- Scelta della sezione ----------------------------
 
@@ -88,9 +87,6 @@ export class HomePage implements OnInit {
 
   allCategories: Array<Category> = [];
   filteredCategories: Array<Category> = [];
-
-  allAuthors: Array<Author> = [];
-  filteredAuthors: Array<Author> = [];
 
   allWarehouses: Array<Warehouse> = [];
   filteredWarehouses: Array<Warehouse> = [];
@@ -147,18 +143,6 @@ export class HomePage implements OnInit {
   body_login: LoginObject = {
     username: '',
     password: '',
-  };
-
-  bodyAddAuthor: Author = {
-    authorID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
   };
 
   bodyAddCategory: Category = {
@@ -262,14 +246,6 @@ export class HomePage implements OnInit {
     return (this.allShopkeepers = res);
   });
 
-  promiseallAuthors: Promise<Author[]> = GetRequest(
-    baseURL + 'GetAuthors'
-  ).then((res) => {
-    console.log('Author inviati dal database', res);
-    this.allAuthors = res;
-    return (this.filteredAuthors = this.allAuthors);
-  });
-
   promiseallCategories: Promise<Category[]> | undefined = GetRequest(
     baseURL + 'getCategories'
   ).then((res) => {
@@ -332,14 +308,6 @@ export class HomePage implements OnInit {
     return filteredData;
   }
 
-  getAuthors(input: string | undefined | null) {
-    this.filteredAuthors = this.filterData(
-      input,
-      this.allAuthors,
-      this.filterByYears
-    );
-  }
-
   getCategories(input: string | undefined | null) {
     this.filteredCategories = this.filterData(
       input,
@@ -349,6 +317,40 @@ export class HomePage implements OnInit {
   }
 
   CreateCategory() {}
+
+  ///////////////////////////////////////////////////////////////
+  /////////////////       AUTORI      ///////////////////////////
+
+  allAuthors: Array<Author> = [];
+  filteredAuthors: Array<Author> = [];
+
+  promiseallAuthors: Promise<Author[]> = GetRequest(
+    baseURL + 'GetAuthors'
+  ).then((res) => {
+    console.log('Author inviati dal database', res);
+    this.allAuthors = res;
+    return (this.filteredAuthors = this.allAuthors);
+  });
+
+  bodyAddAuthor: Author = {
+    authorID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
+
+  getAuthors(input: string | undefined | null) {
+    this.filteredAuthors = this.filterData(
+      input,
+      this.allAuthors,
+      this.filterByYears
+    );
+  }
 
   getNewIDAuthor(elementList: Array<Author>): number {
     let highestID = 0;
@@ -361,12 +363,37 @@ export class HomePage implements OnInit {
   }
 
   CreateAuthor(): Promise<any> {
-    {
-      this.bodyAddAuthor.authorID = this.getNewIDAuthor(this.allAuthors);
-      console.log('POST api/AddAuthor/ ', this.bodyAddAuthor);
-      return PostRequest(baseURL + 'AddAuthor/', this.bodyAddAuthor);
-    }
+    this.bodyAddAuthor.authorID = this.getNewIDAuthor(this.allAuthors);
+    let newAuthor = this.bodyAddAuthor;
+    this.allAuthors.unshift(newAuthor);
+    console.log('POST api/AddAuthor/ ', this.bodyAddAuthor);
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddAuthor/', this.bodyAddAuthor)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.bodyAddAuthor = {
+          authorID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+          email: '',
+          telephone1: '',
+          telephone2: '',
+          notes: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
   }
+
+  
+
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
 
   getPublishers(input: string | undefined | null) {
     this.filteredProvenances = this.filterData(

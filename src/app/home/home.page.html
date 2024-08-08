@@ -433,13 +433,13 @@
                   </ion-buttons>
                   <ion-buttons slot="end">
                     <ion-button
-                      id="button-AddObjectAPI"
-                      (click)="AddElementAPI('Author', this.bodyAddAuthor, this.allAuthors,this ['getNewElementID'](), this.getAuthors, this.searchInput!);"
+                      id="bottone-crea-autore"
+                      (click)="CreateAuthor();"
                       [strong]="true"
                       >Conferma</ion-button
                     >
                     <ion-toast
-                      trigger="button-AddObjectAPI"
+                      trigger="bottone-crea-autore"
                       message="Nuovo Elemento Aggiunto"
                       class="toast-nuovo-elemento"
                       [duration]="2000"

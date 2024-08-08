@@ -65,6 +65,7 @@ export class AuthorsComponent {
     notes: '',
   };
 
+  
   DeleteElement(objectID: any) {
     this.authors = this.authors.filter(
       (element: Author) => element.authorID !== objectID
