@@ -501,7 +501,6 @@ export class HomePage implements OnInit {
     return this.filteredShopkeepers;
   }
 
-
   /////////////////////////////////////////////////////////////////
   /////////////////       MAGAZZINI      ///////////////////////////
 
@@ -584,8 +583,7 @@ export class HomePage implements OnInit {
     return this.filteredWarehouses;
   }
 
-
-    /////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////
   /////////////////       PROVENIENZE      ///////////////////////////
 
   allProvenances: Array<Provenance> = [];
@@ -659,7 +657,6 @@ export class HomePage implements OnInit {
     return this.filteredProvenances;
   }
 
-
   /////////////////////////////////////////////////////////////////
   /////////////////      ORIGINE GEOGRAFICA       /////////////////
 
@@ -701,14 +698,19 @@ export class HomePage implements OnInit {
   }
 
   CreateGeographicalOrigin(): Promise<any> {
-    this.body_add_geographical_origin.geographicalOriginID = this.getNewIDGeographicalOrigin(
-      this.allGeographicalOrigins
-    );
+    this.body_add_geographical_origin.geographicalOriginID =
+      this.getNewIDGeographicalOrigin(this.allGeographicalOrigins);
     let new_element = this.body_add_geographical_origin;
     this.allGeographicalOrigins.unshift(new_element);
-    console.log('POST api/AddGeographicalOrigins/ ', this.body_add_geographical_origin);
+    console.log(
+      'POST api/AddGeographicalOrigins/ ',
+      this.body_add_geographical_origin
+    );
     // Perform the PostRequest
-    return PostRequest(baseURL + 'AddGeographicalOrigins/', this.body_add_geographical_origin)
+    return PostRequest(
+      baseURL + 'AddGeographicalOrigins/',
+      this.body_add_geographical_origin
+    )
       .then((response) => {
         // Reset bodyAddAuthor to null after the PostRequest
         this.body_add_geographical_origin = {
@@ -734,8 +736,81 @@ export class HomePage implements OnInit {
     return this.filteredGeographicalOrigins;
   }
 
-  
-  ///////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////
+  /////////////////      TIPI DI OGGETTI       /////////////////
+
+  allTypeObjects: Array<TypeObject> = [];
+  filteredTypeObjects: Array<TypeObject> = [];
+
+  promiseallTypeObjects: Promise<TypeObject[]> = GetRequest(
+    baseURL + 'GetTypeObjects'
+  ).then((res) => {
+    console.log('TypeObject inviati dal database', res);
+    this.allTypeObjects = res;
+    return (this.filteredTypeObjects = this.allTypeObjects);
+  });
+
+  body_add_type_object: TypeObject = {
+    typeID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  getTypeObjects(input: string | undefined | null) {
+    this.filteredTypeObjects = this.filterData(
+      input,
+      this.allTypeObjects,
+      this.filterByYears
+    );
+  }
+
+  getNewIDTypeObject(elementList: Array<TypeObject>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].typeID > highestID) {
+        highestID = elementList[i].typeID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateTypeObject(): Promise<any> {
+    this.body_add_type_object.typeID = this.getNewIDTypeObject(
+      this.allTypeObjects
+    );
+    let new_element = this.body_add_type_object;
+    this.allTypeObjects.unshift(new_element);
+    console.log('POST api/AddTypeObjects/ ', this.body_add_type_object);
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddTypeObjects/', this.body_add_type_object)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_type_object = {
+          typeID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateTypeObjects(items: any[], itemToDelete: any, key: string) {
+    items = items.filter((element) => element[key] !== itemToDelete[key]);
+    console.log(' Update TypeObject ', items);
+    this.allTypeObjects = items;
+    this.filteredTypeObjects = this.allTypeObjects;
+    return this.filteredTypeObjects;
+  }
+
+  //////////////////////////////////////////////////////////////
   ////////////////////// FILTRI DI RICERCA /////////////////////
 
   availability: string = 'tutti'; // initial aviability filter checkbox
