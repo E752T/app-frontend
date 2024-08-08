@@ -8,14 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [CategoriesComponent],
-  imports: [
-    HttpClientModule,
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule,
-  ],
-
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
   exports: [CategoriesComponent],
 })
 export class CategoriesModule {}

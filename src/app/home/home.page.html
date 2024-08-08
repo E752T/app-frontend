@@ -1291,25 +1291,6 @@
   </div>
 
 
-  <div style="margin-bottom: 150px">
-    <ion-grid>
-      <ion-row>
-        <app-shopkeepers
-          class="carta-elemento"
-          *ngFor="let element of allShopkeepers "
-          [shopkeeper]="element"
-          [shopkeepers]="allShopkeepers"
-          (updateShopkeepers)="updateShopkeepers(this.allShopkeepers, element, 'shopkeeperID');"
-          [search_input]="searchInput"
-        >
-        </app-shopkeepers>
-      </ion-row>
-    </ion-grid>
-  </div>
-</div>
-
-
-
   <div *ngIf="sectionToShow === 'TypeObject'">
     <ion-grid>
       <ion-row>

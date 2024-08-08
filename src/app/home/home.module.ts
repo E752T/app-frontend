@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, IonModal } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { MessageComponentModule } from '../message/message.module';
@@ -20,6 +20,7 @@ import { EditorsModule } from '../editors/editors.module';
     AuthorsModule,
     CategoriesModule,
     EditorsModule,
+    HttpClientModule
   ],
   declarations: [HomePage],
   providers: [IonModal, AuthorsModule, CategoriesModule],

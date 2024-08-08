@@ -45,7 +45,7 @@ export class CategoriesComponent {
 
   modalCtrl: any;
 
-  bodyAddCategory: Category = {
+  body_add_category: Category = {
     categoryID: 0,
     name: '',
     addedDate: today,
@@ -53,7 +53,7 @@ export class CategoriesComponent {
     description: '',
   };
 
-  bodyModifyCategory: Category = {
+  body_update_category: Category = {
     categoryID: 0,
     name: '',
     addedDate: today,
