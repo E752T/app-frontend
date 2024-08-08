@@ -358,7 +358,7 @@ export class HomePage implements OnInit {
     this.filteredAuthors = this.filterData(
       input,
       this.allAuthors,
-      this.filterAuthorByYears
+      this.filterByYears
     );
   }
 
@@ -366,7 +366,7 @@ export class HomePage implements OnInit {
     this.filteredCategories = this.filterData(
       input,
       this.allCategories,
-      this.filterCategoryByYears
+      this.filterByYears
     );
   }
 
@@ -427,70 +427,6 @@ export class HomePage implements OnInit {
       }
       return true; // Include items with null addedDate
     });
-  }
-
-  filterObjectsByYears(filteredObjects: DatabaseObject[]) {
-    var result: DatabaseObject[] = filteredObjects;
-    result = filteredObjects.filter((object) => {
-      const year = new Date(object.discoveryDate).getFullYear();
-      return (
-        year >= new Date(this.searchYears.lower, 0, 1).getFullYear() &&
-        year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
-      );
-    });
-    return result;
-  }
-
-  filterAuthorByYears(filteredAuthors: Author[]) {
-    let result: Author[] = filteredAuthors;
-
-    result = filteredAuthors.filter((author) => {
-      if (author.addedDate != null) {
-        const year = new Date(author.addedDate).getFullYear();
-
-        if (isNaN(this.searchYears.lower)) {
-          this.searchYears.lower = 1800;
-        }
-
-        if (isNaN(this.searchYears.upper)) {
-          console.log('Error with the upper pin, the pin value is NaN');
-          return false;
-        }
-
-        return (
-          year >= new Date(this.searchYears.lower, 0, 1).getFullYear() &&
-          year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
-        );
-      } else {
-        return true;
-      }
-    });
-    return result;
-  }
-
-  filterCategoryByYears(filteredCategories: Category[]) {
-    var result: Category[] = filteredCategories;
-
-    result = filteredCategories.filter((object) => {
-      if (object.addedDate != null) {
-        const year = new Date(object.addedDate).getFullYear();
-
-        if (Number.isNaN(this.searchYears.lower)) {
-          this.searchYears.lower = 1800;
-        }
-        return (
-          year >= new Date(this.searchYears.lower, 0, 1).getFullYear() &&
-          year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
-        );
-      } else {
-        return object;
-      }
-    });
-
-    if (Number.isNaN(this.searchYears.upper)) {
-      console.log('Error with the upper pin, the pin value is Nan ');
-    }
-    return result;
   }
 
   updateItems(items: any[], itemToDelete: any, key: string) {
