@@ -204,10 +204,6 @@ export class HomePage implements OnInit {
       this.messageDismissModal = `Hello, ${this.body_login.username}!`;
     }
   }
-  printErrors(obj: any) {
-    console.log(obj);
-    return null;
-  }
 
   switchToView(value: string) {
     console.log('view BEFORE ', this.sectionToShow);
@@ -215,23 +211,7 @@ export class HomePage implements OnInit {
     console.log('view AFTER ', this.sectionToShow);
   }
 
-  showPopover(type: string, value: boolean) {
-    console.log('value', value, 'type', type);
-    switch (type) {
-      case 'add': {
-        this.showAddPopover = !value;
-        break;
-      }
-      case 'modify': {
-        this.showModifyPopover = !value;
-        break;
-      }
-      case 'delete': {
-        this.showDeletePopover = !value;
-        break;
-      }
-    }
-  }
+
 
   promiseDatabase: Promise<DatabaseObject[]> | undefined = GetRequest(
     baseURL + 'GetObjects'
