@@ -4,35 +4,29 @@ import { GetRequest, PostRequest } from '../services/request.service';
 import { ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
 
-import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
 import {
   DatabaseObject,
   Author,
   Category,
-  Warehouse,
   Publisher,
+  Shopkeeper,
+  LoginObject,
   Provenance,
   GeographicalOrigin,
   TypeObject,
-  Shopkeeper,
-  LoginObject,
+  Warehouse
+
 } from '../services/interfaces.service';
-import { OverlayEventDetail } from '@ionic/core/components';
 import { baseURL, today } from '../services/data.service';
-import {
-  bodyAddAuthor,
-  bodyModifyObject,
-  bodyAddObject,
-} from '../services/data.service';
+import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
 
 @Component({
   selector: 'app-home', // page name
   templateUrl: 'home.page.html', // page html
   styleUrls: ['home.page.scss'], // page style
 })
-
-
 export class HomePage implements OnInit {
   [x: string]: any;
   $event: any;
@@ -132,7 +126,7 @@ export class HomePage implements OnInit {
 
   ////////////////////////////////////////////////////////////////////
   //////////////////////// OBJECTS ///////////////////////////////////
-  
+
   allDatabase: Array<DatabaseObject> = [];
   filteredObjects: Array<DatabaseObject> = [];
 
@@ -322,7 +316,9 @@ export class HomePage implements OnInit {
   }
 
   CreateCategory(): Promise<any> {
-    this.body_add_category.categoryID = this.getNewIDCategory(this.allCategories);
+    this.body_add_category.categoryID = this.getNewIDCategory(
+      this.allCategories
+    );
     let new_element = this.body_add_category;
     this.allCategories.unshift(new_element);
     console.log('POST api/AddCategory/ ', this.body_add_category);
@@ -352,8 +348,6 @@ export class HomePage implements OnInit {
     this.filteredAuthors = this.allAuthors;
     return this.filteredAuthors;
   }
-
-
 
   ///////////////////////////////////////////////////////////////
   /////////////////       CATEGORIE      ///////////////////////////
@@ -400,7 +394,9 @@ export class HomePage implements OnInit {
   }
 
   CreatePublisher(): Promise<any> {
-    this.body_add_category.categoryID = this.getNewIDPublisher(this.allPublishers);
+    this.body_add_category.categoryID = this.getNewIDPublisher(
+      this.allPublishers
+    );
     let new_element = this.body_add_category;
     this.allCategories.unshift(new_element);
     console.log('POST api/AddCategory/ ', this.body_add_category);
@@ -430,7 +426,6 @@ export class HomePage implements OnInit {
     this.filteredPublishers = this.allPublishers;
     return this.filteredPublishers;
   }
-
 
   ///////////////////////////////////////////////////////////////
   /////////////////       ESERCENTI      ///////////////////////////
@@ -473,7 +468,9 @@ export class HomePage implements OnInit {
   }
 
   CreateShopkeeper(): Promise<any> {
-    this.body_add_shopkeeper.shopkeeperID = this.getNewIDShopkeeper(this.allShopkeepers);
+    this.body_add_shopkeeper.shopkeeperID = this.getNewIDShopkeeper(
+      this.allShopkeepers
+    );
     let new_element = this.body_add_shopkeeper;
     this.allShopkeepers.unshift(new_element);
     console.log('POST api/AddShopkeeper/ ', this.body_add_shopkeeper);
@@ -504,25 +501,6 @@ export class HomePage implements OnInit {
     return this.filteredShopkeepers;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   ///////////////////////////////////////////////////////////////
   ////////////////////// FILTRI DI RICERCA /////////////////////
 
@@ -531,7 +509,6 @@ export class HomePage implements OnInit {
   searchGeneres: Array<string> = []; // array for containing choosen generes
   searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
 
-
   setInput(input: string | undefined | null) {
     if (input !== undefined && input !== null) {
       this.searchInput = input;
@@ -539,7 +516,6 @@ export class HomePage implements OnInit {
       this.searchInput = ''; // oppure this.searchInput = 'valore predefinito';
     }
   }
-
 
   filterData(
     input: string | undefined | null,
