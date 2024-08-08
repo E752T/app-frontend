@@ -390,7 +390,31 @@ export class HomePage implements OnInit {
       });
   }
 
-  
+  updateAuthors(items: any[], itemToDelete: any, key: string) {
+    items = items.filter((element) => element[key] !== itemToDelete[key]);
+    console.log(' Update Authors', items);
+    this.allAuthors = items;
+    this.filteredAuthors = this.allAuthors;
+    return this.filteredAuthors;
+  }
+
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+
+  updateCategories(items: any[], itemToDelete: any, key: string) {
+    items = items.filter((element) => element[key] !== itemToDelete[key]);
+    console.log(' Update Authors', items);
+    this.filteredAuthors = items;
+    return items;
+  }
+
+  updatePublishers(items: any[], itemToDelete: any, key: string) {
+    items = items.filter((element) => element[key] !== itemToDelete[key]);
+    console.log(' Update Authors', items);
+    this.filteredAuthors = items;
+    return items;
+  }
 
   ///////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////
@@ -421,11 +445,6 @@ export class HomePage implements OnInit {
       }
       return true; // Include items with null addedDate
     });
-  }
-
-  updateItems(items: any[], itemToDelete: any, key: string) {
-    items = items.filter((element) => element[key] !== itemToDelete[key]);
-    return items;
   }
 
   filterByAvaiability(filteredObjects: DatabaseObject[]) {

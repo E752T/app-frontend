@@ -65,18 +65,15 @@ export class AuthorsComponent {
     notes: '',
   };
 
-  
   DeleteElement(objectID: any) {
+
     this.authors = this.authors.filter(
       (element: Author) => element.authorID !== objectID
     );
+    console.log("API DeleteAuthor/ -> Remaining Array ",this.authors)
     this.updateAuthors.emit(this.authors);
-    return PostRequest(baseURL + 'DeleteAuthor/' + objectID);
-  }
-
-  confirmDelete() {
-    this.DeleteElement(this.author?.authorID);
     this.modalCtrl.dismiss({ confirmed: true });
+    return PostRequest(baseURL + 'DeleteAuthor/' + objectID);
   }
 
   getNewID(elementList: Array<Author>): number {
@@ -90,7 +87,7 @@ export class AuthorsComponent {
   }
 
   UpdateElement(): Promise<any> {
-    console.log("POST api/UpdateAuthor/ ", this.author)
+    console.log('POST api/UpdateAuthor/ ', this.author);
     return PostRequest(baseURL + 'UpdateAuthor/', this.author);
   }
 
@@ -105,4 +102,5 @@ export class AuthorsComponent {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
   }
+
 }
