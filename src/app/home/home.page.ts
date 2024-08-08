@@ -122,7 +122,6 @@ export class HomePage implements OnInit {
     'Provenance',
     'GeographicalOrigin',
     'TypeObject',
-
   ];
 
   ////////////////////////////////////////////////////////////////////
@@ -523,10 +522,10 @@ export class HomePage implements OnInit {
     addedDate: today,
     lastUpdateDate: today,
     description: '',
-    notes:'',
-    email:'',
-    telephone1:'',
-    telephone2:''
+    notes: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
   };
 
   getWarehouses(input: string | undefined | null) {
@@ -547,7 +546,7 @@ export class HomePage implements OnInit {
     return highestID + 1;
   }
 
-  CreateDWarehouse(): Promise<any> {
+  CreateWarehouse(): Promise<any> {
     this.body_add_warehouse.warehouseID = this.getNewIDWarehouse(
       this.allWarehouses
     );
@@ -564,10 +563,10 @@ export class HomePage implements OnInit {
           addedDate: today,
           lastUpdateDate: today,
           description: '',
-          notes:'',
-          email:'',
-          telephone1:'',
-          telephone2:''
+          notes: '',
+          email: '',
+          telephone1: '',
+          telephone2: '',
         };
         return response;
       })
@@ -586,6 +585,156 @@ export class HomePage implements OnInit {
   }
 
 
+    /////////////////////////////////////////////////////////////////
+  /////////////////       PROVENIENZE      ///////////////////////////
+
+  allProvenances: Array<Provenance> = [];
+  filteredProvenances: Array<Provenance> = [];
+
+  promiseallProvenances: Promise<Provenance[]> = GetRequest(
+    baseURL + 'GetProvenances'
+  ).then((res) => {
+    console.log('Provenance inviati dal database', res);
+    this.allProvenances = res;
+    return (this.filteredProvenances = this.allProvenances);
+  });
+
+  body_add_provenance: Provenance = {
+    provenanceID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  getProvenances(input: string | undefined | null) {
+    this.filteredProvenances = this.filterData(
+      input,
+      this.allProvenances,
+      this.filterByYears
+    );
+  }
+
+  getNewIDProvenance(elementList: Array<Provenance>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].provenanceID > highestID) {
+        highestID = elementList[i].provenanceID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateProvenance(): Promise<any> {
+    this.body_add_provenance.provenanceID = this.getNewIDProvenance(
+      this.allProvenances
+    );
+    let new_element = this.body_add_provenance;
+    this.allProvenances.unshift(new_element);
+    console.log('POST api/AddProvenances/ ', this.body_add_provenance);
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddProvenances/', this.body_add_provenance)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_provenance = {
+          provenanceID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateProvenances(items: any[], itemToDelete: any, key: string) {
+    items = items.filter((element) => element[key] !== itemToDelete[key]);
+    console.log(' Update Provenance', items);
+    this.allProvenances = items;
+    this.filteredProvenances = this.allProvenances;
+    return this.filteredProvenances;
+  }
+
+
+  /////////////////////////////////////////////////////////////////
+  /////////////////      ORIGINE GEOGRAFICA       /////////////////
+
+  allGeographicalOrigins: Array<GeographicalOrigin> = [];
+  filteredGeographicalOrigins: Array<GeographicalOrigin> = [];
+
+  promiseallGeographicalOrigins: Promise<GeographicalOrigin[]> = GetRequest(
+    baseURL + 'GetGeographicalOrigins'
+  ).then((res) => {
+    console.log('GeographicalOrigin inviati dal database', res);
+    this.allGeographicalOrigins = res;
+    return (this.filteredGeographicalOrigins = this.allGeographicalOrigins);
+  });
+
+  body_add_geographical_origin: GeographicalOrigin = {
+    geographicalOriginID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  getGeographicalOrigins(input: string | undefined | null) {
+    this.filteredGeographicalOrigins = this.filterData(
+      input,
+      this.allGeographicalOrigins,
+      this.filterByYears
+    );
+  }
+
+  getNewIDGeographicalOrigin(elementList: Array<GeographicalOrigin>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].geographicalOriginID > highestID) {
+        highestID = elementList[i].geographicalOriginID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateGeographicalOrigin(): Promise<any> {
+    this.body_add_geographical_origin.geographicalOriginID = this.getNewIDGeographicalOrigin(
+      this.allGeographicalOrigins
+    );
+    let new_element = this.body_add_geographical_origin;
+    this.allGeographicalOrigins.unshift(new_element);
+    console.log('POST api/AddGeographicalOrigins/ ', this.body_add_geographical_origin);
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddGeographicalOrigins/', this.body_add_geographical_origin)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_geographical_origin = {
+          geographicalOriginID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateGeographicalOrigins(items: any[], itemToDelete: any, key: string) {
+    items = items.filter((element) => element[key] !== itemToDelete[key]);
+    console.log(' Update GeographicalOrigins', items);
+    this.allGeographicalOrigins = items;
+    this.filteredGeographicalOrigins = this.allGeographicalOrigins;
+    return this.filteredGeographicalOrigins;
+  }
+
+  
   ///////////////////////////////////////////////////////////////
   ////////////////////// FILTRI DI RICERCA /////////////////////
 
