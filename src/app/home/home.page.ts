@@ -16,8 +16,7 @@ import {
   Provenance,
   GeographicalOrigin,
   TypeObject,
-  Warehouse
-
+  Warehouse,
 } from '../services/interfaces.service';
 import { baseURL, today } from '../services/data.service';
 import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
@@ -43,6 +42,7 @@ export class HomePage implements OnInit {
 
   ////////////////////////////////////////////////////////////////////
   //////////////////////// FRONTEND VARIABLES /////////////////////////
+
   isOpen: boolean = false;
   fileEvent: Event | undefined;
   // PopOver
@@ -118,10 +118,11 @@ export class HomePage implements OnInit {
     'Publisher',
     'Category',
     'Shopkeeper',
-    'TypeObject',
     'Warehouse',
     'Provenance',
     'GeographicalOrigin',
+    'TypeObject',
+
   ];
 
   ////////////////////////////////////////////////////////////////////
@@ -500,6 +501,90 @@ export class HomePage implements OnInit {
     this.filteredShopkeepers = this.allShopkeepers;
     return this.filteredShopkeepers;
   }
+
+
+  /////////////////////////////////////////////////////////////////
+  /////////////////       MAGAZZINI      ///////////////////////////
+
+  allWarehouses: Array<Warehouse> = [];
+  filteredWarehouses: Array<Warehouse> = [];
+
+  promiseallWarehouses: Promise<Warehouse[]> = GetRequest(
+    baseURL + 'GetWarehouses'
+  ).then((res) => {
+    console.log('Warehouse inviati dal database', res);
+    this.allWarehouses = res;
+    return (this.filteredWarehouses = this.allWarehouses);
+  });
+
+  body_add_warehouse: Warehouse = {
+    warehouseID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    notes:'',
+    email:'',
+    telephone1:'',
+    telephone2:''
+  };
+
+  getWarehouses(input: string | undefined | null) {
+    this.filteredWarehouses = this.filterData(
+      input,
+      this.allWarehouses,
+      this.filterByYears
+    );
+  }
+
+  getNewIDWarehouse(elementList: Array<Warehouse>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].warehouseID > highestID) {
+        highestID = elementList[i].warehouseID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateDWarehouse(): Promise<any> {
+    this.body_add_warehouse.warehouseID = this.getNewIDWarehouse(
+      this.allWarehouses
+    );
+    let new_element = this.body_add_warehouse;
+    this.allWarehouses.unshift(new_element);
+    console.log('POST api/AddWarehouses/ ', this.body_add_warehouse);
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddWarehouses/', this.body_add_warehouse)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_warehouse = {
+          warehouseID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+          notes:'',
+          email:'',
+          telephone1:'',
+          telephone2:''
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateWarehouses(items: any[], itemToDelete: any, key: string) {
+    items = items.filter((element) => element[key] !== itemToDelete[key]);
+    console.log(' Update Warehouse', items);
+    this.allWarehouses = items;
+    this.filteredWarehouses = this.allWarehouses;
+    return this.filteredWarehouses;
+  }
+
 
   ///////////////////////////////////////////////////////////////
   ////////////////////// FILTRI DI RICERCA /////////////////////
