@@ -2,19 +2,18 @@ import {
   Component,
   EventEmitter,
   inject,
-  input,
   Input,
   Output,
   ViewChild,
 } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
-import { baseURL, today } from '../services/data.service';
-import { PostRequest } from '../services/request.service';
-import { OverlayEventDetail } from '@ionic/core';
 import { Shopkeeper } from '../services/interfaces.service';
+import { PostRequest } from '../services/request.service';
+import { baseURL, today } from '../services/data.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -22,14 +21,9 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './shopkeepers.component.html',
   styleUrls: ['./shopkeepers.component.scss'],
 })
-export class ShopkeeperComponent {
-
-  constructor(
-    private http: HttpClient,
-    private modalController: ModalController
-  ) {}
-
+export class ShopkeepersComponent {
   private platform = inject(Platform);
+  constructor(private http: HttpClient, private modalCtrl: ModalController) {}
 
   @Input()
   shopkeeper!: Shopkeeper;
@@ -46,9 +40,7 @@ export class ShopkeeperComponent {
   @ViewChild(IonModal)
   modal!: IonModal;
 
-  modalCtrl: any;
-
-  bodyAddShopkeeper: Shopkeeper = {
+  body_add_shopkeeper: Shopkeeper = {
     shopkeeperID: 0,
     name: '',
     addedDate: today,
@@ -56,50 +48,45 @@ export class ShopkeeperComponent {
     description: '',
   };
 
-  bodyModifyShopkeeper: Shopkeeper = {
+  body_update_shopkeeper: Shopkeeper = {
     shopkeeperID: 0,
     name: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
   };
-
-  /////////////////////////////////////////////////////////////
 
   DeleteElement(objectID: any) {
-    this.publishers.filter(
-      (element: Publisher) => element.publisherID !== objectID
+    this.shopkeepers = this.shopkeepers.filter(
+      (element: Shopkeeper) => element.shopkeeperID !== objectID
     );
-    var elementToDelete = console.log(this.publishers);
-    this.updatePublishers.emit(elementToDelete);
-    return PostRequest(baseURL + 'DeleteCategory/' + objectID);
-  }
-
-  confirmDeleteElement() {
-    this.DeleteElement(this.publisher?.publisherID);
+    console.log('API DeleteShopkeeper/ -> Remaining Array ', this.shopkeepers);
+    this.updateShopkeepers.emit(this.shopkeepers);
     this.modalCtrl.dismiss({ confirmed: true });
+    return PostRequest(baseURL + 'DeleteShopkeeper/' + objectID);
   }
 
-  UpdateAPI(): Promise<any> {
-    return PostRequest(baseURL + 'UpdatePublisher/', this.publisher);
-  }
-
-  getNewID(elementList: Array<Publisher>): number {
+  getNewID(elementList: Array<Shopkeeper>): number {
     let highestID = 0;
     for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].publisherID > highestID) {
-        highestID = elementList[i].publisherID;
+      if (elementList[i].shopkeeperID > highestID) {
+        highestID = elementList[i].shopkeeperID;
       }
     }
     return highestID + 1;
   }
 
+  UpdateElement(): Promise<any> {
+    console.log('POST api/UpdateShopkeeper/ ', this.shopkeeper);
+    return PostRequest(baseURL + 'UpdateShopkeeper/', this.shopkeeper);
+  }
+
   confirm() {
-    this.modalController.dismiss({ confirmed: true });
+    this.modalCtrl.dismiss({ confirmed: true });
   }
 
   cancel() {
-    this.modalController.dismiss({ confirmed: false });
+    this.modalCtrl.dismiss({ confirmed: false });
   }
 
   onWillDismiss(event: Event) {

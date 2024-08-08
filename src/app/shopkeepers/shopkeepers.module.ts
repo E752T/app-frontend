@@ -1,65 +1,14 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  input,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { IonModal } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
-import {  today } from '../services/data.service';
-import { Shopkeeper } from '../services/interfaces.service';
+import { ShopkeeperComponent } from './shopkeepers.component';
 
-@Component({
-  selector: 'app-shopkeepers',
-  templateUrl: './shopkeepers.component.html',
-  styleUrls: ['./shopkeepers.component.scss'],
+@NgModule({
+  declarations: [ShopkeeperComponent],
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
+  exports: [ShopkeeperComponent],
 })
-export class ShopkeepersComponent {
-  [x: string]: any;
-
-  constructor(
-    private http: HttpClient,
-    private modalController: ModalController
-  ) {}
-
-  private platform = inject(Platform);
-
-  @Input()
-  shopkeeper!:  Shopkeeper;
-
-  @Input()
-  shopkeepers!: Array<Shopkeeper>;
-
-  @Input()
-  search_input!: string | null | undefined;
-
-  @Output()
-  updatePublishers = new EventEmitter<any>();
-
-  @ViewChild(IonModal)
-  modal!: IonModal;
-
-  modalCtrl: any;
-
-  body_add_shopkeeper: Shopkeeper = {
-    shopkeeperID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-
-  body_update_shopkeeper: Shopkeeper = {
-    shopkeeperID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-}
+export class AuthorsModule {}
