@@ -211,8 +211,6 @@ export class HomePage implements OnInit {
     console.log('view AFTER ', this.sectionToShow);
   }
 
-
-
   promiseDatabase: Promise<DatabaseObject[]> | undefined = GetRequest(
     baseURL + 'GetObjects'
   ).then((res) => {
@@ -350,43 +348,32 @@ export class HomePage implements OnInit {
     );
   }
 
+  CreateCategory() {}
+
+  getNewIDAuthor(elementList: Array<Author>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].authorID > highestID) {
+        highestID = elementList[i].authorID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateAuthor(): Promise<any> {
+    {
+      this.bodyAddAuthor.authorID = this.getNewIDAuthor(this.allAuthors);
+      console.log('POST api/AddAuthor/ ', this.bodyAddAuthor);
+      return PostRequest(baseURL + 'AddAuthor/', this.bodyAddAuthor);
+    }
+  }
+
   getPublishers(input: string | undefined | null) {
     this.filteredProvenances = this.filterData(
       input,
       this.allProvenances,
       this.filterByYears
     );
-  }
-
-  filterByYearsCompact<T extends { addedDate: Date }>(filteredItems: T[]): T[] {
-    let result: T[] = filteredItems;
-
-    result = filteredItems.filter((item) => {
-      if (item.addedDate != null) {
-        const year = new Date(item.addedDate).getFullYear();
-
-        if (isNaN(this.searchYears.lower)) {
-          this.searchYears.lower = 1800;
-        }
-
-        if (isNaN(this.searchYears.upper)) {
-          console.log('Errore con il valore massimo, il valore è NaN');
-          return false;
-        }
-
-        return (
-          year >= new Date(this.searchYears.lower, 0, 1).getFullYear() &&
-          year <= new Date(this.searchYears.upper, 0, 1).getFullYear()
-        );
-      } else {
-        return true;
-      }
-    });
-
-    if (isNaN(this.searchYears.upper)) {
-      console.log('Errore con il valore massimo, il valore è NaN');
-    }
-    return result;
   }
 
   filterByYears<T extends { addedDate: Date }>(filteredItems: T[]): T[] {

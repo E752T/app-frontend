@@ -956,7 +956,7 @@
             <ion-buttons slot="end">
               <ion-button
                 id="button-AddAuthorAPI"
-                (click)="AddElementAPI('Author', this.bodyAddAuthor, this.allAuthors, this['getNewElementID'](), this.getAuthors, this.searchInput!);"                [strong]="true"
+                (click)="CreateAuthor()"
                 >Conferma</ion-button
               >
               <ion-toast
@@ -1108,7 +1108,7 @@
             <ion-buttons slot="end">
               <ion-button
                 id="bottone-aggiungi-categoria"
-                (click)="AddElementAPI('Category', this.bodyAddCategory, this.allCategories, this ['getNewElementID'](), this.getAuthors, this.searchInput!);"
+                (click)="CreateCategory()"
                 [strong]="true"
                 >Conferma</ion-button
               >
@@ -1219,7 +1219,7 @@
             <ion-buttons slot="end">
               <ion-button
                 id="bottone-aggiungi-categoria"
-                (click)="AddElementAPI('Category', this.bodyAddCategory, this.allCategories, this ['getNewElementID'], this.getCategories, this.searchInput!);"
+                (click)="CreateCategory()"
                 [strong]="true"
                 >Conferma</ion-button
               >
