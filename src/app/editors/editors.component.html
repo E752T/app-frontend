@@ -78,7 +78,7 @@
             <ion-input
               class="input-form"
               [(ngModel)]="publisher.name"
-              id="{{ bodyAddPublisher.name }}"
+              id="{{ body_add_publisher.name }}"
               value="{{ publisher.name }}"
             >
             </ion-input>
@@ -101,7 +101,7 @@
             <ion-input
               class="input-form"
               [(ngModel)]="publisher.description"
-              id="{{ bodyModifyPublisher.description }}"
+              id="{{ body_add_publisher.description }}"
               value="{{ publisher.description }}"
             >
             </ion-input>
@@ -236,7 +236,7 @@
               color="secondary"
               style="padding-right: 3%"
               id="button-UpdateCategoryAPI+'{{ publisher.publisherID }}'"
-              (click)="UpdateAPI()"
+              (click)="UpdateElement()"
               >Salva</ion-button
             >
             <ion-toast

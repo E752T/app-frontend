@@ -65,16 +65,12 @@ export class AuthorsComponent {
     notes: '',
   };
 
-  DeleteElement(authorID: any) {
-    console.log('POST DeleteAuthor : body =>', this.author);
-    // Filtrare gli autori in base all'authorID
+  DeleteElement(objectID: any) {
     this.authors = this.authors.filter(
-      (element: Author) => element.authorID !== authorID
+      (element: Author) => element.authorID !== objectID
     );
-    // Emettere un evento per aggiornare gli autori
     this.updateAuthors.emit(this.authors);
-    // Effettuare una richiesta di eliminazione dell'autore
-    return PostRequest(baseURL + 'DeleteAuthor/' + authorID);
+    return PostRequest(baseURL + 'DeleteAuthor/' + objectID);
   }
 
   confirmDelete() {
@@ -82,7 +78,18 @@ export class AuthorsComponent {
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
+  getNewID(elementList: Array<Author>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].authorID > highestID) {
+        highestID = elementList[i].authorID;
+      }
+    }
+    return highestID + 1;
+  }
+
   UpdateElement(): Promise<any> {
+    console.log("POST api/UpdateAuthor/ ", this.author)
     return PostRequest(baseURL + 'UpdateAuthor/', this.author);
   }
 

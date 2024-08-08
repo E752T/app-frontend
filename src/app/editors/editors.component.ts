@@ -10,10 +10,10 @@ import {
 import { Platform } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
 
 import { baseURL, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
-import { OverlayEventDetail } from '@ionic/core';
 import { Publisher } from '../services/interfaces.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -23,14 +23,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./editors.component.scss'],
 })
 export class EditorsComponent {
-  [x: string]: any;
 
   constructor(
     private http: HttpClient,
     private modalController: ModalController
   ) {}
 
-  private platform = inject(Platform);
 
   @Input()
   publisher!: Publisher;
@@ -49,7 +47,7 @@ export class EditorsComponent {
 
   modalCtrl: any;
 
-  bodyAddPublisher: Publisher = {
+  body_add_publisher: Publisher = {
     publisherID: 0,
     name: '',
     addedDate: today,
@@ -61,7 +59,7 @@ export class EditorsComponent {
     notes: '',
   };
 
-  bodyModifyPublisher: Publisher = {
+  body_update_publisher: Publisher = {
     publisherID: 0,
     name: '',
     addedDate: today,
@@ -87,7 +85,7 @@ export class EditorsComponent {
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
-  UpdateAPI(): Promise<any> {
+  UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdatePublisher/', this.publisher);
   }
 

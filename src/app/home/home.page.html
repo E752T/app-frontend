@@ -434,7 +434,7 @@
                   <ion-buttons slot="end">
                     <ion-button
                       id="button-AddObjectAPI"
-                      (click)="AddElementAPI('Author', this.bodyAddAuthor, this.allAuthors, this.getNewAuthorID, this.getAuthors, this.searchInput!);"
+                      (click)="AddElementAPI('Author', this.bodyAddAuthor, this.allAuthors,this ['getNewElementID'](), this.getAuthors, this.searchInput!);"
                       [strong]="true"
                       >Conferma</ion-button
                     >
@@ -956,8 +956,7 @@
             <ion-buttons slot="end">
               <ion-button
                 id="button-AddAuthorAPI"
-                (click)="AddElementAPI('Author', this.bodyAddAuthor, this.allAuthors, this.getNewAuthorID, this.getAuthors, this.searchInput!);"
-                [strong]="true"
+                (click)="AddElementAPI('Author', this.bodyAddAuthor, this.allAuthors, this['getNewElementID'](), this.getAuthors, this.searchInput!);"                [strong]="true"
                 >Conferma</ion-button
               >
               <ion-toast
@@ -1071,9 +1070,11 @@
     <ion-toolbar style="margin-bottom: 20%"> </ion-toolbar>
   </div>
 
+
+
+
   <div *ngIf="sectionToShow === 'Category'">
     <ion-title class="titolo-categoria">Categorie </ion-title>
-
     <ion-button
       id="bottone-aggiungi-nuova-categoria"
       class="bottone-aggiungi-nuovo-oggetto"
@@ -1082,9 +1083,7 @@
         style="justify-content: flex-start"
         name="add-circle-outline"
       ></ion-icon>
-
       <p style="padding-left: 20px"></p>
-
       <ion-text class="testo-aggiungi-nuovo">
         Aggiungi una nuova Categoria
       </ion-text>
@@ -1109,7 +1108,7 @@
             <ion-buttons slot="end">
               <ion-button
                 id="bottone-aggiungi-categoria"
-                (click)="AddElementAPI('Category', this.bodyAddCategory, this.allCategories, this.getNewAuthorID, this.getAuthors, this.searchInput!);"
+                (click)="AddElementAPI('Category', this.bodyAddCategory, this.allCategories, this ['getNewElementID'](), this.getAuthors, this.searchInput!);"
                 [strong]="true"
                 >Conferma</ion-button
               >
@@ -1220,7 +1219,7 @@
             <ion-buttons slot="end">
               <ion-button
                 id="bottone-aggiungi-categoria"
-                (click)="AddElementAPI('Category', this.bodyAddCategory, this.allCategories, this.getNewCategoryID, this.getCategories, this.searchInput!);"
+                (click)="AddElementAPI('Category', this.bodyAddCategory, this.allCategories, this ['getNewElementID'], this.getCategories, this.searchInput!);"
                 [strong]="true"
                 >Conferma</ion-button
               >

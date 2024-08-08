@@ -300,57 +300,6 @@ export class HomePage implements OnInit {
     return (this.filteredCategories = this.allCategories);
   });
 
-  //  //  //  //  //  //  //  //  //  //  //  // //  //  //  //  //  //  //  //  //  //  //  //
-
-  AddElementAPI(
-    elementType: string,
-    body: any,
-    allElements: any[],
-    getNewElementID: Function,
-    getElements: Function,
-    searchInput: string
-  ) {
-    // Ottieni il nuovo ID per l'elemento
-    body[`${elementType}ID`] = getNewElementID(allElements);
-
-    // Aggiungi l'elemento alla lista
-    allElements.unshift(body);
-
-    // Aggiorna gli elementi filtrati
-    getElements(searchInput);
-
-    // Chiudi il modal
-    this.modalCtrl.dismiss();
-
-    PostRequest(baseURL + `Add${elementType}/`, body).then((response) => {
-      // Resetta il corpo per il prossimo inserimento
-      body = {
-        [`${elementType}ID`]: 0,
-        name: '',
-        addedDate: today,
-        lastUpdateDate: today,
-        description: '',
-        email: '',
-        telephone1: '',
-        telephone2: '',
-        notes: '',
-      };
-    });
-  }
-
-  DeleteElement(object: DatabaseObject): Promise<any> {
-    for (var i = 0; i < this.filteredObjects.length; i++) {
-      if (this.filteredObjects[i] == object) {
-        this.filteredObjects.splice(i, 1);
-      }
-    }
-    return PostRequest(baseURL + 'DeleteObject/' + object.objectID);
-  }
-
-  UpdateElement(): Promise<any> {
-    return PostRequest(baseURL + 'UpdateObjectArchive/', bodyModifyObject);
-  }
-
   presentPopover(e: Event) {
     this.popover.event = e;
     this.isOpen = true;
