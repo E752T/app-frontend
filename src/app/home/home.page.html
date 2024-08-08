@@ -904,6 +904,22 @@
             </app-editors>
           </ion-row>
         </ion-col>
+
+        <ion-col size="12">
+          <ion-title class="titolo-categoria">Negozianti </ion-title>
+          <ion-row>
+            <app-shopkeepers
+              class="carta-elemento"
+              *ngFor="let element of filteredShopkeepers "
+              [shopkeeper]="element"
+              [shopkeepers]="filteredShopkeepers"
+              (updateShopkeepers)="updateShopkeepers(this.allShopkeepers, element, 'shopkeeperID');"
+              [search_input]="searchInput"
+            >
+            </app-shopkeepers>
+          </ion-row>
+        </ion-col>
+
       </ion-row>
     </ion-grid>
   </div>

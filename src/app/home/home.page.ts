@@ -4,8 +4,8 @@ import { GetRequest, PostRequest } from '../services/request.service';
 import { ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
+import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
 import {
   DatabaseObject,
   Author,
@@ -48,7 +48,7 @@ export class HomePage implements OnInit {
   ) {}
 
   ////////////////////////////////////////////////////////////////////
-  //////////////////////// FRONTEND FEATURES /////////////////////////
+  //////////////////////// FRONTEND VARIABLES /////////////////////////
   isOpen: boolean = false;
   fileEvent: Event | undefined;
   // PopOver
@@ -58,6 +58,9 @@ export class HomePage implements OnInit {
   // VIEWS TO SHOW
   sectionToShow: string = 'Store'; // initial value = Store
   messageDismissModal: string = '';
+
+  ////////////////////////////////////////////////////////////////////
+  //////////////////////// FRONTEND FUNCTIONS /////////////////////////
 
   checkScreenSize(): string {
     const screenWidth = window.innerWidth;
@@ -109,7 +112,7 @@ export class HomePage implements OnInit {
   }
 
   ////////////////////////////////////////////////////////////////////
-  //////////////////////// LOGIN /////////////////////////////////////
+  //////////////////////// ADMIN /////////////////////////////////////
 
   body_login: LoginObject = {
     username: '',
@@ -429,8 +432,6 @@ export class HomePage implements OnInit {
   }
 
 
-
-  
   ///////////////////////////////////////////////////////////////
   /////////////////       ESERCENTI      ///////////////////////////
 

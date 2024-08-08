@@ -9,6 +9,7 @@ import { MessageComponentModule } from '../message/message.module';
 import { AuthorsModule } from '../authors/authors.module';
 import { CategoriesModule } from '../categories/categories.module';
 import { EditorsModule } from '../editors/editors.module';
+import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
 
 @NgModule({
   imports: [
@@ -20,9 +21,16 @@ import { EditorsModule } from '../editors/editors.module';
     AuthorsModule,
     CategoriesModule,
     EditorsModule,
-    HttpClientModule
+    ShopkeepersModule,
+    HttpClientModule,
   ],
   declarations: [HomePage],
-  providers: [IonModal, AuthorsModule, CategoriesModule],
+  providers: [
+    IonModal,
+    AuthorsModule,
+    CategoriesModule,
+    ShopkeepersModule,
+    EditorsModule,
+  ],
 })
 export class HomePageModule {}

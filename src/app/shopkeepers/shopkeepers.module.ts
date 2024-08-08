@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { ShopkeeperComponent } from './shopkeepers.component';
+import { ShopkeepersComponent } from './shopkeepers.component';
 
 @NgModule({
-  declarations: [ShopkeeperComponent],
+  declarations: [ShopkeepersComponent],
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
-  exports: [ShopkeeperComponent],
+  exports: [ShopkeepersComponent],
 })
-export class AuthorsModule {}
+export class ShopkeepersModule {}

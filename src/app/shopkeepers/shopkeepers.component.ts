@@ -21,6 +21,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './shopkeepers.component.html',
   styleUrls: ['./shopkeepers.component.scss'],
 })
+
 export class ShopkeepersComponent {
   private platform = inject(Platform);
   constructor(private http: HttpClient, private modalCtrl: ModalController) {}
