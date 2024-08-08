@@ -14,15 +14,17 @@ import { ModalController } from '@ionic/angular';
 import { baseURL, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core';
-import { TypeObject } from '../services/interfaces.service';
 import { HttpClient } from '@angular/common/http';
+import { TypeObject } from '../services/interfaces.service';
 
 @Component({
   selector: 'app-shopkeepers',
   templateUrl: './type-objects.component.html',
   styleUrls: ['./type-objects.component.scss'],
 })
-export class TypeObject {
+
+
+export class TypeObjectComponent { // Adjusted class name with the "Component" suffix
   constructor(
     private http: HttpClient,
     private modalController: ModalController
@@ -40,7 +42,7 @@ export class TypeObject {
   search_input!: string | null | undefined;
 
   @Output()
-  updateTypeObjects = new EventEmitter<any>();
+  updateTypeObject = new EventEmitter<any>();
 
   @ViewChild(IonModal)
   modal!: IonModal;
@@ -70,24 +72,24 @@ export class TypeObject {
       (element: TypeObject) => element.typeID !== objectID
     );
     var elementToDelete = console.log(this.type_objects);
-    this.updatePublishers.emit(elementToDelete);
+    this.updateTypeObject.emit(elementToDelete);
     return PostRequest(baseURL + 'DeleteCategory/' + objectID);
   }
 
   confirmDeleteElement() {
-    this.DeleteElement(this.type_objects?.ty);
+    this.DeleteElement(this.type_object?.typeID);
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
   UpdateAPI(): Promise<any> {
-    return PostRequest(baseURL + 'UpdatePublisher/', this.publisher);
+    return PostRequest(baseURL + 'UpdatePublisher/', this.type_objects);
   }
 
-  getNewID(elementList: Array<Publisher>): number {
+  getNewID(elementList: Array<TypeObject>): number {
     let highestID = 0;
     for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].publisherID > highestID) {
-        highestID = elementList[i].publisherID;
+      if (elementList[i].typeID > highestID) {
+        highestID = elementList[i].typeID;
       }
     }
     return highestID + 1;
