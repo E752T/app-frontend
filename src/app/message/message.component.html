@@ -56,7 +56,7 @@
 
           <ion-modal
             trigger="bottone-modifica-oggetto+{{ message.objectID }}"
-            (willDismiss)="onWillDismissObject($event)"
+            (willDismiss)="onWillDismiss($event)"
             class="ion-padding"
           >
             <ng-template style="height: 290px; border-radius: 100px">
@@ -74,7 +74,7 @@
                   </ion-buttons>
 
                   <ion-buttons slot="end">
-                    <ion-button (click)="confirmModifyObject()" [strong]="true"
+                    <ion-button (click)="confirmUpdate()" [strong]="true"
                       >Conferma</ion-button
                     >
                   </ion-buttons>
@@ -592,7 +592,7 @@
                   </ion-buttons>
 
                   <ion-buttons slot="end">
-                    <ion-button (click)="confirmDeleteObject()" [strong]="true"
+                    <ion-button (click)="confirmDelete()" [strong]="true"
                       >Conferma</ion-button
                     >
                   </ion-buttons>

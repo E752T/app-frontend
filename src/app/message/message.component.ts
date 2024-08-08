@@ -43,14 +43,16 @@ export class MessageComponent {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  confirmModifyObject() {
+  confirmUpdate() {
+    console.log('API UpdateObjectArchive => ', this.bodyAddObject);
     this.modalCtrl.dismiss(this.bodyAddObject.title, 'confirm');
-    console.log('UpdateObjectArchive => ', this.bodyAddObject);
     PostRequest(baseURL + 'UpdateObjectArchive/', this.bodyAddObject);
   }
 
-  onWillDismissObject(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+  confirmDelete() {
+    console.log('API DeleteObject/  => ', this.bodyAddObject);
+    PostRequest(baseURL + 'DeleteObject/', this.message?.objectID);
+    this.modalCtrl.dismiss({ confirmed: true });
   }
 
   confirm() {
@@ -65,9 +67,6 @@ export class MessageComponent {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
   }
 
-  confirmDeleteObject() {
-    PostRequest(baseURL + 'DeleteObject/', this.message?.objectID);
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
+
 
 }
