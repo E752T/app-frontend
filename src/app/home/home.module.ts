@@ -4,6 +4,7 @@ import { IonicModule, IonModal } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePage } from './home.page';
+
 import { HomePageRoutingModule } from './home-routing.module';
 import { MessageComponentModule } from '../message/message.module';
 import { AuthorsModule } from '../authors/authors.module';
@@ -11,6 +12,8 @@ import { CategoriesModule } from '../categories/categories.module';
 import { EditorsModule } from '../editors/editors.module';
 import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
 import { TypeObjectModule  } from '../type-objects/type-objects.module';
+import { WarehouseComponent } from '../warehouses/warehouses.component';
+import { GeographicalOriginModule } from "../geographical-origins/geographical-origin.module";
 
 @NgModule({
   imports: [
@@ -25,7 +28,8 @@ import { TypeObjectModule  } from '../type-objects/type-objects.module';
     ShopkeepersModule,
     TypeObjectModule,
     HttpClientModule,
-  ],
+    GeographicalOriginModule
+],
   declarations: [HomePage],
   providers: [
     IonModal,
@@ -33,6 +37,7 @@ import { TypeObjectModule  } from '../type-objects/type-objects.module';
     CategoriesModule,
     ShopkeepersModule,
     EditorsModule,
+    WarehouseComponent,
   ],
 })
 export class HomePageModule {}

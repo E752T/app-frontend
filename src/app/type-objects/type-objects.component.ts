@@ -18,7 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { TypeObject } from '../services/interfaces.service';
 
 @Component({
-  selector: 'app-shopkeepers',
+  selector: 'app-type-objects',
   templateUrl: './type-objects.component.html',
   styleUrls: ['./type-objects.component.scss'],
 })
@@ -65,7 +65,6 @@ export class TypeObjectComponent { // Adjusted class name with the "Component" s
     description: '',
   };
 
-  ////////////////////////////////////////////////
 
   DeleteElement(objectID: any) {
     this.type_objects.filter(

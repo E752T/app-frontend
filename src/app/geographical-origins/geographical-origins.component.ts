@@ -14,8 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { OverlayEventDetail } from '@ionic/core';
 
 import { GeographicalOrigin } from '../services/interfaces.service';
-import { baseURL, today } from '../services/data.service';
-import { PostRequest } from '../services/request.service';
+import { today } from '../services/data.service';
 
 @Component({
   selector: 'app-geographical-origin',
@@ -23,7 +22,6 @@ import { PostRequest } from '../services/request.service';
   styleUrls: ['./geographical-origins.component.scss'],
 })
 export class GeographicalOriginComponent {
-
   constructor(
     private http: HttpClient,
     private modalController: ModalController
@@ -63,7 +61,6 @@ export class GeographicalOriginComponent {
     lastUpdateDate: today,
     description: '',
   };
-
 
   confirm() {
     this.modalController.dismiss({ confirmed: true });

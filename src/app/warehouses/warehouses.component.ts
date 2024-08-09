@@ -47,7 +47,7 @@ export class WarehouseComponent {
 
   modalCtrl: any;
 
-  bodyAddPublisher: Warehouse = {
+  body_add_warehouse: Warehouse = {
     warehouseID: 0,
     name: '',
     addedDate: today,
@@ -59,7 +59,7 @@ export class WarehouseComponent {
     notes: '',
   };
 
-  bodyModifyPublisher: Warehouse = {
+  body_update_warehouse: Warehouse = {
     warehouseID: 0,
     name: '',
     addedDate: today,
@@ -71,31 +71,30 @@ export class WarehouseComponent {
     notes: '',
   };
 
-  ////////////////////////////////
 
   DeleteElement(objectID: any) {
-    this.publishers.filter(
-      (element: Publisher) => element.publisherID !== objectID
+    this.warehouses.filter(
+      (element: Warehouse) => element.warehouseID !== objectID
     );
-    var elementToDelete = console.log(this.publishers);
-    this.updatePublishers.emit(elementToDelete);
-    return PostRequest(baseURL + 'DeleteCategory/' + objectID);
+    var elementToDelete = console.log(this.warehouses);
+    this.updateWarehouses.emit(elementToDelete);
+    return PostRequest(baseURL + 'DeleteWarehouse/' + objectID);
   }
 
   confirmDeleteElement() {
-    this.DeleteElement(this.publisher?.publisherID);
+    this.DeleteElement(this.warehouse?.warehouseID);
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
   UpdateAPI(): Promise<any> {
-    return PostRequest(baseURL + 'UpdatePublisher/', this.publisher);
+    return PostRequest(baseURL + 'UpdateWarehouse/', this.warehouse);
   }
 
-  getNewID(elementList: Array<Publisher>): number {
+  getNewID(elementList: Array<Warehouse>): number {
     let highestID = 0;
     for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].publisherID > highestID) {
-        highestID = elementList[i].publisherID;
+      if (elementList[i].warehouseID > highestID) {
+        highestID = elementList[i].warehouseID;
       }
     }
     return highestID + 1;

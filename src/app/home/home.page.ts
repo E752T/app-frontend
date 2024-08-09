@@ -17,11 +17,8 @@ import {
   GeographicalOrigin,
   Warehouse,
   TypeObject,
-
-  
 } from '../services/interfaces.service';
 import { baseURL, today } from '../services/data.service';
-import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
 
 @Component({
   selector: 'app-home', // page name

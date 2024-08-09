@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TypeObjectsComponent } from './type-objects.component';
+import { TypeObjectComponent } from './type-objects.component';
 
 describe('TypeObjectsComponent', () => {
-  let component: TypeObjectsComponent;
-  let fixture: ComponentFixture<TypeObjectsComponent>;
+  let component: TypeObjectComponent;
+  let fixture: ComponentFixture<TypeObjectComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TypeObjectsComponent ],
+      declarations: [ TypeObjectComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TypeObjectsComponent);
+    fixture = TestBed.createComponent(TypeObjectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

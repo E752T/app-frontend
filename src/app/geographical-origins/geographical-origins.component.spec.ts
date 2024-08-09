@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { GeographicalOriginsComponent } from './geographical-origins.component';
+import { GeographicalOriginComponent } from './geographical-origins.component';
 
 describe('GeographicalOriginsComponent', () => {
-  let component: GeographicalOriginsComponent;
-  let fixture: ComponentFixture<GeographicalOriginsComponent>;
+  let component: GeographicalOriginComponent;
+  let fixture: ComponentFixture<GeographicalOriginComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeographicalOriginsComponent ],
+      declarations: [ GeographicalOriginComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GeographicalOriginsComponent);
+    fixture = TestBed.createComponent(GeographicalOriginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

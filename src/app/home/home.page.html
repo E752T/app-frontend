@@ -920,6 +920,38 @@
           </ion-row>
         </ion-col>
 
+        <ion-col size="12">
+          <ion-title class="titolo-categoria">Tipi di Oggetti </ion-title>
+          <ion-row>
+            <app-type-objects
+              class="carta-elemento"
+              *ngFor="let element of filteredTypeObjects "
+              [type_object]="element"
+              [type_objects]="filteredTypeObjects"
+              (updateTypeObject)="updateTypeObjects(this.allTypeObjects, element, 'typeID');"
+              [search_input]="searchInput"
+            >
+            </app-type-objects>
+          </ion-row>
+        </ion-col>
+
+
+        <ion-col size="12">
+          <ion-title class="titolo-categoria"> Origine Geografica </ion-title>
+          <ion-row>
+            <app-geographical-origin
+              class="carta-elemento"
+              *ngFor="let element of filteredGeographicalOrigins"
+              [geographical_origin]="element"
+              [geographical_origins]="filteredGeographicalOrigins"
+              (updateGeographicalOrigin)="updateGeographicalOrigins(this.allGeographicalOrigins, element, 'geographicalOriginID');"
+              [search_input]="searchInput"
+            >
+            </app-geographical-origin>
+          </ion-row>
+        </ion-col>
+
+
       </ion-row>
     </ion-grid>
   </div>
