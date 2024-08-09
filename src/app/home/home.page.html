@@ -906,7 +906,7 @@
         </ion-col>
 
         <ion-col size="12">
-          <ion-title class="titolo-categoria">Negozianti </ion-title>
+          <ion-title class="titolo-categoria">Esercenti </ion-title>
           <ion-row>
             <app-shopkeepers
               class="carta-elemento"
@@ -953,6 +953,20 @@
           </ion-row>
         </ion-col>
 
+
+        <ion-col size="12">
+          <ion-title class="titolo-categoria"> Provenienza </ion-title>
+          <ion-row>
+            <app-geographical-origin
+              class="carta-elemento"
+              *ngFor="let element of filteredGeographicalOrigins"
+              [geographical_origin]="element"
+              [geographical_origins]="filteredGeographicalOrigins"
+              (updateGeographicalOrigin)="updateGeographicalOrigins(this.allGeographicalOrigins, element, 'geographicalOriginID');"
+              [search_input]="searchInput">
+            </app-geographical-origin>
+          </ion-row>
+        </ion-col>
 
       </ion-row>
     </ion-grid>
