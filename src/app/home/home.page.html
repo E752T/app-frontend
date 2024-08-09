@@ -1,27 +1,21 @@
-<div class="ion-page" id="main-content">
-  <ion-header class="header-menu-home">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button class="header-menu-button"></ion-menu-button>
-      </ion-buttons>
-      <ion-row class="background-title-bar">
-        <ion-title size="6" class="logo-store">
-          <ion-icon class="titolo-icona" name="logo-dropbox"></ion-icon>
-          <ion-text class="titolo-store"> CloudStore </ion-text>
-        </ion-title>
-      </ion-row>
-    </ion-toolbar>
-  </ion-header>
-</div>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense" class="header-titolo">
-    <ion-toolbar>
-      <ion-title text-center size="large" class="stile-titolo">
-        CloudStore
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="ion-page" id="main-content">
+    <ion-header class="header-menu-home">
+      <ion-toolbar>
+        <ion-buttons slot="start" class="background-title-bar">
+          <ion-menu-button
+            style="color: aliceblue; margin: 3px"
+          ></ion-menu-button>
+        </ion-buttons>
+        <ion-row class="background-title-bar">
+          <ion-title size="6" class="logo-store">
+            <ion-icon class="titolo-icona" name="logo-dropbox"></ion-icon>
+            <ion-text class="titolo-store"> CloudStore </ion-text>
+          </ion-title>
+        </ion-row>
+      </ion-toolbar>
+    </ion-header>
+  </div>
 
   <ion-menu
     contentId="main-content"
@@ -30,26 +24,46 @@
     <ion-card class="card-filtri-ricerca">
       <p></p>
       <div *ngIf="sectionToShow === 'Store'">
-        <p></p>
-        <ion-title
-          color="dark"
-          class="titolo-filtri-ricerca"
-          style="margin-top: 100px"
-        >
-          Filtri di Ricerca
-        </ion-title>
         <ion-searchbar
           showCancelButton="focus"
           [debounce]="1000"
           type="text"
           placeholder="Cerca un oggetto"
           class="center"
-          style="width: 100%; margin-top: 15px"
+          style="width: 100%; margin-top: 85px"
           (ionChange)="setInput($event.target.value)"
           [(ngModel)]="searchInput"
         >
         </ion-searchbar>
-        <ion-list>
+
+        <p></p>
+
+        <ion-title
+          color="dark"
+          class="titolo-filtri-ricerca"
+          style="margin-bottom: 40px;"
+        >
+          Filtri di Ricerca
+        </ion-title>
+
+
+        <div style="margin-left: 5%; margin-bottom: 25px" color="success">
+          <ion-label>Seleziona la disponibilità</ion-label>
+          <br /><br />
+          <ion-radio-group [(ngModel)]="availability" value="disponibilita">
+            <ion-radio color="secondary" labelPlacement="end" value="tutti"
+              >Tutti i libri</ion-radio
+            ><br C />
+            <ion-radio
+              color="secondary"
+              labelPlacement="end"
+              value="solo_disponibili"
+              >Solo libri disponibili</ion-radio
+            ><br />
+          </ion-radio-group>
+        </div>
+
+        <ion-list style="margin-top: -20px;">
           <ion-item
             class="center"
             style="margin-bottom: 15px; min-width: 300px"
@@ -78,26 +92,13 @@
           </ion-item>
         </ion-list>
 
-        <div style="margin-left: 5%; margin-bottom: 40px" color="success">
-          <ion-label>Seleziona la disponibilità</ion-label>
-          <br /><br />
-          <ion-radio-group [(ngModel)]="availability" value="disponibilita">
-            <ion-radio color="secondary" labelPlacement="end" value="tutti"
-              >Tutti i libri</ion-radio
-            ><br C />
-            <ion-radio
-              color="secondary"
-              labelPlacement="end"
-              value="solo_disponibili"
-              >Solo libri disponibili</ion-radio
-            ><br />
-          </ion-radio-group>
-        </div>
+
         <p></p>
-        <p></p>
-        <ion-text style="margin-left: 20px; margin-top: 10px">
-          Anno di pubblicazione</ion-text
-        >
+        <div style="text-align: center;">
+          <ion-text style="display: inline-block; margin: 10px auto;">
+              Anno di pubblicazione
+          </ion-text>
+      </div>
         <div class="centered" color="success">
           <small>
             <p class="label-anni" style="margin-bottom: -40px; position: fixed">

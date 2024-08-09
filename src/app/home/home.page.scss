@@ -94,13 +94,13 @@ ion-content {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
   font-size: 40px;
   letter-spacing: 1.4px;
-  word-spacing: 0px;
   color: #ffffff;
   font-weight: 400;
   text-decoration: rgb(232, 230, 227);
   font-style: normal;
   font-variant: normal;
   text-transform: none;
+  padding: -1%;
 }
 
 .logo-store {
@@ -237,8 +237,6 @@ ion-button.bottone-accedi {
 
 .background-title-bar {
   background: #3f46a2;
-  padding-bottom: 3%;
-  padding-top: 3%;
 }
 
 .titolo-icona {
@@ -258,9 +256,6 @@ ion-button.bottone-accedi {
   margin-bottom: 200px;
 }
 
-.header-menu-button {
-  margin-right: 20px;
-}
 
 .center {
   margin: auto;
