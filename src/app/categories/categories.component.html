@@ -2,7 +2,10 @@
   <ion-row>
     <ion-col>
       <ion-accordion-group>
-        <ion-accordion value="first" style="padding-right: 50px;margin-left: 30px;">
+        <ion-accordion
+          value="first"
+          style="padding-right: 50px; margin-left: 30px"
+        >
           <ion-item
             slot="header"
             color="tertiary"
@@ -173,7 +176,7 @@
               class="input-form"
               id="open-modal-addedDate-Category-'{{ category.categoryID }}'"
               color="lighter"
-              style="color: black;margin-top: 10px;margin-bottom: 10px;"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
                 category.addedDate ? category.addedDate : "NOT FOUND"
               }}</ion-text
@@ -235,7 +238,7 @@
                 category.categoryID
               }}'"
               color="lighter"
-              style="color: black;margin-top: 10px;margin-bottom: 10px;"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
                 category.lastUpdateDate ? category.lastUpdateDate : "NOT FOUND"
               }}</ion-text

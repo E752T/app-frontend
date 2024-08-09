@@ -846,6 +846,7 @@ export class HomePage implements OnInit {
   }
 
   filterByYears<T extends { addedDate: Date }>(filteredItems: T[]): T[] {
+    console.log(this.searchYears.lower, this.searchYears.upper);
     return filteredItems.filter((item) => {
       if (item.addedDate != null) {
         const year = new Date(item.addedDate).getFullYear();
