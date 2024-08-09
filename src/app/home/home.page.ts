@@ -735,7 +735,6 @@ export class HomePage implements OnInit {
     return this.filteredGeographicalOrigins;
   }
 
-
   //////////////////////////////////////////////////////////////
   /////////////////      TIPI DI OGGETTI       /////////////////
 
@@ -777,19 +776,14 @@ export class HomePage implements OnInit {
   }
 
   CreateTypeObject(): Promise<any> {
-    this.body_add_type_object.typeID =
-      this.getNewIDTypeObject(this.allTypeObjects);
+    this.body_add_type_object.typeID = this.getNewIDTypeObject(
+      this.allTypeObjects
+    );
     let new_element = this.body_add_type_object;
     this.allTypeObjects.unshift(new_element);
-    console.log(
-      'POST api/AddTypeObjects/ ',
-      this.body_add_type_object
-    );
+    console.log('POST api/AddTypeObjects/ ', this.body_add_type_object);
     // Perform the PostRequest
-    return PostRequest(
-      baseURL + 'AddTypeObjects/',
-      this.body_add_type_object
-    )
+    return PostRequest(baseURL + 'AddTypeObjects/', this.body_add_type_object)
       .then((response) => {
         // Reset bodyAddAuthor to null after the PostRequest
         this.body_add_type_object = {
@@ -814,7 +808,6 @@ export class HomePage implements OnInit {
     this.filteredTypeObjects = this.allTypeObjects;
     return this.filteredTypeObjects;
   }
-
 
   //////////////////////////////////////////////////////////////
   ////////////////////// FILTRI DI RICERCA /////////////////////

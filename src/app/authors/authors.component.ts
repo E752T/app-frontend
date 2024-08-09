@@ -66,11 +66,10 @@ export class AuthorsComponent {
   };
 
   DeleteElement(objectID: any) {
-
     this.authors = this.authors.filter(
       (element: Author) => element.authorID !== objectID
     );
-    console.log("API DeleteAuthor/ -> Remaining Array ",this.authors)
+    console.log('API DeleteAuthor/ -> Remaining Array ', this.authors);
     this.updateAuthors.emit(this.authors);
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteAuthor/' + objectID);
@@ -102,5 +101,4 @@ export class AuthorsComponent {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
   }
-
 }

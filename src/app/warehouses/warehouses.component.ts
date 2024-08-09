@@ -10,12 +10,12 @@ import {
 import { Platform } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { OverlayEventDetail } from '@ionic/core';
 
 import { baseURL, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
-import { OverlayEventDetail } from '@ionic/core';
 import { Warehouse } from '../services/interfaces.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-warehouses',
@@ -70,7 +70,6 @@ export class WarehouseComponent {
     telephone2: '',
     notes: '',
   };
-
 
   DeleteElement(objectID: any) {
     this.warehouses.filter(
