@@ -1,29 +1,32 @@
-  <div class="ion-page" id="main-content">
-    <ion-header class="header-menu-home">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button class="header-menu-button"></ion-menu-button>
-        </ion-buttons>
-        <ion-row class="background-title-bar">
-          <ion-title size="6" class="logo-store">
-            <ion-icon class="titolo-icona" name="logo-dropbox"></ion-icon>
-            <ion-text class="titolo-store"> CloudStore </ion-text>
-          </ion-title>
-        </ion-row>
-      </ion-toolbar>
-    </ion-header>
-  </div>
-
-  <ion-content [fullscreen]="true">
-    <ion-header collapse="condense" class="header-titolo">
-      <ion-toolbar>
-        <ion-title text-center size="large" class="stile-titolo">
-          CloudStore
+<div class="ion-page" id="main-content">
+  <ion-header class="header-menu-home">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button class="header-menu-button"></ion-menu-button>
+      </ion-buttons>
+      <ion-row class="background-title-bar">
+        <ion-title size="6" class="logo-store">
+          <ion-icon class="titolo-icona" name="logo-dropbox"></ion-icon>
+          <ion-text class="titolo-store"> CloudStore </ion-text>
         </ion-title>
-      </ion-toolbar>
-    </ion-header>
+      </ion-row>
+    </ion-toolbar>
+  </ion-header>
+</div>
 
-  <ion-menu contentId="main-content" style="max-height:1350px;margin-top: -60px;">
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" class="header-titolo">
+    <ion-toolbar>
+      <ion-title text-center size="large" class="stile-titolo">
+        CloudStore
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-menu
+    contentId="main-content"
+    style="max-height: 1350px; margin-top: -60px"
+  >
     <ion-card class="card-filtri-ricerca">
       <p></p>
       <div *ngIf="sectionToShow === 'Store'">
@@ -66,11 +69,15 @@
               <ion-select-option value="Giallo">Gialli</ion-select-option>
               <ion-select-option value="Manuale">Manuali</ion-select-option>
               <ion-select-option value="Viaggio">Viaggi</ion-select-option>
+              <ion-select-option value="Rosa">Rosa</ion-select-option>
+              <ion-select-option value="Biografia">Biografie</ion-select-option>
+              <ion-select-option value="Spirituale">Spiritualità</ion-select-option>
+
             </ion-select>
           </ion-item>
         </ion-list>
 
-        <div style="margin-left: 5%" color="success">
+        <div style="margin-left: 5%; margin-bottom: 40px" color="success">
           <ion-label>Seleziona la disponibilità</ion-label>
           <br /><br />
           <ion-radio-group [(ngModel)]="availability" value="disponibilita">
@@ -87,14 +94,26 @@
         </div>
         <p></p>
         <p></p>
-        <ion-text class="centered"> Anno di pubblicazione</ion-text>
+        <ion-text style="margin-left: 20px; margin-top: 10px">
+          Anno di pubblicazione</ion-text
+        >
         <div class="centered" color="success">
           <small>
-            <p class="label-anni">1800</p>
+            <p class="label-anni" style="margin-bottom: -40px; position: fixed">
+              1800
+            </p>
           </small>
-          <p></p>
+          <small>
+            <p
+              class="label-anni"
+              style="margin-bottom: -40px; position: fixed; right: 0"
+            >
+              2024
+            </p>
+          </small>
 
           <ion-range
+            style="margin-left: 10px; margin-right: 10px"
             aria-label="Dual Knobs Range"
             [(ngModel)]="searchYears"
             [dualKnobs]="true"
@@ -105,10 +124,6 @@
             id="double-knobs-range-objects"
             [value]="{ lower: 1805, upper: 2024 }"
           ></ion-range>
-          <p></p>
-          <small>
-            <p class="label-anni">2024</p>
-          </small>
         </div>
 
         <ion-modal [keepContentsMounted]="true">
@@ -322,11 +337,10 @@
               class="bottone-credenziali"
               class="center"
               color="secondary"
-              style=
               >Registra un nuovo account</ion-button
             >
             <ion-button
-              class="bottone-credenziali"
+              class="bottone-credenziali-dimenticate"
               class="center"
               color="secondary"
               >Hai dimenticato le credenziali?</ion-button
@@ -368,9 +382,7 @@
             </ion-toolbar>
           </ion-header>
           <ion-content class="ion-padding">
-            <ion-text
-              class="center testo-contatti"
-            >
+            <ion-text class="center testo-contatti">
               <b>Posizione</b> <br /><br />
               Roma, Italia, Viale Castro Pretorio, 105 00185 <br /><br />
               <b>Centralino </b><br /><br />
@@ -392,8 +404,8 @@
     </ion-card>
   </ion-menu>
 
-  <div *ngIf="sectionToShow === 'Store'" style="margin-top: 40px;">
-    <ion-grid style="margin-top: 40px;">
+  <div *ngIf="sectionToShow === 'Store'" style="margin-top: 40px">
+    <ion-grid style="margin-top: 40px">
       <ion-row>
         <br />
         <br />
@@ -940,11 +952,11 @@
               [geographical_origin]="element"
               [geographical_origins]="filteredGeographicalOrigins"
               (updateGeographicalOrigin)="updateGeographicalOrigins(this.allGeographicalOrigins, element, 'geographicalOriginID');"
-              [search_input]="searchInput">
+              [search_input]="searchInput"
+            >
             </app-geographical-origin>
           </ion-row>
         </ion-col>
-
 
         <ion-col size="12">
           <ion-title class="titolo-categoria"> Provenienza </ion-title>
@@ -955,11 +967,11 @@
               [provenance]="element"
               [provenances]="filteredProvenances"
               (updateProvenances)="updateProvenances(this.allProvenances, element, 'provenanceID');"
-              [search_input]="searchInput">
+              [search_input]="searchInput"
+            >
             </app-provenances>
           </ion-row>
         </ion-col>
-
 
         <ion-col size="12">
           <ion-title class="titolo-categoria"> Magazzini </ion-title>
@@ -970,16 +982,16 @@
               [warehouse]="element"
               [warehouses]="filteredWarehouses"
               (updateWarehouses)="updateWarehouses(this.allWarehouses, element, 'warehouseID');"
-              [search_input]="searchInput">
+              [search_input]="searchInput"
+            >
             </app-warehouses>
           </ion-row>
         </ion-col>
-
       </ion-row>
     </ion-grid>
   </div>
 
-  <div *ngIf="sectionToShow === 'Author'" style="margin-top: 40px;">
+  <div *ngIf="sectionToShow === 'Author'" style="margin-top: 40px">
     <ion-title class="titolo-categoria">Autori </ion-title>
 
     <ion-button
@@ -1025,9 +1037,7 @@
               ></ion-button>
             </ion-buttons>
             <ion-buttons slot="end">
-              <ion-button
-                id="button-AddAuthorAPI"
-                (click)="CreateAuthor()"
+              <ion-button id="button-AddAuthorAPI" (click)="CreateAuthor()"
                 >Conferma</ion-button
               >
               <ion-toast
@@ -1141,9 +1151,7 @@
     <ion-toolbar style="margin-bottom: 20%"> </ion-toolbar>
   </div>
 
-
-
-  <div *ngIf="sectionToShow === 'Category'" style="margin-top: 40px;">
+  <div *ngIf="sectionToShow === 'Category'" style="margin-top: 40px">
     <ion-title class="titolo-categoria">Categorie </ion-title>
     <ion-button
       id="bottone-aggiungi-nuova-categoria"
@@ -1254,7 +1262,7 @@
     </div>
   </div>
 
-  <div *ngIf="sectionToShow === 'Publisher'" style="margin-top: 40px;">
+  <div *ngIf="sectionToShow === 'Publisher'" style="margin-top: 40px">
     <ion-title class="titolo-categoria">Editori </ion-title>
     <ion-button
       id="add-new-publisher-button"
@@ -1360,7 +1368,7 @@
     </div>
   </div>
 
-  <div *ngIf="sectionToShow === 'TypeObject'" style="margin-top: 40px;">
+  <div *ngIf="sectionToShow === 'TypeObject'" style="margin-top: 40px">
     <ion-grid>
       <ion-row>
         <ion-text>TypeObject</ion-text>
@@ -1372,7 +1380,7 @@
     </ion-grid>
   </div>
 
-  <div *ngIf="sectionToShow === 'Warehouse'" style="margin-top: 40px;">
+  <div *ngIf="sectionToShow === 'Warehouse'" style="margin-top: 40px">
     <ion-grid>
       <ion-row>
         <ion-text>Warehouse</ion-text>
@@ -1384,7 +1392,7 @@
     </ion-grid>
   </div>
 
-  <div *ngIf="sectionToShow === 'Provenance'" style="margin-top: 40px;">
+  <div *ngIf="sectionToShow === 'Provenance'" style="margin-top: 40px">
     <ion-grid>
       <ion-row>
         <ion-text>Provenance</ion-text>
@@ -1396,7 +1404,7 @@
     </ion-grid>
   </div>
 
-  <div *ngIf="sectionToShow === 'GeographicalOrigin'" style="margin-top: 40px;">
+  <div *ngIf="sectionToShow === 'GeographicalOrigin'" style="margin-top: 40px">
     <ion-grid>
       <ion-row>
         <ion-text>GeographicalOrigin</ion-text>
