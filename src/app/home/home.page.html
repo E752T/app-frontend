@@ -1,31 +1,27 @@
-<ion-toolbar>
-  <ion-row class="background-title-bar">
-    <ion-title size="6" class="logo-store">
-      <ion-icon class="titolo-icona" name="logo-dropbox"></ion-icon>
-      <ion-text class="titolo-store"> CloudStore </ion-text>
-    </ion-title>
-  </ion-row>
-</ion-toolbar>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense" class="header-titolo">
-    <ion-toolbar>
-      <ion-title text-center size="large" class="stile-titolo">
-        CloudStore
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div class="ion-page" id="main-content">
     <ion-header class="header-menu-home">
       <ion-toolbar>
         <ion-buttons slot="start">
           <ion-menu-button class="header-menu-button"></ion-menu-button>
         </ion-buttons>
-        <ion-title>Menu</ion-title>
+        <ion-row class="background-title-bar">
+          <ion-title size="6" class="logo-store">
+            <ion-icon class="titolo-icona" name="logo-dropbox"></ion-icon>
+            <ion-text class="titolo-store"> CloudStore </ion-text>
+          </ion-title>
+        </ion-row>
       </ion-toolbar>
     </ion-header>
   </div>
+
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense" class="header-titolo">
+      <ion-toolbar>
+        <ion-title text-center size="large" class="stile-titolo">
+          CloudStore
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
 
   <ion-menu contentId="main-content" style="max-height:950px">
     <ion-card class="card-filtri-ricerca">
