@@ -21,7 +21,6 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './shopkeepers.component.html',
   styleUrls: ['./shopkeepers.component.scss'],
 })
-
 export class ShopkeepersComponent {
   private platform = inject(Platform);
   constructor(private http: HttpClient, private modalCtrl: ModalController) {}
@@ -43,7 +42,7 @@ export class ShopkeepersComponent {
 
   body_add_shopkeeper: Shopkeeper = {
     shopkeeperID: 0,
-    name: '',
+    uniqueName: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
@@ -51,7 +50,7 @@ export class ShopkeepersComponent {
 
   body_update_shopkeeper: Shopkeeper = {
     shopkeeperID: 0,
-    name: '',
+    uniqueName: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',

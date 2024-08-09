@@ -134,7 +134,7 @@ export let bodyAddShopkeeper: Shopkeeper = {
   shopkeeperID: 0,
   addedDate: new Date(),
   lastUpdateDate: new Date(),
-  name: '',
+  uniqueName: '',
   description: '',
 };
 
@@ -142,7 +142,7 @@ export let bodyModifyShopkeeper: Shopkeeper = {
   shopkeeperID: 0,
   addedDate: new Date(),
   lastUpdateDate: new Date(),
-  name: '',
+  uniqueName: '',
   description: '',
 };
 

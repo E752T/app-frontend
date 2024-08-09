@@ -442,7 +442,7 @@ export class HomePage implements OnInit {
 
   body_add_shopkeeper: Shopkeeper = {
     shopkeeperID: 0,
-    name: '',
+    uniqueName: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
@@ -479,7 +479,7 @@ export class HomePage implements OnInit {
         // Reset bodyAddAuthor to null after the PostRequest
         this.body_add_shopkeeper = {
           shopkeeperID: 0,
-          name: '',
+          uniqueName: '',
           addedDate: today,
           lastUpdateDate: today,
           description: '',

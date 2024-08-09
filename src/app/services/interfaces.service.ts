@@ -1,6 +1,6 @@
 // object element names & data types
 
-export interface LoginObject{
+export interface LoginObject {
   username: string;
   password: string;
 }
@@ -82,10 +82,10 @@ export interface TypeObject {
 
 export interface Shopkeeper {
   shopkeeperID: number;
+  uniqueName: string;
+  description: string;
   addedDate: Date;
   lastUpdateDate: Date;
-  name: string;
-  description: string;
 }
 
 export interface Warehouse {
