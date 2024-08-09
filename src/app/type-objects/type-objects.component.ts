@@ -22,9 +22,8 @@ import { TypeObject } from '../services/interfaces.service';
   templateUrl: './type-objects.component.html',
   styleUrls: ['./type-objects.component.scss'],
 })
-
-
-export class TypeObjectComponent { // Adjusted class name with the "Component" suffix
+export class TypeObjectComponent {
+  // Adjusted class name with the "Component" suffix
   constructor(
     private http: HttpClient,
     private modalController: ModalController
@@ -49,7 +48,7 @@ export class TypeObjectComponent { // Adjusted class name with the "Component" s
 
   modalCtrl: any;
 
-  body_add_shopkeeper: TypeObject = {
+  body_add_type_object: TypeObject = {
     typeID: 0,
     name: '',
     addedDate: today,
@@ -57,14 +56,13 @@ export class TypeObjectComponent { // Adjusted class name with the "Component" s
     description: '',
   };
 
-  body_update_shopkeeper: TypeObject = {
+  body_update_type_object: TypeObject = {
     typeID: 0,
     name: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
   };
-
 
   DeleteElement(objectID: any) {
     this.type_objects.filter(
@@ -72,7 +70,7 @@ export class TypeObjectComponent { // Adjusted class name with the "Component" s
     );
     var elementToDelete = console.log(this.type_objects);
     this.updateTypeObject.emit(elementToDelete);
-    return PostRequest(baseURL + 'DeleteCategory/' + objectID);
+    return PostRequest(baseURL + 'DeleteTypeObject/' + objectID);
   }
 
   confirmDeleteElement() {
@@ -80,8 +78,8 @@ export class TypeObjectComponent { // Adjusted class name with the "Component" s
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
-  UpdateAPI(): Promise<any> {
-    return PostRequest(baseURL + 'UpdatePublisher/', this.type_objects);
+  UpdateElement(): Promise<any> {
+    return PostRequest(baseURL + 'UpdateTypeObject/', this.type_objects);
   }
 
   getNewID(elementList: Array<TypeObject>): number {

@@ -14,7 +14,8 @@ import { HttpClient } from '@angular/common/http';
 import { OverlayEventDetail } from '@ionic/core';
 
 import { GeographicalOrigin } from '../services/interfaces.service';
-import { today } from '../services/data.service';
+import { baseURL, today } from '../services/data.service';
+import { PostRequest } from '../services/request.service';
 
 @Component({
   selector: 'app-geographical-origin',
@@ -39,14 +40,14 @@ export class GeographicalOriginComponent {
   search_input!: string | null | undefined;
 
   @Output()
-  updatePublishers = new EventEmitter<any>();
+  updateGeographicalOrigin = new EventEmitter<any>();
 
   @ViewChild(IonModal)
   modal!: IonModal;
 
   modalCtrl: any;
 
-  bodyAddGeographicalOrigin: GeographicalOrigin = {
+  body_add_geographical_origin: GeographicalOrigin = {
     geographicalOriginID: 0,
     name: '',
     addedDate: today,
@@ -54,20 +55,52 @@ export class GeographicalOriginComponent {
     description: '',
   };
 
-  bodyModifyGeographicalOrigin: GeographicalOrigin = {
+  body_update_geographical_origin: GeographicalOrigin = {
     geographicalOriginID: 0,
     name: '',
     addedDate: today,
     lastUpdateDate: today,
     description: '',
   };
+
+
+  DeleteElement(objectID: any) {
+    this.geographical_origins = this.geographical_origins.filter(
+      (element: GeographicalOrigin) => element.geographicalOriginID !== objectID
+    );
+    console.log('API DeleteGeographicalOrigin/ -> Remaining Array ', this.geographical_origins);
+    this.updateGeographicalOrigin.emit(this.geographical_origins);
+    this.modalCtrl.dismiss({ confirmed: true });
+    return PostRequest(baseURL + 'DeleteGeographicalOrigin/' + objectID);
+  }
+
+  getNewID(elementList: Array<GeographicalOrigin>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].geographicalOriginID > highestID) {
+        highestID = elementList[i].geographicalOriginID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  UpdateElement(): Promise<any> {
+    console.log(
+      'POST api/UpdateGeographicalOrigin/ ',
+      this.geographical_origin
+    );
+    return PostRequest(
+      baseURL + 'UpdateGeographicalOrigin/',
+      this.geographical_origin
+    );
+  }
 
   confirm() {
-    this.modalController.dismiss({ confirmed: true });
+    this.modalCtrl.dismiss({ confirmed: true });
   }
 
   cancel() {
-    this.modalController.dismiss({ confirmed: false });
+    this.modalCtrl.dismiss({ confirmed: false });
   }
 
   onWillDismiss(event: Event) {
