@@ -1,14 +1,14 @@
-<ion-content [fullscreen]="true" >
-  <div class="ion-page " id="main-content" >
-    <ion-header class="header-menu-home ">
-      <ion-toolbar >
-        <ion-buttons slot="start"class="background-title-bar">
+<ion-content [fullscreen]="true">
+  <div class="ion-page" id="main-content">
+    <ion-header class="header-menu-home">
+      <ion-toolbar>
+        <ion-buttons slot="start" class="background-title-bar">
           <ion-menu-button
-            style="color: aliceblue; margin: 4px;margin-left: -2px;"
+            style="color: aliceblue; margin: 4px; margin-left: -2px"
           ></ion-menu-button>
         </ion-buttons>
         <ion-row class="background-title-bar">
-          <ion-title size="6" class="logo-store" style="margin: 1px;">
+          <ion-title size="6" class="logo-store" style="margin: 1px">
             <ion-icon class="titolo-icona" name="logo-dropbox"></ion-icon>
             <ion-text class="titolo-store"> CloudStore </ion-text>
           </ion-title>
@@ -370,9 +370,9 @@
           <ion-header>
             <ion-toolbar>
               <ion-title
-                class="center"
+                class="centrato"
                 color="secondary"
-                style="font-weight: bolder"
+                style="font-weight: bolder;margin-left: -30px;"
                 >Contatti</ion-title
               >
               <ion-buttons slot="start">
@@ -383,18 +383,20 @@
             </ion-toolbar>
           </ion-header>
           <ion-content class="ion-padding">
-            <ion-text class="center testo-contatti">
-              <b>Posizione</b> <br /><br />
-              Roma, Italia, Viale Castro Pretorio, 105 00185 <br /><br />
-              <b>Centralino </b><br /><br />
-              +39 0577 292666 <br />
-              <br />
-              <b>Settore pubblica lettura / prestito </b><br /><br />
-              +39 0577 292636 <br />prestito&#64;biblioteca.comune.siena.it
-              <br /><br />
-              <b>Sala consultazione manoscritti e rari </b><br /><br />
-              +39 0577 292644 <br /><br />
-            </ion-text>
+            <div class="centrato">
+              <ion-text><br />
+                <b>Posizione</b> Roma, Italia, Viale Castro Pretorio, 105 00185
+                <br /><br /><br />
+
+                <b>Settore pubblica lettura / prestito </b>+39 0577 292636
+                <br /><br /><br />
+
+                <b>Sala consultazione manoscritti e rari </b>+39 0577 292644
+                <br /><br /><br />
+
+                <b>Centralino </b> +39 0577 292666 <br /><br /><br />
+              </ion-text>
+            </div>
 
             <ion-img
               src="https://lh3.googleusercontent.com/p/AF1QipPTSzDOpqYRYmzLmrgs2d7lWYNyi6PoYKciMy0m=s1360-w1360-h1020"
@@ -405,7 +407,7 @@
     </ion-card>
   </ion-menu>
 
-  <div *ngIf="sectionToShow === 'Store'" style="margin-top: 40px" >
+  <div *ngIf="sectionToShow === 'Store'" style="margin-top: 40px">
     <ion-grid style="margin-top: 40px">
       <ion-row>
         <br />
