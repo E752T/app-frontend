@@ -23,7 +23,7 @@
       </ion-toolbar>
     </ion-header>
 
-  <ion-menu contentId="main-content" style="max-height:900px;margin-top: -60px;">
+  <ion-menu contentId="main-content" style="max-height:1350px;margin-top: -60px;">
     <ion-card class="card-filtri-ricerca">
       <p></p>
       <div *ngIf="sectionToShow === 'Store'">
@@ -392,8 +392,8 @@
     </ion-card>
   </ion-menu>
 
-  <div *ngIf="sectionToShow === 'Store'">
-    <ion-grid>
+  <div *ngIf="sectionToShow === 'Store'" style="margin-top: 40px;">
+    <ion-grid style="margin-top: 40px;">
       <ion-row>
         <br />
         <br />
@@ -979,7 +979,7 @@
     </ion-grid>
   </div>
 
-  <div *ngIf="sectionToShow === 'Author'">
+  <div *ngIf="sectionToShow === 'Author'" style="margin-top: 40px;">
     <ion-title class="titolo-categoria">Autori </ion-title>
 
     <ion-button
@@ -1143,7 +1143,7 @@
 
 
 
-  <div *ngIf="sectionToShow === 'Category'">
+  <div *ngIf="sectionToShow === 'Category'" style="margin-top: 40px;">
     <ion-title class="titolo-categoria">Categorie </ion-title>
     <ion-button
       id="bottone-aggiungi-nuova-categoria"
@@ -1254,7 +1254,7 @@
     </div>
   </div>
 
-  <div *ngIf="sectionToShow === 'Publisher'">
+  <div *ngIf="sectionToShow === 'Publisher'" style="margin-top: 40px;">
     <ion-title class="titolo-categoria">Editori </ion-title>
     <ion-button
       id="add-new-publisher-button"
@@ -1360,7 +1360,7 @@
     </div>
   </div>
 
-  <div *ngIf="sectionToShow === 'TypeObject'">
+  <div *ngIf="sectionToShow === 'TypeObject'" style="margin-top: 40px;">
     <ion-grid>
       <ion-row>
         <ion-text>TypeObject</ion-text>
@@ -1372,7 +1372,7 @@
     </ion-grid>
   </div>
 
-  <div *ngIf="sectionToShow === 'Warehouse'">
+  <div *ngIf="sectionToShow === 'Warehouse'" style="margin-top: 40px;">
     <ion-grid>
       <ion-row>
         <ion-text>Warehouse</ion-text>
@@ -1384,7 +1384,7 @@
     </ion-grid>
   </div>
 
-  <div *ngIf="sectionToShow === 'Provenance'">
+  <div *ngIf="sectionToShow === 'Provenance'" style="margin-top: 40px;">
     <ion-grid>
       <ion-row>
         <ion-text>Provenance</ion-text>
@@ -1396,7 +1396,7 @@
     </ion-grid>
   </div>
 
-  <div *ngIf="sectionToShow === 'GeographicalOrigin'">
+  <div *ngIf="sectionToShow === 'GeographicalOrigin'" style="margin-top: 40px;">
     <ion-grid>
       <ion-row>
         <ion-text>GeographicalOrigin</ion-text>
