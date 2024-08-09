@@ -123,7 +123,6 @@ ion-content {
 
 .ionic-title-custom {
   width: 100%;
-  padding: 10px;
   text-align: center;
 }
 
@@ -165,10 +164,13 @@ ion-button.bottone-accedi {
 }
 
 .bottone-credenziali {
-  margin-top: 30px;
-  text-align: center;
-  min-width: 300px;
-  font-size: 12px;
+  margin-top: 80px; /* Manteniamo il margine superiore di 30px */
+  text-align: center; /* Centriamo il testo */
+  min-width: 300px; /* Manteniamo la larghezza minima di 300px */
+  font-size: 12px; /* Manteniamo la dimensione del carattere a 12px */
+  display: block; /* Assicuriamoci che l'elemento sia un blocco per centrare correttamente il testo */
+  margin-left: auto; /* Impostiamo il margine sinistro automatico per centrare rispetto al contenitore */
+  margin-right: auto; /* Impostiamo il margine destro automatico per centrare rispetto al contenitore */
 }
 
 .titolo-filtri-ricerca {

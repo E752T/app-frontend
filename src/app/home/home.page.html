@@ -294,12 +294,18 @@
       >
         <ng-template class="ng-template-custom">
           <ion-header>
-            <ion-title class="ionic-title-custom">
-              <ion-text style="width: 100%">
-                Accedi con il tuo profilo</ion-text
-              ></ion-title
-            >
             <ion-toolbar>
+              <ion-title
+                class="ionic-title-custom"
+                style="margin-top: 10px; margin-bottom: 15px; margin-left: 20px"
+              >
+                <ion-text
+                  style="width: 100%; font-weight: bold"
+                  color="secondary"
+                >
+                  Accedi</ion-text
+                ></ion-title
+              >
               <ion-buttons slot="start">
                 <ion-button (click)="cancel()" [strong]="true"
                   ><ion-icon name="arrow-undo-outline"></ion-icon
@@ -335,15 +341,13 @@
             </ion-item>
 
             <ion-button
-              class="bottone-credenziali"
-              class="center"
+              class="center bottone-credenziali"
+              style="margin-top: 30px"
               color="secondary"
               >Registra un nuovo account</ion-button
             >
-            <ion-button
-              class="bottone-credenziali-dimenticate"
-              class="center"
-              color="secondary"
+            <br />
+            <ion-button class="center bottone-credenziali" color="secondary"
               >Hai dimenticato le credenziali?</ion-button
             >
           </ion-content>
@@ -372,7 +376,11 @@
               <ion-title
                 class="centrato"
                 color="secondary"
-                style="font-weight: bolder;margin-left: -30px;"
+                style="
+                  font-weight: bolder;
+                  margin-left: -30px;
+                  margin-top: 10px;
+                "
                 >Contatti</ion-title
               >
               <ion-buttons slot="start">
@@ -384,7 +392,8 @@
           </ion-header>
           <ion-content class="ion-padding">
             <div class="centrato">
-              <ion-text><br />
+              <ion-text
+                ><br />
                 <b>Posizione</b> Roma, Italia, Viale Castro Pretorio, 105 00185
                 <br /><br /><br />
 
