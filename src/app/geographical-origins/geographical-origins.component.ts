@@ -30,10 +30,10 @@ export class GeographicalOriginComponent {
   private platform = inject(Platform);
 
   @Input()
-  publisher!: GeographicalOrigin;
+  geographical_origin!: GeographicalOrigin;
 
   @Input()
-  publishers!: Array<GeographicalOrigin>;
+  geographical_origins!: Array<GeographicalOrigin>;
 
   @Input()
   search_input!: string | null | undefined;

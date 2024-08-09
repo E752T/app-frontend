@@ -937,6 +937,21 @@
 
 
         <ion-col size="12">
+          <ion-title class="titolo-categoria"> Magazzini </ion-title>
+          <ion-row>
+            <app-warehouses
+              class="carta-elemento"
+              *ngFor="let element of filteredWarehouses"
+              [warehouse]="element"
+              [warehouses]="filteredWarehouses"
+              (updateWarehouse)="updateWarehouses(this.allWarehouses, element, 'warehouseID');"
+              [search_input]="searchInput">
+            </app-warehouses>
+          </ion-row>
+        </ion-col>
+
+
+        <ion-col size="12">
           <ion-title class="titolo-categoria"> Origine Geografica </ion-title>
           <ion-row>
             <app-geographical-origin
@@ -945,8 +960,7 @@
               [geographical_origin]="element"
               [geographical_origins]="filteredGeographicalOrigins"
               (updateGeographicalOrigin)="updateGeographicalOrigins(this.allGeographicalOrigins, element, 'geographicalOriginID');"
-              [search_input]="searchInput"
-            >
+              [search_input]="searchInput">
             </app-geographical-origin>
           </ion-row>
         </ion-col>

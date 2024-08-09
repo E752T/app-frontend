@@ -28,7 +28,7 @@ import { GeographicalOriginModule } from "../geographical-origins/geographical-o
     ShopkeepersModule,
     TypeObjectModule,
     HttpClientModule,
-    GeographicalOriginModule
+    GeographicalOriginModule,
 ],
   declarations: [HomePage],
   providers: [
