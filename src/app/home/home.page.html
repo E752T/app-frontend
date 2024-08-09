@@ -944,7 +944,7 @@
               *ngFor="let element of filteredWarehouses"
               [warehouse]="element"
               [warehouses]="filteredWarehouses"
-              (updateWarehouse)="updateWarehouses(this.allWarehouses, element, 'warehouseID');"
+              (updateWarehouse)="updateWarehouse(this.allWarehouses, element, 'warehouseID');"
               [search_input]="searchInput">
             </app-warehouses>
           </ion-row>

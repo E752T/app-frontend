@@ -11,9 +11,9 @@ import { AuthorsModule } from '../authors/authors.module';
 import { CategoriesModule } from '../categories/categories.module';
 import { EditorsModule } from '../editors/editors.module';
 import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
-import { TypeObjectModule  } from '../type-objects/type-objects.module';
+import { TypeObjectModule } from '../type-objects/type-objects.module';
 import { WarehouseComponent } from '../warehouses/warehouses.component';
-import { GeographicalOriginModule } from "../geographical-origins/geographical-origin.module";
+import { GeographicalOriginModule } from '../geographical-origins/geographical-origin.module';
 
 @NgModule({
   imports: [
@@ -29,7 +29,7 @@ import { GeographicalOriginModule } from "../geographical-origins/geographical-o
     TypeObjectModule,
     HttpClientModule,
     GeographicalOriginModule,
-],
+  ],
   declarations: [HomePage],
   providers: [
     IonModal,
