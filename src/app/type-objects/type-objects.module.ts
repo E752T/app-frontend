@@ -1,8 +1,8 @@
+/* eslint-disable @angular-eslint/component-class-suffix */
 import {
   Component,
   EventEmitter,
   inject,
-  input,
   Input,
   Output,
   ViewChild,
@@ -14,15 +14,19 @@ import { HttpClient } from '@angular/common/http';
 import { OverlayEventDetail } from '@ionic/core';
 
 import { TypeObject } from '../services/interfaces.service';
-import { baseURL, today } from '../services/data.service';
-import { PostRequest } from '../services/request.service';
+import { today } from '../services/data.service';
+
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-type-object',
   templateUrl: './type-objects.component.html',
   styleUrls: ['./type-objects.component.scss'],
 })
-export class TypeObjectComponent {
+
+export class TypeObjectModule {
   [x: string]: any;
 
   constructor(
@@ -65,3 +69,4 @@ export class TypeObjectComponent {
     description: '',
   };
 }
+

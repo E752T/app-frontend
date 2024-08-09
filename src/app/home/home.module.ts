@@ -10,6 +10,7 @@ import { AuthorsModule } from '../authors/authors.module';
 import { CategoriesModule } from '../categories/categories.module';
 import { EditorsModule } from '../editors/editors.module';
 import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
+import { TypeObjectModule  } from '../type-objects/type-objects.module';
 
 @NgModule({
   imports: [
