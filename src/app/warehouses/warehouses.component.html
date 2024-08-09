@@ -1,3 +1,415 @@
-<p>
-  warehouses works!
-</p>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-accordion-group>
+        <ion-accordion value="first" class="accordion-oggetto">
+          <ion-item slot="header" color="primary" class="oggetto-anteprima">
+            <ion-icon name="caret-forward-outline"></ion-icon>
+            <ion-label class="cartellino-nome">{{ warehouse.name }} </ion-label>
+            <ion-button
+              id="elimina-autore-'{{ warehouse.warehouseID }}'"
+              color="danger"
+            >
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+
+          <ion-modal trigger="elimina-autore-'{{ warehouse.warehouseID }}'">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="cancel()"
+                      ><ion-icon name="arrow-undo-outline"></ion-icon
+                    ></ion-button>
+                  </ion-buttons>
+
+                  <ion-buttons slot="end">
+                    <ion-button
+                      (click)="DeleteElement(warehouse.warehouseID)"
+                      id="conferma-elimina-autore-'{{ warehouse.warehouseID }}'"
+                      [strong]="true"
+                      >Conferma</ion-button
+                    >
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-text class="ion-text-center" class="text-conferma-elimina">
+                <ion-title
+                  >Sei sicuro di voler eliminare il seguente
+                  elemento?</ion-title
+                >
+                <p></p>
+                <h1>{{ warehouse.name }}</h1>
+              </ion-text>
+              <ion-toast
+                trigger="conferma-elimina-autore-'{{ warehouse.warehouseID }}'"
+                message="Elemento eliminato"
+                class="toast-elemento"
+                [duration]="2000"
+                expand="block"
+                color="danger"
+              ></ion-toast>
+            </ng-template>
+          </ion-modal>
+
+          <div slot="content" style="margin-top: 15px">
+            <ion-label class="label-autori">
+              <svg
+                fill="#000000"
+                class="icone-autori"
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"
+                />
+              </svg>
+              Autore:
+            </ion-label>
+            <ion-input
+              class="input-form"
+              [(ngModel)]="warehouse.name"
+              id="{{ body_update_warehouse.name }}"
+              value="{{ warehouse.name }}"
+            >
+            </ion-input>
+            <svg
+              class="icone-autori-edit"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.65661 17L6.99975 17L6.99975 14M6.10235 14.8974L17.4107 3.58902C18.1918 2.80797 19.4581 2.80797 20.2392 3.58902C21.0202 4.37007 21.0202 5.6364 20.2392 6.41745L8.764 17.8926C8.22794 18.4287 7.95992 18.6967 7.6632 18.9271C7.39965 19.1318 7.11947 19.3142 6.8256 19.4723C6.49475 19.6503 6.14115 19.7868 5.43395 20.0599L3 20.9998L3.78312 18.6501C4.05039 17.8483 4.18403 17.4473 4.3699 17.0729C4.53497 16.7404 4.73054 16.424 4.95409 16.1276C5.20582 15.7939 5.50466 15.4951 6.10235 14.8974Z"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div slot="content">
+            <ion-label class="label-autori">
+              <svg
+                fill="#000000"
+                class="icone-autori"
+                viewBox="0 0 1920 1920"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1801.441 0v1920H219.03v-439.216h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.47 56.515-56.47h56.514V1029.02h-56.514c-31.196 0-56.515-25.3-56.515-56.471 0-31.172 25.319-56.47 56.515-56.47h56.514V577.254h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.471 56.515-56.471h56.514V0h1582.412Zm-113.03 112.941H332.06v351.373h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.3 56.514 56.471 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.471-56.514 56.471H332.06v326.275h1356.353V112.94ZM640.289 425.201H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Zm0 534.845H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+
+              Descrizione:
+            </ion-label>
+            <ion-input
+              class="input-form"
+              [(ngModel)]="warehouse.description"
+              id="{{ body_update_warehouse.description }}"
+              value="{{ warehouse.description }}"
+            >
+            </ion-input>
+            <svg
+              class="icone-autori-edit"
+              style="margin-top: -50px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.65661 17L6.99975 17L6.99975 14M6.10235 14.8974L17.4107 3.58902C18.1918 2.80797 19.4581 2.80797 20.2392 3.58902C21.0202 4.37007 21.0202 5.6364 20.2392 6.41745L8.764 17.8926C8.22794 18.4287 7.95992 18.6967 7.6632 18.9271C7.39965 19.1318 7.11947 19.3142 6.8256 19.4723C6.49475 19.6503 6.14115 19.7868 5.43395 20.0599L3 20.9998L3.78312 18.6501C4.05039 17.8483 4.18403 17.4473 4.3699 17.0729C4.53497 16.7404 4.73054 16.424 4.95409 16.1276C5.20582 15.7939 5.50466 15.4951 6.10235 14.8974Z"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div slot="content">
+            <ion-label class="label-autori">
+              <svg
+                class="icone-autori"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M3.75 5.25L3 6V18L3.75 18.75H20.25L21 18V6L20.25 5.25H3.75ZM4.5 7.6955V17.25H19.5V7.69525L11.9999 14.5136L4.5 7.6955ZM18.3099 6.75H5.68986L11.9999 12.4864L18.3099 6.75Z"
+                  fill="#080341"
+                />
+              </svg>
+
+              Email:
+            </ion-label>
+
+            <div class="div-svg-input">
+              <ion-input
+                class="input-form"
+                type="email"
+                [(ngModel)]="warehouse.email"
+                id="{{ body_update_warehouse.email }}"
+                value="{{ warehouse.email }}"
+              >
+              </ion-input>
+
+              <svg
+                class="icone-autori-edit"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.65661 17L6.99975 17L6.99975 14M6.10235 14.8974L17.4107 3.58902C18.1918 2.80797 19.4581 2.80797 20.2392 3.58902C21.0202 4.37007 21.0202 5.6364 20.2392 6.41745L8.764 17.8926C8.22794 18.4287 7.95992 18.6967 7.6632 18.9271C7.39965 19.1318 7.11947 19.3142 6.8256 19.4723C6.49475 19.6503 6.14115 19.7868 5.43395 20.0599L3 20.9998L3.78312 18.6501C4.05039 17.8483 4.18403 17.4473 4.3699 17.0729C4.53497 16.7404 4.73054 16.424 4.95409 16.1276C5.20582 15.7939 5.50466 15.4951 6.10235 14.8974Z"
+                  stroke="#000000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div slot="content">
+            <ion-label class="label-autori">
+              <svg
+                class="icone-autori"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16.5562 12.9062L16.1007 13.359C16.1007 13.359 15.0181 14.4355 12.0631 11.4972C9.10812 8.55901 10.1907 7.48257 10.1907 7.48257L10.4775 7.19738C11.1841 6.49484 11.2507 5.36691 10.6342 4.54348L9.37326 2.85908C8.61028 1.83992 7.13596 1.70529 6.26145 2.57483L4.69185 4.13552C4.25823 4.56668 3.96765 5.12559 4.00289 5.74561C4.09304 7.33182 4.81071 10.7447 8.81536 14.7266C13.0621 18.9492 17.0468 19.117 18.6763 18.9651C19.1917 18.9171 19.6399 18.6546 20.0011 18.2954L21.4217 16.883C22.3806 15.9295 22.1102 14.2949 20.8833 13.628L18.9728 12.5894C18.1672 12.1515 17.1858 12.2801 16.5562 12.9062Z"
+                  fill="#1C274C"
+                />
+              </svg>
+
+              Telefono principale:
+            </ion-label>
+
+            <div class="div-svg-input">
+              <ion-input
+                class="input-form"
+                type="tel"
+                [(ngModel)]="warehouse.telephone1"
+                id="{{ body_update_warehouse.telephone1 }}"
+                value="{{ warehouse.telephone1 }}"
+              >
+              </ion-input>
+              <svg
+                class="icone-autori-edit"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.65661 17L6.99975 17L6.99975 14M6.10235 14.8974L17.4107 3.58902C18.1918 2.80797 19.4581 2.80797 20.2392 3.58902C21.0202 4.37007 21.0202 5.6364 20.2392 6.41745L8.764 17.8926C8.22794 18.4287 7.95992 18.6967 7.6632 18.9271C7.39965 19.1318 7.11947 19.3142 6.8256 19.4723C6.49475 19.6503 6.14115 19.7868 5.43395 20.0599L3 20.9998L3.78312 18.6501C4.05039 17.8483 4.18403 17.4473 4.3699 17.0729C4.53497 16.7404 4.73054 16.424 4.95409 16.1276C5.20582 15.7939 5.50466 15.4951 6.10235 14.8974Z"
+                  stroke="#000000"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div slot="content">
+            <ion-label class="label-autori">
+              <svg
+                class="icone-autori"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16.5562 12.9062L16.1007 13.359C16.1007 13.359 15.0181 14.4355 12.0631 11.4972C9.10812 8.55901 10.1907 7.48257 10.1907 7.48257L10.4775 7.19738C11.1841 6.49484 11.2507 5.36691 10.6342 4.54348L9.37326 2.85908C8.61028 1.83992 7.13596 1.70529 6.26145 2.57483L4.69185 4.13552C4.25823 4.56668 3.96765 5.12559 4.00289 5.74561C4.09304 7.33182 4.81071 10.7447 8.81536 14.7266C13.0621 18.9492 17.0468 19.117 18.6763 18.9651C19.1917 18.9171 19.6399 18.6546 20.0011 18.2954L21.4217 16.883C22.3806 15.9295 22.1102 14.2949 20.8833 13.628L18.9728 12.5894C18.1672 12.1515 17.1858 12.2801 16.5562 12.9062Z"
+                  fill="#1C274C"
+                />
+              </svg>
+
+              Telefono di riserva:
+            </ion-label>
+
+            <ion-input
+              class="input-form"
+              type="tel"
+              [(ngModel)]="warehouse.telephone2"
+              id="{{ body_update_warehouse.telephone2 }}"
+              value="{{ warehouse.telephone2 }}"
+            >
+            </ion-input>
+            <svg
+              class="icone-autori-edit"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.65661 17L6.99975 17L6.99975 14M6.10235 14.8974L17.4107 3.58902C18.1918 2.80797 19.4581 2.80797 20.2392 3.58902C21.0202 4.37007 21.0202 5.6364 20.2392 6.41745L8.764 17.8926C8.22794 18.4287 7.95992 18.6967 7.6632 18.9271C7.39965 19.1318 7.11947 19.3142 6.8256 19.4723C6.49475 19.6503 6.14115 19.7868 5.43395 20.0599L3 20.9998L3.78312 18.6501C4.05039 17.8483 4.18403 17.4473 4.3699 17.0729C4.53497 16.7404 4.73054 16.424 4.95409 16.1276C5.20582 15.7939 5.50466 15.4951 6.10235 14.8974Z"
+                stroke="#000000"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <div slot="content">
+            <ion-label class="label-autori">
+              <svg
+                class="icone-autori"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 4V2.5"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M17 4V2.5"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M9 14.5L10.5 13V17"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13 16V14C13 13.4477 13.4477 13 14 13C14.5523 13 15 13.4477 15 14V16C15 16.5523 14.5523 17 14 17C13.4477 17 13 16.5523 13 16Z"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M21.5 9H16.625H10.75M2 9H5.875"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V14C22 17.7712 22 19.6569 20.8284 20.8284C20.1752 21.4816 19.3001 21.7706 18 21.8985"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Anno di aggiunta:
+            </ion-label>
+            <br />
+            <ion-text
+              class="input-form"
+              id="open-modal-addedDate-'{{ warehouse.warehouseID }}'"
+              color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
+              >{{
+                warehouse.addedDate ? warehouse.addedDate : "NOT FOUND"
+              }}</ion-text
+            >
+          </div>
+
+          <div slot="content">
+            <ion-label class="label-autori">
+              <svg
+                class="icone-autori"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 4V2.5"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M17 4V2.5"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M9 14.5L10.5 13V17"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13 16V14C13 13.4477 13.4477 13 14 13C14.5523 13 15 13.4477 15 14V16C15 16.5523 14.5523 17 14 17C13.4477 17 13 16.5523 13 16Z"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M21.5 9H16.625H10.75M2 9H5.875"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H14C17.7712 4 19.6569 4 20.8284 5.17157C22 6.34315 22 8.22876 22 12V14C22 17.7712 22 19.6569 20.8284 20.8284C20.1752 21.4816 19.3001 21.7706 18 21.8985"
+                  stroke="#1C274C"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                />
+              </svg>
+              Data dell'ultimo aggiornamento:
+            </ion-label>
+            <br />
+            <ion-text
+              class="input-form"
+              id="open-modal-lastUpdateDate-'{{ warehouse.warehouseID }}'"
+              color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
+              >{{
+                warehouse.lastUpdateDate
+                  ? warehouse.lastUpdateDate
+                  : "Clicca per aggiungere una data"
+              }}</ion-text
+            >
+          </div>
+
+          <div slot="content">
+            <ion-button
+              color="secondary"
+              class="bottone-update"
+              id="button-UpdateAuthorAPI-'{{ warehouse.warehouseID }}'"
+              (click)="UpdateElement()"
+              >Salva</ion-button
+            >
+
+            <ion-button
+              id="elimina-autore-'{{ warehouse.warehouseID }}'"
+              (click)="DeleteElement(warehouse.warehouseID)"
+              color="danger"
+            >
+              Elimina
+            </ion-button>
+
+            <ion-toast
+              trigger="button-UpdateAuthorAPI-'{{ warehouse.warehouseID }}'"
+              message="Nuovo elemento salvato"
+              class="toast-elemento"
+              color="success"
+              [duration]="2000"
+              expand="block"
+            ></ion-toast>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-col>
+  </ion-row>
+</ion-grid>

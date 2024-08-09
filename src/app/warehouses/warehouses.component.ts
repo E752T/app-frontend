@@ -84,7 +84,7 @@ export class WarehouseComponent {
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
-  UpdateAPI(): Promise<any> {
+  UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdateWarehouse/', this.warehouse);
   }
 
