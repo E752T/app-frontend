@@ -23,6 +23,7 @@ import { TypeObjectModule  } from '../type-objects/type-objects.module';
     CategoriesModule,
     EditorsModule,
     ShopkeepersModule,
+    TypeObjectModule,
     HttpClientModule,
   ],
   declarations: [HomePage],

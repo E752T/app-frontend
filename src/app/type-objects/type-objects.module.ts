@@ -1,72 +1,14 @@
-/* eslint-disable @angular-eslint/component-class-suffix */
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { IonModal } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
-import { OverlayEventDetail } from '@ionic/core';
-
-import { TypeObject } from '../services/interfaces.service';
-import { today } from '../services/data.service';
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
 
+import { TypeObjectComponent } from './type-objects.component';
 
-@Component({
-  selector: 'app-type-object',
-  templateUrl: './type-objects.component.html',
-  styleUrls: ['./type-objects.component.scss'],
+@NgModule({
+  declarations: [TypeObjectComponent],
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
+  exports: [TypeObjectComponent],
 })
-
-export class TypeObjectModule {
-  [x: string]: any;
-
-  constructor(
-    private http: HttpClient,
-    private modalController: ModalController
-  ) {}
-
-  private platform = inject(Platform);
-
-  @Input()
-  type_object!: TypeObject;
-
-  @Input()
-  type_objects!: Array<TypeObject>;
-
-  @Input()
-  search_input!: string | null | undefined;
-
-  @Output()
-  updatePublishers = new EventEmitter<any>();
-
-  @ViewChild(IonModal)
-  modal!: IonModal;
-
-  modalCtrl: any;
-
-  bodyAddTypeObject: TypeObject = {
-    typeID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-
-  bodyModifyTypeObject: TypeObject = {
-    typeID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-}
-
+export class TypeObjectModule {}
