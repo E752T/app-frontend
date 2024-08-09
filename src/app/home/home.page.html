@@ -41,11 +41,10 @@
         <ion-title
           color="dark"
           class="titolo-filtri-ricerca"
-          style="margin-bottom: 40px;"
+          style="margin-bottom: 40px"
         >
           Filtri di Ricerca
         </ion-title>
-
 
         <div style="margin-left: 5%; margin-bottom: 25px" color="success">
           <ion-label>Seleziona la disponibilità</ion-label>
@@ -63,7 +62,7 @@
           </ion-radio-group>
         </div>
 
-        <ion-list style="margin-top: -20px;">
+        <ion-list style="margin-top: -40px">
           <ion-item
             class="center"
             style="margin-bottom: 15px; min-width: 300px"
@@ -92,14 +91,13 @@
           </ion-item>
         </ion-list>
 
-
         <p></p>
-        <div style="text-align: center;">
-          <ion-text style="display: inline-block; margin: 10px auto;">
-              Anno di pubblicazione
+        <div style="text-align: center; margin-top: -20px">
+          <ion-text style="display: inline-block; margin: 10px auto">
+            Anno di pubblicazione
           </ion-text>
-      </div>
-        <div class="centered" color="success">
+        </div>
+        <div class="centered" color="success" style="margin-top: -20px">
           <small>
             <p class="label-anni" style="margin-bottom: -40px; position: fixed">
               1800
@@ -864,7 +862,6 @@
               *ngFor="let message of filteredObjects"
               [message]="message"
             >
-              Anno di pubblicazione
             </app-message>
           </ion-row>
         </ion-col>
