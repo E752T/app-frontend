@@ -1,5 +1,30 @@
-.sidebar {
-  will-change: auto;
+.oggetto-anteprima {
+  border-radius: 104px 104px 104px 104px;
+  -webkit-border-radius: 104px 104px 104px 104px;
+  -moz-border-radius: 104px 104px 104px 104px;
+}
+
+.bottone-update {
+  padding-right: 3%;
+}
+
+.testo-conferma-elimina {
+  margin-bottom: 50%;
+  font-family: serif;
+}
+
+.label-autori {
+  font-weight: bold;
+  padding-bottom: 2%;
+}
+
+.datetime-item {
+  padding-left: 15%;
+  padding-right: 15%;
+  min-width: 300px;
+  margin: 0;
+  position: absolute;
+  top: 20%;
 }
 
 .titolo-data {
@@ -8,12 +33,13 @@
   font-size: 4vw;
 }
 
+.icone-autori {
+  width: 20px;
+  height: 20px;
+  margin-bottom: -4px;
+}
+
 .input-form {
-  background-color: rgb(255, 255, 255);
-  margin-top: 10px;
-  box-sizing: border-box;
-  padding: 20px;
-  border-radius: 5%;
   margin-left: 11px;
   display: flex !important;
   align-content: center !important;
@@ -36,17 +62,19 @@
   margin-top: -50px;
 }
 
-.icone-autori {
-  width: 20px;
-  height: 20px;
-  margin-bottom: -4px;
+.accordion-oggetto {
+  padding-right: 50px;
+  margin-left: 30px;
 }
 
-.datetime-item {
-  padding-left: 15%;
-  padding-right: 15%;
-  min-width: 300px;
-  margin: 0;
-  position: absolute;
-  top: 20%;
+.cartellino-nome {
+  min-width: 200px;
+  margin-left: 2%;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.toast-elemento-eliminato {
+  max-width: 250px;
+  margin-left: 40%;
+  margin-right: 40%;
 }

@@ -12,8 +12,10 @@ import { CategoriesModule } from '../categories/categories.module';
 import { EditorsModule } from '../editors/editors.module';
 import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
 import { TypeObjectModule } from '../type-objects/type-objects.module';
-import { WarehouseComponent } from '../warehouses/warehouses.component';
 import { GeographicalOriginModule } from '../geographical-origins/geographical-origin.module';
+import { ProvenanceModule } from "../provenance/provenance.module";
+import { WarehousetModule } from '../warehouses/warehouses.module';
+
 
 @NgModule({
   imports: [
@@ -29,7 +31,10 @@ import { GeographicalOriginModule } from '../geographical-origins/geographical-o
     TypeObjectModule,
     HttpClientModule,
     GeographicalOriginModule,
-  ],
+    ProvenanceModule,
+    WarehousetModule
+
+],
   declarations: [HomePage],
   providers: [
     IonModal,
@@ -37,7 +42,7 @@ import { GeographicalOriginModule } from '../geographical-origins/geographical-o
     CategoriesModule,
     ShopkeepersModule,
     EditorsModule,
-    WarehouseComponent,
+    WarehousetModule,
   ],
 })
 export class HomePageModule {}

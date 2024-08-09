@@ -113,14 +113,14 @@ export class HomePage implements OnInit {
   };
 
   AdminTables: Array<string> = [
-    'Author',
-    'Publisher',
-    'Category',
-    'Shopkeeper',
+    'Author', //
+    'Publisher', //
+    'Category', //
+    'Shopkeeper', //
     'Warehouse',
-    'Provenance',
-    'GeographicalOrigin',
-    'TypeObject',
+    'Provenance', //
+    'GeographicalOrigin', //
+    'TypeObject', //
   ];
 
   ////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
-import { ProvenanceComponent } from './provenance.component';
+import { ProvenancesComponent } from './provenance.component';
 
 @NgModule({
-  declarations: [ProvenanceComponent],
+  declarations: [ProvenancesComponent],
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
-  exports: [ProvenanceComponent],
+  exports: [ProvenancesComponent],
 })
 export class ProvenanceModule { }

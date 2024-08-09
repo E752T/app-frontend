@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   inject,
-  input,
   Input,
   Output,
   ViewChild,
