@@ -109,16 +109,12 @@ ion-content {
   justify-content: flex-end;
 }
 .bottone-accedi {
-  float: right;
   margin-right: 1%;
-  max-width: 200px;
-  background-color: #fffefd;
+  max-width: 250px;
   flex: 1;
-}
-.bottone-accedi ion-text {
-  color: #000000;
-  font-family: "Times New Roman", Times, serif;
-  border-radius: 20px;
+  width: 120%;
+  margin: 0 auto;
+  display: block;
 }
 
 .ng-template-custom {
@@ -149,15 +145,15 @@ ion-content {
 }
 
 .bottone-contatti {
-  float: right;
   font-family: serif;
-  margin-right: 2%;
-  max-width: 200px;
+  max-width: 250px;
   font-size: 18px;
-  flex: 1;
   border-radius: 10px;
-  background-color: #ffffff;
   background: white;
+  max-width: 250px;
+  width: 120%;
+  margin: 0 auto;
+  display: block;
 }
 
 .contatti-testo {
@@ -394,10 +390,16 @@ ion-button.bottone-accedi {
   align-items: center !important;
 }
 
-.bottone-accedi {
-  width: 80%;
-}
-
 .template-angular {
   border-radius: 100px;
+}
+
+#filter-button {
+  margin: 0 auto;
+  display: block;
+}
+
+.filter-button {
+  margin: 0 auto;
+  display: block;
 }
