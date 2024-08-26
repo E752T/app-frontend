@@ -393,22 +393,26 @@ export class HomePage implements OnInit {
   }
 
   CreatePublisher(): Promise<any> {
-    this.body_add_category.categoryID = this.getNewIDPublisher(
+    this.body_add_publisher.publisherID = this.getNewIDPublisher(
       this.allPublishers
     );
-    let new_element = this.body_add_category;
-    this.allCategories.unshift(new_element);
-    console.log('POST api/AddCategory/ ', this.body_add_category);
+    let new_element = this.body_add_publisher;
+    this.allPublishers.unshift(new_element);
+    console.log('POST api/AddPublisher/ ', this.body_add_publisher);
     // Perform the PostRequest
-    return PostRequest(baseURL + 'AddCategory/', this.body_add_category)
+    return PostRequest(baseURL + 'AddPublisher/', this.body_add_publisher)
       .then((response) => {
         // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_category = {
-          categoryID: 0,
+        this.body_add_publisher = {
+          publisherID: 0,
           name: '',
           addedDate: today,
           lastUpdateDate: today,
           description: '',
+          email: '',
+          telephone1: '',
+          telephone2: '',
+          notes: '',
         };
         return response;
       })
