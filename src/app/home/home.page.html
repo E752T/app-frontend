@@ -1602,26 +1602,224 @@
   </div>
 
   <div *ngIf="sectionToShow === 'Provenance'" style="margin-top: 40px">
-    <ion-grid>
-      <ion-row>
-        <ion-text>Provenance</ion-text>
-        <!-- <app-message
-            *ngFor="let message of filteredObjects "
-            [message]="message">
-          </app-message> -->
-      </ion-row>
-    </ion-grid>
+    <ion-title class="titolo-categoria">Provenienza </ion-title>
+    <ion-button
+      id="bottone-aggiungi-provenance"
+      class="bottone-aggiungi-nuovo-oggetto"
+      color="lighter"
+      ><ion-icon
+        style="justify-content: flex-start"
+        name="add-circle-outline"
+      ></ion-icon>
+      <p style="padding-left: 20px"></p>
+      <ion-text class="testo-aggiungi-nuovo">
+        Aggiungi una nuova provenienza
+      </ion-text>
+    </ion-button>
+    <ion-modal
+      trigger="bottone-aggiungi-provenance"
+      (willDismiss)="onWillDismiss($event)"
+      class="ion-padding"
+    >
+      <ng-template>
+        <ion-header>
+          <ion-title class="center" style="margin-top: 20px"
+            >Aggiungi una nuova provenienza
+          </ion-title>
+
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()" [strong]="true"
+                ><ion-icon name="arrow-undo-outline"></ion-icon
+              ></ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button
+                id="bottone-aggiungi-provenance"
+                (click)="CreateProvenance()"
+                [strong]="true"
+                >Conferma</ion-button
+              >
+              <ion-toast
+                trigger="bottone-aggiungi-provenance"
+                message="Nuovo Elemento Aggiunto"
+                class="toast-nuovo-elemento"
+                [duration]="2000"
+                expand="block"
+                color="success"
+              ></ion-toast>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-item class="testo-form">
+            <ion-input
+              class="testo-input"
+              label="Nome"
+              labelPlacement="stacked"
+              type="text"
+              [(ngModel)]="body_add_provenance.name"
+            ></ion-input>
+          </ion-item>
+          <ion-item class="testo-form">
+            <ion-input
+              class="testo-input"
+              label="Descrizione"
+              labelPlacement="stacked"
+              type="text"
+              [(ngModel)]="body_add_provenance.description"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item class="testo-form">
+            <ion-label> Data di creazione </ion-label>
+            <ion-datetime
+              class="testo-input"
+              [preferWheel]="true"
+              presentation="month-year"
+              [(ngModel)]="body_add_provenance.addedDate"
+            ></ion-datetime>
+          </ion-item>
+
+          <ion-item class="testo-form">
+            <ion-label> Data dell'ultimo aggiornamento </ion-label>
+            <ion-datetime
+              [preferWheel]="true"
+              class="testo-input"
+              presentation="month-year"
+              placeholder="Seleziona la data dell'ultimo aggiornamento"
+              [(ngModel)]="body_add_provenance.lastUpdateDate"
+            ></ion-datetime>
+          </ion-item>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <div style="margin-bottom: 150px">
+      <ion-grid>
+        <ion-row>
+          <app-provenances
+            class="carta-elemento"
+            *ngFor="let element of allProvenances "
+            [provenance]="element"
+            [provenances]="allProvenances"
+            (updateProvenances)="updateProvenances(this.allProvenances, element, 'provenanceID');"
+            [search_input]="searchInput"
+          >
+          </app-provenances>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 
   <div *ngIf="sectionToShow === 'GeographicalOrigin'" style="margin-top: 40px">
-    <ion-grid>
-      <ion-row>
-        <ion-text>GeographicalOrigin</ion-text>
-        <!-- <app-message
-            *ngFor="let message of filteredObjects "
-            [message]="message">
-          </app-message> -->
-      </ion-row>
-    </ion-grid>
+    <ion-title class="titolo-categoria">Origine Geografica </ion-title>
+    <ion-button
+      id="bottone-aggiungi-GeographicalOrigin"
+      class="bottone-aggiungi-nuovo-oggetto"
+      color="lighter"
+      ><ion-icon
+        style="justify-content: flex-start"
+        name="add-circle-outline"
+      ></ion-icon>
+      <p style="padding-left: 20px"></p>
+      <ion-text class="testo-aggiungi-nuovo">
+        Aggiungi una nuova origine geografica
+      </ion-text>
+    </ion-button>
+    <ion-modal
+      trigger="bottone-aggiungi-GeographicalOrigin"
+      (willDismiss)="onWillDismiss($event)"
+      class="ion-padding"
+    >
+      <ng-template>
+        <ion-header>
+          <ion-title class="center" style="margin-top: 20px"
+            >Aggiungi una nuova origine geografica
+          </ion-title>
+
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()" [strong]="true"
+                ><ion-icon name="arrow-undo-outline"></ion-icon
+              ></ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button
+                id="bottone-aggiungi-GeographicalOrigin"
+                (click)="CreateProvenance()"
+                [strong]="true"
+                >Conferma</ion-button
+              >
+              <ion-toast
+                trigger="bottone-aggiungi-GeographicalOrigin"
+                message="Nuovo Elemento Aggiunto"
+                class="toast-nuovo-elemento"
+                [duration]="2000"
+                expand="block"
+                color="success"
+              ></ion-toast>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-item class="testo-form">
+            <ion-input
+              class="testo-input"
+              label="Nome"
+              labelPlacement="stacked"
+              type="text"
+              [(ngModel)]="body_add_geographical_origin.name"
+            ></ion-input>
+          </ion-item>
+          <ion-item class="testo-form">
+            <ion-input
+              class="testo-input"
+              label="Descrizione"
+              labelPlacement="stacked"
+              type="text"
+              [(ngModel)]="body_add_geographical_origin.description"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item class="testo-form">
+            <ion-label> Data di creazione </ion-label>
+            <ion-datetime
+              class="testo-input"
+              [preferWheel]="true"
+              presentation="month-year"
+              [(ngModel)]="body_add_geographical_origin.addedDate"
+            ></ion-datetime>
+          </ion-item>
+
+          <ion-item class="testo-form">
+            <ion-label> Data dell'ultimo aggiornamento </ion-label>
+            <ion-datetime
+              [preferWheel]="true"
+              class="testo-input"
+              presentation="month-year"
+              placeholder="Seleziona la data dell'ultimo aggiornamento"
+              [(ngModel)]="body_add_geographical_origin.lastUpdateDate"
+            ></ion-datetime>
+          </ion-item>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <div style="margin-bottom: 150px">
+      <ion-grid>
+        <ion-row>
+          <app-geographical-origin
+            class="carta-elemento"
+            *ngFor="let element of allGeographicalOrigins "
+            [geographical_origin]="element"
+            [geographical_origins]="allGeographicalOrigins"
+            (updateGeographicalOrigins)="updateGeographicalOrigins(this.allGeographicalOrigins, element, 'GeographicalOriginID');"
+            [search_input]="searchInput"
+          >
+          </app-geographical-origin>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 </ion-content>
