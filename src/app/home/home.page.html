@@ -1307,13 +1307,13 @@
             </ion-buttons>
             <ion-buttons slot="end">
               <ion-button
-                id="bottone-aggiungi-categoria"
+                id="bottone-aggiungi-publisher"
                 (click)="CreateCategory()"
                 [strong]="true"
                 >Conferma</ion-button
               >
               <ion-toast
-                trigger="bottone-aggiungi-categoria"
+                trigger="bottone-aggiungi-publisher"
                 message="Nuovo Elemento Aggiunto"
                 class="toast-nuovo-elemento"
                 [duration]="2000"
@@ -1330,7 +1330,7 @@
               label="Nome"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="body_add_category.name"
+              [(ngModel)]="body_add_publisher.name"
             ></ion-input>
           </ion-item>
           <ion-item class="testo-form">
@@ -1339,7 +1339,7 @@
               label="Descrizione"
               labelPlacement="stacked"
               type="text"
-              [(ngModel)]="body_add_category.description"
+              [(ngModel)]="body_add_publisher.description"
             ></ion-input>
           </ion-item>
 
@@ -1347,7 +1347,7 @@
             <ion-label> Data di creazione </ion-label>
             <ion-text
               class="testo-input"
-              [(ngModel)]="body_add_category.addedDate"
+              [(ngModel)]="body_add_publisher.addedDate"
             ></ion-text>
           </ion-item>
 
@@ -1355,7 +1355,7 @@
             <ion-label> Data dell'ultimo aggiornamento </ion-label>
             <ion-text
               class="testo-input"
-              [(ngModel)]="body_add_category.lastUpdateDate"
+              [(ngModel)]="body_add_publisher.lastUpdateDate"
             ></ion-text>
           </ion-item>
         </ion-content>
@@ -1380,15 +1380,114 @@
   </div>
 
   <div *ngIf="sectionToShow === 'TypeObject'" style="margin-top: 40px">
-    <ion-grid>
-      <ion-row>
-        <ion-text>TypeObject</ion-text>
-        <!-- <app-message
-            *ngFor="let message of filteredObjects "
-            [message]="message">
-          </app-message> -->
-      </ion-row>
-    </ion-grid>
+    <ion-title class="titolo-categoria">Tipi di oggetti </ion-title>
+    <ion-button
+      id="bottone-aggiungi-type-object"
+      class="bottone-aggiungi-nuovo-oggetto"
+      color="lighter"
+      ><ion-icon
+        style="justify-content: flex-start"
+        name="add-circle-outline"
+      ></ion-icon>
+      <p style="padding-left: 20px"></p>
+      <ion-text class="testo-aggiungi-nuovo">
+        Aggiungi un nuovo Tipo di Oggetti
+      </ion-text>
+    </ion-button>
+    <ion-modal
+      trigger="bottone-aggiungi-type-object"
+      (willDismiss)="onWillDismiss($event)"
+      class="ion-padding"
+    >
+      <ng-template>
+        <ion-header>
+          <ion-title class="center" style="margin-top: 20px"
+            >Aggiungi una nuovo tipo di oggetto</ion-title
+          >
+
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()" [strong]="true"
+                ><ion-icon name="arrow-undo-outline"></ion-icon
+              ></ion-button>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button
+                id="bottone-aggiungi-type-object"
+                (click)="CreateTypeObject()"
+                [strong]="true"
+                >Conferma</ion-button
+              >
+              <ion-toast
+                trigger="bottone-aggiungi-type-object"
+                message="Nuovo Elemento Aggiunto"
+                class="toast-nuovo-elemento"
+                [duration]="2000"
+                expand="block"
+                color="success"
+              ></ion-toast>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-item class="testo-form">
+            <ion-input
+              class="testo-input"
+              label="Nome"
+              labelPlacement="stacked"
+              type="text"
+              [(ngModel)]="body_add_type_object.name"
+            ></ion-input>
+          </ion-item>
+          <ion-item class="testo-form">
+            <ion-input
+              class="testo-input"
+              label="Descrizione"
+              labelPlacement="stacked"
+              type="text"
+              [(ngModel)]="body_add_type_object.description"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item class="testo-form">
+            <ion-label> Data di creazione </ion-label>
+            <ion-datetime
+              class="testo-input"
+              [preferWheel]="true"
+              presentation="month-year"
+              [(ngModel)]="body_add_type_object.addedDate"
+            ></ion-datetime>
+          </ion-item>
+
+          <ion-item class="testo-form">
+            <ion-label> Data dell'ultimo aggiornamento </ion-label>
+            <ion-datetime
+              [preferWheel]="true"
+              class="testo-input"
+              presentation="month-year"
+              placeholder="Seleziona la data dell'ultimo aggiornamento"
+              [(ngModel)]="body_add_type_object.lastUpdateDate"
+            ></ion-datetime>
+          </ion-item>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+
+    <div style="margin-bottom: 150px">
+      <ion-grid>
+        <ion-row>
+          <app-type-objects
+            class="carta-elemento"
+            *ngFor="let element of allTypeObjects "
+            [type_object]="element"
+            [type_objects]="allTypeObjects"
+            (updateTypeObjects)="updateTypeObjects(this.allTypeObjects, element, 'typeID');"
+            [search_input]="searchInput"
+          >
+          </app-type-objects>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 
   <div *ngIf="sectionToShow === 'Warehouse'" style="margin-top: 40px">

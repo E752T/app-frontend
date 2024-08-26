@@ -79,7 +79,8 @@ export class TypeObjectComponent {
   }
 
   UpdateElement(): Promise<any> {
-    return PostRequest(baseURL + 'UpdateTypeObject/', this.type_objects);
+    console.log('UpdateTypeObject/', this.type_object)
+    return PostRequest(baseURL + 'UpdateTypeObject/', this.type_object);
   }
 
   getNewID(elementList: Array<TypeObject>): number {
