@@ -77,7 +77,7 @@ export class EditorsComponent {
     );
     var elementToDelete = console.log(this.publishers);
     this.updatePublishers.emit(elementToDelete);
-    return PostRequest(baseURL + 'DeleteCategory/' + objectID);
+    return PostRequest(baseURL + 'DeletePublisher/' + objectID);
   }
 
   confirmDelete() {

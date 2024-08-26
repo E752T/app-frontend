@@ -393,8 +393,17 @@
               >Salva</ion-button
             >
 
+            <ion-toast
+              trigger="button-UpdateAuthorAPI-'{{ author.authorID }}'"
+              message="Nuovo elemento salvato"
+              class="toast-elemento"
+              color="success"
+              [duration]="2000"
+              expand="block"
+            ></ion-toast>
+
             <ion-button
-              id="elimina-autore-'{{ author.authorID }}'"
+              id="modale-elimina-autore-'{{ author.authorID }}'"
               (click)="DeleteElement(author.authorID)"
               color="danger"
             >
@@ -402,10 +411,10 @@
             </ion-button>
 
             <ion-toast
-              trigger="button-UpdateAuthorAPI-'{{ author.authorID }}'"
-              message="Nuovo elemento salvato"
+              trigger="modale-elimina-autore-'{{ author.authorID }}'"
+              message="Elemento eliminato"
               class="toast-elemento"
-              color="success"
+              color="danger"
               [duration]="2000"
               expand="block"
             ></ion-toast>
