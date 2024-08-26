@@ -389,7 +389,11 @@
                   <ion-label class="titoli-modale">
                     Disponibile in magazzino:
                   </ion-label>
-                  <ion-toggle value="{{ message.avaiable }}"> </ion-toggle>
+                  <ion-toggle
+                    [(ngModel)]="message.avaiable"
+                    [checked]="message.avaiable"
+                  >
+                  </ion-toggle>
                 </ion-item>
 
                 <ion-item>
