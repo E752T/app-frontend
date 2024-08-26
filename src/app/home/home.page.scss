@@ -347,6 +347,7 @@ ion-button.bottone-accedi {
   font-style: normal;
   font-variant: normal;
   text-transform: none;
+  display: table;
 }
 
 .modale-modifica-oggetto {
@@ -384,8 +385,8 @@ ion-button.bottone-accedi {
 }
 
 .icone-aggiungi-oggetto-modified {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   margin-right: 10px;
 }
 
