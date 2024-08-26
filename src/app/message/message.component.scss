@@ -136,6 +136,12 @@ ion-radio.ios::part(container) {
   margin-left: 20px;
 }
 
+.button-container-icon {
+  display: flex;                /* Enables flexbox layout */
+  justify-content: center;      /* Centers items horizontally */
+  align-items: center;          /* Centers items vertically */
+}
+
 .modale-date {
   padding-left: 25%;
   padding-bottom: 35%;
