@@ -46,6 +46,11 @@ export class ShopkeepersComponent {
     addedDate: today,
     lastUpdateDate: today,
     description: '',
+    telephone1:'',
+    telephone2:'',
+    email:'',
+    notes:'',
+
   };
 
   body_update_shopkeeper: Shopkeeper = {
@@ -54,6 +59,11 @@ export class ShopkeepersComponent {
     addedDate: today,
     lastUpdateDate: today,
     description: '',
+    telephone1:'',
+    telephone2:'',
+    email:'',
+    notes:'',
+
   };
 
   DeleteElement(objectID: any) {

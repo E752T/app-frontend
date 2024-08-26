@@ -136,6 +136,11 @@ export let bodyAddShopkeeper: Shopkeeper = {
   lastUpdateDate: new Date(),
   uniqueName: '',
   description: '',
+  notes:'',
+  email:'',
+  telephone1:'',
+  telephone2:''
+
 };
 
 export let bodyModifyShopkeeper: Shopkeeper = {
@@ -144,6 +149,10 @@ export let bodyModifyShopkeeper: Shopkeeper = {
   lastUpdateDate: new Date(),
   uniqueName: '',
   description: '',
+  notes:'',
+  email:'',
+  telephone1:'',
+  telephone2:''
 };
 
 export let bodyAddWarehouse: Warehouse = {

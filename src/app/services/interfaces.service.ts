@@ -86,6 +86,11 @@ export interface Shopkeeper {
   description: string;
   addedDate: Date;
   lastUpdateDate: Date;
+  email: string;
+  telephone1: string;
+  telephone2: string;
+  notes: string;
+
 }
 
 export interface Warehouse {

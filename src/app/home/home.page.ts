@@ -450,6 +450,10 @@ export class HomePage implements OnInit {
     addedDate: today,
     lastUpdateDate: today,
     description: '',
+    telephone1: '',
+    telephone2: '',
+    email: '',
+    notes: '',
   };
 
   getShopkeepers(input: string | undefined | null) {
@@ -487,6 +491,10 @@ export class HomePage implements OnInit {
           addedDate: today,
           lastUpdateDate: today,
           description: '',
+          telephone1: '',
+          telephone2: '',
+          email: '',
+          notes: '',
         };
         return response;
       })
