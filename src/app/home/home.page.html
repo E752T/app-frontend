@@ -463,7 +463,7 @@
               <ion-header>
                 <ion-title
                   class="titolo-aggiungi-oggetto ion-text-center"
-                  style="display: table"
+                  style="margin: auto; display: table; margin-top: 20px"
                   >Aggiungi un nuovo oggetto</ion-title
                 >
                 <ion-toolbar>
@@ -774,12 +774,12 @@
                     class="titoli-modale"
                     style="margin-left: 25px; margin-right: 20px"
                   >
-                    Disponibile in magazzino
+                    Disponibile
                   </ion-label>
                   <ion-toggle id="{{bodyAddObject.avaiable }}"> </ion-toggle>
                 </ion-item>
 
-                <ion-item class="titoli-modale">
+                <ion-item class="titoli-modale" style="margin-left: -5px">
                   <svg
                     height="40px"
                     width="40px"
@@ -815,15 +815,9 @@
                     </g>
                   </svg>
 
-                  <ion-label class="titoli-modale"> Genere: </ion-label>
+                  <ion-label style="margin-left: 15px"> Genere </ion-label>
 
-                  <ion-list
-                    style="
-                      margin-right: 10px;
-                      margin-left: 20px;
-                      min-width: 220px;
-                    "
-                  >
+                  <ion-list style="min-width: 200px">
                     <ion-select
                       class="center"
                       aria-label="generi"
@@ -851,13 +845,19 @@
                       <ion-select-option value="Viaggio"
                         >Viaggio</ion-select-option
                       >
+                      <ion-select-option value="Spirituale"
+                        >Spiritualità</ion-select-option
+                      >
                     </ion-select>
                   </ion-list>
                 </ion-item>
 
-                <ion-item>
+                <ion-item
+                  lines="none"
+                  style="display: flex; align-items: center"
+                >
                   <svg
-                    style="padding-right: 15px; height: 50px; width: 50px"
+                    style="padding-right: 15px; height: 40px"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -871,17 +871,27 @@
                     />
                   </svg>
 
-                  <ion-label class="titoli-modale"> Copertina</ion-label>
+                  <ion-label style="margin-left: 10px"> Copertina </ion-label>
+                </ion-item>
 
-                  <ion-item class="immagine-copertina-modale">
-                    <input type="file" id="fileImageInput" accept="image/*" />
-                    <img
-                      id="imagePreview"
-                      src="#"
-                      alt="Anteprima Immagine"
-                      style="display: none; max-width: 100px; max-height: 100px"
-                    />
-                  </ion-item>
+                <ion-item
+                  lines="none"
+                  class="immagine-copertina-modale"
+                  style="display: flex; align-items: center"
+                >
+                  <input type="file" id="fileImageInput" accept="image/*" />
+                  <img
+                    id="imagePreview"
+                    src="#"
+                    alt="Anteprima Immagine"
+                    style="
+                      display: none;
+                      max-width: 100px;
+                      max-height: 100px;
+                      margin-left: 10px;
+                      margin-bottom: 30px;
+                    "
+                  />
                 </ion-item>
               </ion-content>
             </ng-template>
