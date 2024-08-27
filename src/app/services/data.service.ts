@@ -19,7 +19,6 @@ import { DatePipe } from '@angular/common';
 const datePipe = new DatePipe('en-US');
 const formattedDate = datePipe.transform(today, 'yyyy-MM-dd');
 
-
 export let messageDismissModal: string = '';
 
 export const alertButtons = ['OK'];

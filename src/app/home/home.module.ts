@@ -22,6 +22,7 @@ import { WarehousetModule } from '../warehouses/warehouses.module';
     CommonModule,
     FormsModule,
     IonicModule,
+    HttpClientModule,
     MessageComponentModule,
     HomePageRoutingModule,
     AuthorsModule,
@@ -29,7 +30,6 @@ import { WarehousetModule } from '../warehouses/warehouses.module';
     EditorsModule,
     ShopkeepersModule,
     TypeObjectModule,
-    HttpClientModule,
     GeographicalOriginModule,
     ProvenanceModule,
     WarehousetModule
@@ -43,6 +43,9 @@ import { WarehousetModule } from '../warehouses/warehouses.module';
     ShopkeepersModule,
     EditorsModule,
     WarehousetModule,
+    ProvenanceModule,
+    GeographicalOriginModule,
+    TypeObjectModule
   ],
 })
 export class HomePageModule {}

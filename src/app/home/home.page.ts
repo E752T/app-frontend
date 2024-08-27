@@ -281,7 +281,7 @@ export class HomePage implements OnInit {
   }
 
   ///////////////////////////////////////////////////////////////
-  /////////////////       CATEGORIE      ///////////////////////////
+  /////////////////       Category      ///////////////////////////
 
   allCategories: Array<Category> = [];
   filteredCategories: Array<Category> = [];
@@ -354,14 +354,14 @@ export class HomePage implements OnInit {
 
   updateCategories(items: any[], itemToDelete: any, key: string) {
     items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update Authors', items);
-    this.allAuthors = items;
-    this.filteredAuthors = this.allAuthors;
-    return this.filteredAuthors;
+    console.log(' Update Categories', items);
+    this.allCategories = items;
+    this.filteredCategories = this.allCategories;
+    return this.filteredCategories;
   }
 
   ///////////////////////////////////////////////////////////////
-  /////////////////       CATEGORIE      ///////////////////////////
+  /////////////////       Publisher      ///////////////////////////
 
   allPublishers: Array<Publisher> = [];
   filteredPublishers: Array<Publisher> = [];
