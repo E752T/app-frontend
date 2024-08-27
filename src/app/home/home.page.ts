@@ -221,11 +221,17 @@ export class HomePage implements OnInit {
   };
 
   getAuthors(input: string | undefined | null) {
-    this.filteredAuthors = this.filterData(
-      input,
-      this.allAuthors,
-      this.filterByYears
-    );
+    this.filteredAuthors = this.allAuthors;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredAuthors = this.filterByYears(this.filteredAuthors);
+    } else {
+      this.filteredAuthors = this.allAuthors.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredAuthors = this.filterByYears(this.filteredAuthors);
+    }
+    console.log('Filter results of getAuthors() => ', this.filteredAuthors);
   }
 
   getNewIDAuthor(elementList: Array<Author>): number {
@@ -297,11 +303,17 @@ export class HomePage implements OnInit {
   };
 
   getCategories(input: string | undefined | null) {
-    this.filteredCategories = this.filterData(
-      input,
-      this.allCategories,
-      this.filterByYears
-    );
+    this.filteredCategories = this.allCategories;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredCategories = this.filterByYears(this.filteredCategories);
+    } else {
+      this.filteredCategories = this.allCategories.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredCategories = this.filterByYears(this.filteredCategories);
+    }
+    console.log('results of getCategories() => ', this.filteredCategories);
   }
 
   getNewIDCategory(elementList: Array<Category>): number {
@@ -375,11 +387,17 @@ export class HomePage implements OnInit {
   };
 
   getPublishers(input: string | undefined | null) {
-    this.filteredPublishers = this.filterData(
-      input,
-      this.allPublishers,
-      this.filterByYears
-    );
+    this.filteredPublishers = this.allPublishers;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredPublishers = this.filterByYears(this.filteredPublishers);
+    } else {
+      this.filteredPublishers = this.allPublishers.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredPublishers = this.filterByYears(this.filteredPublishers);
+    }
+    console.log('Filter results of getPublishers() => ', this.filteredPublishers);
   }
 
   getNewIDPublisher(elementList: Array<Publisher>): number {
@@ -457,11 +475,17 @@ export class HomePage implements OnInit {
   };
 
   getShopkeepers(input: string | undefined | null) {
-    this.filteredShopkeepers = this.filterData(
-      input,
-      this.allShopkeepers,
-      this.filterByYears
-    );
+    this.filteredShopkeepers = this.allShopkeepers;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredShopkeepers = this.filterByYears(this.filteredShopkeepers);
+    } else {
+      this.filteredShopkeepers = this.allShopkeepers.filter((object) => {
+        return object.uniqueName.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredShopkeepers = this.filterByYears(this.filteredShopkeepers);
+    }
+    console.log('Filter results of getShopkeepers() => ', this.filteredShopkeepers);
   }
 
   getNewIDShopkeeper(elementList: Array<Shopkeeper>): number {
@@ -539,11 +563,17 @@ export class HomePage implements OnInit {
   };
 
   getWarehouses(input: string | undefined | null) {
-    this.filteredWarehouses = this.filterData(
-      input,
-      this.allWarehouses,
-      this.filterByYears
-    );
+    this.filteredWarehouses = this.allWarehouses;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredWarehouses = this.filterByYears(this.filteredWarehouses);
+    } else {
+      this.filteredWarehouses = this.allWarehouses.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredWarehouses = this.filterByYears(this.filteredWarehouses);
+    }
+    console.log('Filter results of getWarehouses() => ', this.filteredWarehouses);
   }
 
   getNewIDWarehouse(elementList: Array<Warehouse>): number {
@@ -617,11 +647,17 @@ export class HomePage implements OnInit {
   };
 
   getProvenances(input: string | undefined | null) {
-    this.filteredProvenances = this.filterData(
-      input,
-      this.allProvenances,
-      this.filterByYears
-    );
+    this.filteredProvenances = this.allProvenances;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredProvenances = this.filterByYears(this.filteredProvenances);
+    } else {
+      this.filteredProvenances = this.allProvenances.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredProvenances = this.filterByYears(this.filteredProvenances);
+    }
+    console.log('Filter results of getProvenances() => ', this.filteredProvenances);
   }
 
   getNewIDProvenance(elementList: Array<Provenance>): number {
@@ -691,11 +727,17 @@ export class HomePage implements OnInit {
   };
 
   getGeographicalOrigins(input: string | undefined | null) {
-    this.filteredGeographicalOrigins = this.filterData(
-      input,
-      this.allGeographicalOrigins,
-      this.filterByYears
-    );
+    this.filteredGeographicalOrigins = this.allGeographicalOrigins;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredGeographicalOrigins = this.filterByYears(this.filteredGeographicalOrigins);
+    } else {
+      this.filteredGeographicalOrigins = this.allGeographicalOrigins.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredGeographicalOrigins = this.filterByYears(this.filteredGeographicalOrigins);
+    }
+    console.log('Filter results of getGeographicalOrigins() => ', this.filteredGeographicalOrigins);
   }
 
   getNewIDGeographicalOrigin(elementList: Array<GeographicalOrigin>): number {
@@ -770,11 +812,17 @@ export class HomePage implements OnInit {
   };
 
   getTypeObjects(input: string | undefined | null) {
-    this.filteredTypeObjects = this.filterData(
-      input,
-      this.allTypeObjects,
-      this.filterByYears
-    );
+    this.filteredTypeObjects = this.allTypeObjects;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredTypeObjects = this.filterByYears(this.filteredTypeObjects);
+    } else {
+      this.filteredTypeObjects = this.allTypeObjects.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredTypeObjects = this.filterByYears(this.filteredTypeObjects);
+    }
+    console.log('Filter results of getTypeObjects() => ', this.filteredTypeObjects);
   }
 
   getNewIDTypeObject(elementList: Array<TypeObject>): number {
@@ -835,26 +883,6 @@ export class HomePage implements OnInit {
     } else {
       this.searchInput = ''; // oppure this.searchInput = 'valore predefinito';
     }
-  }
-
-  filterData(
-    input: string | undefined | null,
-    allData: any[],
-    filterFunction: (data: any[]) => any[]
-  ): any[] {
-    let filteredData = allData;
-
-    if (!input) {
-      filteredData = filterFunction(filteredData);
-    } else {
-      const searchTerm = input.toLowerCase();
-      filteredData = allData.filter((data) =>
-        data.name.toLowerCase().includes(searchTerm)
-      );
-      filteredData = filterFunction(filteredData);
-    }
-
-    return filteredData;
   }
 
   filterByYears<T extends { addedDate: Date }>(filteredItems: T[]): T[] {
