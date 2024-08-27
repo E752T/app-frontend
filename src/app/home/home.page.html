@@ -225,23 +225,119 @@
         </ion-modal>
         <p></p>
 
-        <div *ngIf="AdminTables.includes(sectionToShow)">
+        <div *ngIf="sectionToShow.includes('Author')">
           <ion-button
             color="secondary"
             id="filter-button"
             class="center"
             style="width: 80%"
             type="text"
-            name="Store"
+            ngDefaultControl
+            (click)="getAuthors(searchInput)"
+            [(ngModel)]="searchInput"
+          >
+            Cerca
+          </ion-button>
+        </div>
+
+        <div *ngIf="sectionToShow.includes('Publisher')">
+          <ion-button
+            color="secondary"
+            id="filter-button"
+            class="center"
+            style="width: 80%"
+            type="text"
+            ngDefaultControl
+            (click)="getPublishers(searchInput)"
+            [(ngModel)]="searchInput"
+          >
+            Cerca
+          </ion-button>
+        </div>
+
+        <div *ngIf="sectionToShow.includes('Category')">
+          <ion-button
+            color="secondary"
+            id="filter-button"
+            class="center"
+            style="width: 80%"
+            type="text"
             ngDefaultControl
             (click)="getCategories(searchInput)"
-            (click)="getItems(searchInput)"
-            (click)="getAuthors(searchInput)"
-            (click)="getPublishers(searchInput)"
-            (click)="getGeographicalOrigins(searchInput)"
-            (click)="getWarehouses(searchInput)"
-            (click)="getProvenances(searchInput)"
+            [(ngModel)]="searchInput"
+          >
+            Cerca
+          </ion-button>
+        </div>
+
+        <div *ngIf="sectionToShow.includes('Shopkeeper')">
+          <ion-button
+            color="secondary"
+            id="filter-button"
+            class="center"
+            style="width: 80%"
+            type="text"
+            ngDefaultControl
             (click)="getShopkeepers(searchInput)"
+            [(ngModel)]="searchInput"
+          >
+            Cerca
+          </ion-button>
+        </div>
+
+        <div *ngIf="sectionToShow.includes('Warehouse')">
+          <ion-button
+            color="secondary"
+            id="filter-button"
+            class="center"
+            style="width: 80%"
+            type="text"
+            ngDefaultControl
+            (click)="getWarehouses(searchInput)"
+            [(ngModel)]="searchInput"
+          >
+            Cerca
+          </ion-button>
+        </div>
+
+        <div *ngIf="sectionToShow.includes('Provenance')">
+          <ion-button
+            color="secondary"
+            id="filter-button"
+            class="center"
+            style="width: 80%"
+            type="text"
+            ngDefaultControl
+            (click)="getProvenances(searchInput)"
+            [(ngModel)]="searchInput"
+          >
+            Cerca
+          </ion-button>
+        </div>
+
+        <div *ngIf="sectionToShow.includes('GeographicalOrigin')">
+          <ion-button
+            color="secondary"
+            id="filter-button"
+            class="center"
+            style="width: 80%"
+            type="text"
+            ngDefaultControl
+            (click)="getGeographicalOrigins(searchInput)"
+            [(ngModel)]="searchInput"
+          >
+            Cerca
+          </ion-button>
+        </div>
+
+        <div *ngIf="sectionToShow.includes('TypeObject')">
+          <ion-button
+            color="secondary"
+            id="filter-button"
+            class="center"
+            style="width: 80%"
+            type="text"
+            ngDefaultControl
             (click)="getTypeObjects(searchInput)"
             [(ngModel)]="searchInput"
           >
