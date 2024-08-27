@@ -1439,9 +1439,9 @@
         <ion-row>
           <app-categories
             class="carta-elemento"
-            *ngFor="let element of allCategories "
+            *ngFor="let element of filteredCategories"
             [category]="element"
-            [categories]="allCategories"
+            [categories]="filteredCategories"
             (updateCategories)="updateCategories(this.allCategories, element, 'categoryID');"
             [search_input]="searchInput"
           >
@@ -1649,9 +1649,9 @@
         <ion-row>
           <app-shopkeepers
             class="carta-elemento"
-            *ngFor="let element of allShopkeepers "
+            *ngFor="let element of filteredShopkeepers "
             [shopkeeper]="element"
-            [shopkeepers]="allShopkeepers"
+            [shopkeepers]="filteredShopkeepers"
             (updateShopkeepers)="updateShopkeepers(this.allShopkeepers, element, 'shopkeeperID');"
             [search_input]="searchInput"
           >
@@ -1859,9 +1859,9 @@
         <ion-row>
           <app-editors
             class="carta-elemento"
-            *ngFor="let element of allPublishers "
+            *ngFor="let element of filteredPublishers"
             [publisher]="element"
-            [publishers]="allPublishers"
+            [publishers]="filteredPublishers"
             (updatePublishers)="updatePublishers(this.allPublishers, element, 'publisherID');"
             [search_input]="searchInput"
           >
@@ -1974,9 +1974,9 @@
         <ion-row>
           <app-type-objects
             class="carta-elemento"
-            *ngFor="let element of allTypeObjects "
+            *ngFor="let element of filteredTypeObjects"
             [type_object]="element"
-            [type_objects]="allTypeObjects"
+            [type_objects]="filteredTypeObjects"
             (updateTypeObjects)="updateTypeObjects(this.allTypeObjects, element, 'typeID');"
             [search_input]="searchInput"
           >
@@ -2183,9 +2183,9 @@
         <ion-row>
           <app-warehouses
             class="carta-elemento"
-            *ngFor="let element of allWarehouses "
+            *ngFor="let element of filteredWarehouses"
             [warehouse]="element"
-            [warehouses]="allWarehouses"
+            [warehouses]="filteredWarehouses"
             (updateWarehouses)="updateWarehouses(this.allWarehouses, element, 'warehouseID');"
             [search_input]="searchInput"
           >
@@ -2298,9 +2298,9 @@
         <ion-row>
           <app-provenances
             class="carta-elemento"
-            *ngFor="let element of allProvenances "
+            *ngFor="let element of filteredProvenances"
             [provenance]="element"
-            [provenances]="allProvenances"
+            [provenances]="filteredProvenances"
             (updateProvenances)="updateProvenances(this.allProvenances, element, 'provenanceID');"
             [search_input]="searchInput"
           >
@@ -2413,10 +2413,10 @@
         <ion-row>
           <app-geographical-origin
             class="carta-elemento"
-            *ngFor="let element of allGeographicalOrigins "
+            *ngFor="let element of filteredGeographicalOrigins"
             [geographical_origin]="element"
-            [geographical_origins]="allGeographicalOrigins"
-            (updateGeographicalOrigins)="updateGeographicalOrigins(this.allGeographicalOrigins, element, 'GeographicalOriginID');"
+            [geographical_origins]="filteredGeographicalOrigins"
+            (updateGeographicalOrigins)="updateGeographicalOrigins(this.allGeographicalOrigins, element, 'geographicalOriginID');"
             [search_input]="searchInput"
           >
           </app-geographical-origin>

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Type } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController, RefresherCustomEvent } from '@ionic/angular';
 import { GetRequest, PostRequest } from '../services/request.service';
 import { ViewChild } from '@angular/core';
