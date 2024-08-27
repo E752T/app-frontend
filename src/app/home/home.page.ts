@@ -96,6 +96,17 @@ export class HomePage implements OnInit {
   switchToView(value: string) {
     console.log('view BEFORE ', this.sectionToShow);
     this.sectionToShow = value;
+    this.searchInput = '';
+    this.getAuthors(this.searchInput);
+    this.getCategories(this.searchInput);
+    this.getGeographicalOrigins(this.searchInput);
+    this.getItems(this.searchInput);
+    this.getProvenances(this.searchInput);
+    this.getPublishers(this.searchInput);
+    this.getShopkeepers(this.searchInput);
+    this.getTypeObjects(this.searchInput);
+    this.getWarehouses(this.searchInput);
+
     console.log('view AFTER ', this.sectionToShow);
   }
 
