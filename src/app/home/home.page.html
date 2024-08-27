@@ -150,6 +150,11 @@
             (click)="getItems(searchInput)"
             (click)="getAuthors(searchInput)"
             (click)="getPublishers(searchInput)"
+            (click)="getGeographicalOrigins(searchInput)"
+            (click)="getWarehouses(searchInput)"
+            (click)="getProvenances(searchInput)"
+            (click)="getShopkeepers(searchInput)"
+            (click)="getTypeObjects(searchInput)"
             [(ngModel)]="searchInput"
           >
             Cerca
@@ -157,18 +162,15 @@
         </div>
       </div>
       <p></p>
-      
 
-      
       <div *ngIf="AdminTables.includes(sectionToShow)">
-
         <ion-searchbar
           showCancelButton="focus"
           [debounce]="2000"
           type="text"
           placeholder="Cerca un elemento"
           class="searchbar-custom"
-          style="margin-top: 80px;"
+          style="margin-top: 80px"
           (ionChange)="setInput($event.target.value)"
           [(ngModel)]="searchInput"
         >
@@ -236,6 +238,11 @@
             (click)="getItems(searchInput)"
             (click)="getAuthors(searchInput)"
             (click)="getPublishers(searchInput)"
+            (click)="getGeographicalOrigins(searchInput)"
+            (click)="getWarehouses(searchInput)"
+            (click)="getProvenances(searchInput)"
+            (click)="getShopkeepers(searchInput)"
+            (click)="getTypeObjects(searchInput)"
             [(ngModel)]="searchInput"
           >
             Cerca
@@ -2210,7 +2217,7 @@
       ></ion-icon>
       <ion-title class="center titolo-aggiungi-elemento">
         <ion-text class="testo-aggiungi-nuovo">
-          Aggiungi una nuova Origine Geografica
+          Aggiungi una nuova Origine
         </ion-text>
       </ion-title>
     </ion-button>
@@ -2222,7 +2229,7 @@
       <ng-template>
         <ion-header>
           <ion-title class="center" style="margin-top: 20px; display: table"
-            >Aggiungi una nuova Origine Geografica
+            >Aggiungi una nuova Origine
           </ion-title>
 
           <ion-toolbar>

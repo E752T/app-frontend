@@ -397,7 +397,10 @@ export class HomePage implements OnInit {
       });
       this.filteredPublishers = this.filterByYears(this.filteredPublishers);
     }
-    console.log('Filter results of getPublishers() => ', this.filteredPublishers);
+    console.log(
+      'Filter results of getPublishers() => ',
+      this.filteredPublishers
+    );
   }
 
   getNewIDPublisher(elementList: Array<Publisher>): number {
@@ -485,7 +488,10 @@ export class HomePage implements OnInit {
       });
       this.filteredShopkeepers = this.filterByYears(this.filteredShopkeepers);
     }
-    console.log('Filter results of getShopkeepers() => ', this.filteredShopkeepers);
+    console.log(
+      'Filter results of getShopkeepers() => ',
+      this.filteredShopkeepers
+    );
   }
 
   getNewIDShopkeeper(elementList: Array<Shopkeeper>): number {
@@ -573,7 +579,10 @@ export class HomePage implements OnInit {
       });
       this.filteredWarehouses = this.filterByYears(this.filteredWarehouses);
     }
-    console.log('Filter results of getWarehouses() => ', this.filteredWarehouses);
+    console.log(
+      'Filter results of getWarehouses() => ',
+      this.filteredWarehouses
+    );
   }
 
   getNewIDWarehouse(elementList: Array<Warehouse>): number {
@@ -657,7 +666,10 @@ export class HomePage implements OnInit {
       });
       this.filteredProvenances = this.filterByYears(this.filteredProvenances);
     }
-    console.log('Filter results of getProvenances() => ', this.filteredProvenances);
+    console.log(
+      'Filter results of getProvenances() => ',
+      this.filteredProvenances
+    );
   }
 
   getNewIDProvenance(elementList: Array<Provenance>): number {
@@ -730,14 +742,23 @@ export class HomePage implements OnInit {
     this.filteredGeographicalOrigins = this.allGeographicalOrigins;
     // if there is no search text give me every datapoint
     if (input == '' || input == null || input == undefined) {
-      this.filteredGeographicalOrigins = this.filterByYears(this.filteredGeographicalOrigins);
+      this.filteredGeographicalOrigins = this.filterByYears(
+        this.filteredGeographicalOrigins
+      );
     } else {
-      this.filteredGeographicalOrigins = this.allGeographicalOrigins.filter((object) => {
-        return object.name.toLowerCase().includes(input.toLowerCase());
-      });
-      this.filteredGeographicalOrigins = this.filterByYears(this.filteredGeographicalOrigins);
+      this.filteredGeographicalOrigins = this.allGeographicalOrigins.filter(
+        (object) => {
+          return object.name.toLowerCase().includes(input.toLowerCase());
+        }
+      );
+      this.filteredGeographicalOrigins = this.filterByYears(
+        this.filteredGeographicalOrigins
+      );
     }
-    console.log('Filter results of getGeographicalOrigins() => ', this.filteredGeographicalOrigins);
+    console.log(
+      'Filter results of getGeographicalOrigins() => ',
+      this.filteredGeographicalOrigins
+    );
   }
 
   getNewIDGeographicalOrigin(elementList: Array<GeographicalOrigin>): number {
@@ -822,7 +843,10 @@ export class HomePage implements OnInit {
       });
       this.filteredTypeObjects = this.filterByYears(this.filteredTypeObjects);
     }
-    console.log('Filter results of getTypeObjects() => ', this.filteredTypeObjects);
+    console.log(
+      'Filter results of getTypeObjects() => ',
+      this.filteredTypeObjects
+    );
   }
 
   getNewIDTypeObject(elementList: Array<TypeObject>): number {
