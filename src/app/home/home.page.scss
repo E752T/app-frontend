@@ -60,9 +60,9 @@ hr.solid {
 }
 
 ion-content {
-  --offset-bottom: auto !important;
   --overflow: auto;
   overflow: auto;
+  min-height: 1100px;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -101,6 +101,7 @@ ion-content {
   font-variant: normal;
   text-transform: none;
 }
+
 
 .logo-store {
   color: rgb(255, 132, 0);
