@@ -106,7 +106,8 @@ export class HomePage implements OnInit {
     this.getShopkeepers(this.searchInput);
     this.getTypeObjects(this.searchInput);
     this.getWarehouses(this.searchInput);
-
+    this.searchYears.lower = 1805
+    this.searchYears.upper = 2024
     console.log('view AFTER ', this.sectionToShow);
   }
 
