@@ -160,70 +160,6 @@
             Cerca
           </ion-button>
         </div>
-      </div>
-      <p></p>
-
-      <div *ngIf="AdminTables.includes(sectionToShow)">
-        <ion-searchbar
-          showCancelButton="focus"
-          [debounce]="2000"
-          type="text"
-          placeholder="Cerca un elemento"
-          class="searchbar-custom"
-          style="margin-top: 80px"
-          (ionChange)="setInput($event.target.value)"
-          [(ngModel)]="searchInput"
-        >
-        </ion-searchbar>
-
-        <ion-title
-          color="dark"
-          class="titolo-filtri-ricerca"
-          style="margin-bottom: 20px; margin-top: 20px"
-        >
-          Filtri di Ricerca
-        </ion-title>
-
-        <div style="text-align: center">
-          <ion-text style="display: inline-block; margin: 10px auto">
-            Anno di pubblicazione
-          </ion-text>
-        </div>
-        <div class="centered" color="success" style="margin-top: -20px">
-          <small>
-            <p class="label-anni" style="margin-bottom: -40px; position: fixed">
-              1800
-            </p>
-          </small>
-          <small>
-            <p
-              class="label-anni"
-              style="margin-bottom: -40px; position: fixed; right: 0"
-            >
-              2024
-            </p>
-          </small>
-
-          <ion-range
-            style="margin-left: 10px; margin-right: 10px"
-            aria-label="Dual Knobs Range"
-            [(ngModel)]="searchYears"
-            [dualKnobs]="true"
-            [pin]="true"
-            min="1805"
-            max="2024"
-            step="5"
-            id="double-knobs-range-objects"
-            [value]="{ lower: 1805, upper: 2024 }"
-          ></ion-range>
-        </div>
-
-        <ion-modal [keepContentsMounted]="true">
-          <ng-template>
-            <ion-datetime id="datetime"></ion-datetime>
-          </ng-template>
-        </ion-modal>
-        <p></p>
 
         <div *ngIf="sectionToShow.includes('Author')">
           <ion-button
@@ -300,6 +236,7 @@
           </ion-button>
         </div>
 
+
         <div *ngIf="sectionToShow.includes('Provenance')">
           <ion-button
             color="secondary"
@@ -314,6 +251,7 @@
             Cerca
           </ion-button>
         </div>
+
 
         <div *ngIf="sectionToShow.includes('GeographicalOrigin')">
           <ion-button
@@ -330,14 +268,89 @@
           </ion-button>
         </div>
 
-        <div *ngIf="sectionToShow.includes('TypeObject')">
+
+      </div>
+      <p></p>
+
+      <div *ngIf="AdminTables.includes(sectionToShow)">
+        <ion-searchbar
+          showCancelButton="focus"
+          [debounce]="2000"
+          type="text"
+          placeholder="Cerca un elemento"
+          class="searchbar-custom"
+          style="margin-top: 80px"
+          (ionChange)="setInput($event.target.value)"
+          [(ngModel)]="searchInput"
+        >
+        </ion-searchbar>
+
+        <ion-title
+          color="dark"
+          class="titolo-filtri-ricerca"
+          style="margin-bottom: 20px; margin-top: 20px"
+        >
+          Filtri di Ricerca
+        </ion-title>
+
+        <div style="text-align: center">
+          <ion-text style="display: inline-block; margin: 10px auto">
+            Anno di pubblicazione
+          </ion-text>
+        </div>
+        <div class="centered" color="success" style="margin-top: -20px">
+          <small>
+            <p class="label-anni" style="margin-bottom: -40px; position: fixed">
+              1800
+            </p>
+          </small>
+          <small>
+            <p
+              class="label-anni"
+              style="margin-bottom: -40px; position: fixed; right: 0"
+            >
+              2024
+            </p>
+          </small>
+
+          <ion-range
+            style="margin-left: 10px; margin-right: 10px"
+            aria-label="Dual Knobs Range"
+            [(ngModel)]="searchYears"
+            [dualKnobs]="true"
+            [pin]="true"
+            min="1805"
+            max="2024"
+            step="5"
+            id="double-knobs-range-objects"
+            [value]="{ lower: 1805, upper: 2024 }"
+          ></ion-range>
+        </div>
+
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="datetime"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+        <p></p>
+
+        <div *ngIf="AdminTables.includes(sectionToShow)">
           <ion-button
             color="secondary"
             id="filter-button"
             class="center"
             style="width: 80%"
             type="text"
+            name="Store"
             ngDefaultControl
+            (click)="getCategories(searchInput)"
+            (click)="getItems(searchInput)"
+            (click)="getAuthors(searchInput)"
+            (click)="getPublishers(searchInput)"
+            (click)="getGeographicalOrigins(searchInput)"
+            (click)="getWarehouses(searchInput)"
+            (click)="getProvenances(searchInput)"
+            (click)="getShopkeepers(searchInput)"
             (click)="getTypeObjects(searchInput)"
             [(ngModel)]="searchInput"
           >
