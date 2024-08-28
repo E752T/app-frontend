@@ -16,46 +16,47 @@
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
+            <ion-modal trigger="elimina-autore-'{{ author.authorID }}'">
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+  
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="DeleteElement(author.authorID)"
+                        id="conferma-elimina-autore-'{{ author.authorID }}'"
+                        [strong]="true"
+                        >Conferma</ion-button
+                      >
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text class="ion-text-center" class="text-conferma-elimina">
+                  <ion-title
+                    >Sei sicuro di voler eliminare il seguente
+                    elemento?</ion-title
+                  >
+                  <p></p>
+                  <h1>{{ author.name }}</h1>
+                </ion-text>
+                <ion-toast
+                  trigger="conferma-elimina-autore-'{{ author.authorID }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  [duration]="2000"
+                  expand="block"
+                  color="danger"
+                ></ion-toast>
+              </ng-template>
+            </ion-modal>
           </ion-item>
 
-          <ion-modal trigger="elimina-autore-'{{ author.authorID }}'">
-            <ng-template>
-              <ion-header>
-                <ion-toolbar>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="cancel()"
-                      ><ion-icon name="arrow-undo-outline"></ion-icon
-                    ></ion-button>
-                  </ion-buttons>
 
-                  <ion-buttons slot="end">
-                    <ion-button
-                      (click)="DeleteElement(author.authorID)"
-                      id="conferma-elimina-autore-'{{ author.authorID }}'"
-                      [strong]="true"
-                      >Conferma</ion-button
-                    >
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <ion-text class="ion-text-center" class="text-conferma-elimina">
-                <ion-title
-                  >Sei sicuro di voler eliminare il seguente
-                  elemento?</ion-title
-                >
-                <p></p>
-                <h1>{{ author.name }}</h1>
-              </ion-text>
-              <ion-toast
-                trigger="conferma-elimina-autore-'{{ author.authorID }}'"
-                message="Elemento eliminato"
-                class="toast-elemento"
-                [duration]="2000"
-                expand="block"
-                color="danger"
-              ></ion-toast>
-            </ng-template>
-          </ion-modal>
 
           <div slot="content" style="margin-top: 15px">
             <ion-label class="label-autori">
