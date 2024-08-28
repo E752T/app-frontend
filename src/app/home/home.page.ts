@@ -106,8 +106,8 @@ export class HomePage implements OnInit {
     this.getShopkeepers(this.searchInput);
     this.getTypeObjects(this.searchInput);
     this.getWarehouses(this.searchInput);
-    this.searchYears.lower = 1805
-    this.searchYears.upper = 2024
+    this.searchYears.lower = 1805;
+    this.searchYears.upper = 2024;
     console.log('view AFTER ', this.sectionToShow);
   }
 
@@ -243,7 +243,7 @@ export class HomePage implements OnInit {
       });
       this.filteredAuthors = this.filterByYears(this.filteredAuthors);
     }
-    console.log('Filter results of getAuthors() => ', this.filteredAuthors);
+    console.log('Filter results of getAuthors() => ', this.allAuthors);
   }
 
   getNewIDAuthor(elementList: Array<Author>): number {
@@ -257,9 +257,10 @@ export class HomePage implements OnInit {
   }
 
   CreateAuthor(): Promise<any> {
-    this.body_add_author.authorID = this.getNewIDAuthor(this.allAuthors);
+    this.body_add_author.authorID = this.getNewIDAuthor(this.filteredAuthors);
     let newAuthor = this.body_add_author;
     this.allAuthors.unshift(newAuthor);
+    this.filteredAuthors.unshift(newAuthor);
     console.log('POST api/AddAuthor/ ', this.body_add_author);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
@@ -285,11 +286,14 @@ export class HomePage implements OnInit {
   }
 
   updateAuthors(items: any[], itemToDelete: any, key: string) {
-    items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update Authors', items);
-    this.allAuthors = items;
-    this.filteredAuthors = this.allAuthors;
-    return this.filteredAuthors;
+    this.filteredAuthors = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    this.allAuthors = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Authors/', this.allAuthors, this.filteredAuthors);
+    return this.allAuthors;
   }
 
   ///////////////////////////////////////////////////////////////
@@ -340,10 +344,12 @@ export class HomePage implements OnInit {
 
   CreateCategory(): Promise<any> {
     this.body_add_category.categoryID = this.getNewIDCategory(
-      this.allCategories
+      this.filteredCategories
     );
     let new_element = this.body_add_category;
     this.allCategories.unshift(new_element);
+    this.filteredCategories.unshift(new_element);
+
     console.log('POST api/AddCategory/ ', this.body_add_category);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddCategory/', this.body_add_category)
@@ -365,9 +371,11 @@ export class HomePage implements OnInit {
   }
 
   updateCategories(items: any[], itemToDelete: any, key: string) {
-    items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update Categories', items);
-    this.allCategories = items;
+    this.allCategories = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Categories/', items);
+    this.getCategories('');
     this.filteredCategories = this.allCategories;
     return this.filteredCategories;
   }
@@ -427,10 +435,11 @@ export class HomePage implements OnInit {
 
   CreatePublisher(): Promise<any> {
     this.body_add_publisher.publisherID = this.getNewIDPublisher(
-      this.allPublishers
+      this.filteredPublishers
     );
     let new_element = this.body_add_publisher;
     this.allPublishers.unshift(new_element);
+    this.filteredPublishers.unshift(new_element);
     console.log('POST api/AddPublisher/ ', this.body_add_publisher);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddPublisher/', this.body_add_publisher)
@@ -456,9 +465,11 @@ export class HomePage implements OnInit {
   }
 
   updatePublishers(items: any[], itemToDelete: any, key: string) {
-    items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update Publishers', items);
-    this.allPublishers = items;
+    this.allPublishers = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Publishers/', items);
+    this.getPublishers('');
     this.filteredPublishers = this.allPublishers;
     return this.filteredPublishers;
   }
@@ -518,10 +529,11 @@ export class HomePage implements OnInit {
 
   CreateShopkeeper(): Promise<any> {
     this.body_add_shopkeeper.shopkeeperID = this.getNewIDShopkeeper(
-      this.allShopkeepers
+      this.filteredShopkeepers
     );
     let new_element = this.body_add_shopkeeper;
     this.allShopkeepers.unshift(new_element);
+    this.filteredShopkeepers.unshift(new_element);
     console.log('POST api/AddShopkeeper/ ', this.body_add_shopkeeper);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddShopkeeper/', this.body_add_shopkeeper)
@@ -547,9 +559,11 @@ export class HomePage implements OnInit {
   }
 
   updateShopkeepers(items: any[], itemToDelete: any, key: string) {
-    items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update Shopkeeper', items);
-    this.allShopkeepers = items;
+    this.allShopkeepers = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Shopkeepers/', items);
+    this.getShopkeepers('');
     this.filteredShopkeepers = this.allShopkeepers;
     return this.filteredShopkeepers;
   }
@@ -609,10 +623,11 @@ export class HomePage implements OnInit {
 
   CreateWarehouse(): Promise<any> {
     this.body_add_warehouse.warehouseID = this.getNewIDWarehouse(
-      this.allWarehouses
+      this.filteredWarehouses
     );
     let new_element = this.body_add_warehouse;
     this.allWarehouses.unshift(new_element);
+    this.filteredWarehouses.unshift(new_element);
     console.log('POST api/AddWarehouses/ ', this.body_add_warehouse);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddWarehouses/', this.body_add_warehouse)
@@ -638,9 +653,11 @@ export class HomePage implements OnInit {
   }
 
   updateWarehouses(items: any[], itemToDelete: any, key: string) {
-    items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update Warehouse', items);
-    this.allWarehouses = items;
+    this.allWarehouses = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Warehouses/', items);
+    this.getWarehouses('');
     this.filteredWarehouses = this.allWarehouses;
     return this.filteredWarehouses;
   }
@@ -696,10 +713,11 @@ export class HomePage implements OnInit {
 
   CreateProvenance(): Promise<any> {
     this.body_add_provenance.provenanceID = this.getNewIDProvenance(
-      this.allProvenances
+      this.filteredProvenances
     );
     let new_element = this.body_add_provenance;
     this.allProvenances.unshift(new_element);
+    this.filteredProvenances.unshift(new_element);
     console.log('POST api/AddProvenances/ ', this.body_add_provenance);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddProvenances/', this.body_add_provenance)
@@ -721,9 +739,11 @@ export class HomePage implements OnInit {
   }
 
   updateProvenances(items: any[], itemToDelete: any, key: string) {
-    items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update Provenance', items);
-    this.allProvenances = items;
+    this.allProvenances = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Provenances/', items);
+    this.getProvenances('');
     this.filteredProvenances = this.allProvenances;
     return this.filteredProvenances;
   }
@@ -785,9 +805,10 @@ export class HomePage implements OnInit {
 
   CreateGeographicalOrigin(): Promise<any> {
     this.body_add_geographical_origin.geographicalOriginID =
-      this.getNewIDGeographicalOrigin(this.allGeographicalOrigins);
+      this.getNewIDGeographicalOrigin(this.filteredGeographicalOrigins);
     let new_element = this.body_add_geographical_origin;
     this.allGeographicalOrigins.unshift(new_element);
+    this.filteredGeographicalOrigins.unshift(new_element);
     console.log(
       'POST api/AddGeographicalOrigins/ ',
       this.body_add_geographical_origin
@@ -815,9 +836,11 @@ export class HomePage implements OnInit {
   }
 
   updateGeographicalOrigins(items: any[], itemToDelete: any, key: string) {
-    items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update GeographicalOrigins', items);
-    this.allGeographicalOrigins = items;
+    this.allGeographicalOrigins = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update GeographicalOrigins/', items);
+    this.getGeographicalOrigins('');
     this.filteredGeographicalOrigins = this.allGeographicalOrigins;
     return this.filteredGeographicalOrigins;
   }
@@ -873,10 +896,11 @@ export class HomePage implements OnInit {
 
   CreateTypeObject(): Promise<any> {
     this.body_add_type_object.typeID = this.getNewIDTypeObject(
-      this.allTypeObjects
+      this.filteredTypeObjects
     );
     let new_element = this.body_add_type_object;
     this.allTypeObjects.unshift(new_element);
+    this.filteredTypeObjects.unshift(new_element);
     console.log('POST api/AddTypeObjects/ ', this.body_add_type_object);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddTypeObjects/', this.body_add_type_object)
@@ -898,9 +922,11 @@ export class HomePage implements OnInit {
   }
 
   updateTypeObjects(items: any[], itemToDelete: any, key: string) {
-    items = items.filter((element) => element[key] !== itemToDelete[key]);
-    console.log(' Update TypeObject ', items);
-    this.allTypeObjects = items;
+    this.allTypeObjects = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update TypeObjects/', items);
+    this.getTypeObjects('');
     this.filteredTypeObjects = this.allTypeObjects;
     return this.filteredTypeObjects;
   }

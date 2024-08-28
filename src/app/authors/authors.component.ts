@@ -68,7 +68,7 @@ export class AuthorsComponent {
     this.authors = this.authors.filter(
       (element: Author) => element.authorID !== objectID
     );
-    console.log('API DeleteAuthor/ -> Remaining Array ', this.authors);
+    console.log('=> api/DeleteAuthor/', objectID);
     this.updateAuthors.emit(this.authors);
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteAuthor/' + objectID);
