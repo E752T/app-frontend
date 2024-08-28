@@ -18,9 +18,6 @@
   padding-bottom: 2%;
 }
 
-
-
-
 .icone-autori {
   width: 20px;
   height: 20px;
@@ -53,11 +50,10 @@
 .accordion-oggetto {
   padding-right: 10px;
   padding-left: 10px;
-
 }
 
 .cartellino-nome {
-  letter-spacing:1px;
+  letter-spacing: 1px;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
@@ -65,4 +61,15 @@
   max-width: 250px;
   margin-left: 40%;
   margin-right: 40%;
+}
+
+.vertical-align-container {
+  display: flex;
+  flex-direction: column; /* Align items in a column */
+  justify-content: center; /* Center items vertically */
+  height: 100vh; /* Full height of the viewport */
+  text-align: center; /* Center text horizontally */
+  width: 100%; /* Adjusts to full width of the toolbar */
+  padding: 10px; /* Adds some padding for better appearance */
+  box-sizing: border-box; /* Ensures padding is included in the width */
 }

@@ -15,15 +15,16 @@
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome">{{ category.name }} </ion-label>
             <ion-button
-              id="elimina-categoria-'{{ category.categoryID }}'"
-              (click)="DeleteCategory(category.categoryID)"
+              id="modale-elimina-categoria-'{{ category.categoryID }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
           </ion-item>
 
-          <ion-modal trigger="elimina-categoria-'{{ category.categoryID }}'">
+          <ion-modal
+            trigger="modale-elimina-categoria-'{{ category.categoryID }}'"
+          >
             <ng-template>
               <ion-header>
                 <ion-toolbar>
@@ -36,7 +37,7 @@
                   <ion-buttons slot="end">
                     <ion-button
                       (click)="confirmDeleteCategory()"
-                      id="confirmDeleteCategory-'{{ category.categoryID }}'"
+                      id="conferma-elimina-'{{ category.categoryID }}'"
                       [strong]="true"
                       >Conferma</ion-button
                     >
@@ -256,11 +257,19 @@
             <ion-button
               color="danger"
               style="padding-right: 3%"
-              id="confirmDeleteCategory-'{{ category.categoryID }}'"
-              (click)="confirmDeleteCategory()"
+              id="conferma-elimina-'{{ category.categoryID }}'"
             >
               Elimina</ion-button
             >
+
+            <ion-toast
+              trigger="conferma-elimina-'{{ category.categoryID }}'"
+              message="Elemento eliminato"
+              class="toast-elemento"
+              color="danger"
+              [duration]="2000"
+              expand="block"
+            ></ion-toast>
           </div>
         </ion-accordion>
       </ion-accordion-group>
