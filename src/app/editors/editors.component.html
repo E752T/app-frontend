@@ -15,7 +15,6 @@
             <ion-label class="cartellino-nome">{{ publisher.name }} </ion-label>
             <ion-button
               id="elimina-categoria-'{{ publisher.publisherID }}'"
-              (click)="DeleteElement(publisher.publisherID)"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
@@ -34,13 +33,21 @@
 
                   <ion-buttons slot="end">
                     <ion-button
-                      (click)="confirmDelete()"
-                      id="conferma-elimina-editore-'{{
-                        publisher.publisherID
-                      }}'"
-                      [strong]="true"
-                      >Conferma</ion-button
+                    (click)="DeleteElement(publisher.publisherID)"
+                    [strong]="true"
+                    id="conferma-elimina-'{{ publisher.publisherID }}'"
+
+                    >Conferma</ion-button
                     >
+                    <ion-toast
+                    trigger="conferma-elimina-'{{ publisher.publisherID }}'"
+                    message="Elemento eliminato"
+                    class="toast-elemento"
+                    color="danger"
+                    [duration]="2000"
+                    expand="block"
+                  ></ion-toast>
+
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
@@ -255,11 +262,19 @@
             <ion-button
               color="danger"
               style="padding-right: 3%"
-              id="confirmDeleteCategory-'{{ publisher.publisherID }}'"
-              (click)="confirmDelete()"
+              id="modale2-elimina-'{{ publisher.publisherID }}'"
             >
               Elimina</ion-button
             >
+            <ion-toast
+            trigger="conferma-elimina-'{{ publisher.publisherID }}'"
+            message="Elemento eliminato"
+            class="toast-elemento"
+            color="danger"
+            [duration]="2000"
+            expand="block"
+          ></ion-toast>
+
           </div>
         </ion-accordion>
       </ion-accordion-group>
