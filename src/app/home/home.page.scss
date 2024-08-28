@@ -216,19 +216,18 @@ ion-button.bottone-accedi {
 }
 
 .titolo-categoria {
-  margin-top: 80px;
-  margin-left: 30px;
+  margin-top: 40px;
+  margin-left: 10px;
   text-align: left;
   padding-bottom: 2%;
   font-family: Georgia, serif;
   font-size: 28px;
-  letter-spacing: 3px;
+  letter-spacing: 3.5px;
   word-spacing: -0.8px;
   color: #000000;
   font-weight: 400;
   text-decoration: rgb(232, 230, 227);
   font-style: normal;
-  font-variant: small-caps;
   text-transform: capitalize;
 }
 
@@ -373,7 +372,6 @@ ion-button.bottone-accedi {
 .titoli-modale {
   margin-bottom: 15px;
   display: flex;
-  min-width: 100px;
   margin-top: 15px;
   font-size: 18px;
   margin-left: 20px;

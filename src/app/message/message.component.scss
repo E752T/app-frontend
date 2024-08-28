@@ -92,15 +92,13 @@ ion-radio.ios::part(container) {
   float: left;
   font-size-adjust: 0.5;
   margin-right: 2%;
+  letter-spacing: 1px;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .dimensioni-oggetto {
   min-width: 200px;
   min-width: 300px;
-}
-
-.genere-oggetto {
-  color: rgb(255, 255, 0);
 }
 
 .logo-disponibilita-oggetto {
@@ -130,7 +128,6 @@ ion-radio.ios::part(container) {
 .titoli-modale {
   margin-bottom: 15px;
   display: flex;
-  min-width: 100px;
   margin-top: 15px;
   font-size: 18px;
   margin-left: 20px;
@@ -140,13 +137,6 @@ ion-radio.ios::part(container) {
   display: flex; /* Enables flexbox layout */
   justify-content: center; /* Centers items horizontally */
   align-items: center; /* Centers items vertically */
-}
-
-.modale-date {
-  padding-left: 25%;
-  padding-bottom: 35%;
-  padding-right: 25%;
-  min-width: 300px;
 }
 
 .icone-aggiungi-oggetto-modified {
@@ -163,11 +153,7 @@ ion-radio.ios::part(container) {
   will-change: auto;
 }
 
-.titolo-data {
-  margin-top: 30px;
-  text-align: center;
-  font-size: 4vw;
-}
+
 
 .input-form {
   background-color: rgb(255, 255, 255);
@@ -203,14 +189,6 @@ ion-radio.ios::part(container) {
   margin-bottom: -4px;
 }
 
-.datetime-item {
-  padding-left: 15%;
-  padding-right: 15%;
-  min-width: 300px;
-  margin: 0;
-  position: absolute;
-  top: 20%;
-}
 
 .icone-aggiungi-oggetto {
   width: 40px;

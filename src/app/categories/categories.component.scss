@@ -2,11 +2,6 @@
   will-change: auto;
 }
 
-.titolo-data {
-  margin-top: 30px;
-  text-align: center;
-  font-size: 4vw;
-}
 
 .input-form {
   background-color: rgb(255, 255, 255);
@@ -41,11 +36,14 @@
   margin-bottom: -4px;
 }
 
-.datetime-item {
-  padding-left: 15%;
-  padding-right: 15%;
-  min-width: 300px;
-  margin: 0;
-  position: absolute;
-  top: 20%;
+
+.accordion-oggetto {
+  padding-right: 10px;
+  padding-right: 10px;
+
+}
+
+.cartellino-nome {
+  letter-spacing:1px;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }

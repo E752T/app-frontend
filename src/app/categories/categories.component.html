@@ -2,10 +2,7 @@
   <ion-row>
     <ion-col>
       <ion-accordion-group>
-        <ion-accordion
-          value="first"
-          style="padding-right: 50px; margin-left: 30px"
-        >
+        <ion-accordion value="first" class="accordion-oggetto">
           <ion-item
             slot="header"
             style="
@@ -16,14 +13,7 @@
             "
           >
             <ion-icon name="caret-forward-outline"></ion-icon>
-            <ion-label
-              style="
-                font-weight: lighter;
-                margin-left: 2%;
-                font-family: Georgia, 'Times New Roman', Times, serif;
-              "
-              >{{ category.name }}
-            </ion-label>
+            <ion-label class="cartellino-nome">{{ category.name }} </ion-label>
             <ion-button
               id="elimina-categoria-'{{ category.categoryID }}'"
               (click)="DeleteCategory(category.categoryID)"
