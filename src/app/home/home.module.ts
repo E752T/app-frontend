@@ -13,9 +13,8 @@ import { EditorsModule } from '../editors/editors.module';
 import { ShopkeepersModule } from '../shopkeepers/shopkeepers.module';
 import { TypeObjectModule } from '../type-objects/type-objects.module';
 import { GeographicalOriginModule } from '../geographical-origins/geographical-origin.module';
-import { ProvenanceModule } from "../provenance/provenance.module";
+import { ProvenanceModule } from '../provenance/provenance.module';
 import { WarehousetModule } from '../warehouses/warehouses.module';
-
 
 @NgModule({
   imports: [
@@ -32,9 +31,8 @@ import { WarehousetModule } from '../warehouses/warehouses.module';
     TypeObjectModule,
     GeographicalOriginModule,
     ProvenanceModule,
-    WarehousetModule
-
-],
+    WarehousetModule,
+  ],
   declarations: [HomePage],
   providers: [
     IonModal,
@@ -45,7 +43,7 @@ import { WarehousetModule } from '../warehouses/warehouses.module';
     WarehousetModule,
     ProvenanceModule,
     GeographicalOriginModule,
-    TypeObjectModule
+    TypeObjectModule,
   ],
 })
 export class HomePageModule {}

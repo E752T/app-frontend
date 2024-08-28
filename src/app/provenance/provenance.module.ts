@@ -11,4 +11,4 @@ import { ProvenancesComponent } from './provenance.component';
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
   exports: [ProvenancesComponent],
 })
-export class ProvenanceModule { }
+export class ProvenanceModule {}
