@@ -628,9 +628,9 @@ export class HomePage implements OnInit {
     let new_element = this.body_add_warehouse;
     this.allWarehouses.unshift(new_element);
     this.filteredWarehouses.unshift(new_element);
-    console.log('POST api/AddWarehouses/ ', this.body_add_warehouse);
+    console.log('POST api/AddWarehouse/ ', this.body_add_warehouse);
     // Perform the PostRequest
-    return PostRequest(baseURL + 'AddWarehouses/', this.body_add_warehouse)
+    return PostRequest(baseURL + 'AddWarehouse/', this.body_add_warehouse)
       .then((response) => {
         // Reset bodyAddAuthor to null after the PostRequest
         this.body_add_warehouse = {
@@ -718,9 +718,9 @@ export class HomePage implements OnInit {
     let new_element = this.body_add_provenance;
     this.allProvenances.unshift(new_element);
     this.filteredProvenances.unshift(new_element);
-    console.log('POST api/AddProvenances/ ', this.body_add_provenance);
+    console.log('POST api/AddProvenance/ ', this.body_add_provenance);
     // Perform the PostRequest
-    return PostRequest(baseURL + 'AddProvenances/', this.body_add_provenance)
+    return PostRequest(baseURL + 'AddProvenance/', this.body_add_provenance)
       .then((response) => {
         // Reset bodyAddAuthor to null after the PostRequest
         this.body_add_provenance = {
@@ -810,12 +810,12 @@ export class HomePage implements OnInit {
     this.allGeographicalOrigins.unshift(new_element);
     this.filteredGeographicalOrigins.unshift(new_element);
     console.log(
-      'POST api/AddGeographicalOrigins/ ',
+      'POST api/AddGeographicalOrigin/ ',
       this.body_add_geographical_origin
     );
     // Perform the PostRequest
     return PostRequest(
-      baseURL + 'AddGeographicalOrigins/',
+      baseURL + 'AddGeographicalOrigin/',
       this.body_add_geographical_origin
     )
       .then((response) => {
