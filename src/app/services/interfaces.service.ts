@@ -1,7 +1,7 @@
 // object element names & data types
 
 export interface LoginObject {
-  username: string;
+  email: string;
   password: string;
 }
 

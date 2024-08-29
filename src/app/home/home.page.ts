@@ -81,15 +81,15 @@ export class HomePage implements OnInit {
   }
 
   confirmLogin() {
-    this.modalCtrl.dismiss(this.body_login.username, 'confirm');
-    console.log(this.body_login);
+    this.modalCtrl.dismiss(this.body_login.email, 'confirm');
+    console.log(" Login access : ",this.body_login);
     PostRequest(baseURL + 'Login/', this.body_login);
   }
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.messageDismissModal = `Hello, ${this.body_login.username}!`;
+      this.messageDismissModal = `Hello, ${this.body_login.email}!`;
     }
   }
 
@@ -120,7 +120,7 @@ export class HomePage implements OnInit {
   //////////////////////// ADMIN /////////////////////////////////////
 
   body_login: LoginObject = {
-    username: '',
+    email: '',
     password: '',
   };
 
