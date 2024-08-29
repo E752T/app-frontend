@@ -88,8 +88,8 @@ export class HomePage implements OnInit {
       const response = await PostRequest(baseURL + 'Login/', this.body_login);
 
       // Verifica se la risposta è valida e contiene una stringa
-      if (response != null) {
-        console.log('Login successful: ', response);
+      if (response != null && response != 404) {
+        console.log('Login SUCCESS, JWT token: ', response);
         this.modalCtrl.dismiss(this.body_login.email, 'confirm');
         this.token_JWT = response;
       } else {
