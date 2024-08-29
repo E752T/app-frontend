@@ -2,13 +2,10 @@
   <ion-row>
     <ion-col>
       <ion-accordion-group>
-        <ion-accordion
-          value="first"
-          class="accordion-oggetto"
-        >
+        <ion-accordion value="first" class="accordion-oggetto">
           <ion-item
             slot="header"
-            style="color:white ;--background: #405cc1"
+            style="color: white; --background: #405cc1"
             class="oggetto-anteprima"
           >
             <ion-icon name="caret-forward-outline"></ion-icon>
@@ -19,57 +16,58 @@
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
-          </ion-item>
+            <ion-modal
+              trigger="elimina-categoria-'{{ publisher.publisherID }}'"
+            >
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
 
-          <ion-modal trigger="elimina-categoria-'{{ publisher.publisherID }}'">
-            <ng-template>
-              <ion-header>
-                <ion-toolbar>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="cancel()"
-                      ><ion-icon name="arrow-undo-outline"></ion-icon
-                    ></ion-button>
-                  </ion-buttons>
-
-                  <ion-buttons slot="end">
-                    <ion-button
-                    (click)="DeleteElement(publisher.publisherID)"
-                    [strong]="true"
-                    id="conferma-elimina-'{{ publisher.publisherID }}'"
-
-                    >Conferma</ion-button
-                    >
-                    <ion-toast
-                    trigger="conferma-elimina-'{{ publisher.publisherID }}'"
-                    message="Elemento eliminato"
-                    class="toast-elemento"
-                    color="danger"
-                    [duration]="2000"
-                    expand="block"
-                  ></ion-toast>
-
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <ion-text class="ion-text-center" class="testo-conferma-elimina">
-                <ion-title
-                  >Sei sicuro di voler eliminare il seguente
-                  elemento?</ion-title
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="DeleteElement(publisher.publisherID)"
+                        [strong]="true"
+                        id="conferma-elimina-'{{ publisher.publisherID }}'"
+                        >Conferma</ion-button
+                      >
+                      <ion-toast
+                        trigger="conferma-elimina-'{{ publisher.publisherID }}'"
+                        message="Elemento eliminato"
+                        class="toast-elemento"
+                        color="danger"
+                        [duration]="2000"
+                        expand="block"
+                      ></ion-toast>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text
+                  class="ion-text-center"
+                  class="testo-conferma-elimina"
                 >
-                <p></p>
-                <h1>{{ publisher.name }}</h1>
-              </ion-text>
-              <ion-toast
-                class="toast-elemento-eliminato"
-                trigger="confirmDeleteCategory-'{{ publisher.publisherID }}'"
-                message=" Elemento eliminato "
-                style="max-width: 250px; margin-left: 40%; margin-right: 40%"
-                [duration]="2000"
-                expand="block"
-                color="danger"
-              ></ion-toast>
-            </ng-template>
-          </ion-modal>
+                  <ion-title
+                    >Sei sicuro di voler eliminare il seguente
+                    elemento?</ion-title
+                  >
+                  <p></p>
+                  <h1>{{ publisher.name }}</h1>
+                </ion-text>
+                <ion-toast
+                  trigger="conferma-elimina-'{{ publisher.publisherID }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  color="danger"
+                  [duration]="2000"
+                  expand="block"
+                ></ion-toast>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
 
           <div
             slot="content"
@@ -266,15 +264,54 @@
             >
               Elimina</ion-button
             >
-            <ion-toast
-            trigger="conferma-elimina-'{{ publisher.publisherID }}'"
-            message="Elemento eliminato"
-            class="toast-elemento"
-            color="danger"
-            [duration]="2000"
-            expand="block"
-          ></ion-toast>
 
+            <ion-modal trigger="modale2-elimina-'{{ publisher.publisherID }}'">
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="DeleteElement(publisher.publisherID)"
+                        [strong]="true"
+                        id="conferma-elimina-'{{ publisher.publisherID }}'"
+                        >Conferma</ion-button
+                      >
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-toast
+                  trigger="conferma-elimina-'{{ publisher.publisherID }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  color="danger"
+                  [duration]="2000"
+                  expand="block"
+                ></ion-toast>
+
+                <div class="vertical-align-container">
+                  <ion-title>
+                    Sei sicuro di eliminare questo elemento?
+                    <br />
+                    <p></p>
+                    <h1>{{ publisher.name }}</h1>
+                  </ion-title>
+                  <ion-toast
+                    trigger="conferma-elimina-'{{ publisher.publisherID }}'"
+                    message="Elemento eliminato"
+                    class="toast-elemento"
+                    color="danger"
+                    [duration]="2000"
+                    expand="block"
+                  ></ion-toast>
+                </div>
+              </ng-template>
+            </ion-modal>
           </div>
         </ion-accordion>
       </ion-accordion-group>

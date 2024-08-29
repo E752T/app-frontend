@@ -387,6 +387,14 @@
                     <br />
                     {{ author.name }}
                   </ion-title>
+                  <ion-toast
+                    trigger="conferma-elimina-autore-'{{ author.authorID }}'"
+                    message="Elemento eliminato"
+                    class="toast-elemento"
+                    color="danger"
+                    [duration]="2000"
+                    expand="block"
+                  ></ion-toast>
                 </div>
               </ng-template>
             </ion-modal>
@@ -426,18 +434,17 @@
                     <br />
                     {{ author.name }}
                   </ion-title>
+                  <ion-toast
+                    trigger="conferma-elimina-autore-'{{ author.authorID }}'"
+                    message="Elemento eliminato"
+                    class="toast-elemento"
+                    color="danger"
+                    [duration]="2000"
+                    expand="block"
+                  ></ion-toast>
                 </div>
               </ng-template>
             </ion-modal>
-
-            <ion-toast
-              trigger="conferma-elimina-autore-'{{ author.authorID }}'"
-              message="Elemento eliminato"
-              class="toast-elemento"
-              color="danger"
-              [duration]="2000"
-              expand="block"
-            ></ion-toast>
           </div>
         </ion-accordion>
       </ion-accordion-group>
