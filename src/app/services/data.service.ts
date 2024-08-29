@@ -8,7 +8,6 @@ import {
   Shopkeeper,
   TypeObject,
   Warehouse,
-  LoginObject,
 } from '../services/interfaces.service';
 
 export let baseURL: string = 'http://localhost:5269/api/BookStore/';
@@ -135,11 +134,10 @@ export let bodyAddShopkeeper: Shopkeeper = {
   lastUpdateDate: new Date(),
   uniqueName: '',
   description: '',
-  notes:'',
-  email:'',
-  telephone1:'',
-  telephone2:''
-
+  notes: '',
+  email: '',
+  telephone1: '',
+  telephone2: '',
 };
 
 export let bodyModifyShopkeeper: Shopkeeper = {
@@ -148,10 +146,10 @@ export let bodyModifyShopkeeper: Shopkeeper = {
   lastUpdateDate: new Date(),
   uniqueName: '',
   description: '',
-  notes:'',
-  email:'',
-  telephone1:'',
-  telephone2:''
+  notes: '',
+  email: '',
+  telephone1: '',
+  telephone2: '',
 };
 
 export let bodyAddWarehouse: Warehouse = {

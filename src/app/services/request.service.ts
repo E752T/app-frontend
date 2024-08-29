@@ -1,3 +1,5 @@
+import { Response } from 'node-fetch';
+
 // GET FUNCTION
 export async function GetRequest(baseURL: string) {
   try {
@@ -8,46 +10,56 @@ export async function GetRequest(baseURL: string) {
       },
     });
     if (!response.ok) {
-      throw new Error(`Error! status: ${response.status}`);
+      throw new Error(`status: ${response.status}`);
     }
     const result = await response.json();
     return result;
   } catch (error) {
     if (error instanceof Error) {
-      console.log('error message: ', error.message);
+      console.log('GetRequest() error message: ', error.message, error);
       return error.message;
     } else {
-      console.log('unexpected error: ', error);
+      console.log('GetRequest() unexpected error: ', error);
       return 'An unexpected error occurred';
     }
   }
 }
 
 // POST FUNCTION
-export async function PostRequest(baseURL: string, body?: any) {
+export async function PostRequest(baseURL: string, body_request?: any) {
   try {
     const response = await fetch(baseURL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body_request),
     });
 
-    if (!response.ok) {
-      console.log(baseURL);
-      throw new Error(`Error! status: ${response.status}`);
-    }
-    const result = await response.json();
+    console.log(' * Post request url ', baseURL);
+    console.log(' * Post request body ', JSON.stringify(body_request));
 
-    return result;
+    if (!response.ok) {
+      throw new Error(`status: ${response.status}`);
+    }
+
+    const textResponse = await response.text(); // Ottieni la risposta come testo
+
+    // Controlla se la risposta è un JSON valido
+    try {
+      const jsonResponse = JSON.parse(textResponse);
+      return jsonResponse; // Restituisci l'oggetto JSON
+    } catch (jsonError) {
+      console.log('La risposta non è un JSON valido, restituisco la risposta come testo.');
+      return textResponse; // Restituisci la risposta come testo
+    }
+
   } catch (error) {
     if (error instanceof Error) {
-      console.log(baseURL);
-      console.log('error message: ', error.message);
+      console.log('PostRequest() error message: ', error.message, error.name);
       return error.message;
     } else {
-      console.log('unexpected error: ', error);
+      console.log('PostRequest() unexpected error: ', error);
       return 'An unexpected error occurred';
     }
   }

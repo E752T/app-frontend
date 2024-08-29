@@ -3,6 +3,8 @@
 export interface LoginObject {
   email: string;
   password: string;
+  //twoFactorCode: string;
+  //twoFactorRecoveryCode: string;
 }
 
 export interface DatabaseObject {
@@ -90,7 +92,6 @@ export interface Shopkeeper {
   telephone1: string;
   telephone2: string;
   notes: string;
-
 }
 
 export interface Warehouse {

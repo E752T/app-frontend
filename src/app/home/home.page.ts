@@ -29,6 +29,8 @@ export class HomePage implements OnInit {
   [x: string]: any;
   $event: any;
 
+  token_JWT: string = '';
+
   ngOnInit() {
     this.getScreenSize();
   }
@@ -80,10 +82,27 @@ export class HomePage implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  confirmLogin() {
-    this.modalCtrl.dismiss(this.body_login.email, 'confirm');
-    console.log(" Login access : ",this.body_login);
-    PostRequest(baseURL + 'Login/', this.body_login);
+  async confirmLogin() {
+    try {
+      // Dismiss the modal and log the email
+      const response = await PostRequest(baseURL + 'Login/', this.body_login);
+
+      // Verifica se la risposta è valida e contiene una stringa
+      if (response != null) {
+        console.log('Login successful: ', response);
+        this.modalCtrl.dismiss(this.body_login.email, 'confirm');
+        this.token_JWT = response;
+      } else {
+        console.warn('Login failed: No valid string received.');
+      }
+    } catch (error) {
+      // Gestione degli errori di parsing JSON specificamente
+      console.error('An error occurred during login: ', error);
+    } finally {
+      // Resetta i campi email e password
+      this.body_login.email = '';
+      this.body_login.password = '';
+    }
   }
 
   onWillDismiss(event: Event) {
@@ -122,6 +141,8 @@ export class HomePage implements OnInit {
   body_login: LoginObject = {
     email: '',
     password: '',
+    //twoFactorCode: '',
+    //twoFactorRecoveryCode: '',
   };
 
   AdminTables: Array<string> = [
