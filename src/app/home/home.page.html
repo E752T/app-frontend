@@ -343,18 +343,19 @@
           </ion-button>
         </div>
       </div>
-      <hr class="solid" />
-      <ion-button
-        color="secondary"
-        id="filter-button"
-        class="center"
-        style="min-width: 215px"
-        (click)="switchToView('Store')"
-      >
-        Archivio
-      </ion-button>
 
       <div *ngIf="this.token_JWT_success === true">
+        <hr class="solid" />
+        <ion-button
+          color="secondary"
+          id="filter-button"
+          class="center"
+          style="min-width: 215px"
+          (click)="switchToView('Store')"
+        >
+          Archivio
+        </ion-button>
+
         <ion-accordion-group class="accordion-gestionale">
           <ion-accordion value="first">
             <ion-item slot="header" color="secondary" style="border-radius: 5%">

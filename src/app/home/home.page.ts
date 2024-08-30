@@ -241,15 +241,15 @@ export class HomePage implements OnInit {
     this.filteredObjects = this.allDatabase;
     // if there is no search text give me every datapoint
     if (input == '' || input == null || input == undefined) {
+      this.filteredObjects = this.filterByYearsObjects(this.filteredObjects);
       this.filteredObjects = this.filterByAvaiability(this.filteredObjects);
-      this.filteredObjects = this.filterByYears(this.filteredObjects);
       this.filteredObjects = this.filterByGeneres(this.filteredObjects);
     } else {
       this.filteredObjects = this.allDatabase.filter((object) => {
         return object.title.toLowerCase().includes(input.toLowerCase());
       });
+      this.filteredObjects = this.filterByYearsObjects(this.filteredObjects);
       this.filteredObjects = this.filterByAvaiability(this.filteredObjects);
-      this.filteredObjects = this.filterByYears(this.filteredObjects);
       this.filteredObjects = this.filterByGeneres(this.filteredObjects);
     }
   }
@@ -1000,6 +1000,27 @@ export class HomePage implements OnInit {
     return filteredItems.filter((item) => {
       if (item.addedDate != null) {
         const year = new Date(item.addedDate).getFullYear();
+        const lowerYear = Number.isNaN(this.searchYears.lower)
+          ? 1800
+          : this.searchYears.lower;
+        const upperYear = Number.isNaN(this.searchYears.upper)
+          ? new Date().getFullYear()
+          : this.searchYears.upper;
+
+        return (
+          year >= new Date(lowerYear, 0, 1).getFullYear() &&
+          year <= new Date(upperYear, 0, 1).getFullYear()
+        );
+      }
+      return true; // Include items with null addedDate
+    });
+  }
+
+  filterByYearsObjects<T extends { discoveryDate: Date }>(filteredItems: T[]): T[] {
+    console.log(this.searchYears.lower, this.searchYears.upper);
+    return filteredItems.filter((item) => {
+      if (item.discoveryDate != null) {
+        const year = new Date(item.discoveryDate).getFullYear();
         const lowerYear = Number.isNaN(this.searchYears.lower)
           ? 1800
           : this.searchYears.lower;
