@@ -354,124 +354,153 @@
         Archivio
       </ion-button>
 
-      <ion-accordion-group class="accordion-gestionale">
-        <ion-accordion value="first">
-          <ion-item slot="header" color="secondary" style="border-radius: 5%">
-            <ion-label class="center" style="min-width: 215px"
-              >GESTIONALE</ion-label
-            >
-          </ion-item>
-          <ion-buttons slot="start" class="bottoniGestionale" slot="content">
-            <ion-button slot="start" (click)="switchToView('Author')">
-              Autori
-            </ion-button>
-            <ion-button slot="start" (click)="switchToView('Publisher')">
-              Editori
-            </ion-button>
-            <ion-button slot="start" (click)="switchToView('Category')">
-              Categorie
-            </ion-button>
-            <ion-button slot="start" (click)="switchToView('Shopkeeper')">
-              Esercenti
-            </ion-button>
-            <ion-button slot="start" (click)="switchToView('TypeObject')">
-              Tipo di oggetti
-            </ion-button>
-            <ion-button slot="start" (click)="switchToView('Warehouse')">
-              Magazzini
-            </ion-button>
-            <ion-button slot="start" (click)="switchToView('Provenance')">
-              Provenienza
-            </ion-button>
-            <ion-button
-              slot="start"
-              (click)="switchToView('GeographicalOrigin')"
-            >
-              Origini geografiche
-            </ion-button>
-          </ion-buttons>
-        </ion-accordion>
-      </ion-accordion-group>
+      <div *ngIf="this.token_JWT_success === true">
+        <ion-accordion-group class="accordion-gestionale">
+          <ion-accordion value="first">
+            <ion-item slot="header" color="secondary" style="border-radius: 5%">
+              <ion-label class="center" style="min-width: 215px"
+                >GESTIONALE</ion-label
+              >
+            </ion-item>
+            <ion-buttons slot="start" class="bottoniGestionale" slot="content">
+              <ion-button slot="start" (click)="switchToView('Author')">
+                Autori
+              </ion-button>
+              <ion-button slot="start" (click)="switchToView('Publisher')">
+                Editori
+              </ion-button>
+              <ion-button slot="start" (click)="switchToView('Category')">
+                Categorie
+              </ion-button>
+              <ion-button slot="start" (click)="switchToView('Shopkeeper')">
+                Esercenti
+              </ion-button>
+              <ion-button slot="start" (click)="switchToView('TypeObject')">
+                Tipo di oggetti
+              </ion-button>
+              <ion-button slot="start" (click)="switchToView('Warehouse')">
+                Magazzini
+              </ion-button>
+              <ion-button slot="start" (click)="switchToView('Provenance')">
+                Provenienza
+              </ion-button>
+              <ion-button
+                slot="start"
+                (click)="switchToView('GeographicalOrigin')"
+              >
+                Origini geografiche
+              </ion-button>
+            </ion-buttons>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
 
       <hr class="solid" />
 
-      <ion-button
-        id="login-button"
-        color="secondary"
-        class="center filter-button"
-        style="min-width: 215px"
-      >
-        <ion-text>
-          <ion-icon name="key-outline"></ion-icon>
-          Accedi
-        </ion-text></ion-button
-      >
-      <ion-modal
-        trigger="login-button"
-        (willDismiss)="onWillDismiss($event)"
-        class="ion-padding"
-      >
-        <ng-template class="ng-template-custom">
-          <ion-header>
-            <ion-toolbar>
-              <ion-title
-                class="ionic-title-custom"
-                style="margin-top: 10px; margin-bottom: 15px; margin-left: 20px"
-              >
-                <ion-text
-                  style="width: 100%; font-weight: bold"
-                  color="secondary"
+      <div *ngIf="!this.token_JWT_success">
+        <ion-button
+          id="login-button"
+          color="secondary"
+          class="center filter-button"
+          style="min-width: 215px"
+        >
+          <ion-text>
+            <ion-icon name="key-outline"></ion-icon>
+            Accedi
+          </ion-text></ion-button
+        >
+        <ion-modal
+          trigger="login-button"
+          (willDismiss)="onWillDismiss($event)"
+          class="ion-padding"
+        >
+          <ng-template class="ng-template-custom">
+            <ion-header>
+              <ion-toolbar>
+                <ion-title
+                  class="ionic-title-custom"
+                  style="
+                    margin-top: 10px;
+                    margin-bottom: 15px;
+                    margin-left: 20px;
+                  "
                 >
-                  Accedi</ion-text
-                ></ion-title
-              >
-              <ion-buttons slot="start">
-                <ion-button (click)="cancel()" [strong]="true"
-                  ><ion-icon name="arrow-undo-outline"></ion-icon
-                ></ion-button>
-              </ion-buttons>
-              <ion-buttons slot="end">
-                <ion-button (click)="confirmLogin()" [strong]="true"
-                  >Conferma</ion-button
+                  <ion-text
+                    style="width: 100%; font-weight: bold"
+                    color="secondary"
+                  >
+                    Accedi</ion-text
+                  ></ion-title
                 >
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content class="ion-padding">
-            <ion-item class="ionic-text-custom">
-              <ion-input
-                class="credenziali-login"
-                label="Email"
-                [clearInput]="true"
-                labelPlacement="stacked"
-                type="email"
-                [(ngModel)]="body_login.email"
-              ></ion-input>
-            </ion-item>
-            <ion-item class="ionic-text-custom">
-              <ion-input
-                class="credenziali-login"
-                label="Password"
-                [clearInput]="true"
-                labelPlacement="stacked"
-                type="password"
-                [(ngModel)]="body_login.password"
-              ></ion-input>
-            </ion-item>
+                <ion-buttons slot="start">
+                  <ion-button (click)="cancel()" [strong]="true"
+                    ><ion-icon name="arrow-undo-outline"></ion-icon
+                  ></ion-button>
+                </ion-buttons>
+                <ion-buttons slot="end">
+                  <ion-button
+                    (click)="confirmLogin()"
+                    [strong]="true"
+                    id="conferma-login"
+                    >Conferma</ion-button
+                  >
 
-            <ion-button
-              class="center bottone-credenziali"
-              style="margin-top: 30px"
-              color="secondary"
-              >Registra un nuovo account</ion-button
-            >
-            <br />
-            <ion-button class="center bottone-credenziali" color="secondary"
-              >Hai dimenticato le credenziali?</ion-button
-            >
-          </ion-content>
-        </ng-template>
-      </ion-modal>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <ion-item class="ionic-text-custom">
+                <ion-input
+                  class="credenziali-login"
+                  label="Email"
+                  [clearInput]="true"
+                  labelPlacement="stacked"
+                  type="email"
+                  [(ngModel)]="body_login.email"
+                ></ion-input>
+              </ion-item>
+              <ion-item class="ionic-text-custom">
+                <ion-input
+                  class="credenziali-login"
+                  label="Password"
+                  [clearInput]="true"
+                  labelPlacement="stacked"
+                  type="password"
+                  [(ngModel)]="body_login.password"
+                >
+                  <ion-input-password-toggle
+                    slot="end"
+                  ></ion-input-password-toggle>
+                </ion-input>
+              </ion-item>
+
+              <ion-button
+                class="center bottone-credenziali"
+                style="margin-top: 30px"
+                color="secondary"
+                >Registra un nuovo account</ion-button
+              >
+              <br />
+              <ion-button class="center bottone-credenziali" color="secondary"
+                >Hai dimenticato le credenziali?</ion-button
+              >
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+
+      <div *ngIf="this.token_JWT_success">
+        <ion-button
+          color="secondary"
+          class="center filter-button"
+          style="min-width: 215px"
+        >
+          <ion-text>
+            <ion-icon name="key-outline"></ion-icon>
+            Esci
+          </ion-text></ion-button
+        >
+      </div>
 
       <ion-button
         color="secondary"

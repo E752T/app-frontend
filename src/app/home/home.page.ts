@@ -30,6 +30,7 @@ export class HomePage implements OnInit {
   $event: any;
 
   token_JWT: string = '';
+  token_JWT_success: boolean = false;
 
   ngOnInit() {
     this.getScreenSize();
@@ -84,27 +85,41 @@ export class HomePage implements OnInit {
 
   async confirmLogin() {
     try {
-      // Dismiss the modal and log the email
       const response = await PostRequest(baseURL + 'Login/', this.body_login);
-
-      // Verifica se la risposta è valida e contiene una stringa
-      if (response != null && response != 404) {
+  
+      if (response != null && response != 404 && response != 'Empty values.') {
         console.log('Login SUCCESS, JWT token: ', response);
-        this.modalCtrl.dismiss(this.body_login.email, 'confirm');
         this.token_JWT = response;
+  
+        if (this.token_JWT.length > 50) {
+          this.token_JWT_success = true;
+          console.log("LOGIN SUCCESS ", this.token_JWT_success);
+          this.modalCtrl.dismiss(this.body_login.email, 'confirm');
+          this.showToast("Accesso Eseguito", "success");
+        }
       } else {
         console.warn('Login failed: No valid string received.');
+        this.token_JWT_success = false;
+        this.showToast("Credenziali Errate", "danger");
       }
     } catch (error) {
-      // Gestione degli errori di parsing JSON specificamente
       console.error('An error occurred during login: ', error);
+      this.token_JWT_success = false;
+      this.showToast("Errore durante il login", "danger");
     } finally {
-      // Resetta i campi email e password
       this.body_login.email = '';
       this.body_login.password = '';
     }
   }
-
+  
+  showToast(message: string, color: string) {
+    const toast = document.createElement('ion-toast');
+    toast.message = message;
+    toast.color = color;
+    toast.duration = 3000;
+    document.body.appendChild(toast);
+    return toast.present();
+  }
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
