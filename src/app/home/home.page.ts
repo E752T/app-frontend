@@ -31,7 +31,8 @@ export class HomePage implements OnInit {
 
   token_JWT: string = '';
   token_JWT_success: boolean = false;
-
+  username: string = '';
+  
   ngOnInit() {
     this.getScreenSize();
   }
@@ -86,32 +87,43 @@ export class HomePage implements OnInit {
   async confirmLogin() {
     try {
       const response = await PostRequest(baseURL + 'Login/', this.body_login);
-  
+
       if (response != null && response != 404 && response != 'Empty values.') {
         console.log('Login SUCCESS, JWT token: ', response);
         this.token_JWT = response;
-  
+
+        /// CHANGE THIS VALIDATION METHOD, I need to check the DB 
+        // (this method is easy but unsecure)
         if (this.token_JWT.length > 50) {
           this.token_JWT_success = true;
-          console.log("LOGIN SUCCESS ", this.token_JWT_success);
+          console.log('LOGIN SUCCESS ', this.token_JWT_success);
           this.modalCtrl.dismiss(this.body_login.email, 'confirm');
-          this.showToast("Accesso Eseguito", "success");
+          this.showToast('Accesso Eseguito', 'success');
+          this.username = this.body_login.email;
         }
       } else {
         console.warn('Login failed: No valid string received.');
         this.token_JWT_success = false;
-        this.showToast("Credenziali Errate", "danger");
+        this.showToast('Credenziali Errate', 'danger');
       }
     } catch (error) {
       console.error('An error occurred during login: ', error);
       this.token_JWT_success = false;
-      this.showToast("Errore durante il login", "danger");
+      this.showToast('Errore durante il login', 'danger');
     } finally {
       this.body_login.email = '';
       this.body_login.password = '';
     }
   }
-  
+
+  exit_login(){
+    this.body_login.email = '';
+    this.body_login.password = '';
+    this.token_JWT = '';
+    this.token_JWT_success = false;
+    this.modalCtrl.dismiss(this.body_login, 'confirm');
+  }
+
   showToast(message: string, color: string) {
     const toast = document.createElement('ion-toast');
     toast.message = message;
