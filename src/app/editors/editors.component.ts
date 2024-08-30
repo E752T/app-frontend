@@ -26,7 +26,7 @@ export class EditorsComponent {
 
   constructor(
     private http: HttpClient,
-    private modalController: ModalController
+    private modalCtrl: ModalController
   ) {}
 
 
@@ -44,8 +44,6 @@ export class EditorsComponent {
 
   @ViewChild(IonModal)
   modal!: IonModal;
-
-  modalCtrl: any;
 
   body_add_publisher: Publisher = {
     publisherID: 0,
@@ -77,6 +75,7 @@ export class EditorsComponent {
     );
     var elementToDelete = console.log(this.publishers);
     this.updatePublishers.emit(elementToDelete);
+    this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeletePublisher/' + objectID);
   }
 
@@ -100,11 +99,11 @@ export class EditorsComponent {
   }
 
   confirm() {
-    this.modalController.dismiss({ confirmed: true });
+    this.modalCtrl.dismiss({ confirmed: true });
   }
 
   cancel() {
-    this.modalController.dismiss({ confirmed: false });
+    this.modalCtrl.dismiss({ confirmed: false });
   }
 
   onWillDismiss(event: Event) {

@@ -11,14 +11,12 @@
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome">{{ publisher.name }} </ion-label>
             <ion-button
-              id="elimina-categoria-'{{ publisher.publisherID }}'"
+              id="modale-elimina-'{{ publisher.publisherID }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
-            <ion-modal
-              trigger="elimina-categoria-'{{ publisher.publisherID }}'"
-            >
+            <ion-modal trigger="modale-elimina-'{{ publisher.publisherID }}'">
               <ng-template>
                 <ion-header>
                   <ion-toolbar>
@@ -47,8 +45,7 @@
                   </ion-toolbar>
                 </ion-header>
                 <ion-text
-                  class="ion-text-center"
-                  class="testo-conferma-elimina"
+                  class="vertical-align-container testo-conferma-elimina ion-text-center"
                 >
                   <ion-title
                     >Sei sicuro di voler eliminare il seguente
@@ -294,7 +291,9 @@
                   expand="block"
                 ></ion-toast>
 
-                <div class="vertical-align-container">
+                <div
+                class="vertical-align-container testo-conferma-elimina ion-text-center"
+                >
                   <ion-title>
                     Sei sicuro di eliminare questo elemento?
                     <br />

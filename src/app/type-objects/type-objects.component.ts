@@ -70,6 +70,7 @@ export class TypeObjectComponent {
     );
     var elementToDelete = console.log(this.type_objects);
     this.updateTypeObject.emit(elementToDelete);
+    this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteTypeObject/' + objectID);
   }
 

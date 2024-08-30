@@ -76,6 +76,7 @@ export class WarehouseComponent {
     );
     var elementToDelete = console.log(this.warehouses);
     this.updateWarehouses.emit(elementToDelete);
+    this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteWarehouse/' + objectID);
   }
 
