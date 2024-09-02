@@ -3,7 +3,11 @@
     <ion-col>
       <ion-accordion-group>
         <ion-accordion value="first" class="accordion-oggetto">
-          <ion-item slot="header" style="--background:#2a6fdb;color: white" class="oggetto-anteprima">
+          <ion-item
+            slot="header"
+            style="--background: #2a6fdb; color: white"
+            class="oggetto-anteprima"
+          >
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome">{{ warehouse.name }} </ion-label>
             <ion-button
@@ -35,10 +39,9 @@
                 </ion-toolbar>
               </ion-header>
               <ion-text class="testo-conferma-elimina ion-text-center">
-                <ion-title
-                  >Sei sicuro di voler eliminare il seguente
-                  elemento?</ion-title
-                >
+                <ion-title>
+                  Sei sicuro di eliminare questo elemento?
+                </ion-title>
                 <p></p>
                 <h1>{{ warehouse.name }}</h1>
               </ion-text>
@@ -392,14 +395,13 @@
             >
 
             <ion-button
-              id="elimina-autore-'{{ warehouse.warehouseID }}'"
-              (click)="DeleteElement(warehouse.warehouseID)"
+              id="elimina2-autore-'{{ warehouse.warehouseID }}'"
               color="danger"
             >
               Elimina
             </ion-button>
 
-            <ion-modal trigger="elimina-autore-'{{ warehouse.warehouseID }}'">
+            <ion-modal trigger="elimina2-autore-'{{ warehouse.warehouseID }}'">
               <ng-template>
                 <ion-header>
                   <ion-toolbar>
@@ -408,11 +410,13 @@
                         ><ion-icon name="arrow-undo-outline"></ion-icon
                       ></ion-button>
                     </ion-buttons>
-  
+
                     <ion-buttons slot="end">
                       <ion-button
                         (click)="DeleteElement(warehouse.warehouseID)"
-                        id="conferma-elimina-autore-'{{ warehouse.warehouseID }}'"
+                        id="conferma-elimina-autore-'{{
+                          warehouse.warehouseID
+                        }}'"
                         [strong]="true"
                         >Conferma</ion-button
                       >
@@ -421,14 +425,15 @@
                 </ion-header>
                 <ion-text class="testo-conferma-elimina ion-text-center">
                   <ion-title
-                    >Sei sicuro di voler eliminare il seguente
-                    elemento?</ion-title
+                    >Sei sicuro di eliminare questo elemento?</ion-title
                   >
                   <p></p>
                   <h1>{{ warehouse.name }}</h1>
                 </ion-text>
                 <ion-toast
-                  trigger="conferma-elimina-autore-'{{ warehouse.warehouseID }}'"
+                  trigger="conferma-elimina-autore-'{{
+                    warehouse.warehouseID
+                  }}'"
                   message="Elemento eliminato"
                   class="toast-elemento"
                   [duration]="2000"

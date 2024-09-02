@@ -771,6 +771,7 @@ export class HomePage implements OnInit {
     this.filteredProvenances.unshift(new_element);
     this.allProvenances.unshift(new_element);
     // Perform the PostRequest
+    console.log('AddProvenance/ -->  ', this.body_add_provenance);
     return PostRequest(baseURL + 'AddProvenance/', this.body_add_provenance)
       .then((response) => {
         // Reset bodyAddAuthor to null after the PostRequest

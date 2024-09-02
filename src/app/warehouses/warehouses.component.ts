@@ -77,11 +77,6 @@ export class WarehouseComponent {
     return PostRequest(baseURL + 'DeleteWarehouse/' + objectID);
   }
 
-  confirmDeleteElement() {
-    this.DeleteElement(this.warehouse?.warehouseID);
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
-
   UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdateWarehouse/', this.warehouse);
   }

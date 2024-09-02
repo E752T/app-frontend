@@ -38,10 +38,9 @@
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
-              <ion-text class="ion-text-center" class="text-conferma-elimina">
+              <ion-text class="testo-conferma-elimina ion-text-center">
                 <ion-title
-                  >Sei sicuro di voler eliminare il seguente
-                  elemento?</ion-title
+                  >Sei sicuro di eliminare questo elemento?</ion-title
                 >
                 <p></p>
                 <h1>{{ provenance.name }}</h1>
@@ -208,12 +207,54 @@
             >
 
             <ion-button
-              id="elimina-autore-'{{ provenance.provenanceID }}'"
+              id="elimina2-autore-'{{ provenance.provenanceID }}'"
               (click)="DeleteElement(provenance.provenanceID)"
               color="danger"
             >
               Elimina
             </ion-button>
+
+            <ion-modal trigger="elimina2-autore-'{{ provenance.provenanceID }}'">
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+  
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="DeleteElement(provenance.provenanceID)"
+                        id="conferma-elimina-autore-'{{
+                          provenance.provenanceID
+                        }}'"
+                        [strong]="true"
+                        >Conferma</ion-button
+                      >
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text class="testo-conferma-elimina ion-text-center">
+                  <ion-title
+                    >Sei sicuro di eliminare questo elemento?</ion-title
+                  >
+                  <p></p>
+                  <h1>{{ provenance.name }}</h1>
+                </ion-text>
+                <ion-toast
+                  trigger="conferma-elimina-autore-'{{
+                    provenance.provenanceID
+                  }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  [duration]="2000"
+                  expand="block"
+                  color="danger"
+                ></ion-toast>
+              </ng-template>
+            </ion-modal>
 
             <ion-toast
               trigger="button-UpdateAuthorAPI-'{{ provenance.provenanceID }}'"
