@@ -793,7 +793,7 @@ export class HomePage implements OnInit {
     this.allProvenances = items.filter(
       (element) => element[key] !== itemToDelete[key]
     );
-    console.log('Update Provenances/', items);
+    console.log('Update Provenances/', this.allProvenances);
     this.getProvenances('');
     this.filteredProvenances = this.allProvenances;
     return this.filteredProvenances;
@@ -887,7 +887,7 @@ export class HomePage implements OnInit {
       (element) => element[key] !== itemToDelete[key]
     );
     console.log('Update GeographicalOrigins/', items);
-    this.getGeographicalOrigins('');
+    this.getGeographicalOrigins(this.searchInput);
     this.filteredGeographicalOrigins = this.allGeographicalOrigins;
     return this.filteredGeographicalOrigins;
   }
