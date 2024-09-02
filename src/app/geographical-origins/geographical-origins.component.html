@@ -47,6 +47,16 @@
                       [strong]="true"
                       >Conferma</ion-button
                     >
+                    <ion-toast
+                      trigger="conferma-elimina-autore-'{{
+                        geographical_origin.geographicalOriginID
+                      }}'"
+                      message="Elemento eliminato"
+                      class="toast-elemento"
+                      [duration]="2000"
+                      expand="block"
+                      color="danger"
+                    ></ion-toast>
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
@@ -58,16 +68,6 @@
                 <p></p>
                 <h1>{{ geographical_origin.name }}</h1>
               </ion-text>
-              <ion-toast
-                trigger="conferma-elimina-autore-'{{
-                  geographical_origin.geographicalOriginID
-                }}'"
-                message="Elemento eliminato"
-                class="toast-elemento"
-                [duration]="2000"
-                expand="block"
-                color="danger"
-              ></ion-toast>
             </ng-template>
           </ion-modal>
 
@@ -280,12 +280,22 @@
             <ion-button
               color="secondary"
               class="bottone-update"
-              id="button-UpdateAuthorAPI-'{{
+              id="button-update-'{{
                 geographical_origin.geographicalOriginID
               }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
+            <ion-toast
+              trigger="button-update-'{{
+                geographical_origin.geographicalOriginID
+              }}'"
+              message="Nuovo elemento salvato"
+              class="toast-elemento"
+              color="success"
+              [duration]="2000"
+              expand="block"
+            ></ion-toast>
 
             <ion-button
               id="elimina2-autore-'{{
@@ -323,6 +333,16 @@
                         [strong]="true"
                         >Conferma</ion-button
                       >
+                      <ion-toast
+                        trigger="conferma-elimina-autore-'{{
+                          geographical_origin.geographicalOriginID
+                        }}'"
+                        message="Elemento eliminato"
+                        class="toast-elemento"
+                        [duration]="2000"
+                        expand="block"
+                        color="danger"
+                      ></ion-toast>
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
@@ -333,29 +353,8 @@
                   <p></p>
                   <h1>{{ geographical_origin.name }}</h1>
                 </ion-text>
-                <ion-toast
-                  trigger="conferma-elimina-autore-'{{
-                    geographical_origin.geographicalOriginID
-                  }}'"
-                  message="Elemento eliminato"
-                  class="toast-elemento"
-                  [duration]="2000"
-                  expand="block"
-                  color="danger"
-                ></ion-toast>
               </ng-template>
             </ion-modal>
-
-            <ion-toast
-              trigger="button-UpdateAuthorAPI-'{{
-                geographical_origin.geographicalOriginID
-              }}'"
-              message="Nuovo elemento salvato"
-              class="toast-elemento"
-              color="success"
-              [duration]="2000"
-              expand="block"
-            ></ion-toast>
           </div>
         </ion-accordion>
       </ion-accordion-group>
