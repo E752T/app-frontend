@@ -8,17 +8,10 @@
   padding-right: 3%;
 }
 
-.testo-conferma-elimina {
-  margin-bottom: 50%;
-  font-family: serif;
-}
-
 .label-autori {
   font-weight: bold;
   padding-bottom: 2%;
 }
-
-
 
 .icone-autori {
   width: 20px;
@@ -52,15 +45,19 @@
 .accordion-oggetto {
   padding-right: 10px;
   padding-left: 10px;
-
 }
 
 .cartellino-nome {
-  letter-spacing:1px;
+  letter-spacing: 1px;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-.toast-elemento-eliminato {
+.testo-conferma-elimina {
+  margin-bottom: 100%;
+  font-family: serif;
+}
+
+.toast-elemento {
   max-width: 250px;
   margin-left: 40%;
   margin-right: 40%;

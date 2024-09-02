@@ -3,20 +3,24 @@
     <ion-col>
       <ion-accordion-group>
         <ion-accordion value="first" class="accordion-oggetto">
-          <ion-item slot="header" style="--background:#864cbd;color: white" class="oggetto-anteprima">
+          <ion-item
+            slot="header"
+            style="--background: #864cbd; color: white"
+            class="oggetto-anteprima"
+          >
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome"
               >{{ shopkeeper.uniqueName }}
             </ion-label>
             <ion-button
-              id="elimina-autore-'{{ shopkeeper.shopkeeperID }}'"
+              id="modale-elimina-'{{ shopkeeper.shopkeeperID }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
           </ion-item>
 
-          <ion-modal trigger="elimina-autore-'{{ shopkeeper.shopkeeperID }}'">
+          <ion-modal trigger="modale-elimina-'{{ shopkeeper.shopkeeperID }}'">
             <ng-template>
               <ion-header>
                 <ion-toolbar>
@@ -38,11 +42,9 @@
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
-              <ion-text class="ion-text-center" class="text-conferma-elimina">
-                <ion-title
-                  >Sei sicuro di voler eliminare il seguente
-                  elemento?</ion-title
-                >
+              <ion-text class="testo-conferma-elimina ion-text-center">
+                <ion-title>Sei sicuro di eliminare questo elemento?</ion-title>
+
                 <p></p>
                 <h1>{{ shopkeeper.uniqueName }}</h1>
               </ion-text>
@@ -268,14 +270,61 @@
             >
 
             <ion-button
-              id="elimina-autore-'{{ shopkeeper.shopkeeperID }}'"
-              (click)="DeleteElement(shopkeeper.shopkeeperID)"
+              id="elimina2-autore-'{{ shopkeeper.shopkeeperID }}'"
               color="danger"
             >
               Elimina
             </ion-button>
+
+            <ion-modal
+              trigger="elimina2-autore-'{{ shopkeeper.shopkeeperID }}'"
+            >
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="DeleteElement(shopkeeper.shopkeeperID)"
+                        id="conferma-elimina-autore-'{{
+                          shopkeeper.shopkeeperID
+                        }}'"
+                        [strong]="true"
+                        >Conferma</ion-button
+                      >
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text class="testo-conferma-elimina ion-text-center">
+                  <ion-title
+                    >Sei sicuro di eliminare questo elemento?</ion-title
+                  >
+
+                  <p></p>
+                  <h1>{{ shopkeeper.uniqueName }}</h1>
+                </ion-text>
+                <ion-toast
+                  trigger="conferma-elimina-autore-'{{
+                    shopkeeper.shopkeeperID
+                  }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  [duration]="2000"
+                  expand="block"
+                  color="danger"
+                ></ion-toast>
+              </ng-template>
+            </ion-modal>
+
             <ion-toast
-              trigger="button-UpdateShopkeeperAPI-'{{ shopkeeper.shopkeeperID }}'"
+              trigger="button-UpdateShopkeeperAPI-'{{
+                shopkeeper.shopkeeperID
+              }}'"
               message="Nuovo elemento salvato"
               class="toast-elemento"
               color="success"

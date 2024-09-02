@@ -36,7 +36,6 @@
   margin-bottom: -4px;
 }
 
-
 .accordion-oggetto {
   padding-right: 10px;
   padding-left: 10px;
@@ -48,6 +47,17 @@
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
+.testo-conferma-elimina {
+  margin-bottom: 100%;
+  font-family: serif;
+}
+
+.toast-elemento {
+  max-width: 250px;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
 .vertical-align-container {
   display: flex;
   flex-direction: column; /* Align items in a column */
@@ -57,10 +67,4 @@
   width: 100%; /* Adjusts to full width of the toolbar */
   padding: 10px; /* Adds some padding for better appearance */
   box-sizing: border-box; /* Ensures padding is included in the width */
-}
-
-
-.testo-conferma-elimina {
-  margin-bottom: 50%;
-  font-family: serif;
 }

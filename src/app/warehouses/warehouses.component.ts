@@ -24,7 +24,7 @@ import { Warehouse } from '../services/interfaces.service';
 export class WarehouseComponent {
   constructor(
     private http: HttpClient,
-    private modalController: ModalController
+    private modalCtrl: ModalController
   ) {}
 
   private platform = inject(Platform);
@@ -43,8 +43,6 @@ export class WarehouseComponent {
 
   @ViewChild(IonModal)
   modal!: IonModal;
-
-  modalCtrl: any;
 
   body_add_warehouse: Warehouse = {
     warehouseID: 0,
@@ -74,8 +72,7 @@ export class WarehouseComponent {
     this.warehouses.filter(
       (element: Warehouse) => element.warehouseID !== objectID
     );
-    var elementToDelete = console.log(this.warehouses);
-    this.updateWarehouses.emit(elementToDelete);
+    this.updateWarehouses.emit(this.warehouses);
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteWarehouse/' + objectID);
   }
@@ -100,11 +97,11 @@ export class WarehouseComponent {
   }
 
   confirm() {
-    this.modalController.dismiss({ confirmed: true });
+    this.modalCtrl.dismiss({ confirmed: true });
   }
 
   cancel() {
-    this.modalController.dismiss({ confirmed: false });
+    this.modalCtrl.dismiss({ confirmed: false });
   }
 
   onWillDismiss(event: Event) {

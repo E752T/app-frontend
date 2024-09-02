@@ -46,11 +46,10 @@ export class ShopkeepersComponent {
     addedDate: today,
     lastUpdateDate: today,
     description: '',
-    telephone1:'',
-    telephone2:'',
-    email:'',
-    notes:'',
-
+    telephone1: '',
+    telephone2: '',
+    email: '',
+    notes: '',
   };
 
   body_update_shopkeeper: Shopkeeper = {
@@ -59,18 +58,16 @@ export class ShopkeepersComponent {
     addedDate: today,
     lastUpdateDate: today,
     description: '',
-    telephone1:'',
-    telephone2:'',
-    email:'',
-    notes:'',
-
+    telephone1: '',
+    telephone2: '',
+    email: '',
+    notes: '',
   };
 
   DeleteElement(objectID: any) {
     this.shopkeepers = this.shopkeepers.filter(
       (element: Shopkeeper) => element.shopkeeperID !== objectID
     );
-    console.log('API DeleteShopkeeper/ -> Remaining Array ', this.shopkeepers);
     this.updateShopkeepers.emit(this.shopkeepers);
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteShopkeeper/' + objectID);
@@ -87,7 +84,6 @@ export class ShopkeepersComponent {
   }
 
   UpdateElement(): Promise<any> {
-    console.log('POST api/UpdateShopkeeper/ ', this.shopkeeper);
     return PostRequest(baseURL + 'UpdateShopkeeper/', this.shopkeeper);
   }
 

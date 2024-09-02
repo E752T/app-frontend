@@ -34,7 +34,7 @@
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
-              <ion-text class="ion-text-center" class="text-conferma-elimina">
+              <ion-text class="testo-conferma-elimina ion-text-center">
                 <ion-title
                   >Sei sicuro di voler eliminare il seguente
                   elemento?</ion-title
@@ -399,6 +399,44 @@
               Elimina
             </ion-button>
 
+            <ion-modal trigger="elimina-autore-'{{ warehouse.warehouseID }}'">
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+  
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="DeleteElement(warehouse.warehouseID)"
+                        id="conferma-elimina-autore-'{{ warehouse.warehouseID }}'"
+                        [strong]="true"
+                        >Conferma</ion-button
+                      >
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text class="testo-conferma-elimina ion-text-center">
+                  <ion-title
+                    >Sei sicuro di voler eliminare il seguente
+                    elemento?</ion-title
+                  >
+                  <p></p>
+                  <h1>{{ warehouse.name }}</h1>
+                </ion-text>
+                <ion-toast
+                  trigger="conferma-elimina-autore-'{{ warehouse.warehouseID }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  [duration]="2000"
+                  expand="block"
+                  color="danger"
+                ></ion-toast>
+              </ng-template>
+            </ion-modal>
             <ion-toast
               trigger="button-UpdateAuthorAPI-'{{ warehouse.warehouseID }}'"
               message="Nuovo elemento salvato"

@@ -36,21 +36,31 @@
 
                   <ion-buttons slot="end">
                     <ion-button
-                      (click)="confirmDeleteCategory()"
+                      (click)="DeleteCategory(category.categoryID)"
                       id="conferma-elimina-'{{ category.categoryID }}'"
                       [strong]="true"
                       >Conferma</ion-button
                     >
+
+                    <ion-toast
+                      class="toast-autori"
+                      trigger="conferma-elimina-'{{ category.categoryID }}'"
+                      message=" Elemento Eliminato "
+                      style="
+                        max-width: 250px;
+                        margin-left: 40%;
+                        margin-right: 40%;
+                      "
+                      [duration]="2000"
+                      expand="block"
+                      color="danger"
+                    ></ion-toast>
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
-              <ion-text
-                class="vertical-align-container testo-conferma-elimina"
-                >
-                <ion-title
-                  >Sei sicuro di voler eliminare il seguente
-                  elemento?</ion-title
-                >
+              <ion-text class="testo-conferma-elimina ion-text-center">
+                <ion-title>Sei sicuro di eliminare questo elemento?</ion-title>
+                <p></p>
                 <p></p>
                 <h1>{{ category.name }}</h1>
               </ion-text>
@@ -256,19 +266,57 @@
             <ion-button
               color="danger"
               style="padding-right: 3%"
-              id="conferma-elimina-'{{ category.categoryID }}'"
+              id="modale2-elimina-categoria-'{{ category.categoryID }}'"
             >
               Elimina</ion-button
             >
 
-            <ion-toast
-              trigger="conferma-elimina-'{{ category.categoryID }}'"
-              message="Elemento eliminato"
-              class="toast-elemento"
-              color="danger"
-              [duration]="2000"
-              expand="block"
-            ></ion-toast>
+            <ion-modal
+              trigger="modale2-elimina-categoria-'{{ category.categoryID }}'"
+            >
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="DeleteCategory(category.categoryID)"
+                        id="conferma-elimina-'{{ category.categoryID }}'"
+                        [strong]="true"
+                        >Conferma</ion-button
+                      >
+
+                      <ion-toast
+                        class="toast-autori"
+                        trigger="conferma-elimina-'{{ category.categoryID }}'"
+                        message=" Elemento Eliminato "
+                        style="
+                          max-width: 250px;
+                          margin-left: 40%;
+                          margin-right: 40%;
+                        "
+                        [duration]="2000"
+                        expand="block"
+                        color="danger"
+                      ></ion-toast>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text class="testo-conferma-elimina ion-text-center">
+                  <ion-title
+                    >Sei sicuro di eliminare questo elemento?</ion-title
+                  >
+                  <p></p>
+                  <p></p>
+                  <h1>{{ category.name }}</h1>
+                </ion-text>
+              </ng-template>
+            </ion-modal>
           </div>
         </ion-accordion>
       </ion-accordion-group>

@@ -23,13 +23,8 @@ import { TypeObject } from '../services/interfaces.service';
   styleUrls: ['./type-objects.component.scss'],
 })
 export class TypeObjectComponent {
-  // Adjusted class name with the "Component" suffix
-  constructor(
-    private http: HttpClient,
-    private modalController: ModalController
-  ) {}
-
   private platform = inject(Platform);
+  constructor(private http: HttpClient, private modalCtrl: ModalController) {}
 
   @Input()
   type_object!: TypeObject;
@@ -45,8 +40,6 @@ export class TypeObjectComponent {
 
   @ViewChild(IonModal)
   modal!: IonModal;
-
-  modalCtrl: any;
 
   body_add_type_object: TypeObject = {
     typeID: 0,
@@ -64,23 +57,18 @@ export class TypeObjectComponent {
     description: '',
   };
 
-  DeleteElement(objectID: any) {
-    this.type_objects.filter(
-      (element: TypeObject) => element.typeID !== objectID
+  DeleteElement(typeID: any) {
+    this.type_objects = this.type_objects.filter(
+      (element: TypeObject) => element.typeID !== typeID
     );
-    var elementToDelete = console.log(this.type_objects);
-    this.updateTypeObject.emit(elementToDelete);
+    this.updateTypeObject.emit(this.type_objects);
     this.modalCtrl.dismiss({ confirmed: true });
-    return PostRequest(baseURL + 'DeleteTypeObject/' + objectID);
-  }
-
-  confirmDeleteElement() {
-    this.DeleteElement(this.type_object?.typeID);
-    this.modalCtrl.dismiss({ confirmed: true });
+    console.log('Deleting Type Object ID: ', typeID);
+    return PostRequest(baseURL + 'DeleteTypeObject/' + typeID);
   }
 
   UpdateElement(): Promise<any> {
-    console.log('UpdateTypeObject/', this.type_object)
+    console.log('Update Type Objects');
     return PostRequest(baseURL + 'UpdateTypeObject/', this.type_object);
   }
 
@@ -95,11 +83,11 @@ export class TypeObjectComponent {
   }
 
   confirm() {
-    this.modalController.dismiss({ confirmed: true });
+    this.modalCtrl.dismiss({ confirmed: true });
   }
 
   cancel() {
-    this.modalController.dismiss({ confirmed: false });
+    this.modalCtrl.dismiss({ confirmed: false });
   }
 
   onWillDismiss(event: Event) {

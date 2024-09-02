@@ -44,12 +44,10 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-text
-                  class="vertical-align-container testo-conferma-elimina ion-text-center"
-                >
+                <ion-text class="testo-conferma-elimina ion-text-center">
+                  
                   <ion-title
-                    >Sei sicuro di voler eliminare il seguente
-                    elemento?</ion-title
+                    >Sei sicuro di eliminare questo elemento?</ion-title
                   >
                   <p></p>
                   <h1>{{ publisher.name }}</h1>
@@ -291,9 +289,7 @@
                   expand="block"
                 ></ion-toast>
 
-                <div
-                class="vertical-align-container testo-conferma-elimina ion-text-center"
-                >
+                <ion-text class="testo-conferma-elimina ion-text-center">
                   <ion-title>
                     Sei sicuro di eliminare questo elemento?
                     <br />
@@ -308,7 +304,7 @@
                     [duration]="2000"
                     expand="block"
                   ></ion-toast>
-                </div>
+                </ion-text>
               </ng-template>
             </ion-modal>
           </div>

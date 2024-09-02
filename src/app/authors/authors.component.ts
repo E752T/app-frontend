@@ -68,7 +68,6 @@ export class AuthorsComponent {
     this.authors = this.authors.filter(
       (element: Author) => element.authorID !== objectID
     );
-    console.log('=> api/DeleteAuthor/', objectID);
     this.updateAuthors.emit(this.authors);
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteAuthor/' + objectID);
@@ -85,7 +84,6 @@ export class AuthorsComponent {
   }
 
   UpdateElement(): Promise<any> {
-    console.log('POST api/UpdateAuthor/ ', this.author);
     return PostRequest(baseURL + 'UpdateAuthor/', this.author);
   }
 

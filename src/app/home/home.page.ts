@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
   token_JWT: string = '';
   token_JWT_success: boolean = false;
   username: string = '';
-  
+
   ngOnInit() {
     this.getScreenSize();
   }
@@ -92,7 +92,7 @@ export class HomePage implements OnInit {
         console.log('Login SUCCESS, JWT token: ', response);
         this.token_JWT = response;
 
-        /// CHANGE THIS VALIDATION METHOD, I need to check the DB 
+        /// CHANGE THIS VALIDATION METHOD, I need to check the DB
         // (this method is easy but unsecure)
         if (this.token_JWT.length > 50) {
           this.token_JWT_success = true;
@@ -116,7 +116,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  exit_login(){
+  exit_login() {
     this.body_login.email = '';
     this.body_login.password = '';
     this.token_JWT = '';
@@ -166,8 +166,8 @@ export class HomePage implements OnInit {
   //////////////////////// ADMIN /////////////////////////////////////
 
   body_login: LoginObject = {
-    email: '',
-    password: '',
+    email: 'test',
+    password: 'test',
     //twoFactorCode: '',
     //twoFactorRecoveryCode: '',
   };
@@ -395,8 +395,9 @@ export class HomePage implements OnInit {
       this.filteredCategories
     );
     let new_element = this.body_add_category;
-    this.allCategories.unshift(new_element);
+
     this.filteredCategories.unshift(new_element);
+    this.allCategories.unshift(new_element);
 
     console.log('POST api/AddCategory/ ', this.body_add_category);
     // Perform the PostRequest
@@ -485,10 +486,13 @@ export class HomePage implements OnInit {
     this.body_add_publisher.publisherID = this.getNewIDPublisher(
       this.filteredPublishers
     );
+
     let new_element = this.body_add_publisher;
-    this.allPublishers.unshift(new_element);
     this.filteredPublishers.unshift(new_element);
+    this.allPublishers.unshift(new_element);
+
     console.log('POST api/AddPublisher/ ', this.body_add_publisher);
+
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddPublisher/', this.body_add_publisher)
       .then((response) => {
@@ -580,8 +584,9 @@ export class HomePage implements OnInit {
       this.filteredShopkeepers
     );
     let new_element = this.body_add_shopkeeper;
-    this.allShopkeepers.unshift(new_element);
     this.filteredShopkeepers.unshift(new_element);
+    this.allShopkeepers.unshift(new_element);
+
     console.log('POST api/AddShopkeeper/ ', this.body_add_shopkeeper);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddShopkeeper/', this.body_add_shopkeeper)
@@ -674,9 +679,8 @@ export class HomePage implements OnInit {
       this.filteredWarehouses
     );
     let new_element = this.body_add_warehouse;
-    this.allWarehouses.unshift(new_element);
     this.filteredWarehouses.unshift(new_element);
-    console.log('POST api/AddWarehouse/ ', this.body_add_warehouse);
+    this.allWarehouses.unshift(new_element);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddWarehouse/', this.body_add_warehouse)
       .then((response) => {
@@ -764,9 +768,8 @@ export class HomePage implements OnInit {
       this.filteredProvenances
     );
     let new_element = this.body_add_provenance;
-    this.allProvenances.unshift(new_element);
     this.filteredProvenances.unshift(new_element);
-    console.log('POST api/AddProvenance/ ', this.body_add_provenance);
+    this.allProvenances.unshift(new_element);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddProvenance/', this.body_add_provenance)
       .then((response) => {
@@ -855,12 +858,8 @@ export class HomePage implements OnInit {
     this.body_add_geographical_origin.geographicalOriginID =
       this.getNewIDGeographicalOrigin(this.filteredGeographicalOrigins);
     let new_element = this.body_add_geographical_origin;
-    this.allGeographicalOrigins.unshift(new_element);
     this.filteredGeographicalOrigins.unshift(new_element);
-    console.log(
-      'POST api/AddGeographicalOrigin/ ',
-      this.body_add_geographical_origin
-    );
+    this.allGeographicalOrigins.unshift(new_element);
     // Perform the PostRequest
     return PostRequest(
       baseURL + 'AddGeographicalOrigin/',
@@ -947,11 +946,11 @@ export class HomePage implements OnInit {
       this.filteredTypeObjects
     );
     let new_element = this.body_add_type_object;
-    this.allTypeObjects.unshift(new_element);
     this.filteredTypeObjects.unshift(new_element);
-    console.log('POST api/AddTypeObjects/ ', this.body_add_type_object);
+    this.allTypeObjects.unshift(new_element);
+
     // Perform the PostRequest
-    return PostRequest(baseURL + 'AddTypeObjects/', this.body_add_type_object)
+    return PostRequest(baseURL + 'AddType/', this.body_add_type_object)
       .then((response) => {
         // Reset bodyAddAuthor to null after the PostRequest
         this.body_add_type_object = {
@@ -973,6 +972,11 @@ export class HomePage implements OnInit {
     this.allTypeObjects = items.filter(
       (element) => element[key] !== itemToDelete[key]
     );
+
+    this.filteredTypeObjects = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+
     console.log('Update TypeObjects/', items);
     this.getTypeObjects('');
     this.filteredTypeObjects = this.allTypeObjects;
@@ -1016,7 +1020,9 @@ export class HomePage implements OnInit {
     });
   }
 
-  filterByYearsObjects<T extends { discoveryDate: Date }>(filteredItems: T[]): T[] {
+  filterByYearsObjects<T extends { discoveryDate: Date }>(
+    filteredItems: T[]
+  ): T[] {
     console.log(this.searchYears.lower, this.searchYears.upper);
     return filteredItems.filter((item) => {
       if (item.discoveryDate != null) {

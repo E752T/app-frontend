@@ -23,10 +23,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent {
-  constructor(
-    private http: HttpClient,
-    private modalController: ModalController
-  ) {}
+  constructor(private http: HttpClient, private modalCtrl: ModalController) {}
 
   @Input()
   category!: Category;
@@ -42,8 +39,6 @@ export class CategoriesComponent {
 
   @ViewChild(IonModal)
   modal!: IonModal;
-
-  modalCtrl: any;
 
   body_add_category: Category = {
     categoryID: 0,
@@ -70,6 +65,7 @@ export class CategoriesComponent {
 
     var categoryToDelete = console.log(this.categories);
     this.updateCategories.emit(categoryToDelete);
+    this.modalCtrl.dismiss({ confirmed: true });
 
     return PostRequest(baseURL + 'DeleteCategory/' + categoryID);
   }
@@ -94,11 +90,11 @@ export class CategoriesComponent {
   }
 
   confirm() {
-    this.modalController.dismiss({ confirmed: true });
+    this.modalCtrl.dismiss({ confirmed: true });
   }
 
   cancel() {
-    this.modalController.dismiss({ confirmed: false });
+    this.modalCtrl.dismiss({ confirmed: false });
   }
 
   onWillDismiss(event: Event) {

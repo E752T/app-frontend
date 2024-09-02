@@ -3,18 +3,24 @@
     <ion-col>
       <ion-accordion-group>
         <ion-accordion value="first" class="accordion-oggetto">
-          <ion-item slot="header" style="--background: #8f3b76;color: white" class="oggetto-anteprima">
+          <ion-item
+            slot="header"
+            style="--background: #8f3b76; color: white"
+            class="oggetto-anteprima"
+          >
             <ion-icon name="caret-forward-outline"></ion-icon>
-            <ion-label class="cartellino-nome">{{ type_object.name }} </ion-label>
+            <ion-label class="cartellino-nome"
+              >{{ type_object.name }}
+            </ion-label>
             <ion-button
-              id="elimina-autore-'{{ type_object.typeID }}'"
+              id="modale-elimina-'{{ type_object.typeID }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
           </ion-item>
 
-          <ion-modal trigger="elimina-autore-'{{ type_object.typeID }}'">
+          <ion-modal trigger="modale-elimina-'{{ type_object.typeID }}'">
             <ng-template>
               <ion-header>
                 <ion-toolbar>
@@ -130,7 +136,6 @@
             </svg>
           </div>
 
-
           <div slot="content">
             <ion-label class="label-autori">
               <svg
@@ -185,7 +190,9 @@
               id="open-modal-addedDate-'{{ type_object.typeID }}'"
               color="lighter"
               style="color: black; margin-top: 10px; margin-bottom: 10px"
-              >{{ type_object.addedDate ? type_object.addedDate : "NOT FOUND" }}</ion-text
+              >{{
+                type_object.addedDate ? type_object.addedDate : "NOT FOUND"
+              }}</ion-text
             >
           </div>
 
@@ -255,27 +262,64 @@
             <ion-button
               color="secondary"
               class="bottone-update"
-              id="button-UpdateAuthorAPI-'{{ type_object.typeID }}'"
+              id="button-update-'{{ type_object.typeID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
 
+            <ion-toast
+            trigger="button-update-'{{  type_object.typeID}}'"
+            message="Nuovo elemento salvato"
+            class="toast-elemento"
+            color="success"
+            [duration]="2000"
+            expand="block"
+          ></ion-toast>
             <ion-button
-              id="elimina-autore-'{{ type_object.typeID }}'"
-              (click)="DeleteElement(type_object.typeID)"
+              id="modale2-elimina-'{{ type_object.typeID }}'"
               color="danger"
             >
               Elimina
             </ion-button>
 
-            <ion-toast
-              trigger="button-UpdateAuthorAPI-'{{ type_object.typeID }}'"
-              message="Nuovo elemento salvato"
-              class="toast-elemento"
-              color="success"
-              [duration]="2000"
-              expand="block"
-            ></ion-toast>
+            <ion-modal trigger="modale2-elimina-'{{ type_object.typeID }}'">
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="DeleteElement(type_object.typeID)"
+                        id="conferma2-elimina-autore-'{{ type_object.typeID }}'"
+                        [strong]="true"
+                        >Conferma</ion-button
+                      >
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text class="ion-text-center" class="text-conferma-elimina">
+                  <ion-title
+                    >Sei sicuro di voler eliminare il seguente
+                    elemento?</ion-title
+                  >
+                  <p></p>
+                  <h1>{{ type_object.name }}</h1>
+                </ion-text>
+                <ion-toast
+                  trigger="conferma2-elimina-autore-'{{ type_object.typeID }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  [duration]="2000"
+                  expand="block"
+                  color="danger"
+                ></ion-toast>
+              </ng-template>
+            </ion-modal>
           </div>
         </ion-accordion>
       </ion-accordion-group>
