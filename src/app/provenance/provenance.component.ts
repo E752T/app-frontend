@@ -60,7 +60,6 @@ export class ProvenancesComponent {
     this.provenances = this.provenances.filter(
       (element: Provenance) => element.provenanceID !== objectID
     );
-    console.log('API DeleteProvenance/ -> Remaining Array ', this.provenances);
     this.updateProvenances.emit(this.provenances);
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteProvenance/' + objectID);

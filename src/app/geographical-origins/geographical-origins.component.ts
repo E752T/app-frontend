@@ -25,7 +25,7 @@ import { PostRequest } from '../services/request.service';
 export class GeographicalOriginComponent {
   constructor(
     private http: HttpClient,
-    private modalController: ModalController
+    private modalCtrl: ModalController
   ) {}
 
   private platform = inject(Platform);
@@ -45,8 +45,6 @@ export class GeographicalOriginComponent {
   @ViewChild(IonModal)
   modal!: IonModal;
 
-  modalCtrl: any;
-
   body_add_geographical_origin: GeographicalOrigin = {
     geographicalOriginID: 0,
     name: '',
@@ -63,12 +61,10 @@ export class GeographicalOriginComponent {
     description: '',
   };
 
-
   DeleteElement(objectID: any) {
     this.geographical_origins = this.geographical_origins.filter(
       (element: GeographicalOrigin) => element.geographicalOriginID !== objectID
     );
-    console.log('API DeleteGeographicalOrigin/ -> Remaining Array ', this.geographical_origins);
     this.updateGeographicalOrigin.emit(this.geographical_origins);
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteGeographicalOrigin/' + objectID);

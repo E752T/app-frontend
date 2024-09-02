@@ -3,18 +3,30 @@
     <ion-col>
       <ion-accordion-group>
         <ion-accordion value="first" class="accordion-oggetto">
-          <ion-item slot="header" style="--background:#3133b5;color: white;" class="oggetto-anteprima">
+          <ion-item
+            slot="header"
+            style="--background: #3133b5; color: white"
+            class="oggetto-anteprima"
+          >
             <ion-icon name="caret-forward-outline"></ion-icon>
-            <ion-label class="cartellino-nome">{{ geographical_origin.name }} </ion-label>
+            <ion-label class="cartellino-nome"
+              >{{ geographical_origin.name }}
+            </ion-label>
             <ion-button
-              id="elimina-autore-'{{ geographical_origin.geographicalOriginID }}'"
+              id="elimina-autore-'{{
+                geographical_origin.geographicalOriginID
+              }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
           </ion-item>
 
-          <ion-modal trigger="elimina-autore-'{{ geographical_origin.geographicalOriginID }}'">
+          <ion-modal
+            trigger="elimina-autore-'{{
+              geographical_origin.geographicalOriginID
+            }}'"
+          >
             <ng-template>
               <ion-header>
                 <ion-toolbar>
@@ -26,15 +38,19 @@
 
                   <ion-buttons slot="end">
                     <ion-button
-                      (click)="DeleteElement(geographical_origin.geographicalOriginID)"
-                      id="conferma-elimina-autore-'{{ geographical_origin.geographicalOriginID }}'"
+                      (click)="
+                        DeleteElement(geographical_origin.geographicalOriginID)
+                      "
+                      id="conferma-elimina-autore-'{{
+                        geographical_origin.geographicalOriginID
+                      }}'"
                       [strong]="true"
                       >Conferma</ion-button
                     >
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
-              <ion-text class="ion-text-center" class="text-conferma-elimina">
+              <ion-text class="testo-conferma-elimina ion-text-center">
                 <ion-title
                   >Sei sicuro di voler eliminare il seguente
                   elemento?</ion-title
@@ -43,7 +59,9 @@
                 <h1>{{ geographical_origin.name }}</h1>
               </ion-text>
               <ion-toast
-                trigger="conferma-elimina-autore-'{{ geographical_origin.geographicalOriginID }}'"
+                trigger="conferma-elimina-autore-'{{
+                  geographical_origin.geographicalOriginID
+                }}'"
                 message="Elemento eliminato"
                 class="toast-elemento"
                 [duration]="2000"
@@ -130,7 +148,6 @@
             </svg>
           </div>
 
-        
           <div slot="content">
             <ion-label class="label-autori">
               <svg
@@ -182,10 +199,16 @@
             <br />
             <ion-text
               class="input-form"
-              id="open-modal-addedDate-'{{ geographical_origin.geographicalOriginID }}'"
+              id="open-modal-addedDate-'{{
+                geographical_origin.geographicalOriginID
+              }}'"
               color="lighter"
               style="color: black; margin-top: 10px; margin-bottom: 10px"
-              >{{ geographical_origin.addedDate ? geographical_origin.addedDate : "NOT FOUND" }}</ion-text
+              >{{
+                geographical_origin.addedDate
+                  ? geographical_origin.addedDate
+                  : "NOT FOUND"
+              }}</ion-text
             >
           </div>
 
@@ -240,7 +263,9 @@
             <br />
             <ion-text
               class="input-form"
-              id="open-modal-lastUpdateDate-'{{ geographical_origin.geographicalOriginID }}'"
+              id="open-modal-lastUpdateDate-'{{
+                geographical_origin.geographicalOriginID
+              }}'"
               color="lighter"
               style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
@@ -255,21 +280,76 @@
             <ion-button
               color="secondary"
               class="bottone-update"
-              id="button-UpdateAuthorAPI-'{{geographical_origin.geographicalOriginID}}'"
+              id="button-UpdateAuthorAPI-'{{
+                geographical_origin.geographicalOriginID
+              }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
 
             <ion-button
-              id="elimina-autore-'{{ geographical_origin.geographicalOriginID }}'"
-              (click)="DeleteElement(geographical_origin.geographicalOriginID)"
+              id="elimina2-autore-'{{
+                geographical_origin.geographicalOriginID
+              }}'"
               color="danger"
             >
               Elimina
             </ion-button>
 
+            <ion-modal
+              trigger="elimina2-autore-'{{
+                geographical_origin.geographicalOriginID
+              }}'"
+            >
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="
+                          DeleteElement(
+                            geographical_origin.geographicalOriginID
+                          )
+                        "
+                        id="conferma-elimina-autore-'{{
+                          geographical_origin.geographicalOriginID
+                        }}'"
+                        [strong]="true"
+                        >Conferma</ion-button
+                      >
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text class="testo-conferma-elimina ion-text-center">
+                  <ion-title
+                    >Sei sicuro di eliminare questo elemento?</ion-title
+                  >
+                  <p></p>
+                  <h1>{{ geographical_origin.name }}</h1>
+                </ion-text>
+                <ion-toast
+                  trigger="conferma-elimina-autore-'{{
+                    geographical_origin.geographicalOriginID
+                  }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  [duration]="2000"
+                  expand="block"
+                  color="danger"
+                ></ion-toast>
+              </ng-template>
+            </ion-modal>
+
             <ion-toast
-              trigger="button-UpdateAuthorAPI-'{{ geographical_origin.geographicalOriginID }}'"
+              trigger="button-UpdateAuthorAPI-'{{
+                geographical_origin.geographicalOriginID
+              }}'"
               message="Nuovo elemento salvato"
               class="toast-elemento"
               color="success"

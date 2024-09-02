@@ -8,11 +8,6 @@
   padding-right: 3%;
 }
 
-.testo-conferma-elimina {
-  margin-bottom: 50%;
-  font-family: serif;
-}
-
 .icone-autori {
   width: 20px;
   height: 20px;
@@ -52,7 +47,12 @@
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-.toast-elemento-eliminato {
+.testo-conferma-elimina {
+  margin-bottom: 100%;
+  font-family: serif;
+}
+
+.toast-elemento {
   max-width: 250px;
   margin-left: 40%;
   margin-right: 40%;

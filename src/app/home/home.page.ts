@@ -308,7 +308,7 @@ export class HomePage implements OnInit {
     this.body_add_author.authorID = this.getNewIDAuthor(this.filteredAuthors);
     let newAuthor = this.body_add_author;
     this.allAuthors.unshift(newAuthor);
-    this.filteredAuthors.unshift(newAuthor);
+    this.getAuthors(this.searchInput);
     console.log('POST api/AddAuthor/ ', this.body_add_author);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
@@ -396,9 +396,8 @@ export class HomePage implements OnInit {
     );
     let new_element = this.body_add_category;
 
-    this.filteredCategories.unshift(new_element);
     this.allCategories.unshift(new_element);
-
+    this.getCategories(this.searchInput);
     console.log('POST api/AddCategory/ ', this.body_add_category);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddCategory/', this.body_add_category)
@@ -488,8 +487,8 @@ export class HomePage implements OnInit {
     );
 
     let new_element = this.body_add_publisher;
-    this.filteredPublishers.unshift(new_element);
     this.allPublishers.unshift(new_element);
+    this.getPublishers(this.searchInput);
 
     console.log('POST api/AddPublisher/ ', this.body_add_publisher);
 
@@ -584,8 +583,8 @@ export class HomePage implements OnInit {
       this.filteredShopkeepers
     );
     let new_element = this.body_add_shopkeeper;
-    this.filteredShopkeepers.unshift(new_element);
     this.allShopkeepers.unshift(new_element);
+    this.getShopkeepers(this.searchInput);
 
     console.log('POST api/AddShopkeeper/ ', this.body_add_shopkeeper);
     // Perform the PostRequest
@@ -679,8 +678,8 @@ export class HomePage implements OnInit {
       this.filteredWarehouses
     );
     let new_element = this.body_add_warehouse;
-    this.filteredWarehouses.unshift(new_element);
     this.allWarehouses.unshift(new_element);
+    this.getWarehouses(this.searchInput);
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddWarehouse/', this.body_add_warehouse)
       .then((response) => {
@@ -768,8 +767,8 @@ export class HomePage implements OnInit {
       this.filteredProvenances
     );
     let new_element = this.body_add_provenance;
-    this.filteredProvenances.unshift(new_element);
     this.allProvenances.unshift(new_element);
+    this.getProvenances(this.searchInput);
     // Perform the PostRequest
     console.log('AddProvenance/ -->  ', this.body_add_provenance);
     return PostRequest(baseURL + 'AddProvenance/', this.body_add_provenance)
@@ -859,8 +858,8 @@ export class HomePage implements OnInit {
     this.body_add_geographical_origin.geographicalOriginID =
       this.getNewIDGeographicalOrigin(this.filteredGeographicalOrigins);
     let new_element = this.body_add_geographical_origin;
-    this.filteredGeographicalOrigins.unshift(new_element);
     this.allGeographicalOrigins.unshift(new_element);
+    this.getGeographicalOrigins(this.searchInput);
     // Perform the PostRequest
     return PostRequest(
       baseURL + 'AddGeographicalOrigin/',
@@ -947,8 +946,8 @@ export class HomePage implements OnInit {
       this.filteredTypeObjects
     );
     let new_element = this.body_add_type_object;
-    this.filteredTypeObjects.unshift(new_element);
     this.allTypeObjects.unshift(new_element);
+    this.getTypeObjects(this.searchInput);
 
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddType/', this.body_add_type_object)

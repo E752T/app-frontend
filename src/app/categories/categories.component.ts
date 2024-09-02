@@ -58,15 +58,11 @@ export class CategoriesComponent {
 
   DeleteCategory(categoryID: any) {
     console.log('POST DeleteAuthor : body =>', this.category);
-
     this.categories.filter(
       (element: Category) => element.categoryID !== categoryID
     );
-
-    var categoryToDelete = console.log(this.categories);
-    this.updateCategories.emit(categoryToDelete);
+    this.updateCategories.emit(this.categories);
     this.modalCtrl.dismiss({ confirmed: true });
-
     return PostRequest(baseURL + 'DeleteCategory/' + categoryID);
   }
 
