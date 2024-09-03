@@ -47,13 +47,6 @@ export class HomePage implements OnInit {
   ////////////////////////////////////////////////////////////////////
   //////////////////////// FRONTEND VARIABLES /////////////////////////
 
-  //@ViewChild('grigliaElementi', { static: false })
-  //grigliaElementi!: ElementRef;
-  @ViewChild('menuAncora') menuAncora!: ElementRef; // Utilizza il punto esclamativo per indicare che sarà inizializzato
-  isMenuAnchored: boolean = false;
-
-  @ViewChild('grigliaElementi') grigliaElementi!: ElementRef; // Utilizza il punto esclamativo per indicare che sarà inizializzato
-
   isOpen: boolean = false;
   fileEvent: Event | undefined;
   // PopOver
@@ -67,20 +60,26 @@ export class HomePage implements OnInit {
   ////////////////////////////////////////////////////////////////////
   //////////////////////// FRONTEND FUNCTIONS /////////////////////////
 
+  @ViewChild('menuAncora', { static: false }) menuAncora: ElementRef | undefined;
+  @ViewChild('grigliaElementi', { static: false }) grigliaElementi: ElementRef | undefined;
+  isMenuAnchored: boolean = false;
+
   toggleMenu() {
     this.isMenuAnchored = !this.isMenuAnchored;
 
-    let elementoMenu = this.menuAncora.nativeElement;
-    let elementoGriglia = this.grigliaElementi.nativeElement;
+    let elementoMenu = this.menuAncora?.nativeElement;
+    let elementoGriglia = this.grigliaElementi?.nativeElement;
 
     if (this.isMenuAnchored) {
-      elementoMenu.style.width = '25vh'; // Mostra il menu
       elementoGriglia.style.width = '75vh';
+
+      elementoMenu.style.width = '25vh'; // Mostra il menu
       elementoMenu.style.display = 'block';
     } else {
+      elementoGriglia.style.width = '100vh';
+
       elementoMenu.style.width = '0vh'; // Nascondi il menu
       elementoMenu.style.display = 'none'; // Nascondi il menu
-      elementoGriglia.style.width = '100vh';
     }
   }
 

@@ -371,7 +371,9 @@
       <div *ngIf="this.token_JWT_success === true">
         <hr class="solid" />
 
-        <ion-accordion-group class="accordion-gestionale">
+        <ion-accordion-group 
+        class="center filter-button"
+        >
           <ion-accordion value="first">
             <ion-item
               slot="header"
@@ -526,63 +528,55 @@
           </ion-text></ion-button
         >
         <ion-modal
-          trigger="exit-login"
-          (willDismiss)="onWillDismiss($event)"
-          class="ion-padding"
-        >
-          <ng-template class="template-angular">
-            <ion-header>
-              <ion-toolbar>
-                <ion-title
-                  class="centrato"
-                  color="secondary"
-                  style="
-                    font-weight: bolder;
-                    margin-left: -30px;
-                    margin-top: 10px;
-                  "
-                  >Esci dal tuo Account</ion-title
-                >
-                <ion-buttons slot="start">
-                  <ion-button (click)="cancel()">
-                    <ion-icon name="arrow-undo-outline"></ion-icon>
-                  </ion-button>
-                </ion-buttons>
-              </ion-toolbar>
-            </ion-header>
-            <ion-content class="ion-padding">
-              <div>
-                <ion-content class="ion-padding">
-                  <div>
-                    <ion-text style="font-size: large">
-                      <br />
-                      Ciao {{this.username}}, sei sicuro di voler uscire?
-                      <br />
-                    </ion-text>
-                  </div>
+        trigger="exit-login"
+        (willDismiss)="onWillDismiss($event)"
+        class="ion-padding"
+      >
+        <ng-template class="template-angular">
+          <ion-header>
+            <ion-toolbar>
+              <ion-title
+                class="centrato"
+                color="secondary"
+                style="
+                  font-weight: bolder;
+                  margin-left: -30px;
+                  margin-top: 10px;
+                "
+                >Esci dal tuo Account</ion-title
+              >
+              <ion-buttons slot="start">
+                <ion-button (click)="cancel()">
+                  <ion-icon name="arrow-undo-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-text style="font-size: large; margin: auto;height: 15vw;margin-top:5vw">
+            <br />
+            Ciao {{this.username}}, sei sicuro di voler uscire?
+            <br />
+          </ion-text>
 
-                  <div class="ion-text-center">
-                    <ion-button
-                      id="confirm-exit-login"
-                      (click)="exit_login()"
-                      [strong]="true"
-                    >
-                      Conferma
-                    </ion-button>
-                  </div>
-                </ion-content>
+          <div class="ion-text-center" style="height: 100vw;">
+            <ion-button
+              id="confirm-exit-login"
+              (click)="exit_login()"
+              [strong]="true"
+            >
+              Conferma
+            </ion-button>
+          </div>
 
-                <ion-toast
-                  trigger="confirm-exit-login"
-                  message="Sei uscito dal tuo account"
-                  class="toast-nuovo-elemento"
-                  [duration]="2000"
-                  expand="block"
-                ></ion-toast>
-              </div>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
+          <ion-toast
+            trigger="confirm-exit-login"
+            message="Sei uscito dal tuo account"
+            class="toast-nuovo-elemento"
+            [duration]="2000"
+            expand="block"
+          ></ion-toast>
+        </ng-template>
+      </ion-modal>
       </div>
 
       <ion-button
@@ -644,16 +638,16 @@
     </ion-card>
   </ion-menu>
 
-  <ion-grid>
+  <ion-grid #grigliaElementi>
     <ion-row>
-      <ion-col size="4" style="margin-top: 70px">
+      <ion-col size="4" style="margin-top: 50px">
         <div
           contentId="main-content"
           style="overflow-y: scroll; max-width: 33vh"
           #menuAncora
           *ngIf="isMenuAnchored"
         >
-          <ion-card class="card-filtri-ricerca" style="margin-top: 50px">
+          <ion-card class="card-filtri-ricerca">
             <p></p>
             <div *ngIf="screenSize === 'desktop'" class="align-right">
               <ion-button
@@ -1220,40 +1214,29 @@
                       </ion-buttons>
                     </ion-toolbar>
                   </ion-header>
-                  <ion-content class="ion-padding">
-                    <div>
-                      <ion-content class="ion-padding">
-                        <div
-                          class="ion-text-center"
-                          style="margin-bottom: 50px"
-                        >
-                          <ion-text style="font-size: large">
-                            <br />
-                            Ciao {{this.username}}, sei sicuro di voler uscire?
-                            <br />
-                          </ion-text>
-                        </div>
+                  <ion-text style="font-size: large; margin: auto;height: 15vw;margin-top:5vw">
+                    <br />
+                    Ciao {{this.username}}, sei sicuro di voler uscire?
+                    <br />
+                  </ion-text>
 
-                        <div class="ion-text-center">
-                          <ion-button
-                            id="confirm-exit-login"
-                            (click)="exit_login()"
-                            [strong]="true"
-                          >
-                            Conferma
-                          </ion-button>
-                        </div>
-                      </ion-content>
+                  <div class="ion-text-center" style="height: 100vw;">
+                    <ion-button
+                      id="confirm-exit-login"
+                      (click)="exit_login()"
+                      [strong]="true"
+                    >
+                      Conferma
+                    </ion-button>
+                  </div>
 
-                      <ion-toast
-                        trigger="confirm-exit-login"
-                        message="Sei uscito dal tuo account"
-                        class="toast-nuovo-elemento"
-                        [duration]="2000"
-                        expand="block"
-                      ></ion-toast>
-                    </div>
-                  </ion-content>
+                  <ion-toast
+                    trigger="confirm-exit-login"
+                    message="Sei uscito dal tuo account"
+                    class="toast-nuovo-elemento"
+                    [duration]="2000"
+                    expand="block"
+                  ></ion-toast>
                 </ng-template>
               </ion-modal>
             </div>
