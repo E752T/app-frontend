@@ -5,6 +5,7 @@ import { ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { ElementRef } from '@angular/core';
 
 import {
   DatabaseObject,
@@ -46,6 +47,13 @@ export class HomePage implements OnInit {
   ////////////////////////////////////////////////////////////////////
   //////////////////////// FRONTEND VARIABLES /////////////////////////
 
+  //@ViewChild('grigliaElementi', { static: false })
+  //grigliaElementi!: ElementRef;
+  @ViewChild('menuAncora') menuAncora!: ElementRef; // Utilizza il punto esclamativo per indicare che sarà inizializzato
+  isMenuAnchored: boolean = false;
+
+  @ViewChild('grigliaElementi') grigliaElementi!: ElementRef; // Utilizza il punto esclamativo per indicare che sarà inizializzato
+
   isOpen: boolean = false;
   fileEvent: Event | undefined;
   // PopOver
@@ -58,10 +66,24 @@ export class HomePage implements OnInit {
 
   ////////////////////////////////////////////////////////////////////
   //////////////////////// FRONTEND FUNCTIONS /////////////////////////
-  isMenuAnchored: boolean = false;
 
   toggleMenu() {
     this.isMenuAnchored = !this.isMenuAnchored;
+
+    if (this.menuAncora) {
+      const elementoMenu = this.menuAncora.nativeElement;
+      const elementoGriglia = this.grigliaElementi.nativeElement;
+
+      if (this.isMenuAnchored) {
+        elementoMenu.style.width = '25vh'; // Mostra il menu
+        elementoGriglia.style.width = '75vh';
+      } else {
+        elementoMenu.style.width = '0vh'; // Nascondi il menu
+        elementoGriglia.style.width = '100vh';
+      }
+    } else {
+      console.error('menuAncora non è definito');
+    }
   }
 
   checkScreenSize(): string {
