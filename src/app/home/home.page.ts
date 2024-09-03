@@ -63,7 +63,7 @@ export class HomePage implements OnInit {
   toggleMenu() {
     this.isMenuAnchored = !this.isMenuAnchored;
   }
-  
+
   checkScreenSize(): string {
     const screenWidth = window.innerWidth;
     const myScreen = screenWidth < 700 ? 'mobile' : 'desktop';
@@ -979,7 +979,7 @@ export class HomePage implements OnInit {
     );
     this.getTypeObjects(this.searchInput);
     this.filteredTypeObjects = this.allTypeObjects;
-    console.log("Update TypeObjects ", this.filteredTypeObjects)
+    console.log('Update TypeObjects ', this.filteredTypeObjects);
     return this.filteredTypeObjects;
   }
 
