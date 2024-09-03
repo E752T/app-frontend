@@ -79,6 +79,8 @@ export class HomePage implements OnInit {
         elementoGriglia.style.width = '75vh';
       } else {
         elementoMenu.style.width = '0vh'; // Nascondi il menu
+        elementoMenu.style.display = 'none'; // Nascondi il menu
+
         elementoGriglia.style.width = '100vh';
       }
     } else {
