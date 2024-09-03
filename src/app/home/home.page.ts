@@ -58,7 +58,12 @@ export class HomePage implements OnInit {
 
   ////////////////////////////////////////////////////////////////////
   //////////////////////// FRONTEND FUNCTIONS /////////////////////////
+  isMenuAnchored: boolean = false;
 
+  toggleMenu() {
+    this.isMenuAnchored = !this.isMenuAnchored;
+  }
+  
   checkScreenSize(): string {
     const screenWidth = window.innerWidth;
     const myScreen = screenWidth < 700 ? 'mobile' : 'desktop';

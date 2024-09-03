@@ -436,3 +436,9 @@ ion-button.bottone-accedi {
   padding: 10px; /* Adds some padding for better appearance */
   box-sizing: border-box; /* Ensures padding is included in the width */
 }
+
+.align-right {
+  display: flex;
+  justify-content: flex-end; /* Allinea il contenuto a destra */
+  padding: 10px; /* Aggiunge un po' di spazio attorno all'elemento */
+}
