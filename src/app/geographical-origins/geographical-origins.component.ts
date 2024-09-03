@@ -37,7 +37,7 @@ export class GeographicalOriginComponent {
   search_input!: string | null | undefined;
 
   @Output()
-  updateGeographicalOrigins = new EventEmitter<any>();
+  updateGeographicalOrigin = new EventEmitter<any>();
 
   @ViewChild(IonModal)
   modal!: IonModal;
@@ -62,7 +62,7 @@ export class GeographicalOriginComponent {
     this.geographical_origins = this.geographical_origins.filter(
       (element: GeographicalOrigin) => element.geographicalOriginID !== objectID
     );
-    this.updateGeographicalOrigins.emit(this.geographical_origins);
+    this.updateGeographicalOrigin.emit(this.geographical_origins);
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteGeographicalOrigin/' + objectID);
   }

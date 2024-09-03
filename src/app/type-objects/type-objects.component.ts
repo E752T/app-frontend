@@ -63,13 +63,8 @@ export class TypeObjectComponent {
     );
     this.updateTypeObject.emit(this.type_objects);
     this.modalCtrl.dismiss({ confirmed: true });
-    console.log('Deleting Type Object ID: ', typeID);
+    console.log("DeleteTypeObject ", this.type_objects)
     return PostRequest(baseURL + 'DeleteTypeObject/' + typeID);
-  }
-
-  UpdateElement(): Promise<any> {
-    console.log('Update Type Objects');
-    return PostRequest(baseURL + 'UpdateTypeObject/', this.type_object);
   }
 
   getNewID(elementList: Array<TypeObject>): number {
@@ -80,6 +75,11 @@ export class TypeObjectComponent {
       }
     }
     return highestID + 1;
+  }
+
+  UpdateElement(): Promise<any> {
+    console.log('Update Type Objects');
+    return PostRequest(baseURL + 'UpdateTypeObject/', this.type_object);
   }
 
   confirm() {

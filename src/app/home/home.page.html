@@ -1163,7 +1163,7 @@
               *ngFor="let element of filteredTypeObjects "
               [type_object]="element"
               [type_objects]="filteredTypeObjects"
-              (updateTypeObject)="updateTypeObjects(this.allTypeObjects, element, 'typeID');"
+              (updateTypeObject)="updateTypeObject(this.allTypeObjects, element, 'typeID');"
               [search_input]="searchInput"
             >
             </app-type-objects>
@@ -2079,7 +2079,7 @@
             *ngFor="let element of filteredTypeObjects"
             [type_object]="element"
             [type_objects]="filteredTypeObjects"
-            (updateTypeObjects)="updateTypeObjects(this.allTypeObjects, element, 'typeID');"
+            (updateTypeObject)="updateTypeObject(this.allTypeObjects, element, 'typeID');"
             [search_input]="searchInput"
           >
           </app-type-objects>

@@ -968,18 +968,13 @@ export class HomePage implements OnInit {
       });
   }
 
-  updateTypeObjects(items: any[], itemToDelete: any, key: string) {
+  updateTypeObject(items: any[], itemToDelete: any, key: string) {
     this.allTypeObjects = items.filter(
       (element) => element[key] !== itemToDelete[key]
     );
-
-    this.filteredTypeObjects = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-
-    console.log('Update TypeObjects/', items);
-    this.getTypeObjects('');
+    this.getTypeObjects(this.searchInput);
     this.filteredTypeObjects = this.allTypeObjects;
+    console.log("Update TypeObjects ", this.filteredTypeObjects)
     return this.filteredTypeObjects;
   }
 
