@@ -70,21 +70,17 @@ export class HomePage implements OnInit {
   toggleMenu() {
     this.isMenuAnchored = !this.isMenuAnchored;
 
-    if (this.menuAncora) {
-      const elementoMenu = this.menuAncora.nativeElement;
-      const elementoGriglia = this.grigliaElementi.nativeElement;
+    let elementoMenu = this.menuAncora.nativeElement;
+    let elementoGriglia = this.grigliaElementi.nativeElement;
 
-      if (this.isMenuAnchored) {
-        elementoMenu.style.width = '25vh'; // Mostra il menu
-        elementoGriglia.style.width = '75vh';
-      } else {
-        elementoMenu.style.width = '0vh'; // Nascondi il menu
-        elementoMenu.style.display = 'none'; // Nascondi il menu
-
-        elementoGriglia.style.width = '100vh';
-      }
+    if (this.isMenuAnchored) {
+      elementoMenu.style.width = '25vh'; // Mostra il menu
+      elementoGriglia.style.width = '75vh';
+      elementoMenu.style.display = 'block';
     } else {
-      console.error('menuAncora non è definito');
+      elementoMenu.style.width = '0vh'; // Nascondi il menu
+      elementoMenu.style.display = 'none'; // Nascondi il menu
+      elementoGriglia.style.width = '100vh';
     }
   }
 
