@@ -1,6 +1,6 @@
 <ion-button
 color="secondary"
-id="filter-button"
+id="menu-button-custom"
 class="center"
 style="width: 80%"
 (click)="getItems(searchInput)"

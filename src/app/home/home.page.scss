@@ -416,14 +416,10 @@ ion-button.bottone-accedi {
   border-radius: 100px;
 }
 
-#filter-button {
-  margin: 0 auto;
-  display: block;
-}
-
-.filter-button {
-  margin: 0 auto;
-  display: block;
+.center {
+  margin: auto;
+  width: 20vw;
+  padding: 0;
 }
 
 .vertical-align-container {
@@ -441,4 +437,20 @@ ion-button.bottone-accedi {
   display: flex;
   justify-content: flex-end; /* Allinea il contenuto a destra */
   padding: 10px; /* Aggiunge un po' di spazio attorno all'elemento */
+}
+
+.center-button {
+  display: inline list-item;
+}
+
+.menu-button-custom {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.icon-menu-button-custom {
+  color: #ffffff;
+  background-color: #0163aa;
+  margin-right: 8px;
 }

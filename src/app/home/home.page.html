@@ -1,59 +1,44 @@
 <ion-content [fullscreen]="true">
-  <div class="ion-page" id="main-content">
-    <ion-header class="header-menu-home">
-      <ion-toolbar>
-        <ion-buttons
-          slot="start"
-          class="background-title-bar"
-          style="margin-left: -2px"
-        >
-          <ion-menu-button
-            style="color: rgb(255, 255, 255); margin: 4px; margin-right: 40px"
-          ></ion-menu-button>
-        </ion-buttons>
-        <ion-row class="background-title-bar">
-          <ion-title size="6" class="logo-store" style="margin: 1px">
-            <ion-icon class="titolo-icona" name="logo-dropbox"></ion-icon>
-            <ion-text class="titolo-store"> Data Room </ion-text>
-          </ion-title>
-        </ion-row>
-      </ion-toolbar>
-    </ion-header>
-  </div>
+  <ion-header class="header-menu-home" class="ion-page" id="main-content">
+    <ion-buttons slot="start" class="background-title-bar">
+      <ion-menu-button
+        style="color: rgb(255, 255, 255); margin-right: 40px"
+      ></ion-menu-button>
+      <ion-title class="background-title-bar">
+        <ion-icon
+          class="titolo-icona logo-store"
+          name="logo-dropbox"
+        ></ion-icon>
+        <ion-text class="titolo-store"> Data Room </ion-text>
+      </ion-title>
+    </ion-buttons>
+  </ion-header>
 
-  <ion-menu
-    contentId="main-content"
-    style="overflow-y: scroll"
-    #menuAncora
-    *ngIf="!isMenuAnchored"
-  >
-    <ion-card
+  <ion-menu contentId="main-content" #menuAncora *ngIf="!isMenuAnchored">
+    <ion-button
       *ngIf="screenSize === 'desktop'"
+      id="anchor-button"
       class="card-filtri-ricerca align-right"
+      style="color: rgb(255, 255, 255)"
+      (click)="toggleMenu()"
     >
-      <ion-button
-        id="anchor-button"
-        style="color: rgb(255, 255, 255)"
-        (click)="toggleMenu()"
+      <svg
+        width="18px"
+        height="18x"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          width="18px"
-          height="18x"
-          viewBox="0 0 16 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M11.5 2C10.6716 2 10 2.67157 10 3.5V6H13V16H1V6H8V3.5C8 1.567 9.567 0 11.5 0C13.433 0 15 1.567 15 3.5V4H13V3.5C13 2.67157 12.3284 2 11.5 2ZM9 10H5V12H9V10Z"
-            fill="white"
-          />
-        </svg>
-      </ion-button>
-    </ion-card>
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M11.5 2C10.6716 2 10 2.67157 10 3.5V6H13V16H1V6H8V3.5C8 1.567 9.567 0 11.5 0C13.433 0 15 1.567 15 3.5V4H13V3.5C13 2.67157 12.3284 2 11.5 2ZM9 10H5V12H9V10Z"
+          fill="white"
+        />
+      </svg>
+    </ion-button>
 
-    <ion-card *ngIf="sectionToShow === 'Store'">
+    <ion-card *ngIf="sectionToShow === 'Store'" style="padding: 1vw">
       <ion-searchbar
         showCancelButton="focus"
         [debounce]="1000"
@@ -82,7 +67,7 @@
         <ion-radio-group [(ngModel)]="availability" value="disponibilita">
           <ion-radio color="secondary" labelPlacement="end" value="tutti"
             >Tutti i libri</ion-radio
-          ><br C />
+          ><br />
           <ion-radio
             color="secondary"
             labelPlacement="end"
@@ -161,10 +146,7 @@
 
       <div *ngIf="sectionToShow.includes('Store')">
         <ion-button
-          color="secondary"
-          id="filter-button"
-          class="center"
-          style="min-width: 215px"
+          id="menu-button-custom"
           type="text"
           name="Store"
           ngDefaultControl
@@ -241,185 +223,141 @@
             <ion-datetime id="datetime"></ion-datetime>
           </ng-template>
         </ion-modal>
-        <p></p>
-        <div *ngIf="sectionToShow.includes('Author')">
-          <ion-button
-            color="secondary"
-            id="filter-button"
-            class="center"
-            style="min-width: 215px"
-            type="text"
-            ngDefaultControl
-            (click)="getAuthors(searchInput)"
-            [(ngModel)]="searchInput"
-          >
-            Cerca
-          </ion-button>
-        </div>
+        <ion-button
+          *ngIf="sectionToShow.includes('Author')"
+          class="menu-button-custom"
+          type="text"
+          ngDefaultControl
+          (click)="getAuthors(searchInput)"
+          [(ngModel)]="searchInput"
+        >
+          Cerca
+        </ion-button>
 
-        <div *ngIf="sectionToShow.includes('Publisher')">
-          <ion-button
-            color="secondary"
-            id="filter-button"
-            class="center"
-            style="min-width: 215px"
-            type="text"
-            ngDefaultControl
-            (click)="getPublishers(searchInput)"
-            [(ngModel)]="searchInput"
-          >
-            Cerca
-          </ion-button>
-        </div>
+        <ion-button
+          *ngIf="sectionToShow.includes('Publisher')"
+          class="menu-button-custom"
+          type="text"
+          ngDefaultControl
+          (click)="getPublishers(searchInput)"
+          [(ngModel)]="searchInput"
+        >
+          Cerca
+        </ion-button>
 
-        <div *ngIf="sectionToShow.includes('Category')">
-          <ion-button
-            color="secondary"
-            id="filter-button"
-            class="center"
-            style="min-width: 215px"
-            type="text"
-            ngDefaultControl
-            (click)="getCategories(searchInput)"
-            [(ngModel)]="searchInput"
-          >
-            Cerca
-          </ion-button>
-        </div>
+        <ion-button
+          *ngIf="sectionToShow.includes('Category')"
+          class="menu-button-custom"
+          type="text"
+          ngDefaultControl
+          (click)="getCategories(searchInput)"
+          [(ngModel)]="searchInput"
+        >
+          Cerca
+        </ion-button>
 
-        <div *ngIf="sectionToShow.includes('Shopkeeper')">
-          <ion-button
-            color="secondary"
-            id="filter-button"
-            class="center"
-            style="min-width: 215px"
-            type="text"
-            ngDefaultControl
-            (click)="getShopkeepers(searchInput)"
-            [(ngModel)]="searchInput"
-          >
-            Cerca
-          </ion-button>
-        </div>
+        <ion-button
+          *ngIf="sectionToShow.includes('Shopkeeper')"
+          class="menu-button-custom"
+          type="text"
+          ngDefaultControl
+          (click)="getShopkeepers(searchInput)"
+          [(ngModel)]="searchInput"
+        >
+          Cerca
+        </ion-button>
 
-        <div *ngIf="sectionToShow.includes('Warehouse')">
-          <ion-button
-            color="secondary"
-            id="filter-button"
-            class="center"
-            style="min-width: 215px"
-            type="text"
-            ngDefaultControl
-            (click)="getWarehouses(searchInput)"
-            [(ngModel)]="searchInput"
-          >
-            Cerca
-          </ion-button>
-        </div>
+        <ion-button
+          *ngIf="sectionToShow.includes('Warehouse')"
+          class="menu-button-custom"
+          type="text"
+          ngDefaultControl
+          (click)="getWarehouses(searchInput)"
+          [(ngModel)]="searchInput"
+        >
+          Cerca
+        </ion-button>
 
-        <div *ngIf="sectionToShow.includes('Provenance')">
-          <ion-button
-            color="secondary"
-            id="filter-button"
-            class="center"
-            style="min-width: 215px"
-            type="text"
-            ngDefaultControl
-            (click)="getProvenances(searchInput)"
-            [(ngModel)]="searchInput"
-          >
-            Cerca
-          </ion-button>
-        </div>
+        <ion-button
+          *ngIf="sectionToShow.includes('Provenance')"
+          class="menu-button-custom"
+          type="text"
+          ngDefaultControl
+          (click)="getProvenances(searchInput)"
+          [(ngModel)]="searchInput"
+        >
+          Cerca
+        </ion-button>
 
-        <div *ngIf="sectionToShow.includes('TypeObject')">
-          <ion-button
-            color="secondary"
-            id="filter-button"
-            class="center"
-            style="min-width: 215px"
-            type="text"
-            ngDefaultControl
-            (click)="getTypeObjects(searchInput)"
-            [(ngModel)]="searchInput"
-          >
-            Cerca
-          </ion-button>
-        </div>
+        <ion-button
+          *ngIf="sectionToShow.includes('TypeObject')"
+          class="menu-button-custom"
+          ngDefaultControl
+          (click)="getTypeObjects(searchInput)"
+          [(ngModel)]="searchInput"
+        >
+          Cerca
+        </ion-button>
 
-        <div *ngIf="sectionToShow.includes('GeographicalOrigin')">
-          <ion-button
-            color="secondary"
-            id="filter-button"
-            class="center"
-            style="min-width: 215px"
-            type="text"
-            ngDefaultControl
-            (click)="getGeographicalOrigins(searchInput)"
-            [(ngModel)]="searchInput"
-          >
-            Cerca
-          </ion-button>
-        </div>
+        <ion-button
+          *ngIf="sectionToShow.includes('GeographicalOrigin')"
+          class="menu-button-custom"
+          ngDefaultControl
+          (click)="getGeographicalOrigins(searchInput)"
+          [(ngModel)]="searchInput"
+        >
+          Cerca
+        </ion-button>
       </div>
 
-      <div *ngIf="this.token_JWT_success === true">
-        <ion-accordion-group class="center filter-button">
-          <ion-accordion value="first">
-            <ion-item
-              slot="header"
-              color="secondary"
-              class="filter-button"
-              style="border-radius: 5%"
+      <ion-accordion-group
+        class="menu-button-custom"
+        *ngIf="this.token_JWT_success === true"
+      >
+        <ion-accordion value="first">
+          <ion-item slot="header" color="secondary" style="border-radius: 5%">
+            <ion-label class="center" style="min-width: 215px"
+              >GESTIONALE</ion-label
             >
-              <ion-label class="center" style="min-width: 215px"
-                >GESTIONALE</ion-label
-              >
-            </ion-item>
-            <ion-buttons slot="start" class="bottoniGestionale" slot="content">
-              <ion-button slot="start" (click)="switchToView('Store')">
-                Archivio
-              </ion-button>
+          </ion-item>
+          <ion-buttons slot="start" class="bottoniGestionale" slot="content">
+            <ion-button slot="start" (click)="switchToView('Store')">
+              Archivio
+            </ion-button>
 
-              <ion-button slot="start" (click)="switchToView('Author')">
-                Autori
-              </ion-button>
-              <ion-button slot="start" (click)="switchToView('Publisher')">
-                Editori
-              </ion-button>
-              <ion-button slot="start" (click)="switchToView('Category')">
-                Categorie
-              </ion-button>
-              <ion-button slot="start" (click)="switchToView('Shopkeeper')">
-                Esercenti
-              </ion-button>
-              <ion-button slot="start" (click)="switchToView('TypeObject')">
-                Tipo di oggetti
-              </ion-button>
-              <ion-button slot="start" (click)="switchToView('Warehouse')">
-                Magazzini
-              </ion-button>
-              <ion-button slot="start" (click)="switchToView('Provenance')">
-                Provenienza
-              </ion-button>
-              <ion-button
-                slot="start"
-                (click)="switchToView('GeographicalOrigin')"
-              >
-                Origini geografiche
-              </ion-button>
-            </ion-buttons>
-          </ion-accordion>
-        </ion-accordion-group>
-      </div>
+            <ion-button slot="start" (click)="switchToView('Author')">
+              Autori
+            </ion-button>
+            <ion-button slot="start" (click)="switchToView('Publisher')">
+              Editori
+            </ion-button>
+            <ion-button slot="start" (click)="switchToView('Category')">
+              Categorie
+            </ion-button>
+            <ion-button slot="start" (click)="switchToView('Shopkeeper')">
+              Esercenti
+            </ion-button>
+            <ion-button slot="start" (click)="switchToView('TypeObject')">
+              Tipo di oggetti
+            </ion-button>
+            <ion-button slot="start" (click)="switchToView('Warehouse')">
+              Magazzini
+            </ion-button>
+            <ion-button slot="start" (click)="switchToView('Provenance')">
+              Provenienza
+            </ion-button>
+            <ion-button
+              slot="start"
+              (click)="switchToView('GeographicalOrigin')"
+            >
+              Origini geografiche
+            </ion-button>
+          </ion-buttons>
+        </ion-accordion>
+      </ion-accordion-group>
 
       <div *ngIf="!this.token_JWT_success">
-        <ion-button
-          id="login-button"
-          color="secondary"
-          class="center filter-button"
-          style="min-width: 215px"
-        >
+        <ion-button id="login-button" color="secondary">
           <ion-text>
             <ion-icon name="key-outline"></ion-icon>
             Accedi
@@ -505,12 +443,7 @@
       </div>
 
       <div *ngIf="this.token_JWT_success">
-        <ion-button
-          color="secondary"
-          class="center filter-button"
-          style="min-width: 215px"
-          id="exit-login"
-        >
+        <ion-button class="menu-button-custom" id="exit-login">
           <ion-text>
             <ion-icon name="key-outline"></ion-icon>
             Log Out
@@ -574,17 +507,13 @@
           </ng-template>
         </ion-modal>
       </div>
-      <ion-button
-        color="secondary"
-        id="trigger-contatti"
-        class="center filter-button"
-        style="min-width: 215px"
-      >
-        <ion-text>
-          <ion-icon name="body-outline"></ion-icon>
-          Contatti
-        </ion-text></ion-button
-      >
+      <ion-button id="trigger-contatti" class="menu-button-custom">
+        <ion-icon
+          class="icon-menu-button-custom"
+          name="help-outline"
+        ></ion-icon>
+        <ion-text slot="end">Assistenza</ion-text>
+      </ion-button>
       <ion-modal
         trigger="trigger-contatti"
         (willDismiss)="onWillDismiss($event)"
@@ -593,19 +522,14 @@
         <ng-template class="template-angular">
           <ion-header>
             <ion-toolbar>
-              <ion-title
-                class="centrato"
-                color="secondary"
-                style="
-                  font-weight: bolder;
-                  margin-left: -30px;
-                  margin-top: 10px;
-                "
-                >Contatti</ion-title
-              >
               <ion-buttons slot="start">
+                <ion-title class="centrato" color="secondary"
+                  >Assistenza</ion-title
+                >
+              </ion-buttons>
+              <ion-buttons slot="end">
                 <ion-button (click)="cancel()">
-                  <ion-icon name="arrow-undo-outline"></ion-icon>
+                  <ion-icon name="close-outline"></ion-icon>
                 </ion-button>
               </ion-buttons>
             </ion-toolbar>
@@ -666,7 +590,7 @@
               </ion-button>
             </div>
 
-            <div *ngIf="sectionToShow === 'Store'">
+            <div *ngIf="sectionToShow === 'Store'" style="padding: 1vw">
               <ion-searchbar
                 showCancelButton="focus"
                 [debounce]="1000"
@@ -796,10 +720,7 @@
 
               <div *ngIf="sectionToShow.includes('Store')">
                 <ion-button
-                  color="secondary"
-                  id="filter-button"
-                  class="center"
-                  style="min-width: 215px"
+                  class="menu-button-custom"
                   type="text"
                   name="Store"
                   ngDefaultControl
@@ -882,373 +803,247 @@
                   <ion-datetime id="datetime"></ion-datetime>
                 </ng-template>
               </ion-modal>
-              <p></p>
-              <div *ngIf="sectionToShow.includes('Author')">
-                <ion-button
-                  color="secondary"
-                  id="filter-button"
-                  class="center"
-                  style="min-width: 215px"
-                  type="text"
-                  ngDefaultControl
-                  (click)="getAuthors(searchInput)"
-                  [(ngModel)]="searchInput"
-                >
-                  Cerca
-                </ion-button>
-              </div>
 
-              <div *ngIf="sectionToShow.includes('Publisher')">
-                <ion-button
-                  color="secondary"
-                  id="filter-button"
-                  class="center"
-                  style="min-width: 215px"
-                  type="text"
-                  ngDefaultControl
-                  (click)="getPublishers(searchInput)"
-                  [(ngModel)]="searchInput"
-                >
-                  Cerca
-                </ion-button>
-              </div>
+              <ion-button
+                *ngIf="sectionToShow.includes('Author')"
+                class="menu-button-custom"
+                type="text"
+                ngDefaultControl
+                (click)="getAuthors(searchInput)"
+                [(ngModel)]="searchInput"
+              >
+                Cerca
+              </ion-button>
 
-              <div *ngIf="sectionToShow.includes('Category')">
-                <ion-button
-                  color="secondary"
-                  id="filter-button"
-                  class="center"
-                  style="min-width: 215px"
-                  type="text"
-                  ngDefaultControl
-                  (click)="getCategories(searchInput)"
-                  [(ngModel)]="searchInput"
-                >
-                  Cerca
-                </ion-button>
-              </div>
+              <ion-button
+                *ngIf="sectionToShow.includes('Publisher')"
+                class="menu-button-custom"
+                type="text"
+                ngDefaultControl
+                (click)="getPublishers(searchInput)"
+                [(ngModel)]="searchInput"
+              >
+                Cerca
+              </ion-button>
 
-              <div *ngIf="sectionToShow.includes('Shopkeeper')">
-                <ion-button
-                  color="secondary"
-                  id="filter-button"
-                  class="center"
-                  style="min-width: 215px"
-                  type="text"
-                  ngDefaultControl
-                  (click)="getShopkeepers(searchInput)"
-                  [(ngModel)]="searchInput"
-                >
-                  Cerca
-                </ion-button>
-              </div>
+              <ion-button
+                *ngIf="sectionToShow.includes('Category')"
+                class="menu-button-custom"
+                type="text"
+                ngDefaultControl
+                (click)="getCategories(searchInput)"
+                [(ngModel)]="searchInput"
+              >
+                Cerca
+              </ion-button>
 
-              <div *ngIf="sectionToShow.includes('Warehouse')">
-                <ion-button
-                  color="secondary"
-                  id="filter-button"
-                  class="center"
-                  style="min-width: 215px"
-                  type="text"
-                  ngDefaultControl
-                  (click)="getWarehouses(searchInput)"
-                  [(ngModel)]="searchInput"
-                >
-                  Cerca
-                </ion-button>
-              </div>
+              <ion-button
+                *ngIf="sectionToShow.includes('Shopkeeper')"
+                class="menu-button-custom"
+                type="text"
+                ngDefaultControl
+                (click)="getShopkeepers(searchInput)"
+                [(ngModel)]="searchInput"
+              >
+                Cerca
+              </ion-button>
 
-              <div *ngIf="sectionToShow.includes('Provenance')">
-                <ion-button
-                  color="secondary"
-                  id="filter-button"
-                  class="center"
-                  style="min-width: 215px"
-                  type="text"
-                  ngDefaultControl
-                  (click)="getProvenances(searchInput)"
-                  [(ngModel)]="searchInput"
-                >
-                  Cerca
-                </ion-button>
-              </div>
+              <ion-button
+                *ngIf="sectionToShow.includes('Warehouse')"
+                class="menu-button-custom"
+                type="text"
+                ngDefaultControl
+                (click)="getWarehouses(searchInput)"
+                [(ngModel)]="searchInput"
+              >
+                Cerca
+              </ion-button>
 
-              <div *ngIf="sectionToShow.includes('TypeObject')">
-                <ion-button
-                  color="secondary"
-                  id="filter-button"
-                  class="center"
-                  style="min-width: 215px"
-                  type="text"
-                  ngDefaultControl
-                  (click)="getTypeObjects(searchInput)"
-                  [(ngModel)]="searchInput"
-                >
-                  Cerca
-                </ion-button>
-              </div>
+              <ion-button
+                *ngIf="sectionToShow.includes('Provenance')"
+                class="menu-button-custom"
+                type="text"
+                ngDefaultControl
+                (click)="getProvenances(searchInput)"
+                [(ngModel)]="searchInput"
+              >
+                Cerca
+              </ion-button>
 
-              <div *ngIf="sectionToShow.includes('GeographicalOrigin')">
-                <ion-button
-                  color="secondary"
-                  id="filter-button"
-                  class="center"
-                  style="min-width: 215px"
-                  type="text"
-                  ngDefaultControl
-                  (click)="getGeographicalOrigins(searchInput)"
-                  [(ngModel)]="searchInput"
-                >
-                  Cerca
-                </ion-button>
-              </div>
+              <ion-button
+                *ngIf="sectionToShow.includes('TypeObject')"
+                class="menu-button-custom"
+                type="text"
+                ngDefaultControl
+                (click)="getTypeObjects(searchInput)"
+                [(ngModel)]="searchInput"
+              >
+                Cerca
+              </ion-button>
+
+              <ion-button
+                *ngIf="sectionToShow.includes('GeographicalOrigin')"
+                class="menu-button-custom"
+                type="text"
+                ngDefaultControl
+                (click)="getGeographicalOrigins(searchInput)"
+                [(ngModel)]="searchInput"
+              >
+                Cerca
+              </ion-button>
             </div>
 
-            <div *ngIf="this.token_JWT_success === true">
-              <ion-accordion-group class="accordion-gestionale">
-                <ion-accordion value="first">
-                  <ion-item
-                    slot="header"
-                    color="secondary"
-                    style="border-radius: 5%"
+            <ion-accordion-group
+              *ngIf="this.token_JWT_success === true"
+              class="accordion-gestionale"
+            >
+              <ion-accordion value="first">
+                <ion-item slot="header" class="menu-button-custom">
+                  <ion-label class="center" style="min-width: 215px"
+                    >GESTIONALE</ion-label
                   >
-                    <ion-label class="center" style="min-width: 215px"
-                      >GESTIONALE</ion-label
-                    >
-                  </ion-item>
-                  <ion-buttons
+                </ion-item>
+                <ion-buttons
+                  slot="start"
+                  class="bottoniGestionale"
+                  slot="content"
+                >
+                  <ion-button slot="start" (click)="switchToView('Store')">
+                    Archivio
+                  </ion-button>
+
+                  <ion-button slot="start" (click)="switchToView('Author')">
+                    Autori
+                  </ion-button>
+                  <ion-button slot="start" (click)="switchToView('Publisher')">
+                    Editori
+                  </ion-button>
+                  <ion-button slot="start" (click)="switchToView('Category')">
+                    Categorie
+                  </ion-button>
+                  <ion-button slot="start" (click)="switchToView('Shopkeeper')">
+                    Esercenti
+                  </ion-button>
+                  <ion-button slot="start" (click)="switchToView('TypeObject')">
+                    Tipo di oggetti
+                  </ion-button>
+                  <ion-button slot="start" (click)="switchToView('Warehouse')">
+                    Magazzini
+                  </ion-button>
+                  <ion-button slot="start" (click)="switchToView('Provenance')">
+                    Provenienza
+                  </ion-button>
+                  <ion-button
                     slot="start"
-                    class="bottoniGestionale"
-                    slot="content"
+                    (click)="switchToView('GeographicalOrigin')"
                   >
-                    <ion-button slot="start" (click)="switchToView('Store')">
-                      Archivio
-                    </ion-button>
-
-                    <ion-button slot="start" (click)="switchToView('Author')">
-                      Autori
-                    </ion-button>
-                    <ion-button
-                      slot="start"
-                      (click)="switchToView('Publisher')"
-                    >
-                      Editori
-                    </ion-button>
-                    <ion-button slot="start" (click)="switchToView('Category')">
-                      Categorie
-                    </ion-button>
-                    <ion-button
-                      slot="start"
-                      (click)="switchToView('Shopkeeper')"
-                    >
-                      Esercenti
-                    </ion-button>
-                    <ion-button
-                      slot="start"
-                      (click)="switchToView('TypeObject')"
-                    >
-                      Tipo di oggetti
-                    </ion-button>
-                    <ion-button
-                      slot="start"
-                      (click)="switchToView('Warehouse')"
-                    >
-                      Magazzini
-                    </ion-button>
-                    <ion-button
-                      slot="start"
-                      (click)="switchToView('Provenance')"
-                    >
-                      Provenienza
-                    </ion-button>
-                    <ion-button
-                      slot="start"
-                      (click)="switchToView('GeographicalOrigin')"
-                    >
-                      Origini geografiche
-                    </ion-button>
-                  </ion-buttons>
-                </ion-accordion>
-              </ion-accordion-group>
-            </div>
-
-            <div *ngIf="!this.token_JWT_success">
-              <ion-button
-                id="login-button"
-                color="secondary"
-                class="center filter-button"
-                style="min-width: 215px"
-              >
-                <ion-text>
-                  <ion-icon name="key-outline"></ion-icon>
-                  Accedi
-                </ion-text></ion-button
-              >
-              <ion-modal
-                trigger="login-button"
-                (willDismiss)="onWillDismiss($event)"
-                class="ion-padding"
-              >
-                <ng-template class="ng-template-custom">
-                  <ion-header>
-                    <ion-toolbar>
-                      <ion-title
-                        class="ionic-title-custom"
-                        style="
-                          margin-top: 10px;
-                          margin-bottom: 15px;
-                          margin-left: 20px;
-                        "
-                      >
-                        <ion-text
-                          style="width: 100%; font-weight: bold"
-                          color="secondary"
-                        >
-                          Accedi</ion-text
-                        ></ion-title
-                      >
-                      <ion-buttons slot="start">
-                        <ion-button (click)="cancel()" [strong]="true"
-                          ><ion-icon name="arrow-undo-outline"></ion-icon
-                        ></ion-button>
-                      </ion-buttons>
-                      <ion-buttons slot="end">
-                        <ion-button
-                          (click)="confirmLogin()"
-                          [strong]="true"
-                          id="conferma-login"
-                          >Conferma</ion-button
-                        >
-                      </ion-buttons>
-                    </ion-toolbar>
-                  </ion-header>
-                  <ion-content class="ion-padding">
-                    <ion-item class="ionic-text-custom">
-                      <ion-input
-                        class="credenziali-login"
-                        label="Email"
-                        [clearInput]="true"
-                        labelPlacement="stacked"
-                        type="email"
-                        [(ngModel)]="body_login.email"
-                      ></ion-input>
-                    </ion-item>
-                    <ion-item class="ionic-text-custom">
-                      <ion-input
-                        class="credenziali-login"
-                        label="Password"
-                        [clearInput]="true"
-                        labelPlacement="stacked"
-                        type="password"
-                        [(ngModel)]="body_login.password"
-                      >
-                        <ion-input-password-toggle
-                          slot="end"
-                        ></ion-input-password-toggle>
-                      </ion-input>
-                    </ion-item>
-
-                    <ion-button
-                      class="center bottone-credenziali"
-                      style="margin-top: 30px"
-                      color="secondary"
-                      >Registra un nuovo account</ion-button
-                    >
-                    <br />
-                    <ion-button
-                      class="center bottone-credenziali"
-                      color="secondary"
-                      >Hai dimenticato le credenziali?</ion-button
-                    >
-                  </ion-content>
-                </ng-template>
-              </ion-modal>
-            </div>
-
-            <div *ngIf="this.token_JWT_success">
-              <ion-button
-                color="secondary"
-                class="center filter-button"
-                style="min-width: 215px"
-                id="exit-login"
-              >
-                <ion-text>
-                  <ion-icon name="key-outline"></ion-icon>
-                  Log Out
-                </ion-text></ion-button
-              >
-              <ion-modal
-                trigger="exit-login"
-                (willDismiss)="onWillDismiss($event)"
-                class="ion-padding"
-              >
-                <ng-template class="template-angular">
-                  <ion-header>
-                    <ion-toolbar>
-                      <ion-title
-                        class="centrato"
-                        color="secondary"
-                        style="
-                          font-weight: bolder;
-                          margin-left: -30px;
-                          margin-top: 10px;
-                        "
-                        >Esci dal tuo Account</ion-title
-                      >
-                      <ion-buttons slot="start">
-                        <ion-button (click)="cancel()">
-                          <ion-icon name="arrow-undo-outline"></ion-icon>
-                        </ion-button>
-                      </ion-buttons>
-                    </ion-toolbar>
-                  </ion-header>
-                  <ion-text
-                    style="
-                      font-size: large;
-                      margin: auto;
-                      height: 15vw;
-                      margin-top: 5vw;
-                    "
-                  >
-                    <br />
-                    Ciao {{this.username}}, sei sicuro di voler uscire?
-                    <br />
-                  </ion-text>
-
-                  <div class="ion-text-center" style="height: 100vw">
-                    <ion-button
-                      id="confirm-exit-login"
-                      (click)="exit_login()"
-                      [strong]="true"
-                    >
-                      Conferma
-                    </ion-button>
-                  </div>
-
-                  <ion-toast
-                    trigger="confirm-exit-login"
-                    message="Sei uscito dal tuo account"
-                    class="toast-nuovo-elemento"
-                    [duration]="2000"
-                    expand="block"
-                  ></ion-toast>
-                </ng-template>
-              </ion-modal>
-            </div>
+                    Origini geografiche
+                  </ion-button>
+                </ion-buttons>
+              </ion-accordion>
+            </ion-accordion-group>
 
             <ion-button
-              color="secondary"
-              id="trigger-contatti"
-              class="center filter-button"
-              style="min-width: 215px"
+              *ngIf="!this.token_JWT_success"
+              id="login-button"
+              class="menu-button-custom"
             >
               <ion-text>
-                <ion-icon name="body-outline"></ion-icon>
-                Contatti
+                <ion-icon name="key-outline"></ion-icon>
+                Accedi
               </ion-text></ion-button
             >
             <ion-modal
-              trigger="trigger-contatti"
+              trigger="login-button"
+              (willDismiss)="onWillDismiss($event)"
+              class="ion-padding"
+            >
+              <ng-template class="ng-template-custom">
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-title
+                      class="ionic-title-custom"
+                      style="
+                        margin-top: 10px;
+                        margin-bottom: 15px;
+                        margin-left: 20px;
+                      "
+                    >
+                      <ion-text
+                        style="width: 100%; font-weight: bold"
+                        color="secondary"
+                      >
+                        Accedi</ion-text
+                      ></ion-title
+                    >
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()" [strong]="true"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="confirmLogin()"
+                        [strong]="true"
+                        id="conferma-login"
+                        >Conferma</ion-button
+                      >
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-content class="ion-padding">
+                  <ion-item class="ionic-text-custom">
+                    <ion-input
+                      class="credenziali-login"
+                      label="Email"
+                      [clearInput]="true"
+                      labelPlacement="stacked"
+                      type="email"
+                      [(ngModel)]="body_login.email"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item class="ionic-text-custom">
+                    <ion-input
+                      class="credenziali-login"
+                      label="Password"
+                      [clearInput]="true"
+                      labelPlacement="stacked"
+                      type="password"
+                      [(ngModel)]="body_login.password"
+                    >
+                      <ion-input-password-toggle
+                        slot="end"
+                      ></ion-input-password-toggle>
+                    </ion-input>
+                  </ion-item>
+
+                  <ion-button
+                    class="center bottone-credenziali"
+                    style="margin-top: 30px"
+                    color="secondary"
+                    >Registra un nuovo account</ion-button
+                  >
+                  <br />
+                  <ion-button
+                    class="center bottone-credenziali"
+                    color="secondary"
+                    >Hai dimenticato le credenziali?</ion-button
+                  >
+                </ion-content>
+              </ng-template>
+            </ion-modal>
+
+            <ion-button
+              *ngIf="this.token_JWT_success"
+              class="menu-button-custom"
+              id="exit-login"
+            >
+              <ion-icon name="key-outline"></ion-icon>
+
+              <ion-text> Log Out </ion-text></ion-button
+            >
+            <ion-modal
+              trigger="exit-login"
               (willDismiss)="onWillDismiss($event)"
               class="ion-padding"
             >
@@ -1263,11 +1058,71 @@
                         margin-left: -30px;
                         margin-top: 10px;
                       "
-                      >Contatti</ion-title
+                      >Esci dal tuo Account</ion-title
                     >
                     <ion-buttons slot="start">
                       <ion-button (click)="cancel()">
                         <ion-icon name="arrow-undo-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text
+                  style="
+                    font-size: large;
+                    margin: auto;
+                    height: 15vw;
+                    margin-top: 5vw;
+                  "
+                >
+                  <br />
+                  Ciao {{this.username}}, sei sicuro di voler uscire?
+                  <br />
+                </ion-text>
+
+                <div class="ion-text-center" style="height: 100vw">
+                  <ion-button
+                    id="confirm-exit-login"
+                    (click)="exit_login()"
+                    [strong]="true"
+                  >
+                    Conferma
+                  </ion-button>
+                </div>
+
+                <ion-toast
+                  trigger="confirm-exit-login"
+                  message="Sei uscito dal tuo account"
+                  class="toast-nuovo-elemento"
+                  [duration]="2000"
+                  expand="block"
+                ></ion-toast>
+              </ng-template>
+            </ion-modal>
+
+            <ion-button id="trigger-contatti" class="menu-button-custom">
+              <ion-icon
+                class="icon-menu-button-custom"
+                name="help-outline"
+              ></ion-icon>
+              <ion-text slot="end">Assistenza</ion-text>
+            </ion-button>
+            <ion-modal
+              trigger="trigger-contatti"
+              (willDismiss)="onWillDismiss($event)"
+              class="ion-padding"
+            >
+              <ng-template class="template-angular">
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-title class="centrato" color="secondary"
+                        >Assistenza</ion-title
+                      >
+                    </ion-buttons>
+                    <ion-buttons slot="end">
+                      <ion-button (click)="cancel()">
+                        <ion-icon name="close-outline"></ion-icon>
                       </ion-button>
                     </ion-buttons>
                   </ion-toolbar>
