@@ -60,8 +60,12 @@ export class HomePage implements OnInit {
   ////////////////////////////////////////////////////////////////////
   //////////////////////// FRONTEND FUNCTIONS /////////////////////////
 
-  @ViewChild('menuAncora', { static: false }) menuAncora: ElementRef | undefined;
-  @ViewChild('grigliaElementi', { static: false }) grigliaElementi: ElementRef | undefined;
+  @ViewChild('menuAncora', { static: false }) menuAncora:
+    | ElementRef
+    | undefined;
+  @ViewChild('grigliaElementi', { static: false }) grigliaElementi:
+    | ElementRef
+    | undefined;
   isMenuAnchored: boolean = false;
 
   toggleMenu() {
@@ -71,13 +75,13 @@ export class HomePage implements OnInit {
     let elementoGriglia = this.grigliaElementi?.nativeElement;
 
     if (this.isMenuAnchored) {
+      console.log('Menu ancorato');
       elementoGriglia.style.width = '75vh';
-
       elementoMenu.style.width = '25vh'; // Mostra il menu
       elementoMenu.style.display = 'block';
     } else {
+      console.log('Menu NON ancorato');
       elementoGriglia.style.width = '100vh';
-
       elementoMenu.style.width = '0vh'; // Nascondi il menu
       elementoMenu.style.display = 'none'; // Nascondi il menu
     }

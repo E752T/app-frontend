@@ -27,166 +27,161 @@
     #menuAncora
     *ngIf="!isMenuAnchored"
   >
-    <ion-card class="card-filtri-ricerca">
-      <p></p>
-      <div *ngIf="screenSize === 'desktop'" class="align-right">
-        <ion-button
-          id="anchor-button"
-          style="color: rgb(255, 255, 255)"
-          (click)="toggleMenu()"
+    <ion-card
+      *ngIf="screenSize === 'desktop'"
+      class="card-filtri-ricerca align-right"
+    >
+      <ion-button
+        id="anchor-button"
+        style="color: rgb(255, 255, 255)"
+        (click)="toggleMenu()"
+      >
+        <svg
+          width="18px"
+          height="18x"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            width="18px"
-            height="18x"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M11.5 2C10.6716 2 10 2.67157 10 3.5V6H13V16H1V6H8V3.5C8 1.567 9.567 0 11.5 0C13.433 0 15 1.567 15 3.5V4H13V3.5C13 2.67157 12.3284 2 11.5 2ZM9 10H5V12H9V10Z"
-              fill="white"
-            />
-          </svg>
-        </ion-button>
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M11.5 2C10.6716 2 10 2.67157 10 3.5V6H13V16H1V6H8V3.5C8 1.567 9.567 0 11.5 0C13.433 0 15 1.567 15 3.5V4H13V3.5C13 2.67157 12.3284 2 11.5 2ZM9 10H5V12H9V10Z"
+            fill="white"
+          />
+        </svg>
+      </ion-button>
+    </ion-card>
+
+    <ion-card *ngIf="sectionToShow === 'Store'">
+      <ion-searchbar
+        showCancelButton="focus"
+        [debounce]="1000"
+        type="text"
+        placeholder="Cerca un oggetto"
+        class="center"
+        style="width: 100%"
+        (ionChange)="setInput($event.target.value)"
+        [(ngModel)]="searchInput"
+      >
+      </ion-searchbar>
+
+      <p></p>
+
+      <ion-title
+        color="dark"
+        class="titolo-filtri-ricerca"
+        style="margin-bottom: 40px"
+      >
+        Filtri di Ricerca
+      </ion-title>
+
+      <div style="margin-left: 5%; margin-bottom: 25px" color="success">
+        <ion-label>Seleziona la disponibilità</ion-label>
+        <br /><br />
+        <ion-radio-group [(ngModel)]="availability" value="disponibilita">
+          <ion-radio color="secondary" labelPlacement="end" value="tutti"
+            >Tutti i libri</ion-radio
+          ><br C />
+          <ion-radio
+            color="secondary"
+            labelPlacement="end"
+            value="solo_disponibili"
+            >Solo libri disponibili</ion-radio
+          ><br />
+        </ion-radio-group>
       </div>
 
-      <div *ngIf="sectionToShow === 'Store'">
-        <ion-searchbar
-          showCancelButton="focus"
-          [debounce]="1000"
-          type="text"
-          placeholder="Cerca un oggetto"
+      <ion-list style="margin-top: -40px">
+        <ion-item class="center" style="margin-bottom: 15px; min-width: 300px">
+          <ion-select
+            class="center"
+            aria-label="generi"
+            placeholder="Seleziona generi"
+            [multiple]="true"
+            [(ngModel)]="searchGeneres"
+            color="primary"
+          >
+            <ion-select-option value="Romanzo">Romanzi</ion-select-option>
+            <ion-select-option value="Avventura">Avventura</ion-select-option>
+            <ion-select-option value="SciFi">SciFi</ion-select-option>
+            <ion-select-option value="Fantasy">Fantasy</ion-select-option>
+            <ion-select-option value="Giallo">Gialli</ion-select-option>
+            <ion-select-option value="Manuale">Manuali</ion-select-option>
+            <ion-select-option value="Viaggio">Viaggi</ion-select-option>
+            <ion-select-option value="Rosa">Rosa</ion-select-option>
+            <ion-select-option value="Biografia">Biografie</ion-select-option>
+            <ion-select-option value="Spirituale"
+              >Spiritualità</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <p></p>
+      <div style="text-align: center; margin-top: -20px">
+        <ion-text style="display: inline-block; margin: 10px auto">
+          Anno di pubblicazione
+        </ion-text>
+      </div>
+      <div class="centered" color="success" style="margin-top: -20px">
+        <small>
+          <p class="label-anni" style="margin-bottom: -40px; position: fixed">
+            1800
+          </p>
+        </small>
+        <small>
+          <p
+            class="label-anni"
+            style="margin-bottom: -40px; position: fixed; right: 0"
+          >
+            2024
+          </p>
+        </small>
+
+        <ion-range
+          style="margin-left: 10px; margin-right: 10px"
+          aria-label="Dual Knobs Range"
+          [(ngModel)]="searchYears"
+          [dualKnobs]="true"
+          [pin]="true"
+          min="1805"
+          max="2024"
+          step="5"
+          id="double-knobs-range-objects"
+          [value]="{ lower: 1805, upper: 2024 }"
+        ></ion-range>
+      </div>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+      <p></p>
+
+      <div *ngIf="sectionToShow.includes('Store')">
+        <ion-button
+          color="secondary"
+          id="filter-button"
           class="center"
-          style="width: 100%"
-          (ionChange)="setInput($event.target.value)"
+          style="min-width: 215px"
+          type="text"
+          name="Store"
+          ngDefaultControl
+          (click)="getCategories(searchInput)"
+          (click)="getItems(searchInput)"
+          (click)="getAuthors(searchInput)"
+          (click)="getPublishers(searchInput)"
+          (click)="getGeographicalOrigins(searchInput)"
+          (click)="getWarehouses(searchInput)"
+          (click)="getProvenances(searchInput)"
+          (click)="getShopkeepers(searchInput)"
+          (click)="getTypeObjects(searchInput)"
           [(ngModel)]="searchInput"
         >
-        </ion-searchbar>
-
-        <p></p>
-
-        <ion-title
-          color="dark"
-          class="titolo-filtri-ricerca"
-          style="margin-bottom: 40px"
-        >
-          Filtri di Ricerca
-        </ion-title>
-
-        <div style="margin-left: 5%; margin-bottom: 25px" color="success">
-          <ion-label>Seleziona la disponibilità</ion-label>
-          <br /><br />
-          <ion-radio-group [(ngModel)]="availability" value="disponibilita">
-            <ion-radio color="secondary" labelPlacement="end" value="tutti"
-              >Tutti i libri</ion-radio
-            ><br C />
-            <ion-radio
-              color="secondary"
-              labelPlacement="end"
-              value="solo_disponibili"
-              >Solo libri disponibili</ion-radio
-            ><br />
-          </ion-radio-group>
-        </div>
-
-        <ion-list style="margin-top: -40px">
-          <ion-item
-            class="center"
-            style="margin-bottom: 15px; min-width: 300px"
-          >
-            <ion-select
-              class="center"
-              aria-label="generi"
-              placeholder="Seleziona generi"
-              [multiple]="true"
-              [(ngModel)]="searchGeneres"
-              color="primary"
-            >
-              <ion-select-option value="Romanzo">Romanzi</ion-select-option>
-              <ion-select-option value="Avventura">Avventura</ion-select-option>
-              <ion-select-option value="SciFi">SciFi</ion-select-option>
-              <ion-select-option value="Fantasy">Fantasy</ion-select-option>
-              <ion-select-option value="Giallo">Gialli</ion-select-option>
-              <ion-select-option value="Manuale">Manuali</ion-select-option>
-              <ion-select-option value="Viaggio">Viaggi</ion-select-option>
-              <ion-select-option value="Rosa">Rosa</ion-select-option>
-              <ion-select-option value="Biografia">Biografie</ion-select-option>
-              <ion-select-option value="Spirituale"
-                >Spiritualità</ion-select-option
-              >
-            </ion-select>
-          </ion-item>
-        </ion-list>
-        <p></p>
-        <div style="text-align: center; margin-top: -20px">
-          <ion-text style="display: inline-block; margin: 10px auto">
-            Anno di pubblicazione
-          </ion-text>
-        </div>
-        <div class="centered" color="success" style="margin-top: -20px">
-          <small>
-            <p class="label-anni" style="margin-bottom: -40px; position: fixed">
-              1800
-            </p>
-          </small>
-          <small>
-            <p
-              class="label-anni"
-              style="margin-bottom: -40px; position: fixed; right: 0"
-            >
-              2024
-            </p>
-          </small>
-
-          <ion-range
-            style="margin-left: 10px; margin-right: 10px"
-            aria-label="Dual Knobs Range"
-            [(ngModel)]="searchYears"
-            [dualKnobs]="true"
-            [pin]="true"
-            min="1805"
-            max="2024"
-            step="5"
-            id="double-knobs-range-objects"
-            [value]="{ lower: 1805, upper: 2024 }"
-          ></ion-range>
-        </div>
-
-        <ion-modal [keepContentsMounted]="true">
-          <ng-template>
-            <ion-datetime id="datetime"></ion-datetime>
-          </ng-template>
-        </ion-modal>
-        <p></p>
-
-        <div *ngIf="sectionToShow.includes('Store')">
-          <ion-button
-            color="secondary"
-            id="filter-button"
-            class="center"
-            style="min-width: 215px"
-            type="text"
-            name="Store"
-            ngDefaultControl
-            (click)="getCategories(searchInput)"
-            (click)="getItems(searchInput)"
-            (click)="getAuthors(searchInput)"
-            (click)="getPublishers(searchInput)"
-            (click)="getGeographicalOrigins(searchInput)"
-            (click)="getWarehouses(searchInput)"
-            (click)="getProvenances(searchInput)"
-            (click)="getShopkeepers(searchInput)"
-            (click)="getTypeObjects(searchInput)"
-            [(ngModel)]="searchInput"
-          >
-            Cerca
-          </ion-button>
-        </div>
+          Cerca
+        </ion-button>
       </div>
-      <p></p>
-
       <div *ngIf="AdminTables.includes(sectionToShow)">
         <ion-searchbar
           showCancelButton="focus"
@@ -369,11 +364,7 @@
       </div>
 
       <div *ngIf="this.token_JWT_success === true">
-        <hr class="solid" />
-
-        <ion-accordion-group 
-        class="center filter-button"
-        >
+        <ion-accordion-group class="center filter-button">
           <ion-accordion value="first">
             <ion-item
               slot="header"
@@ -421,8 +412,6 @@
           </ion-accordion>
         </ion-accordion-group>
       </div>
-
-      <hr class="solid" />
 
       <div *ngIf="!this.token_JWT_success">
         <ion-button
@@ -528,57 +517,63 @@
           </ion-text></ion-button
         >
         <ion-modal
-        trigger="exit-login"
-        (willDismiss)="onWillDismiss($event)"
-        class="ion-padding"
-      >
-        <ng-template class="template-angular">
-          <ion-header>
-            <ion-toolbar>
-              <ion-title
-                class="centrato"
-                color="secondary"
-                style="
-                  font-weight: bolder;
-                  margin-left: -30px;
-                  margin-top: 10px;
-                "
-                >Esci dal tuo Account</ion-title
-              >
-              <ion-buttons slot="start">
-                <ion-button (click)="cancel()">
-                  <ion-icon name="arrow-undo-outline"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-text style="font-size: large; margin: auto;height: 15vw;margin-top:5vw">
-            <br />
-            Ciao {{this.username}}, sei sicuro di voler uscire?
-            <br />
-          </ion-text>
-
-          <div class="ion-text-center" style="height: 100vw;">
-            <ion-button
-              id="confirm-exit-login"
-              (click)="exit_login()"
-              [strong]="true"
+          trigger="exit-login"
+          (willDismiss)="onWillDismiss($event)"
+          class="ion-padding"
+        >
+          <ng-template class="template-angular">
+            <ion-header>
+              <ion-toolbar>
+                <ion-title
+                  class="centrato"
+                  color="secondary"
+                  style="
+                    font-weight: bolder;
+                    margin-left: -30px;
+                    margin-top: 10px;
+                  "
+                  >Esci dal tuo Account</ion-title
+                >
+                <ion-buttons slot="start">
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="arrow-undo-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-text
+              style="
+                font-size: large;
+                margin: auto;
+                height: 15vw;
+                margin-top: 5vw;
+              "
             >
-              Conferma
-            </ion-button>
-          </div>
+              <br />
+              Ciao {{this.username}}, sei sicuro di voler uscire?
+              <br />
+            </ion-text>
 
-          <ion-toast
-            trigger="confirm-exit-login"
-            message="Sei uscito dal tuo account"
-            class="toast-nuovo-elemento"
-            [duration]="2000"
-            expand="block"
-          ></ion-toast>
-        </ng-template>
-      </ion-modal>
+            <div class="ion-text-center" style="height: 100vw">
+              <ion-button
+                id="confirm-exit-login"
+                (click)="exit_login()"
+                [strong]="true"
+              >
+                Conferma
+              </ion-button>
+            </div>
+
+            <ion-toast
+              trigger="confirm-exit-login"
+              message="Sei uscito dal tuo account"
+              class="toast-nuovo-elemento"
+              [duration]="2000"
+              expand="block"
+            ></ion-toast>
+          </ng-template>
+        </ion-modal>
       </div>
-
       <ion-button
         color="secondary"
         id="trigger-contatti"
@@ -638,8 +633,8 @@
     </ion-card>
   </ion-menu>
 
-  <ion-grid #grigliaElementi>
-    <ion-row>
+  <ion-grid>
+    <ion-row #grigliaElementi>
       <ion-col size="4" style="margin-top: 50px">
         <div
           contentId="main-content"
@@ -647,8 +642,7 @@
           #menuAncora
           *ngIf="isMenuAnchored"
         >
-          <ion-card class="card-filtri-ricerca">
-            <p></p>
+          <ion-card>
             <div *ngIf="screenSize === 'desktop'" class="align-right">
               <ion-button
                 id="anchor-button"
@@ -684,8 +678,6 @@
                 [(ngModel)]="searchInput"
               >
               </ion-searchbar>
-
-              <p></p>
 
               <ion-title
                 color="dark"
@@ -1013,8 +1005,6 @@
             </div>
 
             <div *ngIf="this.token_JWT_success === true">
-              <hr class="solid" />
-
               <ion-accordion-group class="accordion-gestionale">
                 <ion-accordion value="first">
                   <ion-item
@@ -1081,8 +1071,6 @@
                 </ion-accordion>
               </ion-accordion-group>
             </div>
-
-            <hr class="solid" />
 
             <div *ngIf="!this.token_JWT_success">
               <ion-button
@@ -1214,13 +1202,20 @@
                       </ion-buttons>
                     </ion-toolbar>
                   </ion-header>
-                  <ion-text style="font-size: large; margin: auto;height: 15vw;margin-top:5vw">
+                  <ion-text
+                    style="
+                      font-size: large;
+                      margin: auto;
+                      height: 15vw;
+                      margin-top: 5vw;
+                    "
+                  >
                     <br />
                     Ciao {{this.username}}, sei sicuro di voler uscire?
                     <br />
                   </ion-text>
 
-                  <div class="ion-text-center" style="height: 100vw;">
+                  <div class="ion-text-center" style="height: 100vw">
                     <ion-button
                       id="confirm-exit-login"
                       (click)="exit_login()"
@@ -1306,11 +1301,8 @@
           *ngIf="sectionToShow === 'Store'"
           style="margin-top: 10px; margin-bottom: 100px"
         >
-          <ion-grid
-            #grigliaElementi
-            style="margin-top: 10px; display: table-row"
-          >
-            <ion-row>
+          <ion-grid style="margin-top: 10px; display: table-row">
+            <ion-row #grigliaElementi>
               <br />
               <br />
               <ion-col size="12" style="margin-top: 10px">
