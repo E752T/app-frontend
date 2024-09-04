@@ -359,15 +359,64 @@
         </ion-accordion>
       </ion-accordion-group>
 
+      <ion-button id="trigger-contatti" class="menu-button-custom">
+        <ion-icon
+          class="icon-menu-button-custom"
+          name="help-outline"
+        ></ion-icon>
+        <ion-text slot="end">Assistenza</ion-text>
+      </ion-button>
+      <ion-modal
+        trigger="trigger-contatti"
+        (willDismiss)="onWillDismiss($event)"
+        class="ion-padding"
+      >
+        <ng-template class="template-angular">
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-title class="centrato" color="secondary"
+                  >Assistenza</ion-title
+                >
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button (click)="cancel()">
+                  <ion-icon name="close-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <div>
+              <ion-text
+                ><br />
+                <b>Posizione</b><br />
+                Roma, Italia, Viale Castro Pretorio, 105 00185
+                <br /><br /><br />
+
+                <b>Settore pubblica lettura / prestito</b> <br />
+                +39 0577 292636 <br /><br /><br />
+
+                <b>Sala consultazione manoscritti e rari</b> <br />+39 0577
+                292644 <br /><br /><br />
+
+                <b>Centralino </b> <br />+39 0577 292666 <br /><br /><br />
+              </ion-text>
+            </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
       <ion-button
         *ngIf="!this.token_JWT_success"
         id="login-button"
         class="menu-button-custom"
       >
-        <ion-text>
-          <ion-icon name="key-outline"></ion-icon>
-          Accedi
-        </ion-text></ion-button
+        <ion-icon
+          class="icon-menu-button-custom"
+          name="log-in-outline"
+        ></ion-icon>
+        <ion-text> Log In </ion-text></ion-button
       >
       <ion-modal
         trigger="login-button"
@@ -385,8 +434,8 @@
                   style="width: 100%; font-weight: bold"
                   color="secondary"
                 >
-                  Accedi</ion-text
-                ></ion-title
+                  Accedi
+                </ion-text></ion-title
               >
               <ion-buttons slot="start">
                 <ion-button (click)="cancel()" [strong]="true"
@@ -448,8 +497,10 @@
         class="menu-button-custom"
         id="exit-login"
       >
-        <ion-icon name="key-outline"></ion-icon>
-
+        <ion-icon
+          class="icon-menu-button-custom"
+          name="log-out-outline"
+        ></ion-icon>
         <ion-text> Log Out </ion-text></ion-button
       >
       <ion-modal
@@ -507,54 +558,6 @@
             [duration]="2000"
             expand="block"
           ></ion-toast>
-        </ng-template>
-      </ion-modal>
-
-      <ion-button id="trigger-contatti" class="menu-button-custom">
-        <ion-icon
-          class="icon-menu-button-custom"
-          name="help-outline"
-        ></ion-icon>
-        <ion-text slot="end">Assistenza</ion-text>
-      </ion-button>
-      <ion-modal
-        trigger="trigger-contatti"
-        (willDismiss)="onWillDismiss($event)"
-        class="ion-padding"
-      >
-        <ng-template class="template-angular">
-          <ion-header>
-            <ion-toolbar>
-              <ion-buttons slot="start">
-                <ion-title class="centrato" color="secondary"
-                  >Assistenza</ion-title
-                >
-              </ion-buttons>
-              <ion-buttons slot="end">
-                <ion-button (click)="cancel()">
-                  <ion-icon name="close-outline"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content class="ion-padding">
-            <div>
-              <ion-text
-                ><br />
-                <b>Posizione</b><br />
-                Roma, Italia, Viale Castro Pretorio, 105 00185
-                <br /><br /><br />
-
-                <b>Settore pubblica lettura / prestito</b> <br />
-                +39 0577 292636 <br /><br /><br />
-
-                <b>Sala consultazione manoscritti e rari</b> <br />+39 0577
-                292644 <br /><br /><br />
-
-                <b>Centralino </b> <br />+39 0577 292666 <br /><br /><br />
-              </ion-text>
-            </div>
-          </ion-content>
         </ng-template>
       </ion-modal>
     </ion-card>
@@ -943,15 +946,65 @@
               </ion-accordion>
             </ion-accordion-group>
 
+            <ion-button id="trigger-contatti" class="menu-button-custom">
+              <ion-icon
+                class="icon-menu-button-custom"
+                name="help-outline"
+              ></ion-icon>
+              <ion-text slot="end">Assistenza</ion-text>
+            </ion-button>
+            <ion-modal
+              trigger="trigger-contatti"
+              (willDismiss)="onWillDismiss($event)"
+              class="ion-padding"
+            >
+              <ng-template class="template-angular">
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-title class="centrato" color="secondary"
+                        >Assistenza</ion-title
+                      >
+                    </ion-buttons>
+                    <ion-buttons slot="end">
+                      <ion-button (click)="cancel()">
+                        <ion-icon name="close-outline"></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-content class="ion-padding">
+                  <div>
+                    <ion-text
+                      ><br />
+                      <b>Posizione</b><br />
+                      Roma, Italia, Viale Castro Pretorio, 105 00185
+                      <br /><br /><br />
+
+                      <b>Settore pubblica lettura / prestito</b> <br />
+                      +39 0577 292636 <br /><br /><br />
+
+                      <b>Sala consultazione manoscritti e rari</b> <br />+39
+                      0577 292644 <br /><br /><br />
+
+                      <b>Centralino </b> <br />+39 0577 292666
+                      <br /><br /><br />
+                    </ion-text>
+                  </div>
+                </ion-content>
+              </ng-template>
+            </ion-modal>
+
             <ion-button
               *ngIf="!this.token_JWT_success"
               id="login-button"
               class="menu-button-custom"
             >
-              <ion-text>
-                <ion-icon name="key-outline"></ion-icon>
-                Accedi
-              </ion-text></ion-button
+              <ion-icon
+                class="icon-menu-button-custom"
+                name="log-in-outline"
+              ></ion-icon>
+              <ion-text> Log In </ion-text></ion-button
             >
             <ion-modal
               trigger="login-button"
@@ -1038,7 +1091,10 @@
               class="menu-button-custom"
               id="exit-login"
             >
-              <ion-icon name="key-outline"></ion-icon>
+              <ion-icon
+                class="icon-menu-button-custom"
+                name="log-out-outline"
+              ></ion-icon>
 
               <ion-text> Log Out </ion-text></ion-button
             >
@@ -1097,55 +1153,6 @@
                   [duration]="2000"
                   expand="block"
                 ></ion-toast>
-              </ng-template>
-            </ion-modal>
-
-            <ion-button id="trigger-contatti" class="menu-button-custom">
-              <ion-icon
-                class="icon-menu-button-custom"
-                name="help-outline"
-              ></ion-icon>
-              <ion-text slot="end">Assistenza</ion-text>
-            </ion-button>
-            <ion-modal
-              trigger="trigger-contatti"
-              (willDismiss)="onWillDismiss($event)"
-              class="ion-padding"
-            >
-              <ng-template class="template-angular">
-                <ion-header>
-                  <ion-toolbar>
-                    <ion-buttons slot="start">
-                      <ion-title class="centrato" color="secondary"
-                        >Assistenza</ion-title
-                      >
-                    </ion-buttons>
-                    <ion-buttons slot="end">
-                      <ion-button (click)="cancel()">
-                        <ion-icon name="close-outline"></ion-icon>
-                      </ion-button>
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ion-header>
-                <ion-content class="ion-padding">
-                  <div>
-                    <ion-text
-                      ><br />
-                      <b>Posizione</b><br />
-                      Roma, Italia, Viale Castro Pretorio, 105 00185
-                      <br /><br /><br />
-
-                      <b>Settore pubblica lettura / prestito</b> <br />
-                      +39 0577 292636 <br /><br /><br />
-
-                      <b>Sala consultazione manoscritti e rari</b> <br />+39
-                      0577 292644 <br /><br /><br />
-
-                      <b>Centralino </b> <br />+39 0577 292666
-                      <br /><br /><br />
-                    </ion-text>
-                  </div>
-                </ion-content>
               </ng-template>
             </ion-modal>
           </ion-card>
