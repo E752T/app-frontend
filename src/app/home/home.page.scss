@@ -451,6 +451,24 @@ ion-button.bottone-accedi {
 
 .icon-menu-button-custom {
   color: #ffffff;
-  background-color: #0163aa;
+  background-color: #0054e9;
   margin-right: 8px;
+}
+
+.menu-button-icon {
+  color: rgb(255, 255, 255);
+  margin-right: 40px;
+}
+
+.anchor-button {
+  width: 5vw;
+}
+
+.float-right {
+  float: right;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
 }
