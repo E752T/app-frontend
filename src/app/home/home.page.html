@@ -37,6 +37,16 @@
         </svg>
       </ion-button>
 
+      <ion-item *ngIf="this.token_JWT_success" style="justify-content: center">
+        <ion-avatar slot="start">
+          <img
+            alt="Silhouette of a person's head"
+            src="https://ionicframework.com/docs/img/demos/avatar.svg"
+          />
+        </ion-avatar>
+        Ciao, {{this.username}}!
+      </ion-item>
+
       <ion-card *ngIf="sectionToShow === 'Store'" style="padding: 1vw">
         <ion-searchbar
           showCancelButton="focus"

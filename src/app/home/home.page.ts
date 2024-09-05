@@ -143,7 +143,6 @@ export class HomePage implements OnInit {
     }
   }
 
-  /// JWT DECODE ////////////////////
   jwt_decode(token: string): any {
     // Verifica se il token è valido
     if (!token) {
