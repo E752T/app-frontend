@@ -69,7 +69,7 @@ export class HomePage implements OnInit {
   @ViewChild('grigliaElementi', { static: false }) grigliaElementi:
     | ElementRef
     | undefined;
-  isMenuAnchored: boolean = false;
+  isMenuAnchored: boolean = true;
 
   toggleMenu() {
     this.isMenuAnchored = !this.isMenuAnchored;
@@ -78,20 +78,15 @@ export class HomePage implements OnInit {
     let elementoGriglia = this.grigliaElementi?.nativeElement;
 
     if (this.isMenuAnchored) {
-      console.log('Menu ancorato');
+      console.log('Menu anchored');
       elementoGriglia.style.width = '75vh';
-      elementoMenu.style.width = '25vh'; // Mostra il menu
-      elementoMenu.style.display = 'block';
+      elementoMenu.style.width = '25vh'; // Show the menu
+      elementoMenu.style.display = 'block'; // Ensure the menu is displayed
     } else {
-      console.log('Menu NON ancorato');
+      console.log('Menu NOT anchored');
       elementoGriglia.style.width = '100vh';
-      elementoMenu.style.width = '0vh'; // Nascondi il menu
-      elementoMenu.style.display = 'none'; // Nascondi il menu
-    }
-    if (this.isMenuAnchored) {
-      this.isMenuAnchored = false;
-    } else {
-      this.isMenuAnchored = true;
+      elementoMenu.style.width = '0vh'; // Hide the menu
+      elementoMenu.style.display = 'none'; // Set display to none
     }
   }
 

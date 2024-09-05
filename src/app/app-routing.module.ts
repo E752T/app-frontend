@@ -25,6 +25,10 @@ const routes: Routes = [
         (m) => m.ResetCredentialsPageModule
       ),
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
 ];
 
 @NgModule({
