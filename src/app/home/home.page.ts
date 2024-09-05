@@ -74,21 +74,37 @@ export class HomePage implements OnInit {
   toggleMenu() {
     this.isMenuAnchored = !this.isMenuAnchored;
 
-    let elementoMenu = this.menuAncora?.nativeElement;
-    let elementoGriglia = this.grigliaElementi?.nativeElement;
-
     if (this.isMenuAnchored) {
       console.log('Menu anchored');
+      const elementoMenu = this.menuAncora?.nativeElement;
+      const elementoGriglia = this.grigliaElementi?.nativeElement;
       elementoGriglia.style.width = '75vh';
       elementoMenu.style.width = '25vh'; // Show the menu
       elementoMenu.style.display = 'block'; // Ensure the menu is displayed
     } else {
-      console.log('Menu NOT anchored');
-      elementoGriglia.style.width = '100vh';
-      elementoMenu.style.width = '0vh'; // Hide the menu
-      elementoMenu.style.display = 'none'; // Set display to none
+      if (!this.isMenuAnchored) {
+        console.log('Menu NOT anchored');
+        const elementoMenu = this.menuAncora?.nativeElement;
+        const elementoGriglia = this.grigliaElementi?.nativeElement;
+        elementoGriglia.style.width = '100vh';
+        elementoMenu.style.width = '0vh'; // Hide the menu
+        elementoMenu.style.display = 'none'; // Set display to none
+      }
     }
   }
+
+  
+  toggleMenu2() {
+    this.isMenuAnchored = !this.isMenuAnchored;
+    this.updateSize();
+  }
+
+  size: string = "8"; // Dimensione predefinita
+
+  updateSize() {
+    this.size = this.isMenuAnchored ? "8" : "12";
+  }
+
 
   checkScreenSize(): string {
     const screenWidth = window.innerWidth;
