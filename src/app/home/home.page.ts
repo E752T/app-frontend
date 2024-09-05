@@ -36,6 +36,9 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getScreenSize();
+    this.toggleMenu();
+    let elementoGriglia = this.grigliaElementi?.nativeElement;
+    elementoGriglia.style.width = '100vh';
   }
 
   constructor(
@@ -84,6 +87,11 @@ export class HomePage implements OnInit {
       elementoGriglia.style.width = '100vh';
       elementoMenu.style.width = '0vh'; // Nascondi il menu
       elementoMenu.style.display = 'none'; // Nascondi il menu
+    }
+    if (this.isMenuAnchored) {
+      this.isMenuAnchored = false;
+    } else {
+      this.isMenuAnchored = true;
     }
   }
 

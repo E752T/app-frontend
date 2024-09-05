@@ -315,7 +315,7 @@ ion-button.bottone-accedi {
 
 .bottone-aggiungi-nuovo-oggetto {
   margin-bottom: 2%;
-  width: fit-content;
+  width: 90%;
   min-width: 150px;
   padding-left: 5%;
   border-radius: 15%;
@@ -470,4 +470,9 @@ ion-button.bottone-accedi {
 .button-container {
   display: flex;
   justify-content: flex-end;
+}
+
+.header-md {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
