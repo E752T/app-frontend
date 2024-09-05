@@ -33,6 +33,7 @@ export class HomePage implements OnInit {
   token_JWT: string = '';
   token_JWT_success: boolean = false;
   username: string = '';
+  user_role: string = 'test';
 
   ngOnInit() {
     this.getScreenSize();
@@ -69,6 +70,7 @@ export class HomePage implements OnInit {
   @ViewChild('grigliaElementi', { static: false }) grigliaElementi:
     | ElementRef
     | undefined;
+
   isMenuAnchored: boolean = true;
 
   toggleMenu() {
@@ -129,6 +131,8 @@ export class HomePage implements OnInit {
         this.token_JWT_success = false;
         this.showToast('Credenziali Errate', 'danger');
       }
+      this.user_role = this.getUserRole();
+      console.log("RUOLO DELL' UTENTE ", this.user_role);
     } catch (error) {
       console.error('An error occurred during login: ', error);
       this.token_JWT_success = false;
@@ -137,6 +141,52 @@ export class HomePage implements OnInit {
       this.body_login.email = '';
       this.body_login.password = '';
     }
+  }
+
+  /// JWT DECODE ////////////////////
+  jwt_decode(token: string): any {
+    // Verifica se il token è valido
+    if (!token) {
+      throw new Error('Token non fornito');
+    }
+
+    // Divide il token in parti
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      throw new Error('Token non valido');
+    }
+
+    // Decodifica la parte payload
+    const payload = parts[1];
+    const decodedPayload = JSON.parse(atob(payload)); // Decodifica da Base64
+    console.log(decodedPayload);
+    return decodedPayload;
+  }
+
+  getUserRole(): string {
+    const token = this.token_JWT; // Assicurati di avere il token salvato
+
+    if (token) {
+      if (token.includes('admin')) {
+        return 'admin';
+      } else {
+        return 'user';
+      }
+    } else {
+      return 'token not found';
+    }
+    //if (token) {
+    //  const decoded: any = this.jwt_decode(token);
+    // return decoded.role; // Restituisce il ruolo dell'utente
+    //}
+  }
+
+  ////////////////////////////////////////
+
+  // Funzione per controllare se l'utente è un admin
+  isAdmin(): boolean {
+    const role = this.getUserRole();
+    return role === 'Admin';
   }
 
   exit_login() {
@@ -189,10 +239,8 @@ export class HomePage implements OnInit {
   //////////////////////// ADMIN /////////////////////////////////////
 
   body_login: LoginObject = {
-    email: 'test',
-    password: 'test',
-    //twoFactorCode: '',
-    //twoFactorRecoveryCode: '',
+    email: 'admin',
+    password: 'admin',
   };
 
   AdminTables: Array<string> = [
