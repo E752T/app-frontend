@@ -180,14 +180,6 @@ export class HomePage implements OnInit {
     //}
   }
 
-  ////////////////////////////////////////
-
-  // Funzione per controllare se l'utente è un admin
-  isAdmin(): boolean {
-    const role = this.getUserRole();
-    return role === 'Admin';
-  }
-
   exit_login() {
     this.body_login.email = '';
     this.body_login.password = '';
@@ -204,6 +196,7 @@ export class HomePage implements OnInit {
     document.body.appendChild(toast);
     return toast.present();
   }
+
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
@@ -234,8 +227,7 @@ export class HomePage implements OnInit {
     this.isOpen = true;
   }
 
-  ////////////////////////////////////////////////////////////////////
-  //////////////////////// ADMIN /////////////////////////////////////
+  // ADMIN
 
   body_login: LoginObject = {
     email: 'admin',
@@ -253,8 +245,7 @@ export class HomePage implements OnInit {
     'TypeObject', //
   ];
 
-  ////////////////////////////////////////////////////////////////////
-  //////////////////////// OBJECTS ///////////////////////////////////
+  // OBJECTS
 
   allDatabase: Array<DatabaseObject> = [];
   filteredObjects: Array<DatabaseObject> = [];
@@ -324,8 +315,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  ///////////////////////////////////////////////////////////////
-  /////////////////       AUTORI      ///////////////////////////
+  //       AUTORI
 
   allAuthors: Array<Author> = [];
   filteredAuthors: Array<Author> = [];
@@ -414,8 +404,7 @@ export class HomePage implements OnInit {
     return this.allAuthors;
   }
 
-  ///////////////////////////////////////////////////////////////
-  /////////////////       Category      ///////////////////////////
+  //       Category
 
   allCategories: Array<Category> = [];
   filteredCategories: Array<Category> = [];
@@ -498,8 +487,7 @@ export class HomePage implements OnInit {
     return this.filteredCategories;
   }
 
-  ///////////////////////////////////////////////////////////////
-  /////////////////       Publisher      ///////////////////////////
+  //       Publisher
 
   allPublishers: Array<Publisher> = [];
   filteredPublishers: Array<Publisher> = [];
@@ -595,8 +583,7 @@ export class HomePage implements OnInit {
     return this.filteredPublishers;
   }
 
-  ///////////////////////////////////////////////////////////////
-  /////////////////       ESERCENTI      ///////////////////////////
+  //       ESERCENTI
 
   allShopkeepers: Array<Shopkeeper> = [];
   filteredShopkeepers: Array<Shopkeeper> = [];
@@ -690,8 +677,7 @@ export class HomePage implements OnInit {
     return this.filteredShopkeepers;
   }
 
-  /////////////////////////////////////////////////////////////////
-  /////////////////       MAGAZZINI      ///////////////////////////
+  //       MAGAZZINI
 
   allWarehouses: Array<Warehouse> = [];
   filteredWarehouses: Array<Warehouse> = [];
@@ -783,8 +769,7 @@ export class HomePage implements OnInit {
     return this.filteredWarehouses;
   }
 
-  /////////////////////////////////////////////////////////////////
-  /////////////////       PROVENIENZE      ///////////////////////////
+  //       PROVENIENZE
 
   allProvenances: Array<Provenance> = [];
   filteredProvenances: Array<Provenance> = [];
@@ -869,8 +854,7 @@ export class HomePage implements OnInit {
     return this.filteredProvenances;
   }
 
-  /////////////////////////////////////////////////////////////////
-  /////////////////      ORIGINE GEOGRAFICA       /////////////////
+  //      ORIGINE GEOGRAFICA
 
   allGeographicalOrigins: Array<GeographicalOrigin> = [];
   filteredGeographicalOrigins: Array<GeographicalOrigin> = [];
@@ -962,8 +946,7 @@ export class HomePage implements OnInit {
     return this.filteredGeographicalOrigins;
   }
 
-  //////////////////////////////////////////////////////////////
-  /////////////////      TIPI DI OGGETTI       /////////////////
+  //      TIPI DI OGGETTI
 
   allTypeObjects: Array<TypeObject> = [];
   filteredTypeObjects: Array<TypeObject> = [];
@@ -1048,8 +1031,7 @@ export class HomePage implements OnInit {
     return this.filteredTypeObjects;
   }
 
-  //////////////////////////////////////////////////////////////
-  ////////////////////// FILTRI DI RICERCA /////////////////////
+  ////// FILTRI DI RICERCA
 
   availability: string = 'tutti'; // initial aviability filter checkbox
   searchInput: string | undefined | null = ''; // initial search input
