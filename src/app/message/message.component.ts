@@ -66,7 +66,4 @@ export class MessageComponent {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
   }
-
-
-
 }

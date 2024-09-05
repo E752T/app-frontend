@@ -20,7 +20,7 @@ describe('HomePage', () => {
       declarations: [HomePage],
       imports: [
         IonicModule.forRoot(),
-        MessageComponentModule, 
+        MessageComponentModule,
         AuthorsModule,
         EditorsModule,
         GeographicalOriginModule,
@@ -28,7 +28,7 @@ describe('HomePage', () => {
         WarehousetModule,
         TypeObjectModule,
         RouterModule.forRoot([]),
-      ], 
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomePage);

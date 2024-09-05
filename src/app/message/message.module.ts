@@ -11,5 +11,4 @@ import { MessageComponent } from './message.component';
   declarations: [MessageComponent],
   exports: [MessageComponent],
 })
-
 export class MessageComponentModule {}
