@@ -187,14 +187,13 @@ ion-button.bottone-accedi {
   text-transform: none;
   margin: auto;
   text-align: center;
+  margin-top: 3vh;
 }
 
 .card-filtri-ricerca {
   padding-left: 2%;
   padding-right: 2%;
 }
-
-
 
 .searchbar-custom {
   width: 100%;
@@ -458,7 +457,7 @@ ion-button.bottone-accedi {
 }
 
 .anchor-button {
-  width: 5vw;
+  width: min-content;
 }
 
 .float-right {
@@ -479,13 +478,39 @@ ion-button.bottone-accedi {
   margin-bottom: 40px;
 }
 
-.filtri-di-ricerca{
-  margin-left: 5%; margin-bottom: 25px
+.margin-top {
+  margin-top: -20px;
 }
-.lista-selezione{margin-bottom: 15px; min-width: 300px}
 
-.testo-anno-di-pubblicazione{display: inline-block; margin: 10px auto}
+.filtri-di-ricerca {
+  margin-left: 5%;
+  margin-bottom: 25px;
+}
+.lista-selezione {
+  margin-bottom: 15px;
+  min-width: 300px;
+}
 
-.numero-anno-di-pubblicazione{margin-bottom: -40px;  padding: 10px; position: fixed}
+.testo-anno-di-pubblicazione {
+  display: inline-block;
+  margin: 10px auto;
+  text-align: center;
+}
 
-.dual-knobs{margin-left: 10px; margin-right: 10px}
+.numero-anno-di-pubblicazione {
+  margin-bottom: -40px;
+  padding: 10px;
+  position: fixed;
+}
+
+.dual-knobs {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.min-width-button {
+  min-width: 215px;
+}
+.bolder {
+  font-weight: bold;
+}
