@@ -194,9 +194,7 @@ ion-button.bottone-accedi {
   padding-right: 2%;
 }
 
-.label-anni {
-  padding: 10px;
-}
+
 
 .searchbar-custom {
   width: 100%;
@@ -476,3 +474,18 @@ ion-button.bottone-accedi {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
+
+.margin-bottom {
+  margin-bottom: 40px;
+}
+
+.filtri-di-ricerca{
+  margin-left: 5%; margin-bottom: 25px
+}
+.lista-selezione{margin-bottom: 15px; min-width: 300px}
+
+.testo-anno-di-pubblicazione{display: inline-block; margin: 10px auto}
+
+.numero-anno-di-pubblicazione{margin-bottom: -40px;  padding: 10px; position: fixed}
+
+.dual-knobs{margin-left: 10px; margin-right: 10px}

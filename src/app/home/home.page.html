@@ -44,21 +44,17 @@
           type="text"
           placeholder="Cerca un oggetto"
           class="center"
-          style="width: 100%"
+          style="width: 100vw"
           (ionChange)="setInput($event.target.value)"
           [(ngModel)]="searchInput"
         >
         </ion-searchbar>
 
-        <ion-title
-          color="dark"
-          class="titolo-filtri-ricerca"
-          style="margin-bottom: 40px"
-        >
+        <ion-title color="dark" class="titolo-filtri-ricerca margin-bottom">
           Filtri di Ricerca
         </ion-title>
 
-        <div style="margin-left: 5%; margin-bottom: 25px" color="success">
+        <div class="filtri-di-ricerca">
           <ion-label>Seleziona la disponibilità</ion-label>
           <br /><br />
           <ion-radio-group [(ngModel)]="availability" value="disponibilita">
@@ -75,10 +71,7 @@
         </div>
 
         <ion-list style="margin-top: -40px">
-          <ion-item
-            class="center"
-            style="margin-bottom: 15px; min-width: 300px"
-          >
+          <ion-item class="center lista-selezione">
             <ion-select
               class="center"
               aria-label="generi"
@@ -104,27 +97,20 @@
         </ion-list>
         <p></p>
         <div style="text-align: center; margin-top: -20px">
-          <ion-text style="display: inline-block; margin: 10px auto">
+          <ion-text class="testo-anno-di-pubblicazione">
             Anno di pubblicazione
           </ion-text>
         </div>
         <div class="centered" color="success" style="margin-top: -20px">
           <small>
-            <p class="label-anni" style="margin-bottom: -40px; position: fixed">
-              1800
-            </p>
+            <p class="numero-anno-di-pubblicazione">1800</p>
           </small>
           <small>
-            <p
-              class="label-anni"
-              style="margin-bottom: -40px; position: fixed; right: 0"
-            >
-              2024
-            </p>
+            <p class="numero-anno-di-pubblicazione">2024</p>
           </small>
 
           <ion-range
-            style="margin-left: 10px; margin-right: 10px"
+            class="dual-knobs"
             aria-label="Dual Knobs Range"
             [(ngModel)]="searchYears"
             [dualKnobs]="true"
@@ -176,11 +162,7 @@
         >
         </ion-searchbar>
 
-        <ion-title
-          color="dark"
-          class="titolo-filtri-ricerca"
-          style="margin-bottom: 20px"
-        >
+        <ion-title color="dark" class="titolo-filtri-ricerca margin-bottom">
           Filtri di Ricerca
         </ion-title>
 
