@@ -59,19 +59,21 @@
           <br /><br />
           <ion-radio-group [(ngModel)]="availability" value="disponibilita">
             <ion-radio color="secondary" labelPlacement="end" value="tutti"
-              >Tutti i libri</ion-radio
+              >Tutti</ion-radio
             ><br C />
             <ion-radio
               color="secondary"
               labelPlacement="end"
               value="solo_disponibili"
-              >Solo libri disponibili</ion-radio
+              >Solo disponibili</ion-radio
             ><br />
           </ion-radio-group>
         </div>
 
         <ion-list style="margin-top: -40px">
-          <ion-item class="center lista-selezione">
+          <ion-item
+            style="margin-top: 15px; margin-bottom: 15px; min-width: 300px"
+          >
             <ion-select
               class="center"
               aria-label="generi"
@@ -593,22 +595,19 @@
                     color="secondary"
                     labelPlacement="end"
                     value="tutti"
-                    >Tutti i libri</ion-radio
-                  ><br C />
+                    >Tutti</ion-radio
+                  ><br />
                   <ion-radio
                     color="secondary"
                     labelPlacement="end"
                     value="solo_disponibili"
-                    >Solo libri disponibili</ion-radio
+                    >Solo disponibili</ion-radio
                   ><br />
                 </ion-radio-group>
               </div>
 
-              <ion-list style="margin-top: -40px">
-                <ion-item
-                  class="center"
-                  style="margin-bottom: 15px; min-width: 300px"
-                >
+              <ion-list>
+                <ion-item style="margin-bottom: 15px; min-width: 300px">
                   <ion-select
                     class="center"
                     aria-label="generi"
