@@ -81,7 +81,7 @@ export class HomePage implements OnInit {
   sizeColumnFilter: string = '0'; // Dimensione predefinita
 
   updateSize() {
-    this.sizeColumnFilter = this.isMenuAnchored ? '4' : '0';
+    this.sizeColumnFilter = this.isMenuAnchored ? '3' : '0';
   }
 
   checkScreenSize(): string {
@@ -185,6 +185,9 @@ export class HomePage implements OnInit {
     this.body_login.password = '';
     this.token_JWT = '';
     this.token_JWT_success = false;
+    this.username = '';
+    this.user_role = '';
+
     this.modalCtrl.dismiss(this.body_login, 'confirm');
   }
 
