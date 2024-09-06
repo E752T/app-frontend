@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true">
-  <ion-header class="header-menu-home" class="ion-page" id="main-content">
+  <ion-header class="header-menu-home ion-page ion-no-border" id="main-content">
     <ion-buttons slot="start" class="background-title-bar">
       <ion-menu-button class="menu-button-icon"></ion-menu-button>
       <ion-title class="background-title-bar">
@@ -37,7 +37,11 @@
         </svg>
       </ion-button>
 
-      <ion-item *ngIf="this.token_JWT_success" style="justify-content: center">
+      <ion-item
+        *ngIf="this.token_JWT_success"
+        lines="none"
+        style="justify-content: center"
+      >
         <ion-avatar slot="start">
           <img
             alt="Silhouette of a person's head"
@@ -578,6 +582,7 @@
         #grigliaElementi
         [size]="sizeColumnFilter"
         style="margin-top: 32px; margin-left: -21px"
+        class="ion-no-border"
       >
         <div
           contentId="main-content"
