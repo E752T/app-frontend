@@ -7,13 +7,15 @@
           class="titolo-icona logo-store"
           name="logo-dropbox"
         ></ion-icon>
-        <ion-text class="titolo-store"> Data Room </ion-text>
+        <ion-text *ngIf="!isMenuAnchored" class="titolo-store">
+          Data Room
+        </ion-text>
       </ion-title>
     </ion-buttons>
   </ion-header>
 
   <ion-menu contentId="main-content" #menuAncora *ngIf="!isMenuAnchored">
-    <div>
+    <div style="min-width: 20rem; max-width: 20rem">
       <ion-button
         *ngIf="screenSize === 'desktop'"
         class="align-right anchor-button"
@@ -589,11 +591,14 @@
           margin-left: -21px;
           background-color: #0054e9;
           padding-left: 2rem;
+          max-width: 20rem;
         "
         #menuAncora
         *ngIf="isMenuAnchored"
       >
-        <div style="background-color: #0054e9; position: fixed">
+        <div
+          style="background-color: #0054e9; position: fixed; max-width: 19rem"
+        >
           <ion-button
             *ngIf="screenSize === 'desktop'"
             class="align-right anchor-button"
@@ -1156,14 +1161,13 @@
               ></ion-toast>
             </ng-template>
           </ion-modal>
-
-          <ion-label class="label-fine">
+          <ion-footer slot="end" class="label-fine">
             <ion-icon
               class="titolo-icona logo-store"
               name="logo-dropbox"
             ></ion-icon>
             <ion-text class="titolo-store"> Data Room </ion-text>
-          </ion-label>
+          </ion-footer>
         </div>
       </ion-col>
 

@@ -517,6 +517,7 @@ ion-button.bottone-accedi {
 
 .label-fine {
   position: fixed;
-  padding: 3rem;
-  margin-top: 8rem; /* Margine per distanziare l'etichetta dal contenuto */
+  margin-top: 18rem; /* Margine per distanziare l'etichetta dal contenuto */
+  width: max-content;
+  background: #0054e9;
 }

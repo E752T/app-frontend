@@ -81,7 +81,7 @@ export class HomePage implements OnInit {
   sizeColumnFilter: string = '0'; // Dimensione predefinita
 
   updateSize() {
-    this.sizeColumnFilter = this.isMenuAnchored ? '3' : '0';
+    this.sizeColumnFilter = this.isMenuAnchored ? '2' : '0';
   }
 
   checkScreenSize(): string {
