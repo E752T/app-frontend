@@ -514,3 +514,9 @@ ion-button.bottone-accedi {
 .bolder {
   font-weight: bold;
 }
+
+.label-fine {
+  position: fixed;
+  padding: 3rem;
+  margin-top: 8rem; /* Margine per distanziare l'etichetta dal contenuto */
+}
