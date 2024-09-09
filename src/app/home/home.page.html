@@ -15,12 +15,11 @@
   </ion-header>
 
   <ion-menu contentId="main-content" #menuAncora *ngIf="!isMenuAnchored">
-    <div style="min-width: 20rem; max-width: 20rem">
+    <div class="grandezza-colonna-menu">
       <ion-button
         *ngIf="screenSize === 'desktop'"
-        class="align-right anchor-button"
+        class="align-right anchor-button colore-bianco"
         id="anchor-button"
-        style="color: rgb(255, 255, 255)"
         (click)="toggleMenu()"
       >
         <svg
@@ -583,16 +582,8 @@
       <ion-col
         #grigliaElementi
         [size]="sizeColumnFilter"
-        class="ion-no-border"
+        class="ion-no-border menu-ancora"
         contentId="main-content"
-        style="
-          max-width: fit-content;
-          margin-top: -1rem;
-          margin-left: -21px;
-          background-color: #0054e9;
-          padding-left: 2rem;
-          max-width: 20rem;
-        "
         #menuAncora
         *ngIf="isMenuAnchored"
       >
@@ -601,9 +592,8 @@
         >
           <ion-button
             *ngIf="screenSize === 'desktop'"
-            class="align-right anchor-button"
+            class="align-right anchor-button colore-bianco"
             id="anchor-button"
-            style="color: rgb(255, 255, 255)"
             (click)="toggleMenu()"
           >
             <svg
@@ -1771,10 +1761,7 @@
       </ion-grid>
     </ion-row>
   </ion-grid>
-  <div
-    *ngIf="sectionToShow === 'Author'"
-    class="app-template"
-  >
+  <div *ngIf="sectionToShow === 'Author'" class="app-template">
     <ion-title class="titolo-categoria-singola">Autori </ion-title>
 
     <ion-button
@@ -1983,10 +1970,7 @@
     <ion-toolbar style="margin-bottom: 20%"> </ion-toolbar>
   </div>
 
-  <div
-    *ngIf="sectionToShow === 'Category'"
-    class="app-template"
-  >
+  <div *ngIf="sectionToShow === 'Category'" class="app-template">
     <ion-title class="titolo-categoria-singola">Categorie </ion-title>
     <ion-button
       id="bottone-aggiungi-nuova-categoria"
@@ -2083,7 +2067,7 @@
       </ng-template>
     </ion-modal>
 
-    <div style="margin-bottom: 150px">
+    <div class="margine-categoria">
       <ion-grid>
         <ion-row>
           <app-categories
@@ -2100,10 +2084,7 @@
     </div>
   </div>
 
-  <div
-    *ngIf="sectionToShow === 'Shopkeeper'"
-    class="app-template"
-  >
+  <div *ngIf="sectionToShow === 'Shopkeeper'" class="app-template">
     <ion-title class="titolo-categoria-singola">Esercenti </ion-title>
     <ion-button
       id="bottone-aggiungi-shopkeeper"
@@ -2296,7 +2277,7 @@
       </ng-template>
     </ion-modal>
 
-    <div style="margin-bottom: 150px">
+    <div class="margine-categoria">
       <ion-grid>
         <ion-row>
           <app-shopkeepers
@@ -2313,10 +2294,7 @@
     </div>
   </div>
 
-  <div
-    *ngIf="sectionToShow === 'Publisher'"
-    class="app-template"
-  >
+  <div *ngIf="sectionToShow === 'Publisher'" class="app-template">
     <ion-title class="titolo-categoria-singola">Editori </ion-title>
     <ion-button
       id="add-new-publisher-button"
@@ -2506,7 +2484,7 @@
       </ng-template>
     </ion-modal>
 
-    <div style="margin-bottom: 150px">
+    <div class="margine-categoria">
       <ion-grid>
         <ion-row>
           <app-editors
@@ -2523,10 +2501,7 @@
     </div>
   </div>
 
-  <div
-    *ngIf="sectionToShow === 'TypeObject'"
-    class="app-template"
-  >
+  <div *ngIf="sectionToShow === 'TypeObject'" class="app-template">
     <ion-title class="titolo-categoria-singola">Tipi di oggetti </ion-title>
     <ion-button
       id="bottone-aggiungi-type-object"
@@ -2624,7 +2599,7 @@
       </ng-template>
     </ion-modal>
 
-    <div style="margin-bottom: 150px">
+    <div class="margine-categoria">
       <ion-grid>
         <ion-row>
           <app-type-objects
@@ -2641,10 +2616,7 @@
     </div>
   </div>
 
-  <div
-    *ngIf="sectionToShow === 'Warehouse'"
-    class="app-template"
-  >
+  <div *ngIf="sectionToShow === 'Warehouse'" class="app-template">
     <ion-title class="titolo-categoria-singola">Magazzini </ion-title>
     <ion-button
       id="bottone-aggiungi-warehouse"
@@ -2836,7 +2808,7 @@
       </ng-template>
     </ion-modal>
 
-    <div style="margin-bottom: 150px">
+    <div class="margine-categoria">
       <ion-grid>
         <ion-row>
           <app-warehouses
@@ -2853,10 +2825,7 @@
     </div>
   </div>
 
-  <div
-    *ngIf="sectionToShow === 'Provenance'"
-    class="app-template"
-  >
+  <div *ngIf="sectionToShow === 'Provenance'" class="app-template">
     <ion-title class="titolo-categoria-singola">Provenienza </ion-title>
     <ion-button
       id="bottone-aggiungi-provenance"
@@ -2954,7 +2923,7 @@
       </ng-template>
     </ion-modal>
 
-    <div style="margin-bottom: 150px">
+    <div class="margine-categoria">
       <ion-grid>
         <ion-row>
           <app-provenances
@@ -2971,10 +2940,7 @@
     </div>
   </div>
 
-  <div
-    *ngIf="sectionToShow === 'GeographicalOrigin'"
-    class="app-template"
-  >
+  <div *ngIf="sectionToShow === 'GeographicalOrigin'" class="app-template">
     <ion-title class="titolo-categoria-singola">Origine Geografica </ion-title>
     <ion-button
       id="bottone-aggiungi-GeographicalOrigin"
@@ -3072,7 +3038,7 @@
       </ng-template>
     </ion-modal>
 
-    <div style="margin-bottom: 150px">
+    <div class="margine-categoria">
       <ion-grid>
         <ion-row>
           <app-geographical-origin
