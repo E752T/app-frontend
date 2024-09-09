@@ -1,0 +1,89 @@
+.centro-elementi {
+  display: flex; /* Abilita il flexbox */
+  justify-content: center; /* Centra gli elementi orizzontalmente */
+  align-items: center; /* Centra gli elementi verticalmente */
+  height: 6vh; /* Imposta l'altezza del contenitore */
+}
+
+.background-schermata {
+  background-image: url("../../assets/images/containers.jpg");
+  height: 100%;
+}
+
+.centrata-card {
+  width: 30%; /* Imposta la larghezza della card al 45% dello schermo */
+  height: 34rem; /* Imposta l'altezza della card al 100% dell'altezza della finestra */
+  margin: 0 auto; /* Centra la card orizzontalmente */
+  padding: 90px; /* Aggiunge un padding interno */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra per un effetto visivo */
+  border-radius: 30px; /* Arrotonda gli angoli della card */
+  display: flex;
+  justify-content: center; /* Centra orizzontalmente */
+  align-items: center; /* Centra verticalmente */
+  position: sticky;
+  transform: translateY(133px);
+}
+
+.titolo {
+  display: flex; /* Utilizza Flexbox per il layout */
+  flex-direction: column; /* Dispone gli elementi in colonna */
+  align-items: center; /* Centra gli elementi all'interno della card */
+  border-top: 4rem;
+  font-size: 2rem;
+}
+
+.titolo-store {
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 40px;
+  letter-spacing: 1.4px;
+  color: #060606;
+  font-weight: 400;
+  text-decoration: rgb(232, 230, 227);
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+}
+
+.logo-store {
+  color: rgb(255, 132, 0);
+  text-align: left;
+  justify-content: flex-end;
+}
+
+.custom-label {
+  display: flex; /* Utilizziamo flexbox per allineare gli elementi */
+  align-items: center; /* Allineiamo verticalmente gli elementi */
+}
+
+.icon {
+  margin-right: 5px; /* Aggiungiamo un margine a destra per distanziare l'icona dal testo */
+}
+
+.elemento-traslucido {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.85
+  ); /* Colore di sfondo bianco con 50% di trasparenza */
+  padding: 20px; /* Spaziatura interna */
+}
+
+ion-item .item-native {
+  background-color: #fff0 !important;
+}
+
+.fz-25 {
+  font-size: 25px;
+}
+
+.custom-input {
+  --color: black !important;
+}
+
+ion-input.custom-input {
+  --background: #fafafa00;
+  --color: #000000;
+  color: black;
+  font-size: 1.3rem;
+}
