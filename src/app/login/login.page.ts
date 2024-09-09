@@ -9,8 +9,16 @@ import { LoadingController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   public errorMessage: string | undefined;
 
+  body_login: any;
+  confirmLogin: any;
+  modalCtrl: any;
+
   constructor(private loadingController: LoadingController) {}
 
+  cancel() {
+    this.modalCtrl.dismiss(null, 'cancel');
+  }
+  
   async ngOnInit() {
     // Controllo se ci sono parametri nella URL
     if (window.location.hash) {

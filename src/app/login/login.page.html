@@ -3,15 +3,77 @@
     <ion-card>
       <ion-col size-md="9" size="12" class="welcome">
         <ion-card-header>
-          <ion-card-title>
-            Welcome to Ionic Secure Solutions Starter
-          </ion-card-title>
+          <ion-card-title> Benvenuto su DataRoom </ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
+          <ion-input placeholder="username"></ion-input>
+          <ion-input placeholder="password"></ion-input>
+
           <ion-button (click)="login()" shape="round" color="primary">
             Sign in
           </ion-button>
+
+          <ion-header>
+            <ion-toolbar>
+              <ion-title class="ionic-title-custom titoli-modale">
+                <ion-text class="bolder" color="secondary">
+                  Accedi
+                </ion-text></ion-title
+              >
+              <ion-buttons slot="start">
+                <ion-button (click)="cancel()" [strong]="true"
+                  ><ion-icon name="arrow-undo-outline"></ion-icon
+                ></ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button
+                  (click)="confirmLogin()"
+                  [strong]="true"
+                  id="conferma-login"
+                  >Conferma</ion-button
+                >
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+
+          <ion-content class="ion-padding">
+            <ion-item class="ionic-text-custom">
+              <ion-input
+                class="credenziali-login"
+                label="Email"
+                [clearInput]="true"
+                labelPlacement="stacked"
+                type="email"
+                [(ngModel)]="body_login.email"
+              ></ion-input>
+            </ion-item>
+            <ion-item class="ionic-text-custom">
+              <ion-input
+                class="credenziali-login"
+                label="Password"
+                [clearInput]="true"
+                labelPlacement="stacked"
+                type="password"
+                [(ngModel)]="body_login.password"
+              >
+                <ion-input-password-toggle
+                  slot="end"
+                ></ion-input-password-toggle>
+              </ion-input>
+            </ion-item>
+
+            <ion-button
+              class="center bottone-credenziali"
+              style="margin-top: 30px"
+              color="secondary"
+              >Registra un nuovo account</ion-button
+            >
+            <br />
+            <ion-button class="center bottone-credenziali" color="secondary"
+              >Hai dimenticato le credenziali?</ion-button
+            >
+          </ion-content>
         </ion-card-content>
       </ion-col>
     </ion-card>
