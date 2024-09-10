@@ -94,6 +94,8 @@ export class LoginPage implements OnInit {
     } finally {
       this.body_login.email = '';
       this.body_login.password = '';
+      this.body_login.shopkeeper = '';
+
       console.log('Accesso eseguito -> ', this.token_JWT_success);
     }
   }
@@ -133,10 +135,10 @@ export class LoginPage implements OnInit {
 
   exit_login() {
     this.body_login.email = '';
+    this.body_login.username = '';
     this.body_login.password = '';
     this.token_JWT = '';
     this.token_JWT_success = false;
-    this.username = '';
     this.user_role = '';
     this.modalCtrl.dismiss(this.body_login, 'confirm');
   }

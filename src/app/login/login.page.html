@@ -19,6 +19,7 @@
             placeholder="Esercente"
             type="text"
             [(ngModel)]="body_login.shopkeeper"
+
           ></ion-input>
         </div>
 
@@ -66,6 +67,7 @@
           shape="round"
           color="primary"
           id="login-button"
+          [disabled]="!body_login.shopkeeper || !body_login.email || !body_login.password"
         >
           Log in
         </ion-button>
