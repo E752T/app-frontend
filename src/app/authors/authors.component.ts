@@ -13,7 +13,9 @@ import { ModalController } from '@ionic/angular';
 
 import { Author } from '../services/interfaces.service';
 import { PostRequest } from '../services/request.service';
-import { baseURL, today } from '../services/data.service';
+import { today } from '../services/data.service';
+import { baseURL } from '../enviroenment';
+
 import { HttpClient } from '@angular/common/http';
 
 @Component({

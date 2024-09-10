@@ -7,7 +7,8 @@ import {
 
 import { ModalController, Platform } from '@ionic/angular';
 import { DatabaseObject, ObjectCard } from '../services/interfaces.service';
-import { baseURL, bodyAddObject } from '../services/data.service';
+import {  bodyAddObject } from '../services/data.service';
+import { baseURL } from '../enviroenment';
 import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core/components';
 

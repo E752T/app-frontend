@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { LoginObject } from '../services/interfaces.service';
 import { PostRequest } from '../services/request.service';
-import { baseURL } from '../services/data.service';
+import { baseURL } from '../enviroenment';
 import { Router } from '@angular/router';
 
 @Component({

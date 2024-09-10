@@ -10,7 +10,6 @@ import {
   Warehouse,
 } from '../services/interfaces.service';
 
-export let baseURL: string = 'http://localhost:5269/api/BookStore/';
 
 export const today: Date = new Date();
 

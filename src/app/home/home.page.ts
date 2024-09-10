@@ -19,7 +19,8 @@ import {
   Warehouse,
   TypeObject,
 } from '../services/interfaces.service';
-import { baseURL, today } from '../services/data.service';
+import { today } from '../services/data.service';
+import { baseURL } from '../enviroenment';
 
 @Component({
   selector: 'app-home', // page name

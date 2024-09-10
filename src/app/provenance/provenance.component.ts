@@ -11,8 +11,10 @@ import { OverlayEventDetail } from '@ionic/core';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
+import { baseURL } from '../enviroenment';
+
 import { PostRequest } from '../services/request.service';
-import { baseURL, today } from '../services/data.service';
+import { today } from '../services/data.service';
 import { HttpClient } from '@angular/common/http';
 import { Provenance } from '../services/interfaces.service';
 

@@ -11,7 +11,8 @@ import { Platform } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
-import { baseURL, today } from '../services/data.service';
+import { baseURL } from '../enviroenment';
+import { today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core';
 import { HttpClient } from '@angular/common/http';
@@ -63,7 +64,7 @@ export class TypeObjectComponent {
     );
     this.updateTypeObject.emit(this.type_objects);
     this.modalCtrl.dismiss({ confirmed: true });
-    console.log("DeleteTypeObject ", this.type_objects)
+    console.log('DeleteTypeObject ', this.type_objects);
     return PostRequest(baseURL + 'DeleteTypeObject/' + typeID);
   }
 

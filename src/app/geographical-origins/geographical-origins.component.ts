@@ -14,8 +14,9 @@ import { HttpClient } from '@angular/common/http';
 import { OverlayEventDetail } from '@ionic/core';
 
 import { GeographicalOrigin } from '../services/interfaces.service';
-import { baseURL, today } from '../services/data.service';
+import { today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
+import { baseURL } from '../enviroenment';
 
 @Component({
   selector: 'app-geographical-origin',

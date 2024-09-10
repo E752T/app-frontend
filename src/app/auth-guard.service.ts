@@ -13,9 +13,7 @@ export class AuthGuardService implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-    
   ): MaybeAsync<GuardResult> {
-
     if (localStorage.getItem('token')) {
       return true;
     } else {

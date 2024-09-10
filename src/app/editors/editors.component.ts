@@ -12,7 +12,8 @@ import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
 
-import { baseURL, today } from '../services/data.service';
+import { baseURL } from '../enviroenment';
+import { today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { Publisher } from '../services/interfaces.service';
 import { HttpClient } from '@angular/common/http';
@@ -23,12 +24,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./editors.component.scss'],
 })
 export class EditorsComponent {
-
-  constructor(
-    private http: HttpClient,
-    private modalCtrl: ModalController
-  ) {}
-
+  constructor(private http: HttpClient, private modalCtrl: ModalController) {}
 
   @Input()
   publisher!: Publisher;
