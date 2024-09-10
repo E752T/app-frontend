@@ -109,8 +109,6 @@ export class HomePage implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-
-
   showToast(message: string, color: string) {
     const toast = document.createElement('ion-toast');
     toast.message = message;
@@ -155,6 +153,8 @@ export class HomePage implements OnInit {
   body_login: LoginObject = {
     email: 'admin',
     password: 'admin',
+    shopkeeper: '',
+    username: '',
   };
 
   AdminTables: Array<string> = [

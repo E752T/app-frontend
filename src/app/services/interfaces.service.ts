@@ -3,6 +3,8 @@
 export interface LoginObject {
   email: string;
   password: string;
+  shopkeeper: string;
+  username: string;
   //twoFactorCode: string;
   //twoFactorRecoveryCode: string;
 }

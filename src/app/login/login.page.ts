@@ -42,6 +42,8 @@ export class LoginPage implements OnInit {
   body_login: LoginObject = {
     email: 'admin',
     password: 'admin',
+    shopkeeper: '',
+    username: '',
   };
 
   token_JWT: string = '';
@@ -53,7 +55,7 @@ export class LoginPage implements OnInit {
     const toast = document.createElement('ion-toast');
     toast.message = message;
     toast.color = color;
-    toast.duration = 3000;
+    toast.duration = 4000;
     document.body.appendChild(toast);
     return toast.present();
   }
@@ -72,6 +74,7 @@ export class LoginPage implements OnInit {
           this.token_JWT_success = true;
           console.log('LOGIN SUCCESS ', this.token_JWT_success);
           this.modalCtrl.dismiss(this.body_login.email, 'confirm');
+
           this.showToast('Accesso Eseguito', 'success');
           this.username = this.body_login.email;
         }
@@ -85,7 +88,7 @@ export class LoginPage implements OnInit {
     } catch (error) {
       console.error('An error occurred during login: ', error);
       this.token_JWT_success = false;
-      this.showToast('Errore durante il login', 'danger');
+      this.showToast('Credenziali Errate', 'danger');
     } finally {
       this.body_login.email = '';
       this.body_login.password = '';
