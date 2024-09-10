@@ -83,6 +83,7 @@ export class LoginPage implements OnInit {
           console.log('Login success | JWT token: ', this.token_JWT);
           this.token_JWT_success = true;
           this.showToast('Accesso Eseguito', 'success');
+          localStorage.setItem('token', this.token_JWT);
 
           // Redirect to the root route
           this.router.navigate(['/']);

@@ -1,29 +1,29 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
-  ActivatedRouteSnapshot,
-  CanActivate,
   CanActivateFn,
-  GuardResult,
-  MaybeAsync,
+  Router,
+  ActivatedRouteSnapshot,
   RouterStateSnapshot,
+  Route,
 } from '@angular/router';
+import { Observable } from 'rxjs';
 
-@Injectable()
-export class AuthGuardService implements CanActivate {
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): MaybeAsync<GuardResult> {
-    if (localStorage.getItem('token')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+export const authGuard: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  const router: Router = inject(Router);
+  const protectedRoutes: string[] = ['/'];
+  return protectedRoutes.includes(state.url) && !localStorage.getItem('token')
+    ? router.navigate(['/login'])
+    : true;
 
-  private checkToken(): boolean {
-    // Logica per verificare il token JWT
-    // Restituisci true se il token è valido, altrimenti false
-    return false; // Modifica questa logica in base alle tue necessità
-  }
-}
+  // if (localStorage.getItem('token')) {
+  //   console.log('Attivazione route per home ');
+
+  //   return true;
+  // } else {
+  //   console.log('Errore: Attivazione route per home ');
+  //   return false;
+  // }
+};
