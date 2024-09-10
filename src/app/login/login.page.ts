@@ -14,6 +14,7 @@ export class LoginPage implements OnInit {
   public errorMessage: string | undefined;
 
   modalCtrl: any;
+  remember_me: false | undefined;
 
   constructor(
     private loadingController: LoadingController,

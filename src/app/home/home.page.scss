@@ -527,7 +527,7 @@ ion-button.bottone-accedi {
   margin-bottom: 350px;
 }
 
-.menu-ancora{
+.menu-ancora {
   max-width: fit-content;
   margin-top: -1rem;
   margin-left: -21px;
@@ -536,11 +536,37 @@ ion-button.bottone-accedi {
   max-width: 20rem;
 }
 
-.colore-bianco{color: rgb(255, 255, 255)}
+.colore-bianco {
+  color: rgb(255, 255, 255);
+}
 
-.grandezza-colonna-menu{min-width: 20rem; max-width: 20rem}
+.grandezza-colonna-menu {
+  min-width: 20rem;
+  max-width: 20rem;
+}
 
-.margine-categoria{margin-bottom: 150px}
+.margine-categoria {
+  margin-bottom: 150px;
+}
 
-.icona-aggiungi-elemento{justify-content: flex-start}
-.titolo-aggiungi-elemento2{margin-top: 20px; display: table}
+.icona-aggiungi-elemento {
+  justify-content: flex-start;
+}
+.titolo-aggiungi-elemento2 {
+  margin-top: 20px;
+  display: table;
+}
+
+.ion-range-margin {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.anno-di-pubblicazione {
+  display: inline-block;
+  margin: 10px auto;
+}
+
+.label-anni {
+  margin-bottom: -40px;
+  position: fixed;
+}
