@@ -65,9 +65,17 @@
           (click)="confirmLogin()"
           shape="round"
           color="primary"
+          id="login-button"
         >
           Log in
         </ion-button>
+        <ion-alert
+          *ngIf="this.token_JWT_success===false"
+          trigger="login-button"
+          header="Dati Immessi errati"
+          message="Reinserire i dati correttamente"
+          [buttons]="alertButtons"
+        ></ion-alert>
       </ion-card-content>
     </ion-col>
   </ion-card>

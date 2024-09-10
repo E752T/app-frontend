@@ -40,8 +40,8 @@ export class LoginPage implements OnInit {
   }
 
   body_login: LoginObject = {
-    email: 'admin',
-    password: 'admin',
+    email: '',
+    password: '',
     shopkeeper: '',
     username: '',
   };
@@ -51,11 +51,13 @@ export class LoginPage implements OnInit {
   username: string = '';
   user_role: string = 'test';
 
+  alertButtons = ['OK'];
+
   showToast(message: string, color: string) {
     const toast = document.createElement('ion-toast');
     toast.message = message;
     toast.color = color;
-    toast.duration = 4000;
+    toast.duration = 3000;
     document.body.appendChild(toast);
     return toast.present();
   }
@@ -81,17 +83,18 @@ export class LoginPage implements OnInit {
       } else {
         console.warn('Login failed: No valid string received.');
         this.token_JWT_success = false;
-        this.showToast('Credenziali Errate', 'danger');
+        //this.showToast('Credenziali Errate', 'danger');
       }
       this.user_role = this.getUserRole();
       console.log("RUOLO DELL' UTENTE ", this.user_role);
     } catch (error) {
       console.error('An error occurred during login: ', error);
       this.token_JWT_success = false;
-      this.showToast('Credenziali Errate', 'danger');
+      //this.showToast('Credenziali Errate', 'danger');
     } finally {
       this.body_login.email = '';
       this.body_login.password = '';
+      console.log('Accesso eseguito -> ', this.token_JWT_success);
     }
   }
 
