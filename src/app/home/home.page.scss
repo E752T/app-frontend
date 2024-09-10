@@ -517,9 +517,11 @@ ion-button.bottone-accedi {
 
 .label-fine {
   position: fixed;
-  margin-top: 18rem; /* Margine per distanziare l'etichetta dal contenuto */
-  width: max-content;
+  margin-top: 17rem; /* Margine per distanziare l'etichetta dal contenuto */
+  width: 22rem;
   background: #0054e9;
+  margin-left: -1rem;
+  padding-left: 1rem;
 }
 
 .app-template {
@@ -533,7 +535,7 @@ ion-button.bottone-accedi {
   margin-left: -21px;
   background-color: #0054e9;
   padding-left: 2rem;
-  max-width: 20rem;
+  min-width: 23rem;
 }
 
 .colore-bianco {
@@ -541,8 +543,7 @@ ion-button.bottone-accedi {
 }
 
 .grandezza-colonna-menu {
-  min-width: 20rem;
-  max-width: 20rem;
+
 }
 
 .margine-categoria {
