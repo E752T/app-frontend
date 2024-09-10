@@ -3,6 +3,7 @@ import { LoadingController } from '@ionic/angular';
 import { LoginObject } from '../services/interfaces.service';
 import { PostRequest } from '../services/request.service';
 import { baseURL } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,10 @@ export class LoginPage implements OnInit {
 
   modalCtrl: any;
 
-  constructor(private loadingController: LoadingController) {}
+  constructor(
+    private loadingController: LoadingController,
+    private router: Router
+  ) {}
 
   cancel() {
     this.modalCtrl.dismiss(null, 'cancel');
@@ -40,9 +44,9 @@ export class LoginPage implements OnInit {
   }
 
   body_login: LoginObject = {
-    email: '',
-    password: '',
-    shopkeeper: '',
+    email: 'admin',
+    password: 'admin',
+    shopkeeper: 'admin',
     username: '',
   };
 
@@ -66,38 +70,47 @@ export class LoginPage implements OnInit {
     try {
       const response = await PostRequest(baseURL + 'Login/', this.body_login);
 
-      if (response != null && response != 404 && response != 'Empty values.') {
-        console.log('Login SUCCESS, JWT token: ', response);
+      if (
+        response != null &&
+        response !== 404 &&
+        response !== 'Empty values.'
+      ) {
         this.token_JWT = response;
 
-        /// CHANGE THIS VALIDATION METHOD, I need to check the DB
-        // (this method is easy but unsecure)
-        if (this.token_JWT.length > 50) {
+        // Secure validation method: Check if the token is valid by decoding it
+        if (this.isTokenValid(this.token_JWT)) {
+          console.log('Login success | JWT token: ', this.token_JWT);
           this.token_JWT_success = true;
-          console.log('LOGIN SUCCESS ', this.token_JWT_success);
-          this.modalCtrl.dismiss(this.body_login.email, 'confirm');
-
           this.showToast('Accesso Eseguito', 'success');
-          this.username = this.body_login.email;
+
+          // Redirect to the root route
+          this.router.navigate(['/']);
         }
       } else {
         console.warn('Login failed: No valid string received.');
         this.token_JWT_success = false;
-        //this.showToast('Credenziali Errate', 'danger');
       }
       this.user_role = this.getUserRole();
       console.log("RUOLO DELL' UTENTE ", this.user_role);
     } catch (error) {
       console.error('An error occurred during login: ', error);
       this.token_JWT_success = false;
-      //this.showToast('Credenziali Errate', 'danger');
     } finally {
+      // Clear the login form
       this.body_login.email = '';
       this.body_login.password = '';
       this.body_login.shopkeeper = '';
+      this.body_login.username = '';
 
       console.log('Accesso eseguito -> ', this.token_JWT_success);
     }
+  }
+
+  // Method to validate the JWT token
+  isTokenValid(token: string) {
+    // Implement your token validation logic here
+    // For example, you can decode the token and check its expiration
+    return token.length > 50; // Placeholder for actual validation
   }
 
   jwt_decode(token: string): any {

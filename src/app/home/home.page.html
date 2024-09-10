@@ -456,14 +456,6 @@
                   ><ion-icon name="arrow-undo-outline"></ion-icon
                 ></ion-button>
               </ion-buttons>
-              <ion-buttons slot="end">
-                <ion-button
-                  (click)="confirmLogin()"
-                  [strong]="true"
-                  id="conferma-login"
-                  >Conferma</ion-button
-                >
-              </ion-buttons>
             </ion-toolbar>
           </ion-header>
           <ion-content class="ion-padding">
@@ -554,16 +546,6 @@
             Ciao {{this.username}}, sei sicuro di voler uscire?
             <br />
           </ion-text>
-
-          <div class="ion-text-center" style="height: 100vw">
-            <ion-button
-              id="confirm-exit-login"
-              (click)="exit_login()"
-              [strong]="true"
-            >
-              Conferma
-            </ion-button>
-          </div>
 
           <ion-toast
             trigger="confirm-exit-login"
@@ -1032,14 +1014,6 @@
                       ><ion-icon name="arrow-undo-outline"></ion-icon
                     ></ion-button>
                   </ion-buttons>
-                  <ion-buttons slot="end">
-                    <ion-button
-                      (click)="confirmLogin()"
-                      [strong]="true"
-                      id="conferma-login"
-                      >Conferma</ion-button
-                    >
-                  </ion-buttons>
                 </ion-toolbar>
               </ion-header>
               <ion-content class="ion-padding">
@@ -1131,16 +1105,6 @@
                 Ciao {{this.username}}, sei sicuro di voler uscire?
                 <br />
               </ion-text>
-
-              <div class="ion-text-center" style="height: 100vw">
-                <ion-button
-                  id="confirm-exit-login"
-                  (click)="exit_login()"
-                  [strong]="true"
-                >
-                  Conferma
-                </ion-button>
-              </div>
 
               <ion-toast
                 trigger="confirm-exit-login"
