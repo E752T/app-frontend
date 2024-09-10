@@ -4,6 +4,7 @@ import { LoginObject } from '../services/interfaces.service';
 import { PostRequest } from '../services/request.service';
 import { baseURL } from '../enviroenment';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -70,7 +71,7 @@ export class LoginPage implements OnInit {
   async confirmLogin() {
     try {
       const response = await PostRequest(baseURL + 'Login/', this.body_login);
-
+      delay(2000);
       if (
         response != null &&
         response !== 404 &&
@@ -84,7 +85,6 @@ export class LoginPage implements OnInit {
           this.token_JWT_success = true;
           this.showToast('Accesso Eseguito', 'success');
           localStorage.setItem('token', this.token_JWT);
-
           // Redirect to the root route
           this.router.navigate(['/']);
         }

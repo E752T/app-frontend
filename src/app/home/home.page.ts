@@ -72,7 +72,7 @@ export class HomePage implements OnInit {
     | ElementRef
     | undefined;
 
-  isMenuAnchored: boolean = false;
+  isMenuAnchored: boolean = true;
 
   toggleMenu() {
     this.isMenuAnchored = !this.isMenuAnchored;

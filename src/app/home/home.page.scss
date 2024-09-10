@@ -522,6 +522,7 @@ ion-button.bottone-accedi {
   background: #0054e9;
   margin-left: -1rem;
   padding-left: 1rem;
+  bottom: 0;
 }
 
 .app-template {
@@ -543,7 +544,6 @@ ion-button.bottone-accedi {
 }
 
 .grandezza-colonna-menu {
-
 }
 
 .margine-categoria {
@@ -570,4 +570,11 @@ ion-button.bottone-accedi {
 .label-anni {
   margin-bottom: -40px;
   position: fixed;
+}
+
+.bottone-assistenza {
+  padding: 0rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
