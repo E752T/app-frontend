@@ -194,13 +194,13 @@
                     />
                   </svg>
                   <ion-label class="titoli-modale"> Note: </ion-label>
-                  <ion-textarea
+                  <ion-input
                     class="input-form"
                     [(ngModel)]="message.objectNotes"
                     id="{{ bodyAddObject.objectNotes }}"
                     value="{{ message.objectNotes }}"
                   >
-                  </ion-textarea>
+                  </ion-input>
                 </ion-item>
 
                 <ion-item>
@@ -218,13 +218,13 @@
                   <ion-label class="titoli-modale">
                     Descrizione dell'autore:
                   </ion-label>
-                  <ion-textarea
+                  <ion-input
                     class="input-form"
                     [(ngModel)]="message.authorDescription"
                     id="{{ bodyAddObject.authorDescription }}"
                     value="{{ message.authorDescription }}"
                   >
-                  </ion-textarea>
+                  </ion-input>
                 </ion-item>
 
                 <ion-item>
