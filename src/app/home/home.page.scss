@@ -493,7 +493,7 @@ ion-button.bottone-accedi {
 
 .testo-anno-di-pubblicazione {
   display: inline-block;
-  margin: 10px auto;
+  margin: 20px auto;
   text-align: center;
 }
 
@@ -577,4 +577,36 @@ ion-button.bottone-accedi {
   margin-top: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+.griglia-store {
+  margin-top: 50px;
+  border-radius: 40px;
+  display: table-row;
+  margin-bottom: 100px;
+  background: rgb(255, 255, 255);
+}
+
+.testo-logout {
+  font-size: large;
+  margin: auto;
+  height: 15vw;
+  margin-top: 5vw;
+}
+
+.testo-logout-2 {
+  font-weight: bolder;
+  margin-left: -30px;
+  margin-top: 10px;
+}
+
+.container-label {
+  display: flex;
+  justify-content: space-between; /* Spazia gli elementi ai lati opposti */
+  align-items: center; /* Allinea verticalmente al centro */
+  height: 100px; /* Imposta un'altezza per il contenitore */
+}
+
+.spacer-label {
+  flex-grow: 5; /* Permette di espandere lo spazio tra gli elementi */
 }

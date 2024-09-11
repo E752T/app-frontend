@@ -114,16 +114,19 @@
         </ion-list>
         <p></p>
         <div class="margin-top center">
-          <ion-text class="testo-anno-di-pubblicazione">
+          <ion-text
+            class="testo-anno-di-pubblicazione"
+            style="margin-left: 3rem"
+          >
             Anno di pubblicazione
           </ion-text>
         </div>
         <div class="centered margin-top">
           <small>
-            <p class="numero-anno-di-pubblicazione">1800</p>
+            <p class="label-anni">1800</p>
           </small>
           <small>
-            <p class="numero-anno-di-pubblicazione">2024</p>
+            <p style="margin-left: 14rem" class="label-anni">2024</p>
           </small>
 
           <ion-range
@@ -182,7 +185,6 @@
         <ion-title color="dark" class="titolo-filtri-ricerca margin-bottom">
           Filtri di Ricerca
         </ion-title>
-
         <ion-text class="testo-anno-di-pubblicazione">
           Anno di pubblicazione
         </ion-text>
@@ -594,7 +596,7 @@
             </ion-list>
             <p></p>
             <div style="text-align: center; margin-top: -20px">
-              <ion-text class="anno-di-pubblicazione">
+              <ion-text class="testo-anno-di-pubblicazione">
                 Anno di pubblicazione
               </ion-text>
             </div>
@@ -603,7 +605,7 @@
                 <p class="label-anni">1800</p>
               </small>
               <small>
-                <p class="label-anni">2024</p>
+                <p style="margin-left: 14rem" class="label-anni">2024</p>
               </small>
 
               <ion-range
@@ -668,7 +670,7 @@
             </ion-title>
 
             <div style="text-align: center">
-              <ion-text class="anno-di-pubblicazione">
+              <ion-text class="testo-anno-di-pubblicazione">
                 Anno di pubblicazione
               </ion-text>
             </div>
@@ -676,8 +678,9 @@
               <small>
                 <p class="label-anni">1800</p>
               </small>
+              <div class="spacer"></div>
               <small>
-                <p class="label-anni">2024</p>
+                <p style="margin-left: 14rem" class="label-anni">2024</p>
               </small>
 
               <ion-range
@@ -988,14 +991,7 @@
             <ng-template class="template-angular">
               <ion-header>
                 <ion-toolbar>
-                  <ion-title
-                    class="centrato"
-                    color="secondary"
-                    style="
-                      font-weight: bolder;
-                      margin-left: -30px;
-                      margin-top: 10px;
-                    "
+                  <ion-title class="centrato testo-logout-2" color="secondary"
                     >Esci dal tuo Account</ion-title
                   >
                   <ion-buttons slot="start">
@@ -1005,14 +1001,7 @@
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
-              <ion-text
-                style="
-                  font-size: large;
-                  margin: auto;
-                  height: 15vw;
-                  margin-top: 5vw;
-                "
-              >
+              <ion-text class="testo-logout">
                 <br />
                 Ciao {{this.username}}, sei sicuro di voler uscire?
                 <br />
@@ -1037,16 +1026,7 @@
         </div>
       </ion-col>
 
-      <ion-grid
-        *ngIf="sectionToShow === 'Store'"
-        style="
-          margin-top: 50px;
-          border-radius: 40px;
-          display: table-row;
-          margin-bottom: 100px;
-          background: rgb(255, 255, 255);
-        "
-      >
+      <ion-grid *ngIf="sectionToShow === 'Store'" class="griglia-store">
         <ion-col #grigliaElementi size="12" style="margin-top: 10px">
           <ion-title class="titolo-categoria">Oggetti </ion-title>
 
