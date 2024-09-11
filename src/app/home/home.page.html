@@ -491,7 +491,7 @@
     </div>
   </ion-menu>
 
-  <ion-grid>
+  <ion-grid style="background-color: #0054e9">
     <ion-row>
       <ion-col
         #grigliaElementi
@@ -1039,7 +1039,13 @@
 
       <ion-grid
         *ngIf="sectionToShow === 'Store'"
-        style="margin-top: 10px; display: table-row; margin-bottom: 100px"
+        style="
+          margin-top: 50px;
+          border-radius: 40px;
+          display: table-row;
+          margin-bottom: 100px;
+          background: rgb(255, 255, 255);
+        "
       >
         <ion-col #grigliaElementi size="12" style="margin-top: 10px">
           <ion-title class="titolo-categoria">Oggetti </ion-title>
