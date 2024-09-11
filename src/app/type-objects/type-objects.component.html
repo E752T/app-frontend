@@ -5,7 +5,7 @@
         <ion-accordion value="first" class="accordion-oggetto">
           <ion-item
             slot="header"
-            style="--background: #8f3b76; color: white"
+            style="--background: #2a6fdb; color: white"
             class="oggetto-anteprima"
           >
             <ion-icon name="caret-forward-outline"></ion-icon>
@@ -268,13 +268,13 @@
             >
 
             <ion-toast
-            trigger="button-update-'{{  type_object.typeID}}'"
-            message="Nuovo elemento salvato"
-            class="toast-elemento"
-            color="success"
-            [duration]="2000"
-            expand="block"
-          ></ion-toast>
+              trigger="button-update-'{{ type_object.typeID }}'"
+              message="Nuovo elemento salvato"
+              class="toast-elemento"
+              color="success"
+              [duration]="2000"
+              expand="block"
+            ></ion-toast>
             <ion-button
               id="modale2-elimina-'{{ type_object.typeID }}'"
               color="danger"
