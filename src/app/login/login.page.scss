@@ -87,3 +87,15 @@ ion-input.custom-input {
   color: black;
   font-size: 1.3rem;
 }
+
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1; /* Send the video behind other content */
+  transform: translate(-50%, -50%);
+}
