@@ -38,11 +38,7 @@
         </svg>
       </ion-button>
 
-      <ion-item
-        *ngIf="this.token_JWT_success"
-        lines="none"
-        style="justify-content: center"
-      >
+      <ion-item lines="none" style="justify-content: center">
         <ion-avatar slot="start">
           <img
             alt="Silhouette of a person's head"
@@ -432,11 +428,7 @@
         </ng-template>
       </ion-modal>
 
-      <ion-button
-        *ngIf="this.token_JWT_success"
-        class="menu-button-custom"
-        id="exit-login"
-      >
+      <ion-button class="menu-button-custom bottone-assistenza" id="exit-login">
         <ion-icon
           class="icon-menu-button-custom"
           name="log-out-outline"
@@ -480,6 +472,7 @@
             Ciao {{this.username}}, sei sicuro di voler uscire?
             <br />
           </ion-text>
+          <ion-button>Conferma</ion-button>
 
           <ion-toast
             trigger="confirm-exit-login"
@@ -971,11 +964,7 @@
             </ng-template>
           </ion-modal>
 
-          <ion-button
-            *ngIf="this.token_JWT_success"
-            class="menu-button-custom"
-            id="exit-login"
-          >
+          <ion-button class="menu-button-custom" id="exit-login">
             <ion-icon
               class="icon-menu-button-custom"
               name="log-out-outline"
@@ -1006,6 +995,8 @@
                 Ciao {{this.username}}, sei sicuro di voler uscire?
                 <br />
               </ion-text>
+
+              <ion-button>Conferma</ion-button>
 
               <ion-toast
                 trigger="confirm-exit-login"
