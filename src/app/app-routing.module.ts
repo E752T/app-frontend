@@ -1,34 +1,20 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { LoginPageModule } from './login/login.module';
 import { HomePageModule } from './home/home.module';
 import { AuthGuard } from './auth-guard.service';
 
-// Definizione di un array di rotte, utilizzando il tipo Routes fornito da Angular
 const routes: Routes = [
-  // Rotta principale: se il percorso è vuoto, reindirizza alla pagina di login
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-
-  // Rotta per la home: carica il modulo della pagina home in modo lazy
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Reindirizza alla pagina di login
   {
-    path: '',
+    path: 'login', // Manteniamo questa rotta per la pagina di login
     loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule), // Importa il modulo della home
+      import('./login/login.module').then((m) => m.LoginPageModule), // Carica il modulo della pagina di login
   },
-
-  // Rotta per la pagina di login: carica il modulo della pagina di login in modo lazy
   {
-    path: 'login',
+    path: 'home',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginPageModule), // Importa il modulo del login
-  },
-
-  // Rotta di fallback: se il percorso è vuoto, reindirizza nuovamente alla pagina di login
-  {
-    path: '',
-    redirectTo: 'login', // Reindirizza alla pagina di login
-    loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule), // Importa il modulo della home (questo sembra un duplicato)
+      import('./home/home.module').then((m) => m.HomePageModule), // Carica il modulo della home
+    canActivate: [AuthGuard], // Protegge la rotta della home
   },
 ];
 
