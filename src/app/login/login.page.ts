@@ -71,7 +71,6 @@ export class LoginPage implements OnInit {
   async confirmLogin() {
     try {
       const response = await PostRequest(baseURL + 'Login/', this.body_login);
-      delay(2000);
       if (
         response != null &&
         response !== 404 &&
@@ -81,12 +80,21 @@ export class LoginPage implements OnInit {
 
         // Secure validation method: Check if the token is valid by decoding it
         if (this.isTokenValid(this.token_JWT)) {
-          console.log('Login success | JWT token: ', this.token_JWT);
           this.token_JWT_success = true;
           this.showToast('Accesso Eseguito', 'success');
-          localStorage.setItem('token', this.token_JWT);
-          // Redirect to the root route
+          console.log('Login success | JWT token: ', this.token_JWT);
+
+          console.log('Login success | Tentativo di navigazione a /');
           this.router.navigate(['/']);
+          console.log('Login success | Navigazione eseguita');
+
+          localStorage.setItem('token', this.token_JWT);
+          localStorage.setItem(
+            'token_JWT_success',
+            String(this.token_JWT_success)
+          );
+
+          // Redirect to the root route
         }
       } else {
         console.warn('Login failed: No valid string received.');
