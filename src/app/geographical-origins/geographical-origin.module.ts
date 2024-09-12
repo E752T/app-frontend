@@ -11,4 +11,4 @@ import { GeographicalOriginComponent } from './geographical-origins.component';
   imports: [CommonModule, FormsModule, IonicModule, RouterModule],
   exports: [GeographicalOriginComponent],
 })
-export class GeographicalOriginModule { }
+export class GeographicalOriginModule {}
