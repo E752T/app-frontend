@@ -4,6 +4,7 @@ import { LoginPage } from './login.page';
 //import { AuthGuardService } from '../guards/auth.guard'; // Assicurati di avere un AuthGuard
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: '',
     component: LoginPage,
