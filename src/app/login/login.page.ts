@@ -12,8 +12,9 @@ import { delay } from 'rxjs';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public errorMessage: string | undefined;
+  minimal_len_token: number = 50;
 
+  public errorMessage: string | undefined;
   modalCtrl: any;
   remember_me: false | undefined;
 
@@ -26,9 +27,20 @@ export class LoginPage implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
   ngOnInit() {
-    // Controlla se il token è valido al caricamento della pagina
-    if (this.isTokenValid(this.token_JWT)) {
-      this.router.navigate(['/']); // Reindirizza alla home page
+    this.checkToken();
+  }
+
+  checkToken() {
+    // Simulazione di un controllo del token
+    if (
+      this.isTokenValid(this.token_JWT) &&
+      this.token_JWT.length > this.minimal_len_token
+    ) {
+      this.router.navigate(['/']); // Reindirizza alla home
+      console.log('Login success | Token valido, accesso ad Home');
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -66,7 +78,7 @@ export class LoginPage implements OnInit {
         this.token_JWT = response;
 
         // Secure validation method: Check if the token is valid by decoding it
-        if (this.isTokenValid(this.token_JWT)) {
+        if (this.checkToken()) {
           this.token_JWT_success = true;
           this.showToast('Accesso Eseguito', 'success');
           console.log('Login success | JWT token: ', this.token_JWT);
