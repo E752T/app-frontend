@@ -18,6 +18,20 @@ export class LoginPage implements OnInit {
   modalCtrl: any;
   remember_me: false | undefined;
 
+  token_JWT: string = '';
+  token_JWT_success: boolean = true;
+  username: string = '';
+  user_role: string = 'test';
+
+  alertButtons = ['OK'];
+
+  body_login: LoginObject = {
+    email: 'admin',
+    password: 'admin',
+    shopkeeper: 'admin',
+    username: '',
+  };
+
   constructor(
     private loadingController: LoadingController,
     private router: Router
@@ -32,10 +46,8 @@ export class LoginPage implements OnInit {
 
   checkToken() {
     // Simulazione di un controllo del token
-    if (
-      this.isTokenValid(this.token_JWT) &&
-      this.token_JWT.length > this.minimal_len_token
-    ) {
+    if (this.token_JWT.length > this.minimal_len_token) {
+      this.token_JWT_success = true;
       this.router.navigate(['/']); // Reindirizza alla home
       console.log('Login success | Token valido, accesso ad Home');
       return true;
@@ -43,20 +55,6 @@ export class LoginPage implements OnInit {
       return false;
     }
   }
-
-  body_login: LoginObject = {
-    email: 'admin',
-    password: 'admin',
-    shopkeeper: 'admin',
-    username: '',
-  };
-
-  token_JWT: string = '';
-  token_JWT_success: boolean = false;
-  username: string = '';
-  user_role: string = 'test';
-
-  alertButtons = ['OK'];
 
   showToast(message: string, color: string) {
     const toast = document.createElement('ion-toast');
@@ -79,7 +77,6 @@ export class LoginPage implements OnInit {
 
         // Secure validation method: Check if the token is valid by decoding it
         if (this.checkToken()) {
-          this.token_JWT_success = true;
           this.showToast('Accesso Eseguito', 'success');
           console.log('Login success | JWT token: ', this.token_JWT);
 
@@ -113,13 +110,6 @@ export class LoginPage implements OnInit {
 
       console.log('Accesso eseguito -> ', this.token_JWT_success);
     }
-  }
-
-  // Method to validate the JWT token
-  isTokenValid(token: string) {
-    // Implement your token validation logic here
-    // For example, you can decode the token and check its expiration
-    return token.length > 50; // Placeholder for actual validation
   }
 
   jwt_decode(token: string): any {
