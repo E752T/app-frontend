@@ -20,9 +20,12 @@ export class AuthGuard implements CanActivate {
   ): boolean {
     // Check if the user is authenticated
     if (localStorage.getItem('token')) {
+      this.router.navigate(['']);
+      alert('ACCESS GRANTED');
       return true;
     } else {
       this.router.navigate(['/login']);
+      alert('ACCESS DENIED');
       return false;
     }
   }
