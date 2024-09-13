@@ -43,13 +43,19 @@ export class LoginPage implements OnInit {
   checkToken(token: string): boolean {
     if (token.length > this.minimal_len_token) {
       this.token_JWT_success = true;
+
+
       localStorage.setItem('token_JWT', token);
       localStorage.setItem('token_JWT_success', String(this.token_JWT_success));
+
       this.router.navigate(['/']); // Reindirizza alla home
+
       console.log('Login success | Token valido, accesso ad Home');
+      
       return true;
+    } else {
+      return false;
     }
-    return false;
   }
 
   showToast(message: string, color: string) {
@@ -70,8 +76,12 @@ export class LoginPage implements OnInit {
         if (this.checkToken(this.token_JWT)) {
           this.showToast('Accesso Eseguito', 'success');
           localStorage.setItem('token', this.token_JWT);
-          localStorage.setItem('token_JWT_success', String(this.token_JWT_success));
+          localStorage.setItem(
+            'token_JWT_success',
+            String(this.token_JWT_success)
+          );
           console.log('Login success | Navigazione eseguita');
+          
         }
       } else {
         console.warn('Login failed: No valid string received.');

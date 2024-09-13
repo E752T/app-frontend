@@ -5,18 +5,13 @@ import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'login', // Reindirizza alla pagina di login
-    pathMatch: 'full',
-  },
-  {
     path: 'login',
     pathMatch: 'full',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginPageModule), // Importa il modulo del login
   },
   {
-    path: 'home',
+    path: '',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule), // Importa il modulo della home

@@ -45,8 +45,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.getScreenSize();
     this.toggleMenu();
-    let elementoGriglia = this.grigliaElementi?.nativeElement;
-    elementoGriglia.style.width = '100vh';
   }
 
   constructor(
