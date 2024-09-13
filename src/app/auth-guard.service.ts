@@ -19,8 +19,8 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     // Check if the user is authenticated
-    if (localStorage.getItem('token')) {
-      this.router.navigate(['']);
+    if (localStorage.getItem('token_JWT') ) {
+      this.router.navigate(['/']);
       alert('ACCESS GRANTED');
       return true;
     } else {

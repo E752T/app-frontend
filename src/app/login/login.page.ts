@@ -21,14 +21,14 @@ export class LoginPage implements OnInit {
   token_JWT: string = '';
   token_JWT_success: boolean = true;
   username: string = '';
-  user_role: string = 'test';
+  user_role: string = '';
 
   alertButtons = ['OK'];
 
   body_login: LoginObject = {
-    email: 'admin',
-    password: 'admin',
-    shopkeeper: 'admin',
+    email: '',
+    password: '',
+    shopkeeper: '',
     username: '',
   };
 
@@ -41,13 +41,16 @@ export class LoginPage implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
   ngOnInit() {
-    this.checkToken();
+    localStorage.setItem('token_JWT', '');
+    localStorage.setItem('token_JWT_success', '');
   }
 
   checkToken() {
     // Simulazione di un controllo del token
     if (this.token_JWT.length > this.minimal_len_token) {
       this.token_JWT_success = true;
+      localStorage.setItem('token_JWT', this.token_JWT);
+      localStorage.setItem('token_JWT_success', String(this.token_JWT_success));
       this.router.navigate(['/']); // Reindirizza alla home
       console.log('Login success | Token valido, accesso ad Home');
       return true;
@@ -132,10 +135,12 @@ export class LoginPage implements OnInit {
   }
 
   getUserRole(): string {
-    const token = this.token_JWT;
+    // Controllo del ruolo dell' utente
 
-    if (token) {
-      if (token.includes('admin')) {
+    console.log('getUserRole |', this.token_JWT);
+
+    if (this.token_JWT) {
+      if (String(this.token_JWT).includes('admin')) {
         return 'admin';
       } else {
         return 'user';
