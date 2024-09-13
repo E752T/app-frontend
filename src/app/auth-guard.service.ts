@@ -14,12 +14,14 @@ import { Observable } from 'rxjs';
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
+  token_JWT_success = true; ////////////////////////////////
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
     // Check if the user is authenticated
-    if (localStorage.getItem('token_JWT') ) {
+    if (this.token_JWT_success == true) {
       this.router.navigate(['/']);
       alert('ACCESS GRANTED');
       return true;
