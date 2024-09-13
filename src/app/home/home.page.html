@@ -472,13 +472,20 @@
             Ciao {{this.username}}, sei sicuro di voler uscire?
             <br />
           </ion-text>
-          <ion-button>Conferma</ion-button>
+          <ion-button
+            class="center"
+            style="min-width: 10rem; margin-bottom: 22rem"
+            id="confirm-exit-login"
+            (click)="logOut()"
+            >Conferma</ion-button
+          >
 
           <ion-toast
             trigger="confirm-exit-login"
             message="Sei uscito dal tuo account"
             class="toast-nuovo-elemento"
             [duration]="2000"
+            color="danger"
             expand="block"
           ></ion-toast>
         </ng-template>

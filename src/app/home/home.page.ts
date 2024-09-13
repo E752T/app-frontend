@@ -27,6 +27,7 @@ import {
   user_role,
 } from '../services/data.service';
 import { baseURL } from '../enviroenment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home', // page name
@@ -50,10 +51,10 @@ export class HomePage implements OnInit {
   constructor(
     private http: HttpClient,
     private modalCtrl: ModalController,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private router: Router
   ) {}
 
-  ////////////////////////////////////////////////////////////////////
   //////////////////////// FRONTEND VARIABLES /////////////////////////
 
   isOpen: boolean = false;
@@ -77,6 +78,14 @@ export class HomePage implements OnInit {
     | undefined;
 
   isMenuAnchored: boolean = true;
+
+  logOut() {
+    console.log('log out in corso');
+    this.router.navigate(['/login']); // Reindirizza alla pagina di login
+    localStorage.setItem('token_JWT', '');
+    localStorage.setItem('token_JWT_success', '');
+    this.cancel();
+  }
 
   toggleMenu() {
     this.isMenuAnchored = !this.isMenuAnchored;
