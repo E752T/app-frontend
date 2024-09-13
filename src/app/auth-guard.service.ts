@@ -6,6 +6,7 @@ import {
   UrlTree,
   Router,
 } from '@angular/router';
+import { token_JWT_success } from './services/data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,19 +14,19 @@ import {
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
-  token_JWT_success = true; ////////////////////////////////
-
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
     // Check if the user is authenticated
-    if (this.token_JWT_success == true) {
+    if (token_JWT_success === 'true') {
       this.router.navigate(['/']);
+      console.log('token_JWT_success = ', token_JWT_success);
       alert('ACCESS GRANTED');
       return true;
     } else {
       this.router.navigate(['/login']);
+      console.log('token_JWT_success = ', token_JWT_success);
       alert('ACCESS DENIED');
       return false;
     }

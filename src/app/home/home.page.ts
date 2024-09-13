@@ -19,7 +19,12 @@ import {
   Warehouse,
   TypeObject,
 } from '../services/interfaces.service';
-import { today } from '../services/data.service';
+import {
+  today,
+  username,
+  token_JWT_success,
+  token_JWT,
+} from '../services/data.service';
 import { baseURL } from '../enviroenment';
 
 @Component({
@@ -30,11 +35,6 @@ import { baseURL } from '../enviroenment';
 export class HomePage implements OnInit {
   [x: string]: any;
   $event: any;
-
-  token_JWT: string = '';
-  token_JWT_success: boolean = false;
-  username: string = '';
-  user_role: string = 'test';
 
   ngOnInit() {
     this.getScreenSize();
