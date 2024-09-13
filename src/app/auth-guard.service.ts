@@ -21,11 +21,12 @@ export class AuthGuard implements CanActivate {
     console.log('canActivate | Check if the user is authenticated');
     console.log('canActivate | token_JWT_success = ', token_JWT_success);
 
-    // Check if the user is authenticated
+    // Controlla se l'utente è autenticato
     if (token_JWT_success === 'true') {
+      // Modificato per confrontare con un booleano
       console.log('token_JWT_success = ', token_JWT_success);
       alert('ACCESS GRANTED');
-      this.router.navigate(['/']);
+      this.router.navigate(['/home']);
       return true;
     } else {
       console.log('token_JWT_success = ', token_JWT_success);
