@@ -11,24 +11,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  minimal_len_token: number = 50;
   public errorMessage: string | undefined;
-  remember_me: boolean = false;
 
   token_JWT: string = '';
   username: string = '';
   user_role: string = '';
   token_JWT_success: boolean = false;
 
+  minimal_len_token: number = 50;
+
   alertButtons = ['OK'];
 
+  // body_login: LoginObject = {
+  //   shopkeeper: localStorage.getItem('shopkeeper'),
+  //   email: localStorage.getItem('email'),
+  //   password: localStorage.getItem('password'),
+  //   username: localStorage.getItem('username'),
+  // };
+
   body_login: LoginObject = {
+    shopkeeper: '',
     email: '',
     password: '',
-    shopkeeper: '',
     username: '',
   };
+
   modalCtrl: any;
+  toggle_remember_me: boolean = false;
 
   constructor(
     private loadingController: LoadingController,
@@ -40,10 +49,30 @@ export class LoginPage implements OnInit {
     localStorage.setItem('token_JWT_success', '');
   }
 
+  rememberMe() {
+    if (this.toggle_remember_me == true) {
+      console.log('ricordami le credenziali ', this.toggle_remember_me);
+
+      localStorage.setItem('shopkeeper', String(this.body_login.shopkeeper));
+      localStorage.setItem('email', String(this.body_login.email));
+      localStorage.setItem('password', String(this.body_login.password));
+      localStorage.setItem('username', String(this.body_login.username));
+    } else {
+      this.body_login.email = '';
+      this.body_login.password = '';
+      this.body_login.username = '';
+      this.body_login.shopkeeper = '';
+
+      localStorage.setItem('shopkeeper', '');
+      localStorage.setItem('email', '');
+      localStorage.setItem('password', '');
+      localStorage.setItem('username', '');
+    }
+  }
+
   checkToken(token: string): boolean {
     if (token.length > this.minimal_len_token) {
       this.token_JWT_success = true;
-
 
       localStorage.setItem('token_JWT', token);
       localStorage.setItem('token_JWT_success', String(this.token_JWT_success));
@@ -51,7 +80,7 @@ export class LoginPage implements OnInit {
       this.router.navigate(['/']); // Reindirizza alla home
 
       console.log('Login success | Token valido, accesso ad Home');
-      
+
       return true;
     } else {
       return false;
@@ -75,13 +104,12 @@ export class LoginPage implements OnInit {
 
         if (this.checkToken(this.token_JWT)) {
           this.showToast('Accesso Eseguito', 'success');
-          localStorage.setItem('token', this.token_JWT);
+          localStorage.setItem('token_JWT', this.token_JWT);
           localStorage.setItem(
             'token_JWT_success',
             String(this.token_JWT_success)
           );
           console.log('Login success | Navigazione eseguita');
-          
         }
       } else {
         console.warn('Login failed: No valid string received.');
@@ -101,10 +129,25 @@ export class LoginPage implements OnInit {
   }
 
   resetLoginForm() {
-    this.body_login.email = '';
-    this.body_login.password = '';
-    this.body_login.shopkeeper = '';
-    this.body_login.username = '';
+    if (this.toggle_remember_me == true) {
+      console.log('SAVE login credentials');
+      localStorage.setItem('shopkeeper', String(this.body_login.shopkeeper));
+      localStorage.setItem('username', String(this.body_login.username));
+      localStorage.setItem('password', String(this.body_login.password));
+      localStorage.setItem('email', String(this.body_login.email));
+    } else {
+      console.log('NOT SAVE login credentials');
+
+      this.body_login.shopkeeper = '';
+      this.body_login.username = '';
+      this.body_login.password = '';
+      this.body_login.email = '';
+
+      localStorage.setItem('shopkeeper', '');
+      localStorage.setItem('username', '');
+      localStorage.setItem('password', '');
+      localStorage.setItem('email', '');
+    }
   }
 
   jwt_decode(token: string): any {
@@ -126,13 +169,14 @@ export class LoginPage implements OnInit {
   }
 
   getUserRole(): string {
-    if (this.token_JWT) {
-      return this.token_JWT.includes('admin') ? 'admin' : 'user';
+    if (String(this.token_JWT)) {
+      return String(this.token_JWT).includes('admin') ? 'admin' : 'user';
     }
     return 'token not found';
   }
 
   exit_login() {
+    this.rememberMe();
     this.resetLoginForm();
     this.token_JWT_success = false;
     this.user_role = '';

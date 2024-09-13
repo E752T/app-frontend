@@ -84,6 +84,10 @@ export class HomePage implements OnInit {
     this.router.navigate(['/login']); // Reindirizza alla pagina di login
     localStorage.setItem('token_JWT', '');
     localStorage.setItem('token_JWT_success', '');
+    localStorage.setItem('shopkeeper', '');
+    localStorage.setItem('email', '');
+    localStorage.setItem('password', '');
+    localStorage.setItem('username', '');
     this.cancel();
   }
 
@@ -140,7 +144,7 @@ export class HomePage implements OnInit {
   }
 
   switchToView(value: string) {
-    console.log('view BEFORE ', this.sectionToShow);
+    console.log('view before ', this.sectionToShow);
     this.sectionToShow = value;
     this.searchInput = '';
     this.getAuthors(this.searchInput);

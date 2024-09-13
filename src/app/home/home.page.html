@@ -428,6 +428,121 @@
         </ng-template>
       </ion-modal>
 
+      <ion-button
+        class="menu-button-custom bottone-assistenza"
+        id="account-page"
+      >
+        <ion-icon class="icon-menu-button-custom" name="people"></ion-icon>
+        <ion-text> Account </ion-text></ion-button
+      >
+      <ion-modal
+        trigger="account-page"
+        (willDismiss)="onWillDismiss($event)"
+        class="ion-padding"
+      >
+        <ng-template class="template-angular">
+          <ion-header>
+            <ion-toolbar>
+              <ion-title
+                class="centrato"
+                color="secondary"
+                style="
+                  font-weight: bolder;
+                  margin-left: -30px;
+                  margin-top: 10px;
+                "
+                >Configurazione Account</ion-title
+              >
+
+              <ion-buttons slot="start">
+                <ion-button (click)="cancel()">
+                  <ion-icon name="arrow-undo-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <ion-item class="center" style="min-width: 10rem">
+              <ion-icon
+                class="center"
+                style="margin-right: 1rem; margin-left: -1rem"
+                name="home"
+              ></ion-icon>
+              <ion-label class="center" style="margin-right: 2rem"
+                >Esercente</ion-label
+              >
+
+              <ion-input
+                class="center"
+                placeholder="Esercente"
+                [(ngModel)]="this.body_login.shopkeeper"
+              >
+              </ion-input>
+            </ion-item>
+
+            <ion-item class="center" style="min-width: 10rem">
+              <ion-icon
+                class="center"
+                style="margin-right: 1rem"
+                name="mail"
+              ></ion-icon>
+              <ion-label class="center" style="margin-right: 2rem"
+                >Email</ion-label
+              >
+
+              <ion-input
+                class="center"
+                placeholder="Email"
+                [(ngModel)]="this.body_login.email"
+              >
+              </ion-input>
+            </ion-item>
+            <ion-item class="center" style="min-width: 10rem">
+              <ion-icon
+                class="center"
+                style="margin-right: 1rem; margin-left: -1rem"
+                name="person"
+              ></ion-icon>
+              <ion-label class="center" style="margin-right: 2rem"
+                >Username</ion-label
+              >
+              <ion-input
+                class="center"
+                placeholder="Username"
+                [(ngModel)]="this.body_login.username"
+              >
+              </ion-input>
+            </ion-item>
+
+            <ion-item class="center" style="min-width: 10rem">
+              <ion-icon
+                class="center"
+                style="margin-right: 1rem; margin-left: -1rem"
+                name="lock-closed"
+              ></ion-icon>
+              <ion-label class="center" style="margin-right: 2rem"
+                >Password</ion-label
+              >
+
+              <ion-input
+                class="center"
+                placeholder="Password"
+                [(ngModel)]="this.body_login.password"
+              >
+              </ion-input>
+            </ion-item>
+          </ion-content>
+
+          <ion-button
+            class="center"
+            style="min-width: 10rem; margin-bottom: 5cap"
+            id="confirm-exit-login"
+            (click)="logOut()"
+            >Salva</ion-button
+          >
+        </ng-template>
+      </ion-modal>
+
       <ion-button class="menu-button-custom bottone-assistenza" id="exit-login">
         <ion-icon
           class="icon-menu-button-custom"

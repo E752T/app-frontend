@@ -1,10 +1,10 @@
 // object element names & data types
 
 export interface LoginObject {
-  email: string;
-  password: string;
-  shopkeeper: string;
-  username: string;
+  email: string | null;
+  password: string | null;
+  shopkeeper: string | null;
+  username: string | null;
   //twoFactorCode: string;
   //twoFactorRecoveryCode: string;
 }
