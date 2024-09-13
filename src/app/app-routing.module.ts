@@ -16,7 +16,7 @@ const routes: Routes = [
       import('./login/login.module').then((m) => m.LoginPageModule), // Importa il modulo del login
   },
   {
-    path: 'home',
+    path: '',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule), // Importa il modulo della home

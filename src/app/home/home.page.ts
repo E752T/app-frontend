@@ -24,6 +24,7 @@ import {
   username,
   token_JWT_success,
   token_JWT,
+  user_role,
 } from '../services/data.service';
 import { baseURL } from '../enviroenment';
 
@@ -35,6 +36,11 @@ import { baseURL } from '../enviroenment';
 export class HomePage implements OnInit {
   [x: string]: any;
   $event: any;
+
+  username: string = username;
+  token_JWT_success: string = token_JWT_success;
+  token_JWT: string = token_JWT;
+  user_role: string = user_role;
 
   ngOnInit() {
     this.getScreenSize();

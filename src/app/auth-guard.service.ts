@@ -18,16 +18,19 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
+    console.log('canActivate | Check if the user is authenticated');
+    console.log('canActivate | token_JWT_success = ', token_JWT_success);
+
     // Check if the user is authenticated
     if (token_JWT_success === 'true') {
-      this.router.navigate(['/']);
       console.log('token_JWT_success = ', token_JWT_success);
       alert('ACCESS GRANTED');
+      this.router.navigate(['/']);
       return true;
     } else {
-      this.router.navigate(['/login']);
       console.log('token_JWT_success = ', token_JWT_success);
       alert('ACCESS DENIED');
+      this.router.navigate(['/login']);
       return false;
     }
   }
