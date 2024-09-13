@@ -6,7 +6,7 @@ import { HomePage } from '../home/home.page';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Reindirizza alla pagina di login
   { path: 'login', component: LoginPage }, // Rotta per la pagina di login
-  { path: 'home', component: HomePage }, // Rotta per la pagina principale
+  { path: '', component: HomePage }, // Rotta per la pagina principale
 ];
 
 @NgModule({
