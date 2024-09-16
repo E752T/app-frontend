@@ -1132,7 +1132,6 @@
               class="icon-menu-button-custom"
               name="log-out-outline"
             ></ion-icon>
-
             <ion-text> Log Out </ion-text></ion-button
           >
           <ion-modal
@@ -1143,7 +1142,14 @@
             <ng-template class="template-angular">
               <ion-header>
                 <ion-toolbar>
-                  <ion-title class="centrato testo-logout-2" color="secondary"
+                  <ion-title
+                    class="centrato"
+                    color="secondary"
+                    style="
+                      font-weight: bolder;
+                      margin-left: -30px;
+                      margin-top: 10px;
+                    "
                     >Esci dal tuo Account</ion-title
                   >
                   <ion-buttons slot="start">
@@ -1153,23 +1159,38 @@
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
-              <ion-text class="testo-logout">
+              <ion-text
+                style="
+                  font-size: large;
+                  margin: auto;
+                  height: 15vw;
+                  margin-top: 5vw;
+                "
+              >
                 <br />
                 Ciao {{this.username}}, sei sicuro di voler uscire?
                 <br />
               </ion-text>
-
-              <ion-button>Conferma</ion-button>
-
+              <ion-button
+                class="center"
+                style="min-width: 10rem; margin-bottom: 22rem"
+                id="confirm-exit-login"
+                (click)="logOut()"
+                >Conferma</ion-button
+              >
+    
               <ion-toast
                 trigger="confirm-exit-login"
                 message="Sei uscito dal tuo account"
                 class="toast-nuovo-elemento"
                 [duration]="2000"
+                color="danger"
                 expand="block"
               ></ion-toast>
             </ng-template>
           </ion-modal>
+
+
           <ion-footer slot="end" class="label-fine">
             <ion-icon
               class="titolo-icona logo-store"
