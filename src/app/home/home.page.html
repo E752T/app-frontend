@@ -535,8 +535,7 @@
             <br />
           </ion-text>
           <ion-button
-            class="center"
-            style="min-width: 10rem; margin-bottom: 22rem"
+            class="center confirm-exit"
             id="confirm-exit-login"
             (click)="logOut()"
             >Conferma</ion-button
@@ -555,7 +554,7 @@
     </div>
   </ion-menu>
 
-  <ion-grid style="background-color: #0054e9">
+  <ion-grid class="background-app">
     <ion-row>
       <ion-col
         #grigliaElementi
@@ -565,9 +564,7 @@
         #menuAncora
         *ngIf="isMenuAnchored"
       >
-        <div
-          style="background-color: #0054e9; position: fixed; max-width: 19rem"
-        >
+        <div class="card-object">
           <ion-button
             *ngIf="screenSize === 'desktop'"
             class="align-right anchor-button colore-bianco"
@@ -1073,8 +1070,7 @@
                 <br />
               </ion-text>
               <ion-button
-                class="center"
-                style="min-width: 10rem; margin-bottom: 22rem"
+                class="center confirm-exit"
                 id="confirm-exit-login"
                 (click)="logOut()"
                 >Conferma</ion-button
@@ -1870,7 +1866,7 @@
               <svg
                 fill="#000000"
                 class="icone-aggiungi-oggetto"
-                style="width: 20px; height: 20px"
+                class="label-autori-icona"
                 viewBox="0 0 1920 1920"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -2193,7 +2189,7 @@
               <svg
                 fill="#000000"
                 class="icone-aggiungi-oggetto"
-                style="width: 20px; height: 20px"
+                class="label-autori-icona"
                 viewBox="0 0 1920 1920"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -2400,7 +2396,7 @@
               <svg
                 fill="#000000"
                 class="icone-aggiungi-oggetto"
-                style="width: 20px; height: 20px"
+                class="label-autori-icona"
                 viewBox="0 0 1920 1920"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -2724,7 +2720,7 @@
               <svg
                 fill="#000000"
                 class="icone-aggiungi-oggetto"
-                style="width: 20px; height: 20px"
+                class="label-autori-icona"
                 viewBox="0 0 1920 1920"
                 xmlns="http://www.w3.org/2000/svg"
               >
