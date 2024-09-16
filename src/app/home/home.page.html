@@ -54,8 +54,7 @@
           [debounce]="1000"
           type="text"
           placeholder="Cerca un oggetto"
-          class="center"
-          style="width: 100vw; max-width: 15rem"
+          class="center scheda-cerca-un-oggetto"
           (ionChange)="setInput($event.target.value)"
           [(ngModel)]="searchInput"
         >
@@ -81,10 +80,8 @@
           </ion-radio-group>
         </div>
 
-        <ion-list style="margin-top: -40px">
-          <ion-item
-            style="margin-top: 15px; margin-bottom: 15px; min-width: 300px"
-          >
+        <ion-list class="margine-scheda">
+          <ion-item class="seleziona-generi">
             <ion-select
               class="center"
               aria-label="generi"
@@ -122,7 +119,7 @@
             <p class="label-anni">1800</p>
           </small>
           <small>
-            <p style="margin-left: 14rem" class="label-anni">2024</p>
+            <p classe="margine-destro-etichetta" class="label-anni">2024</p>
           </small>
 
           <ion-range
@@ -441,13 +438,9 @@
           <ion-header>
             <ion-toolbar>
               <ion-title
-                class="centrato"
+                class="centrato titolo-modale-centrato"
                 color="secondary"
-                style="
-                  font-weight: bolder;
-                  margin-left: -30px;
-                  margin-top: 10px;
-                "
+                classe="titolo-modale-centrato"
                 >Configurazione Account</ion-title
               >
 
@@ -485,7 +478,7 @@
               <ion-label class="label-config-account">Username</ion-label>
               <ion-input
                 placeholder="Username"
-                [(ngModel)]="this.body_login.username"
+                [(ngModel)]="body_login.username"
               >
               </ion-input>
             </ion-item>
@@ -496,7 +489,7 @@
 
               <ion-input
                 placeholder="Password"
-                [(ngModel)]="this.body_login.password"
+                [(ngModel)]="body_login.password"
               >
               </ion-input>
             </ion-item>
@@ -526,11 +519,7 @@
               <ion-title
                 class="centrato"
                 color="secondary"
-                style="
-                  font-weight: bolder;
-                  margin-left: -30px;
-                  margin-top: 10px;
-                "
+                classe="titolo-modale-centrato"
                 >Esci dal tuo Account</ion-title
               >
               <ion-buttons slot="start">
@@ -540,14 +529,7 @@
               </ion-buttons>
             </ion-toolbar>
           </ion-header>
-          <ion-text
-            style="
-              font-size: large;
-              margin: auto;
-              height: 15vw;
-              margin-top: 5vw;
-            "
-          >
+          <ion-text class="modale-esci">
             <br />
             Ciao {{this.username}}, sei sicuro di voler uscire?
             <br />
@@ -695,7 +677,7 @@
                 <p class="label-anni">1800</p>
               </small>
               <small>
-                <p style="margin-left: 14rem" class="label-anni">2024</p>
+                <p classe="margine-destro-etichetta" class="label-anni">2024</p>
               </small>
 
               <ion-range
@@ -770,7 +752,7 @@
               </small>
               <div class="spacer"></div>
               <small>
-                <p style="margin-left: 14rem" class="label-anni">2024</p>
+                <p classe="margine-destro-etichetta" class="label-anni">2024</p>
               </small>
 
               <ion-range
@@ -994,13 +976,8 @@
               <ion-header>
                 <ion-toolbar>
                   <ion-title
-                    class="centrato"
+                    class="centrato titolo-modale-centrato"
                     color="secondary"
-                    style="
-                      font-weight: bolder;
-                      margin-left: -30px;
-                      margin-top: 10px;
-                    "
                     >Configurazione Account</ion-title
                   >
 
@@ -1079,13 +1056,8 @@
               <ion-header>
                 <ion-toolbar>
                   <ion-title
-                    class="centrato"
+                    class="centrato titolo-modale-centrato"
                     color="secondary"
-                    style="
-                      font-weight: bolder;
-                      margin-left: -30px;
-                      margin-top: 10px;
-                    "
                     >Esci dal tuo Account</ion-title
                   >
                   <ion-buttons slot="start">
@@ -1095,14 +1067,7 @@
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
-              <ion-text
-                style="
-                  font-size: large;
-                  margin: auto;
-                  height: 15vw;
-                  margin-top: 5vw;
-                "
-              >
+              <ion-text class="modale-esci">
                 <br />
                 Ciao {{this.username}}, sei sicuro di voler uscire?
                 <br />

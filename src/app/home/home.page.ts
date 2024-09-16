@@ -88,7 +88,6 @@ export class HomePage implements OnInit {
     | undefined;
 
   isMenuAnchored: boolean = true;
-
   sizeColumnFilter: string = '0'; // Dimensione predefinita
 
   screenSize = this.checkScreenSize();
@@ -150,7 +149,7 @@ export class HomePage implements OnInit {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.messageDismissModal = `Hello, ${this.body_login.username}!`;
+      this.messageDismissModal = `Ciao ${this.body_login.username}!`;
     }
   }
 
@@ -169,7 +168,7 @@ export class HomePage implements OnInit {
     this.getWarehouses(this.searchInput);
     this.searchYears.lower = 1805;
     this.searchYears.upper = 2024;
-    console.log('switchToView() | view AFTER ', this.sectionToShow);
+    console.log('switchToView() | view after ', this.sectionToShow);
   }
 
   presentPopover(e: Event) {
@@ -178,14 +177,14 @@ export class HomePage implements OnInit {
   }
 
   AdminTables: Array<string> = [
-    'Author', //
-    'Publisher', //
-    'Category', //
-    'Shopkeeper', //
+    'Author',
+    'Publisher',
+    'Category',
+    'Shopkeeper',
     'Warehouse',
-    'Provenance', //
-    'GeographicalOrigin', //
-    'TypeObject', //
+    'Provenance',
+    'GeographicalOrigin',
+    'TypeObject',
   ];
 
   // OBJECTS
@@ -258,8 +257,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  //       AUTORI
-
+  // AUTORI
   allAuthors: Array<Author> = [];
   filteredAuthors: Array<Author> = [];
 
@@ -332,7 +330,7 @@ export class HomePage implements OnInit {
       })
       .catch((error) => {
         console.error('Error in PostRequest: ', error);
-        throw error; // Propagate the error
+        throw error;
       });
   }
 
