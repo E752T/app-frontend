@@ -1098,7 +1098,11 @@
       </ion-col>
 
       <ion-grid *ngIf="sectionToShow === 'Store'" class="griglia-store">
-        <ion-col #grigliaElementi size="12" style="margin-top: 10px">
+        <ion-col
+          #grigliaElementi
+          [size]="sizeColumnFilter"
+          style="margin-top: 10px"
+        >
           <ion-title class="titolo-categoria">Oggetti </ion-title>
 
           <ion-button
@@ -1560,7 +1564,7 @@
           </ion-modal>
         </ion-col>
 
-        <ion-col size="12">
+        <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-row>
             <app-message
               *ngFor="let message of filteredObjects"
@@ -1572,7 +1576,7 @@
 
         <br />
         <br />
-        <ion-col size="12">
+        <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-title class="titolo-categoria">Autori </ion-title>
           <ion-row>
             <app-authors
@@ -1587,7 +1591,7 @@
           </ion-row>
         </ion-col>
 
-        <ion-col size="12">
+        <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-title class="titolo-categoria">Categorie </ion-title>
           <ion-row>
             <app-categories
@@ -1602,7 +1606,7 @@
           </ion-row>
         </ion-col>
 
-        <ion-col size="12">
+        <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-title class="titolo-categoria">Editori </ion-title>
           <ion-row>
             <app-editors
@@ -1617,7 +1621,7 @@
           </ion-row>
         </ion-col>
 
-        <ion-col size="12">
+        <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-title class="titolo-categoria">Esercenti </ion-title>
           <ion-row>
             <app-shopkeepers
@@ -1632,7 +1636,7 @@
           </ion-row>
         </ion-col>
 
-        <ion-col size="12">
+        <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-title class="titolo-categoria">Tipi di Oggetti </ion-title>
           <ion-row>
             <app-type-objects
@@ -1647,7 +1651,7 @@
           </ion-row>
         </ion-col>
 
-        <ion-col size="12">
+        <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-title class="titolo-categoria"> Origine Geografica </ion-title>
           <ion-row>
             <app-geographical-origin
@@ -1662,7 +1666,7 @@
           </ion-row>
         </ion-col>
 
-        <ion-col size="12">
+        <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-title class="titolo-categoria"> Provenienza </ion-title>
           <ion-row>
             <app-provenances
@@ -1677,7 +1681,7 @@
           </ion-row>
         </ion-col>
 
-        <ion-col size="12">
+        <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-title class="titolo-categoria"> Magazzini </ion-title>
           <ion-row>
             <app-warehouses
