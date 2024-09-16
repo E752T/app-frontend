@@ -34,10 +34,10 @@ export const isOpen: boolean = false;
 //---------------- DATABASE INITIALIZATION ----------------
 
 export let body_login: LoginObject = {
-  shopkeeper: '',
-  email: '',
-  password: '',
-  username: '',
+  shopkeeper: localStorage.getItem('shopkeeper'),
+  email: localStorage.getItem('email'),
+  password: localStorage.getItem('password'),
+  username: localStorage.getItem('username'),
 };
 
 export let bodyModifyObject: DatabaseObject = {
