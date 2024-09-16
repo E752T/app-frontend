@@ -68,15 +68,17 @@ export class HomePage implements OnInit {
   fileEvent: Event | undefined;
 
   // PopOver ////////////////////////////////////
+
   showAddPopover: boolean = false;
   showModifyPopover: boolean = false;
   showDeletePopover: boolean = false;
 
   // VIEWS TO SHOW //////////////////////////////
+
   sectionToShow: string = 'Store'; // initial value = Store
   messageDismissModal: string = '';
 
-  ////////// FRONTEND FUNCTIONS /////////////////////////
+  // FRONTEND FUNCTIONS /////////////////////////
 
   @ViewChild('menuAncora', { static: false }) menuAncora:
     | ElementRef
@@ -86,6 +88,10 @@ export class HomePage implements OnInit {
     | undefined;
 
   isMenuAnchored: boolean = true;
+
+  sizeColumnFilter: string = '0'; // Dimensione predefinita
+
+  screenSize = this.checkScreenSize();
 
   logOut() {
     console.log('log out in corso');
@@ -104,8 +110,6 @@ export class HomePage implements OnInit {
     this.updateSize();
   }
 
-  sizeColumnFilter: string = '0'; // Dimensione predefinita
-
   updateSize() {
     this.sizeColumnFilter = this.isMenuAnchored ? '2' : '0';
   }
@@ -115,8 +119,6 @@ export class HomePage implements OnInit {
     const myScreen = screenWidth < 700 ? 'mobile' : 'desktop';
     return myScreen;
   }
-
-  screenSize = this.checkScreenSize();
 
   getScreenSize() {
     const screenWidth = window.innerWidth;
