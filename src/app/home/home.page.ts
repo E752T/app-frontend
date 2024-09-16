@@ -123,6 +123,7 @@ export class HomePage implements OnInit {
   getScreenSize() {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
+
     console.log('Larghezza dello schermo: ' + screenWidth + 'px');
     console.log('Altezza dello schermo: ' + screenHeight + 'px');
   }
