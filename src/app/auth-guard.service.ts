@@ -24,7 +24,6 @@ export class AuthGuard implements CanActivate {
     if (result_JWT == 'true') {
       // Modificato per confrontare con un booleano
       console.log('token_JWT_success = ', result_JWT);
-      alert('ACCESSO CONFERMATO');
       return true;
     } else {
       console.log('token_JWT_success = ', token_JWT_success);
