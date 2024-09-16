@@ -102,6 +102,11 @@ export class LoginPage implements OnInit {
       if (response && response.token) {
         this.token_JWT = response.token;
 
+        const parts = this.token_JWT.split('.');
+        if (parts.length !== 3) {
+          throw new Error('Token non valido');
+        }
+
         if (this.checkToken(this.token_JWT)) {
           this.showToast('Accesso Eseguito', 'success');
           localStorage.setItem('token_JWT', this.token_JWT);
@@ -117,7 +122,7 @@ export class LoginPage implements OnInit {
         this.errorMessage = 'Login fallito. Controlla le credenziali.';
       }
       this.user_role = this.getUserRole();
-      console.log("RUOLO DELL' UTENTE ", this.user_role);
+      console.log("Ruolo dell' utente ", this.user_role);
     } catch (error) {
       console.error('An error occurred during login: ', error);
       this.token_JWT_success = false;
@@ -147,24 +152,6 @@ export class LoginPage implements OnInit {
       localStorage.setItem('username', '');
       localStorage.setItem('password', '');
       localStorage.setItem('email', '');
-    }
-  }
-
-  jwt_decode(token: string): any {
-    if (!token) {
-      throw new Error('Token non fornito');
-    }
-
-    const parts = token.split('.');
-    if (parts.length !== 3) {
-      throw new Error('Token non valido');
-    }
-
-    try {
-      const payload = parts[1];
-      return JSON.parse(atob(payload));
-    } catch (error) {
-      throw new Error('Errore nella decodifica del token');
     }
   }
 
