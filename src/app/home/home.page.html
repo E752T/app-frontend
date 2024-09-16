@@ -459,71 +459,42 @@
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <ion-item class="center" style="min-width: 10rem">
-              <ion-icon
-                class="center"
-                style="margin-right: 1rem; margin-left: -1rem"
-                name="home"
-              ></ion-icon>
-              <ion-label class="center" style="margin-right: 2rem"
-                >Esercente</ion-label
-              >
+            <ion-item>
+              <ion-icon name="home"></ion-icon>
+              <ion-label class="label-config-account">Esercente</ion-label>
 
               <ion-input
-                class="center"
                 placeholder="Esercente"
                 [(ngModel)]="body_login.shopkeeper"
               >
               </ion-input>
             </ion-item>
 
-            <ion-item class="center" style="min-width: 10rem">
-              <ion-icon
-                class="center"
-                style="margin-right: 1rem; margin-left: -1rem"
-                name="mail"
-              ></ion-icon>
-              <ion-label class="center" style="margin-right: 4rem"
+            <ion-item>
+              <ion-icon name="mail"></ion-icon>
+              <ion-label class="label-config-account" style="margin-right: 4rem"
                 >Email</ion-label
               >
 
-              <ion-input
-                class="center"
-                placeholder="email"
-                [(ngModel)]="body_login.email"
-              >
+              <ion-input placeholder="Email" [(ngModel)]="body_login.email">
               </ion-input>
             </ion-item>
 
-            <ion-item class="center" style="min-width: 10rem">
-              <ion-icon
-                class="center"
-                style="margin-right: 1rem; margin-left: -1rem"
-                name="person"
-              ></ion-icon>
-              <ion-label class="center" style="margin-right: 2rem"
-                >Username</ion-label
-              >
+            <ion-item>
+              <ion-icon name="person"></ion-icon>
+              <ion-label class="label-config-account">Username</ion-label>
               <ion-input
-                class="center"
                 placeholder="Username"
                 [(ngModel)]="body_login.username"
               >
               </ion-input>
             </ion-item>
 
-            <ion-item class="center" style="min-width: 10rem">
-              <ion-icon
-                class="center"
-                style="margin-right: 1rem; margin-left: -1rem"
-                name="lock-closed"
-              ></ion-icon>
-              <ion-label class="center" style="margin-right: 2rem"
-                >Password</ion-label
-              >
+            <ion-item>
+              <ion-icon name="lock-closed"></ion-icon>
+              <ion-label class="label-config-account">Password</ion-label>
 
               <ion-input
-                class="center"
                 placeholder="Password"
                 [(ngModel)]="body_login.password"
               >
@@ -531,11 +502,7 @@
             </ion-item>
           </ion-content>
 
-          <ion-button
-            class="center"
-            style="min-width: 10rem; margin-bottom: 5cap"
-            id="confirm-exit-login"
-            (click)="logOut()"
+          <ion-button id="confirm-exit-login" (click)="logOut()"
             >Salva</ion-button
           >
         </ng-template>
@@ -1045,71 +1012,44 @@
                 </ion-toolbar>
               </ion-header>
               <ion-content>
-                <ion-item class="center" style="min-width: 10rem">
-                  <ion-icon
-                    class="center"
-                    style="margin-right: 1rem; margin-left: -1rem"
-                    name="home"
-                  ></ion-icon>
-                  <ion-label class="center" style="margin-right: 2rem"
-                    >Esercente</ion-label
-                  >
+                <ion-item>
+                  <ion-icon name="home"></ion-icon>
+                  <ion-label class="label-config-account">Esercente</ion-label>
 
                   <ion-input
-                    class="center"
                     placeholder="Esercente"
                     [(ngModel)]="body_login.shopkeeper"
                   >
                   </ion-input>
                 </ion-item>
 
-                <ion-item class="center" style="min-width: 10rem">
-                  <ion-icon
-                    class="center"
-                    style="margin-right: 1rem; margin-left: -1rem"
-                    name="mail"
-                  ></ion-icon>
-                  <ion-label class="center" style="margin-right: 4rem"
+                <ion-item>
+                  <ion-icon name="mail"></ion-icon>
+                  <ion-label
+                    class="label-config-account"
+                    style="margin-right: 4rem"
                     >Email</ion-label
                   >
 
-                  <ion-input
-                    class="center"
-                    placeholder="email"
-                    [(ngModel)]="body_login.email"
-                  >
+                  <ion-input placeholder="Email" [(ngModel)]="body_login.email">
                   </ion-input>
                 </ion-item>
 
-                <ion-item class="center" style="min-width: 10rem">
-                  <ion-icon
-                    class="center"
-                    style="margin-right: 1rem; margin-left: -1rem"
-                    name="person"
-                  ></ion-icon>
-                  <ion-label class="center" style="margin-right: 2rem"
-                    >Username</ion-label
-                  >
+                <ion-item>
+                  <ion-icon name="person"></ion-icon>
+                  <ion-label class="label-config-account">Username</ion-label>
                   <ion-input
-                    class="center"
                     placeholder="Username"
                     [(ngModel)]="body_login.username"
                   >
                   </ion-input>
                 </ion-item>
 
-                <ion-item class="center" style="min-width: 10rem">
-                  <ion-icon
-                    class="center"
-                    style="margin-right: 1rem; margin-left: -1rem"
-                    name="lock-closed"
-                  ></ion-icon>
-                  <ion-label class="center" style="margin-right: 2rem"
-                    >Password</ion-label
-                  >
+                <ion-item>
+                  <ion-icon name="lock-closed"></ion-icon>
+                  <ion-label class="label-config-account">Password</ion-label>
 
                   <ion-input
-                    class="center"
                     placeholder="Password"
                     [(ngModel)]="body_login.password"
                   >
@@ -1117,11 +1057,7 @@
                 </ion-item>
               </ion-content>
 
-              <ion-button
-                class="center"
-                style="min-width: 10rem; margin-bottom: 5cap"
-                id="confirm-exit-login"
-                (click)="logOut()"
+              <ion-button id="confirm-exit-login" (click)="logOut()"
                 >Salva</ion-button
               >
             </ng-template>
