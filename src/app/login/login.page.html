@@ -22,7 +22,7 @@
             class="trasparente custom-input"
             placeholder="Esercente"
             type="text"
-            [(ngModel)]="body_login.shopkeeper"
+            [(ngModel)]="this.body_login.shopkeeper"
           ></ion-input>
         </div>
 
@@ -36,7 +36,7 @@
             class="trasparente custom-input"
             placeholder="Email"
             type="email"
-            [(ngModel)]="body_login.email"
+            [(ngModel)]="this.body_login.email"
           ></ion-input>
         </div>
         <div class="centro-elementi trasparente">
@@ -49,7 +49,7 @@
             class="trasparente custom-input"
             placeholder="Password"
             type="password"
-            [(ngModel)]="body_login.password"
+            [(ngModel)]="this.body_login.password"
           >
             <ion-input-password-toggle slot="end"></ion-input-password-toggle
           ></ion-input>

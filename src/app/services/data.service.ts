@@ -9,6 +9,7 @@ import {
   TypeObject,
   Warehouse,
 } from '../services/interfaces.service';
+import { LoginObject } from '../services/interfaces.service';
 
 // USER TOKENS
 export let token_JWT_success: string = 'false';
@@ -31,6 +32,13 @@ export const filterButtons = ['OK'];
 export const isOpen: boolean = false;
 
 //---------------- DATABASE INITIALIZATION ----------------
+
+export let body_login: LoginObject = {
+  shopkeeper: '',
+  email: '',
+  password: '',
+  username: '',
+};
 
 export let bodyModifyObject: DatabaseObject = {
   objectID: 1,
