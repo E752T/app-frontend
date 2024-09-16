@@ -43,6 +43,13 @@ export class HomePage implements OnInit {
   token_JWT: string = token_JWT;
   user_role: string = user_role;
 
+  body_login: LoginObject = {
+    email: '',
+    password: '',
+    shopkeeper: '',
+    username: '',
+  };
+
   ngOnInit() {
     this.getScreenSize();
     this.toggleMenu();
@@ -139,12 +146,12 @@ export class HomePage implements OnInit {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.messageDismissModal = `Hello, ${this.body_login.email}!`;
+      this.messageDismissModal = `Hello, ${this.body_login.username}!`;
     }
   }
 
   switchToView(value: string) {
-    console.log('view before ', this.sectionToShow);
+    console.log('switchToView() | view before ', this.sectionToShow);
     this.sectionToShow = value;
     this.searchInput = '';
     this.getAuthors(this.searchInput);
@@ -158,7 +165,7 @@ export class HomePage implements OnInit {
     this.getWarehouses(this.searchInput);
     this.searchYears.lower = 1805;
     this.searchYears.upper = 2024;
-    console.log('view AFTER ', this.sectionToShow);
+    console.log('switchToView() | view AFTER ', this.sectionToShow);
   }
 
   presentPopover(e: Event) {
@@ -166,14 +173,7 @@ export class HomePage implements OnInit {
     this.isOpen = true;
   }
 
-  // ADMIN
 
-  body_login: LoginObject = {
-    email: 'admin',
-    password: 'admin',
-    shopkeeper: '',
-    username: '',
-  };
 
   AdminTables: Array<string> = [
     'Author', //
