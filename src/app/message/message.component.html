@@ -12,15 +12,15 @@
           class="dimensioni-oggetto"
         >
           <ion-card-header>
-            <ion-text class="titolo-oggetto">
-              {{ message.title }}
+            <ion-text class="titolo-oggetto" style="min-height: 2rem">
+              {{ message.title ? message.title : "Titolo Non disponibile " }}
             </ion-text>
 
             <ion-card-subtitle
               class="titolo-oggetto"
-              style="color: palegoldenrod"
+              style="color: palegoldenrod; min-height: 2rem"
             >
-              {{ message.genere }}
+              {{ message.genere ? message.genere : "Genere Non disponibile " }}
             </ion-card-subtitle>
 
             <ion-card-subtitle
@@ -39,7 +39,7 @@
           </ion-card-header>
           <ion-card-content
             class="ion-justify-content-center ion-align-items-center"
-            style="display: flex; min-height: 17rem"
+            style="display: flex"
           >
             <img
               src="{{ message.cover }}"
