@@ -62,20 +62,21 @@ export class HomePage implements OnInit {
     private router: Router
   ) {}
 
-  //////////////////////// FRONTEND VARIABLES /////////////////////////
+  /////////// FRONTEND VARIABLES //////////////////
 
   isOpen: boolean = false;
   fileEvent: Event | undefined;
-  // PopOver
+
+  // PopOver ////////////////////////////////////
   showAddPopover: boolean = false;
   showModifyPopover: boolean = false;
   showDeletePopover: boolean = false;
-  // VIEWS TO SHOW
+
+  // VIEWS TO SHOW //////////////////////////////
   sectionToShow: string = 'Store'; // initial value = Store
   messageDismissModal: string = '';
 
-  ////////////////////////////////////////////////////////////////////
-  //////////////////////// FRONTEND FUNCTIONS /////////////////////////
+  ////////// FRONTEND FUNCTIONS /////////////////////////
 
   @ViewChild('menuAncora', { static: false }) menuAncora:
     | ElementRef
@@ -172,8 +173,6 @@ export class HomePage implements OnInit {
     this.popover.event = e;
     this.isOpen = true;
   }
-
-
 
   AdminTables: Array<string> = [
     'Author', //

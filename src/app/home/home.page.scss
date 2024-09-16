@@ -612,3 +612,8 @@ ion-button.bottone-accedi {
 .spacer-label {
   flex-grow: 5; /* Permette di espandere lo spazio tra gli elementi */
 }
+
+.custom-background item-native {
+  justify-content: center;
+  background: bottom;
+}

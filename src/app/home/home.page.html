@@ -643,6 +643,16 @@
             </svg>
           </ion-button>
 
+          <ion-item lines="none" class="custom-background" color="primary">
+            <ion-avatar slot="start">
+              <img
+                alt="Silhouette of a person's head"
+                src="https://ionicframework.com/docs/img/demos/avatar.svg"
+              />
+            </ion-avatar>
+            <ion-label> Ciao, {{this.username}}! </ion-label>
+          </ion-item>
+
           <ion-card *ngIf="sectionToShow === 'Store'" style="padding: 1vw">
             <ion-searchbar
               showCancelButton="focus"
