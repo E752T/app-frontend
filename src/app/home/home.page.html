@@ -1702,6 +1702,7 @@
     <ion-title class="titolo-categoria-singola">Autori </ion-title>
 
     <ion-button
+      *ngIf="user_role=== 'admin'"
       id="add-new-author-button"
       class="bottone-aggiungi-nuovo-oggetto"
       color="lighter"
@@ -2024,6 +2025,7 @@
   <div *ngIf="sectionToShow === 'Shopkeeper'" class="app-template">
     <ion-title class="titolo-categoria-singola">Esercenti </ion-title>
     <ion-button
+      *ngIf="user_role=== 'admin'"
       id="bottone-aggiungi-shopkeeper"
       class="bottone-aggiungi-nuovo-oggetto"
       color="lighter"
@@ -2234,6 +2236,7 @@
   <div *ngIf="sectionToShow === 'Publisher'" class="app-template">
     <ion-title class="titolo-categoria-singola">Editori </ion-title>
     <ion-button
+      *ngIf="user_role=== 'admin'"
       id="add-new-publisher-button"
       class="bottone-aggiungi-nuovo-oggetto"
       color="lighter"
@@ -2441,6 +2444,7 @@
   <div *ngIf="sectionToShow === 'TypeObject'" class="app-template">
     <ion-title class="titolo-categoria-singola">Tipi di oggetti </ion-title>
     <ion-button
+      *ngIf="user_role=== 'admin'"
       id="bottone-aggiungi-type-object"
       class="bottone-aggiungi-nuovo-oggetto"
       color="lighter"
@@ -2556,6 +2560,7 @@
   <div *ngIf="sectionToShow === 'Warehouse'" class="app-template">
     <ion-title class="titolo-categoria-singola">Magazzini </ion-title>
     <ion-button
+      *ngIf="user_role=== 'admin'"
       id="bottone-aggiungi-warehouse"
       class="bottone-aggiungi-nuovo-oggetto"
       color="lighter"

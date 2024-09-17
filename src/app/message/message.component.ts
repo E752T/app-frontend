@@ -37,7 +37,7 @@ export class MessageComponent {
 
   bodyAddObject = bodyAddObject;
 
-  user_role = user_role
+  user_role = localStorage.getItem('user_role');
 
   isIos() {
     return this.platform.is('ios');
