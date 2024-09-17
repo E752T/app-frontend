@@ -77,12 +77,18 @@
               Nome:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="shopkeeper.uniqueName"
               id="{{ body_update_shopkeeper.uniqueName }}"
               value="{{ shopkeeper.uniqueName }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ shopkeeper.uniqueName }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               viewBox="0 0 24 24"
@@ -116,12 +122,18 @@
               Descrizione:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="shopkeeper.description"
               id="{{ body_update_shopkeeper.description }}"
               value="{{ shopkeeper.description }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ shopkeeper.description }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               style="margin-top: -50px"

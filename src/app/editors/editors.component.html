@@ -52,6 +52,7 @@
                   <p></p>
                   <h1>{{ publisher.name }}</h1>
                 </ion-text>
+
                 <ion-toast
                   trigger="conferma-elimina-'{{ publisher.publisherID }}'"
                   message="Elemento eliminato"
@@ -80,12 +81,18 @@
             </svg>
             <ion-label style="font-weight: bold"> Autore: </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="publisher.name"
               id="{{ body_add_publisher.name }}"
               value="{{ publisher.name }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ publisher.name }}
+            </ion-text>
           </div>
 
           <div slot="content" style="padding-bottom: 1%">
@@ -103,12 +110,18 @@
 
             <ion-label style="font-weight: bold"> Descrizione: </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="publisher.description"
               id="{{ body_add_publisher.description }}"
               value="{{ publisher.description }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ publisher.name }}
+            </ion-text>
           </div>
 
           <div slot="content">
@@ -243,12 +256,12 @@
             <ion-button
               color="secondary"
               style="padding-right: 3%"
-              id="button-UpdateCategoryAPI+'{{ publisher.publisherID }}'"
+              id="button-update-category-'{{ publisher.publisherID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
             <ion-toast
-              trigger="button-UpdateCategoryAPI+'{{ publisher.publisherID }}'"
+              trigger="button-update-category-'{{ publisher.publisherID }}'"
               message="Nuovo Elemento Salvato"
               class="toast-autori"
               color="success"

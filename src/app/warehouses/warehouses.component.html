@@ -72,12 +72,18 @@
               Autore:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="warehouse.name"
               id="{{ body_update_warehouse.name }}"
               value="{{ warehouse.name }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ warehouse.name }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               viewBox="0 0 24 24"
@@ -111,12 +117,18 @@
               Descrizione:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="warehouse.description"
               id="{{ body_update_warehouse.description }}"
               value="{{ warehouse.description }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ warehouse.description }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               style="margin-top: -50px"
@@ -155,6 +167,7 @@
 
             <div class="div-svg-input">
               <ion-input
+                *ngIf="user_role === 'admin'"
                 class="input-form"
                 type="email"
                 [(ngModel)]="warehouse.email"
@@ -162,6 +175,11 @@
                 value="{{ warehouse.email }}"
               >
               </ion-input>
+              <ion-text
+                *ngIf="user_role != 'admin'"
+                class="input-form input-form-text"
+                >{{ warehouse.email }}
+              </ion-text>
 
               <svg
                 class="icone-autori-edit"
@@ -199,6 +217,7 @@
 
             <div class="div-svg-input">
               <ion-input
+                *ngIf="user_role === 'admin'"
                 class="input-form"
                 type="tel"
                 [(ngModel)]="warehouse.telephone1"
@@ -206,6 +225,11 @@
                 value="{{ warehouse.telephone1 }}"
               >
               </ion-input>
+              <ion-text
+                *ngIf="user_role != 'admin'"
+                class="input-form input-form-text"
+                >{{ warehouse.telephone1 }}
+              </ion-text>
               <svg
                 class="icone-autori-edit"
                 viewBox="0 0 24 24"
@@ -241,6 +265,7 @@
             </ion-label>
 
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               type="tel"
               [(ngModel)]="warehouse.telephone2"
@@ -248,6 +273,11 @@
               value="{{ warehouse.telephone2 }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ warehouse.telephone2 }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               viewBox="0 0 24 24"

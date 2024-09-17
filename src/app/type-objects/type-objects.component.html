@@ -75,12 +75,18 @@
               Autore:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="type_object.name"
               id="{{ body_add_type_object.name }}"
               value="{{ type_object.name }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ type_object.name }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               viewBox="0 0 24 24"
@@ -114,12 +120,18 @@
               Descrizione:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="type_object.description"
               id="{{ body_update_type_object.description }}"
               value="{{ type_object.description }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ type_object.name }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               style="margin-top: -50px"
@@ -259,7 +271,7 @@
             >
           </div>
 
-          <div slot="content"  *ngIf="user_role === 'admin'">
+          <div slot="content" *ngIf="user_role === 'admin'">
             <ion-button
               color="secondary"
               class="bottone-update"

@@ -87,12 +87,18 @@
               Autore:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="geographical_origin.name"
               id="{{ body_update_geographical_origin.name }}"
               value="{{ geographical_origin.name }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ geographical_origin.name }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               viewBox="0 0 24 24"
@@ -126,12 +132,18 @@
               Descrizione:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="geographical_origin.description"
               id="{{ body_update_geographical_origin.description }}"
               value="{{ geographical_origin.description }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ geographical_origin.name }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               style="margin-top: -50px"

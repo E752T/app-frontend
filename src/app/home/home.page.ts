@@ -25,6 +25,7 @@ import {
   token_JWT_success,
   token_JWT,
   user_role,
+  body_login,
 } from '../services/data.service';
 import { baseURL } from '../enviroenment';
 import { Router } from '@angular/router';
@@ -38,17 +39,12 @@ export class HomePage implements OnInit {
   [x: string]: any;
   $event: any;
 
-  username: string = username;
+  username: string | null = localStorage.getItem('username');
   token_JWT_success: string = token_JWT_success;
   token_JWT: string = token_JWT;
   user_role: string | null = localStorage.getItem('user_role');
 
-  body_login: LoginObject = {
-    email: '',
-    password: '',
-    shopkeeper: '',
-    username: '',
-  };
+  body_login = body_login;
 
   availability: string = 'tutti'; // initial aviability filter checkbox
   searchInput: string | undefined | null = ''; // initial search input
@@ -106,6 +102,7 @@ export class HomePage implements OnInit {
     localStorage.setItem('email', '');
     localStorage.setItem('password', '');
     localStorage.setItem('username', '');
+    localStorage.setItem('user_role', '');
     this.cancel();
   }
 

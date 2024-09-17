@@ -458,7 +458,8 @@
 
               <ion-input
                 placeholder="Esercente"
-                [(ngModel)]="this.body_login.shopkeeper"
+                value="{{body_login.shopkeeper}}"
+                [(ngModel)]="body_login.shopkeeper"
               >
               </ion-input>
             </ion-item>
@@ -478,8 +479,8 @@
               <ion-label class="label-config-account">Username</ion-label>
               <ion-input
                 placeholder="Username"
-                [(ngModel)]="body_login.username"
-              >
+                value="{{body_login.username}}"
+                [(ngModel)]="body_login.username"              >
               </ion-input>
             </ion-item>
 
@@ -489,8 +490,8 @@
 
               <ion-input
                 placeholder="Password"
-                [(ngModel)]="body_login.password"
-              >
+                value="{{body_login.password}}"
+                [(ngModel)]="body_login.password"               >
               </ion-input>
             </ion-item>
           </ion-content>

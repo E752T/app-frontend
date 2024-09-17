@@ -76,12 +76,18 @@
               Autore:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="provenance.name"
               id="{{ body_update_provenance.name }}"
               value="{{ provenance.name }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ provenance.name }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               viewBox="0 0 24 24"
@@ -115,12 +121,18 @@
               Descrizione:
             </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="provenance.description"
               id="{{ body_update_provenance.description }}"
               value="{{ provenance.description }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ provenance.name }}
+            </ion-text>
             <svg
               class="icone-autori-edit"
               style="margin-top: -50px"
