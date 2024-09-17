@@ -27,6 +27,8 @@
     "@capacitor/keyboard": "6.0.1",
     "@capacitor/status-bar": "6.0.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@ionic-native/file": "^5.36.0",
+    "@ionic-native/image-picker": "^5.36.0",
     "@ionic-native/local-notifications": "^5.36.0",
     "@ionic/angular": "^8.2.3",
     "@ionic/cli": "^7.2.0",
