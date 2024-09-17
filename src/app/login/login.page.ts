@@ -15,7 +15,6 @@ export class LoginPage implements OnInit {
 
   body_login = body_login;
   token_JWT: string = '';
-  username: string = '';
   user_role = user_role;
   token_JWT_success: boolean = false;
 
