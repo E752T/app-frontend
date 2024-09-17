@@ -49,7 +49,7 @@
             />
           </ion-card-content>
 
-          <div class="button-container-icon">
+          <div class="button-container-icon" *ngIf="user_role == 'admin'">
             <ion-button
               id="bottone-modifica-oggetto+{{ message.objectID }}"
               style="color: rgb(81, 213, 45)"

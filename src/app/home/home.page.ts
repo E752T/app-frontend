@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
   username: string = username;
   token_JWT_success: string = token_JWT_success;
   token_JWT: string = token_JWT;
-  user_role: string = user_role;
+  user_role: string | null = localStorage.getItem('user_role');
 
   body_login: LoginObject = {
     email: '',
