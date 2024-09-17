@@ -11,6 +11,7 @@
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome">{{ author.name }} </ion-label>
             <ion-button
+              *ngIf="user_role == 'admin'"
               id="modale-elimina-autore-'{{ author.authorID }}'"
               color="danger"
             >
@@ -32,13 +33,20 @@
               </svg>
               Autore:
             </ion-label>
+
             <ion-input
+              *ngIf="user_role == 'admin'"
               class="input-form"
               [(ngModel)]="author.name"
               id="{{ body_update_author.name }}"
               value="{{ author.name }}"
             >
             </ion-input>
+
+            <ion-text *ngIf="user_role != 'admin'" class="input-form"
+              >{{ author.name }}
+            </ion-text>
+
             <svg
               class="icone-autori-edit"
               viewBox="0 0 24 24"
@@ -343,7 +351,7 @@
             >
           </div>
 
-          <div slot="content">
+          <div slot="content" *ngIf="user_role == 'admin'">
             <ion-button
               color="secondary"
               class="bottone-update"

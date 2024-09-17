@@ -42,6 +42,8 @@ export class AuthorsComponent {
   @ViewChild(IonModal)
   modal!: IonModal;
 
+  user_role = localStorage.getItem('user_role');
+
   body_add_author: Author = {
     authorID: 0,
     name: '',
