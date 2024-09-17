@@ -64,7 +64,6 @@ export class HomePage implements OnInit {
     private router: Router
   ) {}
 
-
   imageUrl: string | ArrayBuffer | null = null;
 
   onFileSelected(event: Event) {
@@ -77,7 +76,7 @@ export class HomePage implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-  
+
   /////////// FRONTEND VARIABLES //////////////////
 
   isOpen: boolean = false;

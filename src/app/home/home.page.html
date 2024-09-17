@@ -883,35 +883,71 @@
                 slot="content"
               >
                 <ion-button slot="start" (click)="switchToView('Store')">
-                  Archivio
+                  <ion-label
+                    [style.color]="sectionToShow === 'Store' ? 'dodgerblue' : 'gray'"
+                  >
+                    Archivio
+                  </ion-label>
                 </ion-button>
 
                 <ion-button slot="start" (click)="switchToView('Author')">
-                  Autori
+                  <ion-label
+                    [style.color]="sectionToShow === 'Author' ? 'dodgerblue' : 'gray'"
+                  >
+                    Autori
+                  </ion-label>
                 </ion-button>
                 <ion-button slot="start" (click)="switchToView('Publisher')">
-                  Editori
+                  <ion-label
+                    [style.color]="sectionToShow === 'Publisher' ? 'dodgerblue' : 'gray'"
+                  >
+                    Editori
+                  </ion-label>
                 </ion-button>
                 <ion-button slot="start" (click)="switchToView('Category')">
-                  Categorie
+                  <ion-label
+                    [style.color]="sectionToShow === 'Category' ? 'dodgerblue' : 'gray'"
+                  >
+                    Categorie
+                  </ion-label>
                 </ion-button>
                 <ion-button slot="start" (click)="switchToView('Shopkeeper')">
-                  Esercenti
+                  <ion-label
+                    [style.color]="sectionToShow === 'Shopkeeper' ? 'dodgerblue' : 'gray'"
+                  >
+                    Esercenti
+                  </ion-label>
                 </ion-button>
                 <ion-button slot="start" (click)="switchToView('TypeObject')">
-                  Tipo di oggetti
+                  <ion-label
+                    [style.color]="sectionToShow === 'TypeObject' ? 'dodgerblue' : 'gray'"
+                  >
+                    Tipo di oggetti
+                  </ion-label>
                 </ion-button>
                 <ion-button slot="start" (click)="switchToView('Warehouse')">
-                  Magazzini
+                  <ion-label
+                    [style.color]="sectionToShow === 'Warehouse' ? 'dodgerblue' : 'gray'"
+                  >
+                    Magazzini
+                  </ion-label>
                 </ion-button>
                 <ion-button slot="start" (click)="switchToView('Provenance')">
-                  Provenienza
+                  <ion-label
+                    [style.color]="sectionToShow === 'Provenance' ? 'dodgerblue' : 'gray'"
+                  >
+                    Provenienza
+                  </ion-label>
                 </ion-button>
                 <ion-button
                   slot="start"
                   (click)="switchToView('GeographicalOrigin')"
                 >
-                  Origini geografiche
+                  <ion-label
+                    [style.color]="sectionToShow === 'GeographicalOrigin' ? 'dodgerblue' : 'gray'"
+                  >
+                    Origine Geografica
+                  </ion-label>
                 </ion-button>
               </ion-buttons>
             </ion-accordion>
