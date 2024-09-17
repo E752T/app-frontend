@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { ElementRef } from '@angular/core';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 import {
   DatabaseObject,
@@ -63,6 +64,20 @@ export class HomePage implements OnInit {
     private router: Router
   ) {}
 
+
+  imageUrl: string | ArrayBuffer | null = null;
+
+  onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
   /////////// FRONTEND VARIABLES //////////////////
 
   isOpen: boolean = false;
