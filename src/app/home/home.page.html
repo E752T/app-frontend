@@ -720,7 +720,10 @@
             </ion-button>
           </ion-card>
 
-          <div *ngIf="AdminTables.includes(sectionToShow)">
+          <ion-card
+            *ngIf="AdminTables.includes(sectionToShow)"
+            style="padding: 1vw"
+          >
             <ion-searchbar
               showCancelButton="focus"
               [debounce]="2000"
@@ -861,7 +864,7 @@
             >
               Cerca
             </ion-button>
-          </div>
+          </ion-card>
 
           <ion-accordion-group class="accordion-gestionale">
             <ion-accordion value="first">
