@@ -51,7 +51,7 @@
 
           <div class="button-container-icon" *ngIf="user_role == 'admin'">
             <ion-button
-              id="bottone-modifica-oggetto+{{ message.objectID }}"
+              id="bottone-modifica-oggetto-{{ message.objectID }}"
               style="color: rgb(81, 213, 45)"
               fill="clear"
             >
@@ -69,7 +69,7 @@
             </ion-button>
 
             <ion-button
-              id="bottone-elimina-oggetto+{{ message.objectID }}"
+              id="bottone-elimina-oggetto-{{ message.objectID }}"
               style="align-items: end"
               fill="clear"
             >
@@ -88,7 +88,7 @@
           </div>
 
           <ion-modal
-            trigger="bottone-modifica-oggetto+{{ message.objectID }}"
+            trigger="bottone-modifica-oggetto-{{ message.objectID }}"
             (willDismiss)="onWillDismiss($event)"
             class="ion-padding"
           >

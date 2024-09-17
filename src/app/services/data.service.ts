@@ -14,8 +14,8 @@ import { LoginObject } from '../services/interfaces.service';
 // USER TOKENS
 export let token_JWT_success: string = 'false';
 export let token_JWT: string = '';
-export let user_role: string = '';
-export let username: string = 'test';
+export let username: string = '';
+export let user_role: string | null = localStorage.getItem('user_role');
 
 export const today: Date = new Date();
 

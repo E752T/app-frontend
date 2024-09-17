@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   public errorMessage: string | undefined;
+
   body_login = body_login;
   token_JWT: string = '';
   username: string = '';
@@ -97,7 +98,7 @@ export class LoginPage implements OnInit {
         this.token_JWT = response.token;
         this.user_role = response.message;
 
-        localStorage.setItem('user_role ', this.user_role);
+        localStorage.setItem('user_role', response.message);
 
         console.log('token JWT arrivato ', response);
 

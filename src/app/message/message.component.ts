@@ -36,11 +36,13 @@ export class MessageComponent {
   @Input() message?: DatabaseObject;
 
   bodyAddObject = bodyAddObject;
-  user_role = localStorage.getItem('user_role');
+
+  user_role = user_role
 
   isIos() {
     return this.platform.is('ios');
   }
+
   cancelObject() {
     this.modalCtrl.dismiss(null, 'cancel');
   }
