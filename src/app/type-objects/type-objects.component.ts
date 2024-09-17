@@ -42,6 +42,8 @@ export class TypeObjectComponent {
   @ViewChild(IonModal)
   modal!: IonModal;
 
+  user_role = localStorage.getItem('user_role');
+
   body_add_type_object: TypeObject = {
     typeID: 0,
     name: '',

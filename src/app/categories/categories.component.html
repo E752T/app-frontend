@@ -16,6 +16,7 @@
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome">{{ category.name }} </ion-label>
             <ion-button
+              *ngIf="user_role === 'admin'"
               id="modale-elimina-categoria-'{{ category.categoryID }}'"
               color="danger"
             >
@@ -93,12 +94,19 @@
             </svg>
             <ion-label style="font-weight: bold"> Autore: </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="category.name"
               id="{{ body_add_category.name }}"
               value="{{ category.name }}"
             >
             </ion-input>
+
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ category.name }}
+            </ion-text>
           </div>
 
           <div slot="content" style="padding-bottom: 1%">
@@ -116,12 +124,18 @@
 
             <ion-label style="font-weight: bold"> Descrizione: </ion-label>
             <ion-input
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="category.description"
               id="{{ body_add_category.description }}"
               value="{{ category.description }}"
             >
             </ion-input>
+            <ion-text
+              *ngIf="user_role != 'admin'"
+              class="input-form input-form-text"
+              >{{ category.description }}
+            </ion-text>
           </div>
 
           <div slot="content">
@@ -246,7 +260,11 @@
             >
           </div>
 
-          <div slot="content" style="padding-bottom: 1%; padding-top: 1%">
+          <div
+            *ngIf="user_role === 'admin'"
+            slot="content"
+            style="padding-bottom: 1%; padding-top: 1%"
+          >
             <ion-button
               color="secondary"
               style="padding-right: 3%"

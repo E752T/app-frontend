@@ -42,6 +42,8 @@ export class ProvenancesComponent {
   @ViewChild(IonModal)
   modal!: IonModal;
 
+  user_role = localStorage.getItem('user_role');
+
   body_add_provenance: Provenance = {
     provenanceID: 0,
     name: '',

@@ -42,6 +42,8 @@ export class WarehouseComponent {
   @ViewChild(IonModal)
   modal!: IonModal;
 
+  user_role = localStorage.getItem('user_role');
+
   body_add_warehouse: Warehouse = {
     warehouseID: 0,
     name: '',

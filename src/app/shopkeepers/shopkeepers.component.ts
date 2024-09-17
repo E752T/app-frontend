@@ -42,6 +42,8 @@ export class ShopkeepersComponent {
   @ViewChild(IonModal)
   modal!: IonModal;
 
+  user_role = localStorage.getItem('user_role');
+
   body_add_shopkeeper: Shopkeeper = {
     shopkeeperID: 0,
     uniqueName: '',

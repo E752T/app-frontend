@@ -43,6 +43,8 @@ export class GeographicalOriginComponent {
   @ViewChild(IonModal)
   modal!: IonModal;
 
+  user_role = localStorage.getItem('user_role');
+
   body_add_geographical_origin: GeographicalOrigin = {
     geographicalOriginID: 0,
     name: '',
