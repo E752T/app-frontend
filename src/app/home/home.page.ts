@@ -50,6 +50,11 @@ export class HomePage implements OnInit {
     username: '',
   };
 
+  availability: string = 'tutti'; // initial aviability filter checkbox
+  searchInput: string | undefined | null = ''; // initial search input
+  searchGeneres: Array<string> = []; // array for containing choosen generes
+  searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
+
   ngOnInit() {
     this.getScreenSize();
     this.toggleMenu();
@@ -973,11 +978,6 @@ export class HomePage implements OnInit {
   }
 
   ////// FILTRI DI RICERCA
-
-  availability: string = 'tutti'; // initial aviability filter checkbox
-  searchInput: string | undefined | null = ''; // initial search input
-  searchGeneres: Array<string> = []; // array for containing choosen generes
-  searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
 
   setInput(input: string | undefined | null) {
     if (input !== undefined && input !== null) {
