@@ -11,6 +11,7 @@
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome">{{ warehouse.name }} </ion-label>
             <ion-button
+              *ngIf="user_role === 'admin'"
               id="elimina-autore-'{{ warehouse.warehouseID }}'"
               color="danger"
             >
@@ -385,7 +386,7 @@
             >
           </div>
 
-          <div slot="content">
+          <div slot="content" *ngIf="user_role === 'admin'">
             <ion-button
               color="secondary"
               class="bottone-update"

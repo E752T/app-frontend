@@ -43,7 +43,6 @@ export class CategoriesComponent {
 
   user_role = localStorage.getItem('user_role');
 
-  
   body_add_category: Category = {
     categoryID: 0,
     name: '',

@@ -5,7 +5,7 @@
         <ion-accordion value="first" class="accordion-oggetto">
           <ion-item
             slot="header"
-            style="--background:  #5b99c2; color: white"
+            style="--background: #5b99c2; color: white"
             class="oggetto-anteprima"
           >
             <ion-icon name="caret-forward-outline"></ion-icon>
@@ -13,6 +13,7 @@
               >{{ shopkeeper.uniqueName }}
             </ion-label>
             <ion-button
+              *ngIf="user_role === 'admin'"
               id="modale-elimina-'{{ shopkeeper.shopkeeperID }}'"
               color="danger"
             >
@@ -260,7 +261,7 @@
             >
           </div>
 
-          <div slot="content">
+          <div slot="content" *ngIf="user_role === 'admin'">
             <ion-button
               color="secondary"
               class="bottone-update"

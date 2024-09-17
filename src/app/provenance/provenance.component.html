@@ -3,12 +3,17 @@
     <ion-col>
       <ion-accordion-group>
         <ion-accordion value="first" class="accordion-oggetto">
-          <ion-item slot="header" style="--background:#3133b5;color: white" class="oggetto-anteprima">
+          <ion-item
+            slot="header"
+            style="--background: #3133b5; color: white"
+            class="oggetto-anteprima"
+          >
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome"
               >{{ provenance.name }}
             </ion-label>
             <ion-button
+              *ngIf="user_role === 'admin'"
               id="elimina-autore-'{{ provenance.provenanceID }}'"
               color="danger"
             >
@@ -39,9 +44,7 @@
                 </ion-toolbar>
               </ion-header>
               <ion-text class="testo-conferma-elimina ion-text-center">
-                <ion-title
-                  >Sei sicuro di eliminare questo elemento?</ion-title
-                >
+                <ion-title>Sei sicuro di eliminare questo elemento?</ion-title>
                 <p></p>
                 <h1>{{ provenance.name }}</h1>
               </ion-text>
@@ -197,7 +200,7 @@
             >
           </div>
 
-          <div slot="content">
+          <div slot="content" *ngIf="user_role === 'admin'">
             <ion-button
               color="secondary"
               class="bottone-update"
@@ -213,7 +216,9 @@
               Elimina
             </ion-button>
 
-            <ion-modal trigger="elimina2-autore-'{{ provenance.provenanceID }}'">
+            <ion-modal
+              trigger="elimina2-autore-'{{ provenance.provenanceID }}'"
+            >
               <ng-template>
                 <ion-header>
                   <ion-toolbar>
@@ -222,7 +227,7 @@
                         ><ion-icon name="arrow-undo-outline"></ion-icon
                       ></ion-button>
                     </ion-buttons>
-  
+
                     <ion-buttons slot="end">
                       <ion-button
                         (click)="DeleteElement(provenance.provenanceID)"
