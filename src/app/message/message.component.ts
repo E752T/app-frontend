@@ -21,6 +21,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageComponent {
+  
   imageData: SafeUrl | undefined;
 
   private platform = inject(Platform);
@@ -38,6 +39,19 @@ export class MessageComponent {
   bodyAddObject = bodyAddObject;
 
   user_role = localStorage.getItem('user_role');
+
+  imageUrl: string | ArrayBuffer | null = null;
+
+  onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 
   isIos() {
     return this.platform.is('ios');
