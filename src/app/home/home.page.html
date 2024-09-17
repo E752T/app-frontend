@@ -1882,15 +1882,17 @@
 
     <ion-grid>
       <ion-row>
-        <app-authors
-          class="carta-elemento"
-          *ngFor="let element of filteredAuthors"
-          [author]="element"
-          [authors]="filteredAuthors"
-          (updateAuthors)="updateAuthors(this.allAuthors, element, 'authorID');"
-          [search_input]="searchInput"
-        >
-        </app-authors>
+        <ion-col>
+          <app-authors
+            class="carta-elemento"
+            *ngFor="let element of filteredAuthors"
+            [author]="element"
+            [authors]="filteredAuthors"
+            (updateAuthors)="updateAuthors(this.allAuthors, element, 'authorID');"
+            [search_input]="searchInput"
+          >
+          </app-authors>
+        </ion-col>
       </ion-row>
     </ion-grid>
     <ion-toolbar style="margin-bottom: 20%"> </ion-toolbar>

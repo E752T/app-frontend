@@ -21,7 +21,6 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageComponent {
-  
   imageData: SafeUrl | undefined;
 
   private platform = inject(Platform);
