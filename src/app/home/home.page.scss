@@ -313,8 +313,7 @@ ion-button.bottone-accedi {
 
 .bottone-aggiungi-nuovo-oggetto {
   margin-bottom: 2%;
-  width: 90%;
-  min-width: 150px;
+  width: 28rem;
   padding-left: 5%;
   border-radius: 15%;
   color: #000000;
@@ -544,15 +543,13 @@ ion-button.bottone-accedi {
   color: rgb(255, 255, 255);
 }
 
-.grandezza-colonna-menu {
-}
-
 .margine-categoria {
   margin-bottom: 150px;
 }
 
 .icona-aggiungi-elemento {
   justify-content: flex-start;
+  margin-right: 1rem;
 }
 .titolo-aggiungi-elemento2 {
   margin-top: 20px;
