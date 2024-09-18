@@ -146,6 +146,7 @@ export class LoginPage implements OnInit {
   resetLoginForm() {
     if (this.toggle_remember_me == true) {
       console.log('SAVE login credentials');
+
       localStorage.setItem('shopkeeper', String(body_login.shopkeeper));
       localStorage.setItem('username', String(body_login.username));
       localStorage.setItem('password', String(body_login.password));
