@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { NotFoundPage } from './not-found.page';
-import { NotFoundPageModule } from './not-found.module';
+import { NotFoundPage } from './not-found.page'; // Assicurati di importare il componente corretto
 
 const routes: Routes = [
   {
-    path: '/not-found',
-    component: NotFoundPageModule,
+    path: '',
+    component: NotFoundPage, // Usa il componente NotFoundPage
   },
 ];
 
