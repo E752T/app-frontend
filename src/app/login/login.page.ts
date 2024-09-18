@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
   token_JWT: string = '';
   user_role = user_role;
   token_JWT_success: boolean = false;
+  username: any;
 
   minimal_len_token: number = 50;
 
@@ -95,11 +96,17 @@ export class LoginPage implements OnInit {
       const response = await PostRequest(baseURL + 'Login/', body_login);
       if (response && response.token) {
         this.token_JWT = response.token;
-        this.user_role = response.message;
+        this.user_role = response.user_role;
+        this.username = response.username;
+
+        console.log('message ', response.message);
+        console.log('username ', response.username);
+        console.log('token_JWT ', response.token);
 
         localStorage.setItem('user_role', response.message);
+        localStorage.setItem('username', response.username);
+        localStorage.setItem('token_JWT', response.token_JWT);
 
-        console.log('token JWT arrivato ', response);
 
         const parts = this.token_JWT.split('.');
         if (parts.length !== 3) {
