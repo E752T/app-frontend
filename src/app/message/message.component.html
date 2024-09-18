@@ -86,6 +86,7 @@
               </svg>
             </ion-button>
           </div>
+          <div style="margin-top: 2rem" *ngIf="user_role !== 'admin'"></div>
 
           <ion-modal
             trigger="bottone-modifica-oggetto-{{ message.objectID }}"
