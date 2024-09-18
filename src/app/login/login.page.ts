@@ -4,6 +4,7 @@ import { PostRequest } from '../services/request.service';
 import { body_login, user_role } from '../services/data.service';
 import { baseURL } from '../enviroenment';
 import { Router } from '@angular/router';
+import { username } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +15,15 @@ export class LoginPage implements OnInit {
   public errorMessage: string | undefined;
 
   body_login = body_login;
-  token_JWT: string = '';
+
+  // USER
   user_role = user_role;
+  username = username;
+
+  // JWT
+  token_JWT: string = '';
   token_JWT_success: boolean = false;
-  username: any;
-
   minimal_len_token: number = 50;
-
-  alertButtons = ['OK'];
 
   // body_login: LoginObject = {
   //   shopkeeper: localStorage.getItem('shopkeeper'),
@@ -32,6 +34,7 @@ export class LoginPage implements OnInit {
 
   modalCtrl: any;
   toggle_remember_me: boolean = false;
+  alertButtons = ['OK'];
 
   constructor(
     private loadingController: LoadingController,
@@ -96,17 +99,16 @@ export class LoginPage implements OnInit {
       const response = await PostRequest(baseURL + 'Login/', body_login);
       if (response && response.token) {
         this.token_JWT = response.token;
-        this.user_role = response.user_role;
+        this.user_role = response.role;
         this.username = response.username;
 
-        console.log('message ', response.message);
-        console.log('username ', response.username);
+        console.log('message', response.role);
+        console.log('username', response.username);
         console.log('token_JWT ', response.token);
 
-        localStorage.setItem('user_role', response.message);
+        localStorage.setItem('user_role', response.role);
         localStorage.setItem('username', response.username);
         localStorage.setItem('token_JWT', response.token_JWT);
-
 
         const parts = this.token_JWT.split('.');
         if (parts.length !== 3) {

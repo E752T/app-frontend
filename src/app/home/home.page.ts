@@ -40,7 +40,7 @@ export class HomePage implements OnInit {
   [x: string]: any;
   $event: any;
 
-  username: string | null = localStorage.getItem('username');
+  username = localStorage.getItem('username');
   token_JWT_success: string = token_JWT_success;
   token_JWT: string = token_JWT;
   user_role: string | null = localStorage.getItem('user_role');
@@ -165,7 +165,7 @@ export class HomePage implements OnInit {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.messageDismissModal = `Ciao ${this.body_login.username}!`;
+      this.messageDismissModal = `Ciao ${this.username}!`;
     }
   }
 
