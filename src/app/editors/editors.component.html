@@ -89,7 +89,7 @@
             >
             </ion-input>
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ publisher.name }}
             </ion-text>
@@ -118,7 +118,7 @@
             >
             </ion-input>
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ publisher.name }}
             </ion-text>
@@ -174,10 +174,9 @@
             </ion-label>
             <br />
             <ion-text
-              class="input-form"
+              class="input-form text-label"
               id="open-modal-addedDate-Category-'{{ publisher.publisherID }}'"
               color="lighter"
-              style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
                 publisher.addedDate ? publisher.addedDate : "NOT FOUND"
               }}</ion-text
@@ -234,12 +233,11 @@
             </ion-label>
             <br />
             <ion-text
-              class="input-form"
+              class="input-form text-label"
               id="open-modal-lastUpdateDate-Category-'{{
                 publisher.publisherID
               }}'"
               color="lighter"
-              style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
                 publisher.lastUpdateDate
                   ? publisher.lastUpdateDate
@@ -255,7 +253,7 @@
           >
             <ion-button
               color="secondary"
-              style="padding-right: 3%"
+              class="bottoni-crud"
               id="button-update-category-'{{ publisher.publisherID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
@@ -271,7 +269,7 @@
 
             <ion-button
               color="danger"
-              style="padding-right: 3%"
+              class="bottoni-crud"
               id="modale2-elimina-'{{ publisher.publisherID }}'"
             >
               Elimina</ion-button
