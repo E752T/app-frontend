@@ -1,5 +1,3 @@
-import { Response } from 'node-fetch';
-
 // GET FUNCTION
 export async function GetRequest(baseURL: string) {
   try {
@@ -50,10 +48,11 @@ export async function PostRequest(baseURL: string, body_request?: any) {
       const jsonResponse = JSON.parse(textResponse);
       return jsonResponse; // Restituisci l'oggetto JSON
     } catch (jsonError) {
-      console.log('La risposta non è un JSON valido, restituisco la risposta come testo.');
+      console.log(
+        'La risposta non è un JSON valido, restituisco la risposta come testo.'
+      );
       return textResponse; // Restituisci la risposta come testo
     }
-
   } catch (error) {
     if (error instanceof Error) {
       console.log('PostRequest() error message: ', error.message, error.name);
