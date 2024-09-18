@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { MessageComponent } from './message/message.component'; // Importa il componente specifico
 import { AuthGuard } from './auth-guard.service';
+import { NotFoundPageModule } from './not-found/not-found.module'; // Importa il componente specifico
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'messages',
-    component: MessageComponent, // Usa il componente specifico
+    component: MessageComponent,
     children: [{ path: ':id', component: MessageComponent }], // Rotta figlia per i messaggi
   },
 ];
