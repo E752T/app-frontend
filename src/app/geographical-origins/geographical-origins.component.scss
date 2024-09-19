@@ -41,6 +41,13 @@
   padding-right: 10px;
   padding-left: 10px;
 }
+@media screen and (max-width: 569px) {
+  .accordion-oggetto {
+    width: 75vw;
+    white-space: nowrap;
+  }
+}
+
 
 .cartellino-nome {
   letter-spacing: 1px;
@@ -72,4 +79,10 @@
 .input-form-text {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+@media screen and (max-width: 569px) {
+  .accordion-oggetto {
+    width: 75vw;
+    white-space: nowrap;
+  }
 }

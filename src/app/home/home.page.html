@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" id="ioncontentemain">
   <ion-header class="header-menu-home ion-page ion-no-border" id="main-content">
     <ion-buttons slot="start" class="background-title-bar">
       <ion-menu-button class="menu-button-icon"></ion-menu-button>
@@ -107,19 +107,21 @@
         </ion-list>
         <p></p>
         <div class="margin-top center">
-          <ion-text
-            class="testo-anno-di-pubblicazione"
-            style="margin-left: 3rem"
-          >
+          <ion-text class="testo-anno-di-pubblicazione">
             Anno di pubblicazione
           </ion-text>
         </div>
         <div class="centered margin-top">
           <small>
-            <p class="label-anni">1800</p>
+            <p class="label-anni margine-anni-sinistra">1800</p>
           </small>
           <small>
-            <p classe="margine-destro-etichetta" class="label-anni">2024</p>
+            <p
+              classe="margine-destro-etichetta"
+              class="label-anni margine-anni"
+            >
+              2024
+            </p>
           </small>
 
           <ion-range
@@ -181,24 +183,26 @@
         <p></p>
 
         <div class="margin-top center">
-          <ion-text
-            class="testo-anno-di-pubblicazione"
-            style="margin-left: 3rem"
-          >
+          <ion-text class="testo-anno-di-pubblicazione">
             Anno di pubblicazione
           </ion-text>
         </div>
 
         <div class="centered margin-top">
           <small>
-            <p class="label-anni">1800</p>
+            <p class="label-anni margine-anni-sinistra">1800</p>
           </small>
           <small>
-            <p classe="margine-destro-etichetta" class="label-anni">2024</p>
+            <p
+              classe="margine-destro-etichetta"
+              class="label-anni margine-anni"
+            >
+              2024
+            </p>
           </small>
 
           <ion-range
-            class="ion-range-margin"
+            class="dual-knobs"
             aria-label="Dual Knobs Range"
             [(ngModel)]="searchYears"
             [dualKnobs]="true"
@@ -560,7 +564,7 @@
   </ion-menu>
 
   <ion-grid class="background-app">
-    <ion-row class="background-app">
+    <ion-row class="background-app" id="giorgio">
       <ion-col
         #grigliaElementi
         [size]="sizeColumnFilter"
@@ -672,21 +676,26 @@
             <div class="margin-top center">
               <ion-text
                 class="testo-anno-di-pubblicazione"
-                style="margin-left: 3rem"
+                style="font-size: smaller"
               >
                 Anno di pubblicazione
               </ion-text>
             </div>
             <div class="centered" color="success" style="margin-top: -20px">
               <small>
-                <p class="label-anni">1800</p>
+                <p class="label-anni margine-anni-sinistra">1800</p>
               </small>
               <small>
-                <p classe="margine-destro-etichetta" class="label-anni">2024</p>
+                <p
+                  classe="margine-destro-etichetta"
+                  class="label-anni margine-anni"
+                >
+                  2024
+                </p>
               </small>
 
               <ion-range
-                class="ion-range-margin"
+                class="dual-knobs"
                 aria-label="Dual Knobs Range"
                 [(ngModel)]="searchYears"
                 [dualKnobs]="true"
@@ -751,22 +760,24 @@
             <p></p>
 
             <div class="margin-top center">
-              <ion-text
-                class="testo-anno-di-pubblicazione"
-                style="margin-left: 3rem"
-              >
+              <ion-text class="testo-anno-di-pubblicazione">
                 Anno di pubblicazione
               </ion-text>
             </div>
             <div class="centered" color="success" style="margin-top: -20px">
               <small>
-                <p class="label-anni">1800</p>
+                <p class="label-anni margine-anni-sinistra">1800</p>
               </small>
               <small>
-                <p classe="margine-destro-etichetta" class="label-anni">2024</p>
+                <p
+                  classe="margine-destro-etichetta"
+                  class="label-anni margine-anni"
+                >
+                  2024
+                </p>
               </small>
               <ion-range
-                class="ion-range-margin"
+                class="dual-knobs"
                 aria-label="Dual Knobs Range"
                 [(ngModel)]="searchYears"
                 [dualKnobs]="true"
@@ -3039,5 +3050,5 @@
         </div>
       </ion-grid>
     </ion-row>
-  </ion-grid>
-</ion-content>
+  </ion-grid> </ion-content
+>s

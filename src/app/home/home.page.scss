@@ -504,8 +504,8 @@ ion-button.bottone-accedi {
 }
 
 .dual-knobs {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 2rem;
+  margin-left: 1rem;
 }
 
 .min-width-button {
@@ -570,6 +570,14 @@ ion-button.bottone-accedi {
   position: fixed;
 }
 
+.margine-anni {
+  margin-left: 14rem;
+}
+
+.margine-anni-sinistra {
+  margin-left: 1rem;
+}
+
 .bottone-assistenza {
   padding: 0rem;
   margin-top: 1rem;
@@ -585,6 +593,7 @@ ion-button.bottone-accedi {
   margin-left: 1rem;
   margin-right: 1rem;
   min-height: 100vh;
+  width: 90vw;
 }
 
 .griglia-store {
@@ -686,10 +695,6 @@ ion-button.bottone-accedi {
 
 ion-content {
   overflow: hidden; /* Nasconde la scroll bar */
-}
-
-:host {
-  width: 85vw !important;
 }
 
 app-home,

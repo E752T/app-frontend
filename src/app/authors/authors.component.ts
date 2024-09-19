@@ -40,20 +40,21 @@ export class AuthorsComponent {
     password: '',
     username: '',
   };
+  username: string | null;
+  user_role: string;
+  token_JWT_success: boolean;
+  token_JWT: string;
 
   constructor(
     private modalCtrl: ModalController,
     private dataService: DataService
   ) {
-    // this.username = this.dataService.getUsername();
-    // this.token_JWT = this.dataService.getToken_JWT();
-    // this.user_role = this.dataService.getUserRole();
-    // this.token_JWT_success = this.dataService.getTokenJWTsuccess();
-    // this.body_login = this.dataService.getBodyLogin();
+    this.username = this.dataService.getUsername();
+    this.token_JWT = this.dataService.getToken_JWT();
+    this.user_role = this.dataService.getUserRole();
+    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+    this.body_login = this.dataService.getBodyLogin();
   }
-
-  user_role = localStorage.getItem('user_role');
-  username = localStorage.getItem('username');
 
   @Input()
   author!: Author;

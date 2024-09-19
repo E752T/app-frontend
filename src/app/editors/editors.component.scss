@@ -87,3 +87,9 @@
 .bottoni-crud {
   padding-right: 3%;
 }
+@media screen and (max-width: 569px) {
+  .accordion-oggetto {
+    width: 75vw;
+    white-space: nowrap;
+  }
+}
