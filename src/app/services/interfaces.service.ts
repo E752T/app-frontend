@@ -5,8 +5,6 @@ export interface LoginObject {
   password: string | null;
   shopkeeper: string | null;
   username: string | null;
-  //twoFactorCode: string;
-  //twoFactorRecoveryCode: string;
 }
 
 export interface DatabaseObject {
