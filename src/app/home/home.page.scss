@@ -250,8 +250,7 @@ ion-button.bottone-accedi {
 }
 
 .carta-elemento {
-  min-width: 400px;
-  width: 100%;
+  width: 88vw;
   text-align: left;
 }
 
@@ -577,6 +576,16 @@ ion-button.bottone-accedi {
   margin-right: 1rem;
 }
 
+.griglia-store-base {
+  margin-top: 50px;
+  border-radius: 15px;
+  display: table-row;
+  background: rgb(255, 255, 255);
+  margin-left: 1rem;
+  margin-right: 1rem;
+  min-height: 100vh;
+}
+
 .griglia-store {
   margin-top: 50px;
   border-radius: 15px;
@@ -584,7 +593,10 @@ ion-button.bottone-accedi {
   background: rgb(255, 255, 255);
   margin-left: 1rem;
   margin-right: 1rem;
-  margin-bottom: 32rem; // margine in basso dell'app
+  min-height: 100vh;
+  width: 90vw;
+  display: grid;
+  //margin-bottom: 32rem; // margine in basso dell'app
 }
 
 .testo-logout {
@@ -674,4 +686,14 @@ ion-button.bottone-accedi {
 
 ion-content {
   overflow: hidden; /* Nasconde la scroll bar */
+}
+
+:host {
+  width: 85vw !important;
+}
+
+app-home,
+ion-header,
+ion-content {
+  width: 100vw !important;
 }
