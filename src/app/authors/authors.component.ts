@@ -13,10 +13,8 @@ import { ModalController } from '@ionic/angular';
 
 import { Author } from '../services/interfaces.service';
 import { PostRequest } from '../services/request.service';
-import { today } from '../services/data.service';
+import { DataService, today } from '../services/data.service';
 import { baseURL } from '../enviroenment';
-
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-authors',
@@ -25,7 +23,33 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthorsComponent {
   private platform = inject(Platform);
-  constructor(private http: HttpClient, private modalCtrl: ModalController) {}
+
+  public token_JWT: string;
+  public user_role: string;
+  public username: string | null;
+  public token_JWT_success: boolean;
+  public body_login: {
+    shopkeeper: string | null;
+    email: string | null;
+    password: string | null;
+    username: string | null;
+  } = {
+    shopkeeper: '',
+    email: '',
+    password: '',
+    username: '',
+  };
+
+  constructor(
+    private modalCtrl: ModalController,
+    private dataService: DataService
+  ) {
+    this.token_JWT = this.dataService.getToken_JWT();
+    this.user_role = this.dataService.getUserRole();
+    this.username = this.dataService.username;
+    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+    this.body_login = this.dataService.getBodyLogin();
+  }
 
   @Input()
   author!: Author;
@@ -41,8 +65,6 @@ export class AuthorsComponent {
 
   @ViewChild(IonModal)
   modal!: IonModal;
-
-  user_role = localStorage.getItem('user_role');
 
   body_add_author: Author = {
     authorID: 0,
