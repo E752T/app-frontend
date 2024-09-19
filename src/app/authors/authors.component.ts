@@ -17,14 +17,11 @@ import { DataService, today } from '../services/data.service';
 import { baseURL } from '../enviroenment';
 
 @Component({
-
   selector: 'app-authors',
   templateUrl: './authors.component.html',
-  styleUrls: ['./authors.component.scss']
-
+  styleUrls: ['./authors.component.scss'],
 })
 export class AuthorsComponent {
-
   private platform = inject(Platform);
 
   public token_JWT: string;
@@ -50,6 +47,7 @@ export class AuthorsComponent {
     this.token_JWT = this.dataService.getToken_JWT();
     this.user_role = this.dataService.getUserRole();
     this.username = this.dataService.getUsername();
+    console.log('authors ', this.username);
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }

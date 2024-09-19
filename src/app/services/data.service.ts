@@ -43,14 +43,12 @@ export class DataService {
     };
   }
 
-  // Getter per username
-  public getUsername(): string | null {
-    return this.username;
+  setUsername(username: string) {
+    this.username = username;
   }
 
-  // Setter per username
-  public setUsername(value: string | null) {
-    this.username = value;
+  getUsername() {
+    return this.username;
   }
 
   getUserRole(): string {
@@ -94,7 +92,6 @@ export const filterButtons = ['OK'];
 export const isOpen: boolean = false;
 
 //---------------- DATABASE INITIALIZATION ----------------
-
 export let bodyModifyObject: DatabaseObject = {
   objectID: 1,
   authorID: 1,

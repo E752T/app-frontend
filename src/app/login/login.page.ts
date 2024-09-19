@@ -112,18 +112,18 @@ export class LoginPage implements OnInit {
   async confirmLogin() {
     try {
       const response = await PostRequest(baseURL + 'Login/', this.body_login);
+      console.log('Risposta del server:', response);
+
       if (response && response.token) {
         this.token_JWT = response.token;
         this.user_role = response.role;
-        this.dataService.setUsername(response.username);
-
-        console.log('username', this.dataService.getUsername());
-        console.log('role', response.role);
-        console.log('token_JWT ', response.token);
 
         localStorage.setItem('user_role', response.role);
         localStorage.setItem('username', response.username);
         localStorage.setItem('token_JWT', response.token);
+
+        this.dataService.setUsername(response.username);
+        console.log('Username impostato:', this.dataService.getUsername());
 
         const parts = this.token_JWT.split('.');
         if (parts.length !== 3) {
@@ -132,13 +132,6 @@ export class LoginPage implements OnInit {
 
         if (this.checkToken(this.token_JWT)) {
           this.showToast('Accesso Eseguito', 'success');
-
-          localStorage.setItem('token_JWT', this.token_JWT);
-          localStorage.setItem(
-            'token_JWT_success',
-            String(this.token_JWT_success)
-          );
-
           console.log('Login success | Navigazione eseguita');
         }
       } else {

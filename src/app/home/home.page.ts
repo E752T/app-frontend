@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { ElementRef } from '@angular/core';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { DataService, today } from '../services/data.service';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 import {
   DatabaseObject,
@@ -53,6 +53,7 @@ export class HomePage implements OnInit {
   public user_role: string;
   public username: string | null;
   public token_JWT_success: boolean;
+
   public body_login: {
     shopkeeper: string | null;
     email: string | null;
