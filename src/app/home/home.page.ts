@@ -93,23 +93,23 @@ export class HomePage implements OnInit {
     }
   }
 
-  /////////// FRONTEND VARIABLES //////////////////
+  // FRONTEND VARIABLES
 
   isOpen: boolean = false;
   fileEvent: Event | undefined;
 
-  // PopOver ////////////////////////////////////
+  // PopOver
 
   showAddPopover: boolean = false;
   showModifyPopover: boolean = false;
   showDeletePopover: boolean = false;
 
-  // VIEWS TO SHOW //////////////////////////////
+  // VIEWS TO SHOW
 
   sectionToShow: string = 'Store'; // initial value = Store
   messageDismissModal: string = '';
 
-  // FRONTEND FUNCTIONS /////////////////////////
+  // FRONTEND FUNCTIONS
 
   @ViewChild('menuAncora', { static: false }) menuAncora:
     | ElementRef

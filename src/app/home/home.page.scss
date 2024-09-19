@@ -475,7 +475,7 @@ ion-button.bottone-accedi {
 }
 
 .margin-bottom {
-  margin-bottom: 40px;
+  margin-bottom: 5px;
 }
 
 .margin-top {
@@ -544,7 +544,7 @@ ion-button.bottone-accedi {
 }
 
 .margine-categoria {
-  margin-bottom: 150px;
+  margin-bottom: 5rem;
 }
 
 .icona-aggiungi-elemento {
@@ -581,11 +581,10 @@ ion-button.bottone-accedi {
   margin-top: 50px;
   border-radius: 15px;
   display: table-row;
-  margin-bottom: 100px;
   background: rgb(255, 255, 255);
   margin-left: 1rem;
   margin-right: 1rem;
-  margin-bottom: 30rem;
+  margin-bottom: 32rem; // margine in basso dell'app
 }
 
 .testo-logout {
@@ -671,4 +670,8 @@ ion-button.bottone-accedi {
 .label-autori-icona {
   width: 20px;
   height: 20px;
+}
+
+ion-content {
+  overflow: hidden; /* Nasconde la scroll bar */
 }
