@@ -31,7 +31,7 @@ export class DataService {
   };
 
   constructor() {
-    this.username = 'test';
+    this.username = 'xxx';
     this.token_JWT = '';
     this.token_JWT_success = false;
     this.user_role = 'utente';
@@ -47,11 +47,15 @@ export class DataService {
     return this.username;
   }
 
-  getToken_JWT(): string {
-    return this.token_JWT;
+  setUsername(value: string): string {
+    return (this.username = value);
   }
 
   getUserRole(): string {
+    return this.user_role;
+  }
+
+  getToken_JWT(): string {
     return this.token_JWT;
   }
 

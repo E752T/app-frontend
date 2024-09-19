@@ -115,10 +115,11 @@ export class LoginPage implements OnInit {
       if (response && response.token) {
         this.token_JWT = response.token;
         this.user_role = response.role;
-        this.username = response.username;
+        this.username = this.dataService.setUsername(response.username); //response.username;
+
+        console.log('username', this.username);
 
         console.log('role', response.role);
-        console.log('username', response.username);
         console.log('token_JWT ', response.token);
 
         localStorage.setItem('user_role', response.role);
