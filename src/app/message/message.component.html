@@ -592,9 +592,8 @@
                     accept="image/*"
                   />
                   <img
-                    *ngIf="imageUrl"
-                    [src]="imageUrl"
-                    alt="Immagine caricata"
+                    src="{{ !imageData ? message.cover : imageData }}"
+                    *ngIf="message.cover"
                   />
                 </ion-content>
               </ion-content>

@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 import { ModalController, Platform } from '@ionic/angular';
-import { DatabaseObject } from '../services/interfaces.service';
+import { DatabaseObject, ObjectCard } from '../services/interfaces.service';
 import { bodyAddObject } from '../services/data.service';
 import { baseURL } from '../enviroenment';
 import { PostRequest } from '../services/request.service';
@@ -21,32 +21,35 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageComponent {
-  imageData: SafeUrl | undefined;
-
   private platform = inject(Platform);
+
+  imageData: string | SafeUrl | undefined;
 
   constructor(
     private modalCtrl: ModalController,
     private sanitizer: DomSanitizer
   ) {
-    const base64Data = 'data:image/png;base64,YourBase64ImageDataHere';
-    this.imageData = this.sanitizer.bypassSecurityTrustUrl(base64Data);
+    //const base64Data = 'data:image/png;base64,YourBase64ImageDataHere';
+    //this.imageData = this.sanitizer.bypassSecurityTrustUrl(base64Data);
   }
 
   @Input() message?: DatabaseObject;
 
   bodyAddObject = bodyAddObject;
-
   user_role = localStorage.getItem('user_role');
-
-  imageUrl: string | ArrayBuffer | null = null;
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageUrl = reader.result;
+        const result = reader.result;
+        // Controlla se il risultato è una stringa e non è null
+        if (result !== undefined && typeof result === 'string') {
+          this.imageData = result; // Assegna solo se è una stringa
+        } else {
+          console.error('Il risultato non è una stringa:', result);
+        }
       };
       reader.readAsDataURL(file);
     }
