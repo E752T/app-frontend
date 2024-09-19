@@ -46,10 +46,11 @@ export class DataService {
   getUsername(): string {
     return this.username;
   }
-
-  setUsername(value: string): string {
-    return (this.username = value);
+  setUsername(username: string) {
+    this.username = username;
+    return this.username; // Restituisce l'username impostato
   }
+
 
   getUserRole(): string {
     return this.user_role;
