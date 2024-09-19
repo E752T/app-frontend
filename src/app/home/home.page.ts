@@ -7,6 +7,7 @@ import { MenuController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { ElementRef } from '@angular/core';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { DataService, today } from '../services/data.service';
 
 import {
   DatabaseObject,
@@ -14,20 +15,11 @@ import {
   Category,
   Publisher,
   Shopkeeper,
-  LoginObject,
   Provenance,
   GeographicalOrigin,
   Warehouse,
   TypeObject,
 } from '../services/interfaces.service';
-import {
-  today,
-  username,
-  token_JWT_success,
-  token_JWT,
-  user_role,
-  body_login,
-} from '../services/data.service';
 
 import { baseURL } from '../enviroenment';
 import { Router } from '@angular/router';
@@ -41,12 +33,11 @@ export class HomePage implements OnInit {
   [x: string]: any;
   $event: any;
 
-  username = localStorage.getItem('username');
-  token_JWT_success: string = token_JWT_success;
-  token_JWT: string = token_JWT;
-  user_role: string | null = localStorage.getItem('user_role');
-
-  body_login = body_login;
+  // username = localStorage.getItem('username');
+  // token_JWT_success: string = token_JWT_success;
+  // token_JWT: string = token_JWT;
+  // body_login = body_login;
+  // user_role: string | null = localStorage.getItem('user_role');
 
   availability: string = 'tutti'; // initial aviability filter checkbox
   searchInput: string | undefined | null = ''; // initial search input
@@ -58,12 +49,35 @@ export class HomePage implements OnInit {
     this.toggleMenu();
   }
 
+  public token_JWT: string;
+  public user_role: string;
+  public username: string;
+  public token_JWT_success: boolean;
+  public body_login: {
+    shopkeeper: string | null;
+    email: string | null;
+    password: string | null;
+    username: string | null;
+  } = {
+    shopkeeper: '',
+    email: '',
+    password: '',
+    username: '',
+  };
+
   constructor(
     private http: HttpClient,
     private modalCtrl: ModalController,
     private menuCtrl: MenuController,
-    private router: Router
-  ) {}
+    private router: Router,
+    private dataService: DataService
+  ) {
+    this.token_JWT = this.dataService.getToken_JWT();
+    this.user_role = this.dataService.getUserRole();
+    this.username = this.dataService.getUsername();
+    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+    this.body_login = this.dataService.getBodyLogin();
+  }
 
   imageUrl: string | ArrayBuffer | null = null;
 
