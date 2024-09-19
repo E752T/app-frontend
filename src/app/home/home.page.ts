@@ -74,7 +74,7 @@ export class HomePage implements OnInit {
   ) {
     this.token_JWT = this.dataService.getToken_JWT();
     this.user_role = this.dataService.getUserRole();
-    this.username = this.dataService.username;
+    this.username = this.dataService.getUsername();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }

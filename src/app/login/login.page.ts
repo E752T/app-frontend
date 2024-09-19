@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
   ) {
     this.token_JWT = this.dataService.getToken_JWT();
     this.user_role = this.dataService.getUserRole();
-    this.username = this.dataService.username;
+    this.username = this.dataService.getUsername();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
@@ -115,9 +115,9 @@ export class LoginPage implements OnInit {
       if (response && response.token) {
         this.token_JWT = response.token;
         this.user_role = response.role;
-        this.dataService.username = response.username; // Imposta l'username
+        this.dataService.setUsername(response.username);
 
-        console.log('username', this.dataService.username);
+        console.log('username', this.dataService.getUsername());
         console.log('role', response.role);
         console.log('token_JWT ', response.token);
 

@@ -19,8 +19,7 @@ import { Injectable } from '@angular/core';
 
 // data.service.ts
 export class DataService {
-  private _username: string | null = null;
-
+  private username: string | null = null;
   private token_JWT: string;
   private token_JWT_success: boolean;
   private user_role: string;
@@ -45,13 +44,13 @@ export class DataService {
   }
 
   // Getter per username
-  public get username(): string | null {
-    return this._username;
+  public getUsername(): string | null {
+    return this.username;
   }
 
   // Setter per username
-  public set username(value: string | null) {
-    this._username = value;
+  public setUsername(value: string | null) {
+    this.username = value;
   }
 
   getUserRole(): string {
