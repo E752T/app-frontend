@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { PostRequest } from '../services/request.service';
-import { body_login, user_role } from '../services/data.service';
 import { baseURL } from '../enviroenment';
 import { Router } from '@angular/router';
-import { username } from '../services/data.service';
+import { DataService } from '../services/data.service';
+import { LoginObject } from '../services/interfaces.service';
 
 @Component({
   selector: 'app-login',
@@ -14,15 +14,7 @@ import { username } from '../services/data.service';
 export class LoginPage implements OnInit {
   public errorMessage: string | undefined;
 
-  body_login = body_login;
-
-  // USER
-  user_role = user_role;
-  username = username;
-
   // JWT
-  token_JWT: string = '';
-  token_JWT_success: boolean = false;
   minimal_len_token: number = 50;
 
   // body_login: LoginObject = {
@@ -36,10 +28,33 @@ export class LoginPage implements OnInit {
   toggle_remember_me: boolean = false;
   alertButtons = ['OK'];
 
+  public token_JWT: string;
+  public user_role: string;
+  public username: string;
+  public token_JWT_success: boolean;
+  public body_login: {
+    shopkeeper: string | null;
+    email: string | null;
+    password: string | null;
+    username: string | null;
+  } = {
+    shopkeeper: '',
+    email: '',
+    password: '',
+    username: '',
+  };
+
   constructor(
     private loadingController: LoadingController,
-    private router: Router
-  ) {}
+    private router: Router,
+    private dataService: DataService
+  ) {
+    this.token_JWT = this.dataService.getToken_JWT();
+    this.user_role = this.dataService.getUserRole();
+    this.username = this.dataService.getUsername();
+    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+    this.body_login = this.dataService.getBodyLogin();
+  }
 
   ngOnInit() {
     localStorage.setItem('token_JWT', '');
@@ -50,15 +65,15 @@ export class LoginPage implements OnInit {
     if (this.toggle_remember_me == true) {
       console.log('ricordami le credenziali ', this.toggle_remember_me);
 
-      localStorage.setItem('shopkeeper', String(body_login.shopkeeper));
-      localStorage.setItem('email', String(body_login.email));
-      localStorage.setItem('password', String(body_login.password));
-      localStorage.setItem('username', String(body_login.username));
+      localStorage.setItem('shopkeeper', String(this.body_login.shopkeeper));
+      localStorage.setItem('email', String(this.body_login.email));
+      localStorage.setItem('password', String(this.body_login.password));
+      localStorage.setItem('username', String(this.body_login.username));
     } else {
-      body_login.email = '';
-      body_login.password = '';
-      body_login.username = '';
-      body_login.shopkeeper = '';
+      this.body_login.email = '';
+      this.body_login.password = '';
+      this.body_login.username = '';
+      this.body_login.shopkeeper = '';
 
       localStorage.setItem('shopkeeper', '');
       localStorage.setItem('email', '');
@@ -96,13 +111,13 @@ export class LoginPage implements OnInit {
 
   async confirmLogin() {
     try {
-      const response = await PostRequest(baseURL + 'Login/', body_login);
+      const response = await PostRequest(baseURL + 'Login/', this.body_login);
       if (response && response.token) {
         this.token_JWT = response.token;
         this.user_role = response.role;
         this.username = response.username;
 
-        console.log('message', response.role);
+        console.log('role', response.role);
         console.log('username', response.username);
         console.log('token_JWT ', response.token);
 
@@ -132,7 +147,7 @@ export class LoginPage implements OnInit {
         this.errorMessage = 'Login fallito. Controlla le credenziali.';
       }
 
-      console.log("Ruolo dell' utente ", user_role);
+      console.log("Ruolo dell' utente ", this.user_role);
     } catch (error) {
       console.error('An error occurred during login: ', error);
       this.token_JWT_success = false;
@@ -147,17 +162,17 @@ export class LoginPage implements OnInit {
     if (this.toggle_remember_me == true) {
       console.log('SAVE login credentials');
 
-      localStorage.setItem('shopkeeper', String(body_login.shopkeeper));
-      localStorage.setItem('username', String(body_login.username));
-      localStorage.setItem('password', String(body_login.password));
-      localStorage.setItem('email', String(body_login.email));
+      localStorage.setItem('shopkeeper', String(this.body_login.shopkeeper));
+      localStorage.setItem('username', String(this.body_login.username));
+      localStorage.setItem('password', String(this.body_login.password));
+      localStorage.setItem('email', String(this.body_login.email));
     } else {
       console.log('NOT SAVE login credentials');
 
-      body_login.shopkeeper = '';
-      body_login.username = '';
-      body_login.password = '';
-      body_login.email = '';
+      this.body_login.shopkeeper = '';
+      this.body_login.username = '';
+      this.body_login.password = '';
+      this.body_login.email = '';
 
       localStorage.setItem('shopkeeper', '');
       localStorage.setItem('username', '');
@@ -178,6 +193,6 @@ export class LoginPage implements OnInit {
     this.resetLoginForm();
     this.token_JWT_success = false;
     this.user_role = '';
-    this.modalCtrl.dismiss(body_login, 'confirm');
+    this.modalCtrl.dismiss(this.body_login, 'confirm');
   }
 }

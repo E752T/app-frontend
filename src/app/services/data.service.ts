@@ -11,16 +11,66 @@ import {
 } from '../services/interfaces.service';
 import { LoginObject } from '../services/interfaces.service';
 
-// USER TOKENS
-export let token_JWT_success: string = 'false';
-export let token_JWT: string = '';
-export let username: string = '';
-export let user_role: string | null = localStorage.getItem('user_role');
+// data.service.ts
+export class DataService {
+  private username: string;
+  private token_JWT: string;
+  private token_JWT_success: boolean;
+  private user_role: string;
+  private body_login: {
+    email: string;
+    password: string;
+    shopkeeper: string;
+    username: string;
+  };
+
+  constructor() {
+    this.username = 'test';
+    this.token_JWT = '';
+    this.token_JWT_success = false;
+    this.user_role = 'utente';
+    this.body_login = {
+      shopkeeper: '',
+      email: '',
+      password: '',
+      username: '',
+    };
+  }
+
+  getUsername(): string {
+    return this.username;
+  }
+
+  getToken_JWT(): string {
+    return this.token_JWT;
+  }
+
+  getUserRole(): string {
+    return this.token_JWT;
+  }
+
+  getTokenJWTsuccess(): boolean {
+    return this.token_JWT_success;
+  }
+
+  getBodyLogin(): LoginObject {
+    return this.body_login;
+  }
+}
+
+export let body_login: LoginObject = {
+  shopkeeper: localStorage.getItem('shopkeeper'),
+  email: localStorage.getItem('email'),
+  password: localStorage.getItem('password'),
+  username: localStorage.getItem('username'),
+};
 
 export const today: Date = new Date();
 
 import { DatePipe } from '@angular/common';
+
 const datePipe = new DatePipe('en-US');
+
 let formattedDate = datePipe.transform(today, 'yyyy-MM-dd');
 
 export let messageDismissModal: string = '';
@@ -32,13 +82,6 @@ export const filterButtons = ['OK'];
 export const isOpen: boolean = false;
 
 //---------------- DATABASE INITIALIZATION ----------------
-
-export let body_login: LoginObject = {
-  shopkeeper: localStorage.getItem('shopkeeper'),
-  email: localStorage.getItem('email'),
-  password: localStorage.getItem('password'),
-  username: localStorage.getItem('username'),
-};
 
 export let bodyModifyObject: DatabaseObject = {
   objectID: 1,
@@ -255,3 +298,5 @@ export let bodyAddAuthor: Author = {
   telephone2: '',
   notes: '',
 };
+export { LoginObject };
+
