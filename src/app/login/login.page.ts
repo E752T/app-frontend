@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
 
   public token_JWT: string;
   public user_role: string;
-  public username: string;
+  public username: string | null;
   public token_JWT_success: boolean;
   public body_login: {
     shopkeeper: string | null;
@@ -51,7 +51,7 @@ export class LoginPage implements OnInit {
   ) {
     this.token_JWT = this.dataService.getToken_JWT();
     this.user_role = this.dataService.getUserRole();
-    this.username = this.dataService.getUsername();
+    this.username = this.dataService.username;
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
@@ -115,7 +115,7 @@ export class LoginPage implements OnInit {
       if (response && response.token) {
         this.token_JWT = response.token;
         this.user_role = response.role;
-        this.username = this.dataService.setUsername(response.username); // Imposta l'username
+        this.dataService.username = response.username; // Imposta l'username
 
         console.log('username', this.username);
         console.log('role', response.role);

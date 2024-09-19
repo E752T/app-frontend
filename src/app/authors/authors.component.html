@@ -11,7 +11,7 @@
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome">{{ author.name }} </ion-label>
             <ion-button
-              *ngIf="user_role == 'admin'"
+              *ngIf="user_role === 'admin'"
               id="modale-elimina-autore-'{{ author.authorID }}'"
               color="danger"
             >
@@ -35,7 +35,7 @@
             </ion-label>
 
             <ion-input
-              *ngIf="user_role == 'admin'"
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="author.name"
               id="{{ body_update_author.name }}"
@@ -44,7 +44,7 @@
             </ion-input>
 
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ author.name }}
             </ion-text>
@@ -82,7 +82,7 @@
               Descrizione:
             </ion-label>
             <ion-input
-              *ngIf="user_role == 'admin'"
+              *ngIf="user_role === 'admin'"
               class="input-form"
               [(ngModel)]="author.description"
               id="{{ body_update_author.description }}"
@@ -91,7 +91,7 @@
             </ion-input>
 
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ author.description }}
             </ion-text>
@@ -118,7 +118,7 @@
 
             <div class="div-svg-input">
               <ion-input
-                *ngIf="user_role == 'admin'"
+                *ngIf="user_role === 'admin'"
                 class="input-form"
                 type="email"
                 [(ngModel)]="author.email"
@@ -128,7 +128,7 @@
               </ion-input>
 
               <ion-text
-                *ngIf="user_role != 'admin'"
+                *ngIf="user_role !== 'admin'"
                 class="input-form input-form-text"
                 >{{ author.email }}
               </ion-text>
@@ -154,7 +154,7 @@
 
             <div class="div-svg-input">
               <ion-input
-                *ngIf="user_role == 'admin'"
+                *ngIf="user_role === 'admin'"
                 class="input-form"
                 type="tel"
                 [(ngModel)]="author.telephone1"
@@ -164,7 +164,7 @@
               </ion-input>
 
               <ion-text
-                *ngIf="user_role != 'admin'"
+                *ngIf="user_role !== 'admin'"
                 class="input-form input-form-text"
                 >{{ author.telephone1 }}
               </ion-text>
@@ -189,7 +189,7 @@
             </ion-label>
 
             <ion-input
-              *ngIf="user_role == 'admin'"
+              *ngIf="user_role === 'admin'"
               class="input-form"
               type="tel"
               [(ngModel)]="author.telephone2"
@@ -199,7 +199,7 @@
             </ion-input>
 
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ author.telephone2 }}
             </ion-text>
@@ -323,7 +323,7 @@
             >
           </div>
 
-          <div slot="content" *ngIf="user_role == 'admin'">
+          <div slot="content" *ngIf="user_role === 'admin'">
             <ion-button
               color="secondary"
               class="bottone-update"
