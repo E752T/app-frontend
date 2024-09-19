@@ -11,6 +11,12 @@ import {
 } from '../services/interfaces.service';
 import { LoginObject } from '../services/interfaces.service';
 
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root', // Questo rende il servizio disponibile in tutta l'app
+})
+
 // data.service.ts
 export class DataService {
   private username: string;
@@ -299,4 +305,3 @@ export let bodyAddAuthor: Author = {
   notes: '',
 };
 export { LoginObject };
-

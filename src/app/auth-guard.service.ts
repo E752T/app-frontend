@@ -6,13 +6,17 @@ import {
   UrlTree,
   Router,
 } from '@angular/router';
-import { token_JWT_success } from './services/data.service';
+import { DataService } from './services/data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+  public token_JWT_success: boolean;
+
+  constructor(private router: Router, private dataService: DataService) {
+    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+  }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -26,7 +30,7 @@ export class AuthGuard implements CanActivate {
       console.log('token_JWT_success = ', result_JWT);
       return true;
     } else {
-      console.log('token_JWT_success = ', token_JWT_success);
+      console.log('token_JWT_success = ', this.token_JWT_success);
       alert('ACCESS DENIED');
       this.router.navigate(['/login']);
       return false;
