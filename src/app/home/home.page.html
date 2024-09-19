@@ -90,18 +90,12 @@
               [(ngModel)]="searchGeneres"
               color="primary"
             >
-              <ion-select-option value="Romanzo">Romanzi</ion-select-option>
-              <ion-select-option value="Avventura">Avventura</ion-select-option>
-              <ion-select-option value="SciFi">SciFi</ion-select-option>
-              <ion-select-option value="Fantasy">Fantasy</ion-select-option>
-              <ion-select-option value="Giallo">Gialli</ion-select-option>
-              <ion-select-option value="Manuale">Manuali</ion-select-option>
-              <ion-select-option value="Viaggio">Viaggi</ion-select-option>
-              <ion-select-option value="Rosa">Rosa</ion-select-option>
-              <ion-select-option value="Biografia">Biografie</ion-select-option>
-              <ion-select-option value="Spirituale"
-                >Spiritualità</ion-select-option
+              <ion-select-option
+                *ngFor="let genere of allCategories"
+                [value]="genere.name"
               >
+                {{ genere.name }}
+              </ion-select-option>
             </ion-select>
           </ion-item>
         </ion-list>
@@ -653,22 +647,12 @@
                   [(ngModel)]="searchGeneres"
                   color="primary"
                 >
-                  <ion-select-option value="Romanzo">Romanzi</ion-select-option>
-                  <ion-select-option value="Avventura"
-                    >Avventura</ion-select-option
+                  <ion-select-option
+                    *ngFor="let genere of allCategories"
+                    [value]="genere.name"
                   >
-                  <ion-select-option value="SciFi">SciFi</ion-select-option>
-                  <ion-select-option value="Fantasy">Fantasy</ion-select-option>
-                  <ion-select-option value="Giallo">Gialli</ion-select-option>
-                  <ion-select-option value="Manuale">Manuali</ion-select-option>
-                  <ion-select-option value="Viaggio">Viaggi</ion-select-option>
-                  <ion-select-option value="Rosa">Rosa</ion-select-option>
-                  <ion-select-option value="Biografia"
-                    >Biografie</ion-select-option
-                  >
-                  <ion-select-option value="Spirituale"
-                    >Spiritualità</ion-select-option
-                  >
+                    {{ genere.name }}
+                  </ion-select-option>
                 </ion-select>
               </ion-item>
             </ion-list>
