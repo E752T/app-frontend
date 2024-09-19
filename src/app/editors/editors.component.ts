@@ -42,6 +42,7 @@ export class EditorsComponent {
   modal!: IonModal;
 
   user_role = localStorage.getItem('user_role');
+  username = localStorage.getItem('username');
 
 
   body_add_publisher: Publisher = {

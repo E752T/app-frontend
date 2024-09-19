@@ -178,18 +178,23 @@
         <ion-title color="dark" class="titolo-filtri-ricerca margin-bottom">
           Filtri di Ricerca
         </ion-title>
-        <ion-text class="testo-anno-di-pubblicazione">
-          Anno di pubblicazione
-        </ion-text>
+        <p></p>
+
+        <div class="margin-top center">
+          <ion-text
+            class="testo-anno-di-pubblicazione"
+            style="margin-left: 3rem"
+          >
+            Anno di pubblicazione
+          </ion-text>
+        </div>
 
         <div class="centered margin-top">
           <small>
-            <p class="label-anni numero-anno-di-pubblicazione">1800</p>
+            <p class="label-anni">1800</p>
           </small>
           <small>
-            <p class="label-anni numero-anno-di-pubblicazione" style="right: 0">
-              2024
-            </p>
+            <p classe="margine-destro-etichetta" class="label-anni">2024</p>
           </small>
 
           <ion-range
@@ -208,7 +213,7 @@
 
         <ion-button
           *ngIf="sectionToShow.includes('Author')"
-          class="menu-button-custom"
+          class="menu-button-custom bottone-assistenza"
           type="text"
           ngDefaultControl
           (click)="getAuthors(searchInput)"
@@ -219,7 +224,7 @@
 
         <ion-button
           *ngIf="sectionToShow.includes('Publisher')"
-          class="menu-button-custom"
+          class="menu-button-custom bottone-assistenza"
           type="text"
           ngDefaultControl
           (click)="getPublishers(searchInput)"
@@ -230,7 +235,7 @@
 
         <ion-button
           *ngIf="sectionToShow.includes('Category')"
-          class="menu-button-custom"
+          class="menu-button-custom bottone-assistenza"
           type="text"
           ngDefaultControl
           (click)="getCategories(searchInput)"
@@ -241,7 +246,7 @@
 
         <ion-button
           *ngIf="sectionToShow.includes('Shopkeeper')"
-          class="menu-button-custom"
+          class="menu-button-custom bottone-assistenza"
           type="text"
           ngDefaultControl
           (click)="getShopkeepers(searchInput)"
@@ -252,7 +257,7 @@
 
         <ion-button
           *ngIf="sectionToShow.includes('Warehouse')"
-          class="menu-button-custom"
+          class="menu-button-custom bottone-assistenza"
           type="text"
           ngDefaultControl
           (click)="getWarehouses(searchInput)"
@@ -263,7 +268,7 @@
 
         <ion-button
           *ngIf="sectionToShow.includes('Provenance')"
-          class="menu-button-custom"
+          class="menu-button-custom bottone-assistenza"
           type="text"
           ngDefaultControl
           (click)="getProvenances(searchInput)"
@@ -274,7 +279,7 @@
 
         <ion-button
           *ngIf="sectionToShow.includes('TypeObject')"
-          class="menu-button-custom"
+          class="menu-button-custom bottone-assistenza"
           type="text"
           ngDefaultControl
           (click)="getTypeObjects(searchInput)"
@@ -285,7 +290,7 @@
 
         <ion-button
           *ngIf="sectionToShow.includes('GeographicalOrigin')"
-          class="menu-button-custom"
+          class="menu-button-custom bottone-assistenza"
           type="text"
           ngDefaultControl
           (click)="getGeographicalOrigins(searchInput)"
@@ -437,16 +442,14 @@
         <ng-template class="template-angular">
           <ion-header>
             <ion-toolbar>
-              <ion-title
-                class="centrato titolo-modale-centrato"
-                color="secondary"
-                classe="titolo-modale-centrato"
-                >Configurazione Account</ion-title
-              >
-
               <ion-buttons slot="start">
+                <ion-title class="centrato" color="secondary"
+                  >Configurazione Account</ion-title
+                >
+              </ion-buttons>
+              <ion-buttons slot="end">
                 <ion-button (click)="cancel()">
-                  <ion-icon name="arrow-undo-outline"></ion-icon>
+                  <ion-icon name="close-outline"></ion-icon>
                 </ion-button>
               </ion-buttons>
             </ion-toolbar>
@@ -666,8 +669,11 @@
               </ion-item>
             </ion-list>
             <p></p>
-            <div style="text-align: center; margin-top: -20px">
-              <ion-text class="testo-anno-di-pubblicazione">
+            <div class="margin-top center">
+              <ion-text
+                class="testo-anno-di-pubblicazione"
+                style="margin-left: 3rem"
+              >
                 Anno di pubblicazione
               </ion-text>
             </div>
@@ -742,9 +748,13 @@
             >
               Filtri di Ricerca
             </ion-title>
+            <p></p>
 
-            <div style="text-align: center">
-              <ion-text class="testo-anno-di-pubblicazione">
+            <div class="margin-top center">
+              <ion-text
+                class="testo-anno-di-pubblicazione"
+                style="margin-left: 3rem"
+              >
                 Anno di pubblicazione
               </ion-text>
             </div>
@@ -752,11 +762,9 @@
               <small>
                 <p class="label-anni">1800</p>
               </small>
-              <div class="spacer"></div>
               <small>
                 <p classe="margine-destro-etichetta" class="label-anni">2024</p>
               </small>
-
               <ion-range
                 class="ion-range-margin"
                 aria-label="Dual Knobs Range"
@@ -1013,17 +1021,18 @@
             <ng-template class="template-angular">
               <ion-header>
                 <ion-toolbar>
-                  <ion-title
-                    class="centrato titolo-modale-centrato"
-                    color="secondary"
-                    >Configurazione Account</ion-title
-                  >
 
                   <ion-buttons slot="start">
+                    <ion-title class="centrato" color="secondary"
+                      >Configurazione Account</ion-title
+                    >
+                  </ion-buttons>
+                  <ion-buttons slot="end">
                     <ion-button (click)="cancel()">
-                      <ion-icon name="arrow-undo-outline"></ion-icon>
+                      <ion-icon name="close-outline"></ion-icon>
                     </ion-button>
                   </ion-buttons>
+
                 </ion-toolbar>
               </ion-header>
               <ion-content>

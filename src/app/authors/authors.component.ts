@@ -24,10 +24,11 @@ import { baseURL } from '../enviroenment';
 export class AuthorsComponent {
   private platform = inject(Platform);
 
-  public token_JWT: string;
-  public user_role: string;
-  public username: string | null;
-  public token_JWT_success: boolean;
+  // public token_JWT: string;
+  // public user_role: string;
+  // public username: string | null;
+  // public token_JWT_success: boolean;
+
   public body_login: {
     shopkeeper: string | null;
     email: string | null;
@@ -44,13 +45,15 @@ export class AuthorsComponent {
     private modalCtrl: ModalController,
     private dataService: DataService
   ) {
-    this.token_JWT = this.dataService.getToken_JWT();
-    this.user_role = this.dataService.getUserRole();
-    this.username = this.dataService.getUsername();
-    console.log('authors ', this.username);
-    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
-    this.body_login = this.dataService.getBodyLogin();
+    // this.username = this.dataService.getUsername();
+    // this.token_JWT = this.dataService.getToken_JWT();
+    // this.user_role = this.dataService.getUserRole();
+    // this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+    // this.body_login = this.dataService.getBodyLogin();
   }
+
+  user_role = localStorage.getItem('user_role');
+  username = localStorage.getItem('username');
 
   @Input()
   author!: Author;
