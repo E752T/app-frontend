@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { PostRequest } from '../services/request.service';
-import { body_login, user_role } from '../services/data.service';
+import { body_login } from '../services/data.service';
 import { baseURL } from '../enviroenment';
 import { Router } from '@angular/router';
-import { username } from '../services/data.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +16,7 @@ export class LoginPage implements OnInit {
 
   body_login = body_login;
 
-  // USER
-  user_role = user_role;
-  username = username;
-
   // JWT
-  token_JWT: string = '';
-  token_JWT_success: boolean = false;
   minimal_len_token: number = 50;
 
   // body_login: LoginObject = {
@@ -36,10 +30,21 @@ export class LoginPage implements OnInit {
   toggle_remember_me: boolean = false;
   alertButtons = ['OK'];
 
+  public token_JWT: string;
+  public user_role: string;
+  public username: string;
+  public token_JWT_success: boolean;
+
   constructor(
     private loadingController: LoadingController,
-    private router: Router
-  ) {}
+    private router: Router,
+    private dataService: DataService
+  ) {
+    this.token_JWT = this.dataService.getToken_JWT();
+    this.user_role = this.dataService.getUserRole();
+    this.username = this.dataService.getUsername();
+    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+  }
 
   ngOnInit() {
     localStorage.setItem('token_JWT', '');
@@ -102,7 +107,7 @@ export class LoginPage implements OnInit {
         this.user_role = response.role;
         this.username = response.username;
 
-        console.log('message', response.role);
+        console.log('role', response.role);
         console.log('username', response.username);
         console.log('token_JWT ', response.token);
 
@@ -132,7 +137,7 @@ export class LoginPage implements OnInit {
         this.errorMessage = 'Login fallito. Controlla le credenziali.';
       }
 
-      console.log("Ruolo dell' utente ", user_role);
+      console.log("Ruolo dell' utente ", this.user_role);
     } catch (error) {
       console.error('An error occurred during login: ', error);
       this.token_JWT_success = false;
