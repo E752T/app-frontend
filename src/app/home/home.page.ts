@@ -51,7 +51,7 @@ export class HomePage implements OnInit {
 
   public token_JWT: string;
   public user_role: string;
-  public username: string;
+  public username: string | null;
   public token_JWT_success: boolean;
   public body_login: {
     shopkeeper: string | null;
@@ -74,7 +74,7 @@ export class HomePage implements OnInit {
   ) {
     this.token_JWT = this.dataService.getToken_JWT();
     this.user_role = this.dataService.getUserRole();
-    this.username = this.dataService.getUsername();
+    this.username = this.dataService.username;
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
