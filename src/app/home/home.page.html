@@ -1145,7 +1145,7 @@
         </div>
       </ion-col>
 
-      <ion-grid *ngIf="sectionToShow === 'Store'" class="griglia-store">
+      <ion-grid *ngIf="sectionToShow === 'Store'" class="griglia-store-base">
         <ion-col
           #grigliaElementi
           [size]="sizeColumnFilter"
@@ -1926,7 +1926,7 @@
             </ng-template>
           </ion-modal>
           <ion-row>
-            <ion-col>
+            <ion-col style="width: 95vw">
               <app-authors
                 class="carta-elemento"
                 *ngFor="let element of filteredAuthors"
