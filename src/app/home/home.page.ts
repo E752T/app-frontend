@@ -47,6 +47,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.getScreenSize();
     this.toggleMenu();
+    
   }
 
   public token_JWT: string | null;

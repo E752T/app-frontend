@@ -13,6 +13,7 @@ import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core/components';
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-message',
@@ -27,10 +28,15 @@ export class MessageComponent {
 
   constructor(
     private modalCtrl: ModalController,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {
     //const base64Data = 'data:image/png;base64,YourBase64ImageDataHere';
     //this.imageData = this.sanitizer.bypassSecurityTrustUrl(base64Data);
+  }
+
+  navigateToDetails(id: number) {
+    this.router.navigate(['/details', id]);
   }
 
   @Input() message?: DatabaseObject;
