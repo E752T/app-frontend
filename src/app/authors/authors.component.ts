@@ -41,7 +41,6 @@ export class AuthorsComponent {
     username: '',
   };
 
-
   constructor(
     private modalCtrl: ModalController,
     private dataService: DataService
@@ -52,7 +51,6 @@ export class AuthorsComponent {
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
-
 
   @Input()
   author!: Author;
