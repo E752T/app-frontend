@@ -1,31 +1,12 @@
-.oggetto-anteprima {
-  border-radius: 104px 104px 104px 104px;
-  -webkit-border-radius: 104px 104px 104px 104px;
-  -moz-border-radius: 104px 104px 104px 104px;
-}
-
-.bottone-update {
-  padding-right: 3%;
-}
-
-.testo-conferma-elimina {
-  margin-bottom: 50%;
-  font-family: serif;
-}
-
-.label-autori {
-  font-weight: bold;
-  padding-bottom: 2%;
-  display: ruby;
-}
-
-.icone-autori {
-  width: 20px;
-  height: 20px;
-  margin-bottom: -4px;
+.sidebar {
+  will-change: auto;
 }
 
 .input-form {
+  background-color: rgb(255, 255, 255);
+  margin-top: 10px;
+  box-sizing: border-box;
+  border-radius: 5%;
   margin-left: 11px;
   display: flex !important;
   align-content: center !important;
@@ -48,6 +29,12 @@
   margin-top: -50px;
 }
 
+.icone-autori {
+  width: 20px;
+  height: 20px;
+  margin-bottom: -4px;
+}
+
 .accordion-oggetto {
   padding-right: 10px;
   padding-left: 10px;
@@ -58,7 +45,12 @@
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-.toast-elemento-eliminato {
+.testo-conferma-elimina {
+  margin-bottom: 100%;
+  font-family: serif;
+}
+
+.toast-elemento {
   max-width: 250px;
   margin-left: 40%;
   margin-right: 40%;
@@ -74,6 +66,7 @@
   padding: 10px; /* Adds some padding for better appearance */
   box-sizing: border-box; /* Ensures padding is included in the width */
 }
+
 .input-form-text {
   margin-top: 1rem;
   margin-bottom: 1rem;
