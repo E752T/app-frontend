@@ -21,7 +21,6 @@ export class LoginPage {
   public toggle_remember_me: boolean = false;
   public errorMessage: string | undefined;
   private minimal_len_token: number = 50; // JWT
-  private token_JWT_success: boolean = false;
 
   modalCtrl: any;
 
@@ -50,20 +49,17 @@ export class LoginPage {
       password: '',
       username: '',
     };
-    localStorage.setItem('shopkeeper', '');
-    localStorage.setItem('email', '');
-    localStorage.setItem('password', '');
-    localStorage.setItem('username', '');
+    this.dataService.setUsername('');
+    this.dataService.setUserRole('');
+    this.dataService.setTokenJWT('');
+    this.dataService.setBodyLogin({});
   }
 
   checkToken(token: string): boolean {
+    // filtro del token
     if (token.length > this.minimal_len_token) {
-      this.token_JWT_success = true;
-      localStorage.setItem('token_JWT', token);
-      localStorage.setItem('token_JWT_success', String(this.token_JWT_success));
       this.router.navigate(['/']); // Reindirizza alla home
-      console.log('Login success | Token valido, accesso ad Home');
-      console.log('Token |', token);
+      console.log('Login success | Accesso ad Home | Token |', token);
       return true;
     }
     return false;
@@ -93,7 +89,10 @@ export class LoginPage {
       this.errorMessage = 'Si è verificato un errore durante il login.';
     } finally {
       this.resetLoginForm();
-      console.log('Accesso eseguito -> ', this.token_JWT_success);
+      console.log(
+        'Accesso eseguito -> ',
+        this.dataService.getTokenJWTsuccess()
+      );
     }
   }
 
@@ -114,7 +113,7 @@ export class LoginPage {
     if (this.checkToken(response.token)) {
       this.showToast('Accesso Eseguito', 'success');
       console.log('Login success | Navigazione eseguita');
-      this.token_JWT_success = true;
+      this.dataService.setTokenJWTsuccess(true);
     } else {
       this.showToast('Token non valido', 'error');
       console.log('Login fallito | Token non definito o non valido');
@@ -123,7 +122,7 @@ export class LoginPage {
 
   private handleFailedLogin() {
     console.warn('Login fallito: Nessuna stringa valida ricevuta.');
-    this.token_JWT_success = false;
+    this.dataService.setTokenJWTsuccess(false);
     this.errorMessage = 'Login fallito. Controlla le credenziali.';
   }
 
@@ -149,8 +148,12 @@ export class LoginPage {
   exit_login() {
     this.rememberMe();
     this.resetLoginForm();
-    this.token_JWT_success = false;
+    this.dataService.setBodyLogin('');
+    this.dataService.setTokenJWT('');
+    this.dataService.setTokenJWTsuccess(false);
     this.dataService.setUserRole('');
+    this.dataService.setUsername('');
+
     this.modalCtrl.dismiss(this.body_login, 'confirm');
   }
 }

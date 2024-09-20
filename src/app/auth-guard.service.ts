@@ -15,7 +15,6 @@ import { ModalController } from '@ionic/angular';
 export class AuthGuard implements CanActivate {
   public token_JWT: string | null;
   public user_role: string | null;
-  public token_JWT_success: boolean | null;
   public username: string | null = localStorage.getItem('username');
 
   public body_login: {
@@ -38,7 +37,6 @@ export class AuthGuard implements CanActivate {
     this.token_JWT = this.dataService.getTokenJWT();
     this.user_role = this.dataService.getUserRole();
     this.username = this.dataService.getUsername();
-    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
 
@@ -46,15 +44,17 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const result_JWT = localStorage.getItem('token_JWT_success');
-    console.log('canActivate token ', result_JWT);
+    console.log('canActivate token ', this.dataService.getTokenJWTsuccess());
 
-    if (result_JWT == 'true') {
+    if (this.dataService.getTokenJWTsuccess()) {
       // Modificato per confrontare con un booleano
-      console.log('token_JWT_success = ', result_JWT);
+      console.log('accesso eseguito');
       return true;
     } else {
-      console.log('token_JWT_success = ', this.token_JWT_success);
+      console.log(
+        'accesso fallito | token_JWT_success = ',
+        this.dataService.getTokenJWTsuccess()
+      );
       alert('ACCESS DENIED');
       this.router.navigate(['/login']);
       return false;
