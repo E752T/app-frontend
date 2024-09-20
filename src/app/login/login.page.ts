@@ -29,31 +29,33 @@ export class LoginPage {
     private loadingController: LoadingController,
     private router: Router,
     private dataService: DataService
-  ) {}
+  ) {
+    this.loadCredentials();
+  }
+
+  private loadCredentials() {
+    if (localStorage.getItem('shopkeeper')) {
+      this.body_login.shopkeeper = localStorage.getItem('shopkeeper')!;
+    }
+    if (localStorage.getItem('email')) {
+      this.body_login.email = localStorage.getItem('email')!;
+    }
+    if (localStorage.getItem('password')) {
+      this.body_login.password = localStorage.getItem('password')!;
+    }
+    if (localStorage.getItem('username')) {
+      this.body_login.username = localStorage.getItem('username')!;
+    }
+  }
 
   rememberMe() {
     if (this.toggle_remember_me) {
-      console.log('Ricordami le credenziali', this.toggle_remember_me);
+      console.log('Ricordami le credenziali? ->', this.toggle_remember_me);
       localStorage.setItem('shopkeeper', this.body_login.shopkeeper);
       localStorage.setItem('email', this.body_login.email);
       localStorage.setItem('password', this.body_login.password);
       localStorage.setItem('username', this.body_login.username);
-    } else {
-      this.clearLoginData();
     }
-  }
-
-  private clearLoginData() {
-    this.body_login = {
-      shopkeeper: '',
-      email: '',
-      password: '',
-      username: '',
-    };
-    this.dataService.setUsername('');
-    this.dataService.setUserRole('');
-    this.dataService.setTokenJWT('');
-    this.dataService.setBodyLogin({});
   }
 
   checkToken(token: string): boolean {
@@ -89,7 +91,9 @@ export class LoginPage {
       console.error('Si è verificato un errore durante il login: ', error);
       this.errorMessage = 'Si è verificato un errore durante il login.';
     } finally {
-      this.resetLoginForm();
+      if (!this.toggle_remember_me) {
+        this.resetLoginForm();
+      }
       console.log(
         'Accesso eseguito -> ',
         this.dataService.getTokenJWTsuccess()
@@ -106,6 +110,9 @@ export class LoginPage {
     console.log('Username impostato:', this.dataService.getUsername());
 
     const parts = response.token ? response.token.split('.') : null;
+    if (this.toggle_remember_me) {
+      this.rememberMe();
+    }
 
     if (!parts || parts.length !== 3) {
       throw new Error('Token non valido');
@@ -134,7 +141,6 @@ export class LoginPage {
       password: '',
       username: '',
     };
-    this.toggle_remember_me = false;
   }
 
   getUserRole(): string {
@@ -147,9 +153,7 @@ export class LoginPage {
   }
 
   exit_login() {
-    if (this.toggle_remember_me) {
-      this.rememberMe();
-    } else {
+    if (this.toggle_remember_me == false) {
       this.resetLoginForm();
       this.dataService.setUserRole('');
     }
