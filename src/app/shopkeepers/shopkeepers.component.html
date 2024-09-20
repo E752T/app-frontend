@@ -85,7 +85,7 @@
             >
             </ion-input>
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ shopkeeper.uniqueName }}
             </ion-text>
@@ -130,7 +130,7 @@
             >
             </ion-input>
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ shopkeeper.description }}
             </ion-text>

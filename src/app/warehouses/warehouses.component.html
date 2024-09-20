@@ -80,7 +80,7 @@
             >
             </ion-input>
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ warehouse.name }}
             </ion-text>
@@ -125,7 +125,7 @@
             >
             </ion-input>
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ warehouse.description }}
             </ion-text>
@@ -176,7 +176,7 @@
               >
               </ion-input>
               <ion-text
-                *ngIf="user_role != 'admin'"
+                *ngIf="user_role !== 'admin'"
                 class="input-form input-form-text"
                 >{{ warehouse.email }}
               </ion-text>
@@ -226,7 +226,7 @@
               >
               </ion-input>
               <ion-text
-                *ngIf="user_role != 'admin'"
+                *ngIf="user_role !== 'admin'"
                 class="input-form input-form-text"
                 >{{ warehouse.telephone1 }}
               </ion-text>
@@ -274,7 +274,7 @@
             >
             </ion-input>
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ warehouse.telephone2 }}
             </ion-text>

@@ -103,7 +103,7 @@
             </ion-input>
 
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ category.name }}
             </ion-text>
@@ -132,7 +132,7 @@
             >
             </ion-input>
             <ion-text
-              *ngIf="user_role != 'admin'"
+              *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
               >{{ category.description }}
             </ion-text>
