@@ -49,9 +49,9 @@ export class HomePage implements OnInit {
     this.toggleMenu();
   }
 
-  public token_JWT: string;
-  public user_role: string;
-  public token_JWT_success: boolean;
+  public token_JWT: string | undefined;
+  public user_role: string | undefined;
+  public token_JWT_success: boolean | undefined;
   public username: string | null = localStorage.getItem('username');
 
   public body_login: {

@@ -20,9 +20,9 @@ import { Injectable } from '@angular/core';
 // data.service.ts
 export class DataService {
   private username: string | null = null;
-  private token_JWT: string;
-  private token_JWT_success: boolean;
-  private user_role: string;
+  private token_JWT: string | undefined;
+  private token_JWT_success: boolean | undefined;
+  private user_role: string | undefined;
   private body_login: {
     email: string;
     password: string;
@@ -51,15 +51,15 @@ export class DataService {
     return this.username;
   }
 
-  getUserRole(): string {
+  getUserRole(): string | undefined {
     return this.user_role;
   }
 
-  getToken_JWT(): string {
+  getToken_JWT(): string | undefined{
     return this.token_JWT;
   }
 
-  getTokenJWTsuccess(): boolean {
+  getTokenJWTsuccess(): boolean | undefined{
     return this.token_JWT_success;
   }
 

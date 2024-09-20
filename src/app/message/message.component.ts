@@ -47,6 +47,8 @@ export class MessageComponent {
         // Controlla se il risultato è una stringa e non è null
         if (result !== undefined && typeof result === 'string') {
           this.imageData = result; // Assegna solo se è una stringa
+
+          console.log('carica una immagine ---> ', file);
         } else {
           console.error('Il risultato non è una stringa:', result);
         }

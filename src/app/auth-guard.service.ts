@@ -12,7 +12,7 @@ import { DataService } from './services/data.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  public token_JWT_success: boolean;
+  public token_JWT_success: boolean | undefined;
 
   constructor(private router: Router, private dataService: DataService) {
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();

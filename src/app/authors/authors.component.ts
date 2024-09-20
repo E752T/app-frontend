@@ -40,10 +40,11 @@ export class AuthorsComponent {
     password: '',
     username: '',
   };
+
   username: string | null;
-  user_role: string;
-  token_JWT_success: boolean;
-  token_JWT: string;
+  user_role: string | undefined;
+  token_JWT_success: boolean | undefined;
+  token_JWT: string | undefined;
 
   constructor(
     private modalCtrl: ModalController,

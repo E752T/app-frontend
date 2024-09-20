@@ -567,7 +567,10 @@
         #menuAncora
         *ngIf="isMenuAnchored"
       >
-        <div class="card-object">
+        <div
+          class="card-object"
+          style="overflow-y: scroll; max-height: 55rem; scrollbar-width: 0rem"
+        >
           <ion-button
             *ngIf="screenSize === 'desktop'"
             class="align-right anchor-button colore-bianco"

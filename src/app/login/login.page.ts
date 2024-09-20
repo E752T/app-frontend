@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { PostRequest } from '../services/request.service';
 import { baseURL } from '../enviroenment';
@@ -11,12 +11,7 @@ import { LoginObject } from '../services/interfaces.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
-  public errorMessage: string | undefined;
-
-  // JWT
-  minimal_len_token: number = 50;
-
+export class LoginPage {
   // body_login: LoginObject = {
   //   shopkeeper: localStorage.getItem('shopkeeper'),
   //   email: localStorage.getItem('email'),
@@ -27,11 +22,13 @@ export class LoginPage implements OnInit {
   modalCtrl: any;
   toggle_remember_me: boolean = false;
   alertButtons = ['OK'];
+  public errorMessage: string | undefined;
+  minimal_len_token: number = 50; // JWT
 
-  public token_JWT: string;
-  public user_role: string;
+  public token_JWT: string | undefined;
+  public user_role: string | undefined;
   public username: string | null;
-  public token_JWT_success: boolean;
+  public token_JWT_success: boolean | undefined;
   public body_login: {
     shopkeeper: string | null;
     email: string | null;
@@ -49,16 +46,11 @@ export class LoginPage implements OnInit {
     private router: Router,
     private dataService: DataService
   ) {
-    this.token_JWT = this.dataService.getToken_JWT();
-    this.user_role = this.dataService.getUserRole();
     this.username = this.dataService.getUsername();
+    this.user_role = this.dataService.getUserRole();
+    this.token_JWT = this.dataService.getToken_JWT();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
-  }
-
-  ngOnInit() {
-    localStorage.setItem('token_JWT', '');
-    localStorage.setItem('token_JWT_success', '');
   }
 
   rememberMe() {
@@ -125,14 +117,18 @@ export class LoginPage implements OnInit {
         this.dataService.setUsername(response.username);
         console.log('Username impostato:', this.dataService.getUsername());
 
-        const parts = this.token_JWT.split('.');
-        if (parts.length !== 3) {
+        const parts = this.token_JWT ? this.token_JWT.split('.') : null;
+
+        if (!parts || parts.length !== 3) {
           throw new Error('Token non valido');
         }
 
-        if (this.checkToken(this.token_JWT)) {
+        if (this.token_JWT && this.checkToken(this.token_JWT)) {
           this.showToast('Accesso Eseguito', 'success');
           console.log('Login success | Navigazione eseguita');
+        } else {
+          this.showToast('Token non valido', 'error');
+          console.log('Login fallito | Token non definito o non valido');
         }
       } else {
         console.warn('Login failed: No valid string received.');

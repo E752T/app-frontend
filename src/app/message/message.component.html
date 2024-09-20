@@ -592,7 +592,7 @@
                     accept="image/*"
                   />
                   <img
-                    src="{{ !imageData ? message.cover : imageData }}"
+                    src="{{ !this.imageData ? message.cover : this.imageData }}"
                     *ngIf="message.cover"
                   />
                 </ion-content>
