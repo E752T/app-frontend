@@ -20,51 +20,52 @@ import { Injectable } from '@angular/core';
 // data.service.ts
 export class DataService {
   private username: string | null = null;
-  private token_JWT: string | undefined;
-  private token_JWT_success: boolean | undefined;
-  private user_role: string | undefined;
-  private body_login: {
-    email: string;
-    password: string;
-    shopkeeper: string;
-    username: string;
-  };
+  private userRole: string | null = null;
+  private tokenJWT: string | null = null;
+  private tokenJWTsuccess: boolean | null = null;
 
-  constructor() {
-    this.username = 'xxx';
-    this.token_JWT = '';
-    this.token_JWT_success = false;
-    this.user_role = 'utente';
-    this.body_login = {
-      shopkeeper: '',
-      email: '',
-      password: '',
-      username: '',
-    };
-  }
+  private bodyLogin: any = {};
 
-  setUsername(username: string) {
+  constructor() {}
+
+  setUsername(username: string): void {
     this.username = username;
   }
 
-  getUsername() {
+  getUsername(): string | null {
     return this.username;
   }
 
-  getUserRole(): string | undefined {
-    return this.user_role;
+  setUserRole(role: string): void {
+    this.userRole = role;
   }
 
-  getToken_JWT(): string | undefined{
-    return this.token_JWT;
+  getUserRole(): string | null {
+    return this.userRole;
   }
 
-  getTokenJWTsuccess(): boolean | undefined{
-    return this.token_JWT_success;
+  setTokenJWT(token: string): void {
+    this.tokenJWT = token;
   }
 
-  getBodyLogin(): LoginObject {
-    return this.body_login;
+  getTokenJWT(): string | null {
+    return this.tokenJWT;
+  }
+
+  setTokenJWTsuccess(token_JWT_success: boolean): void {
+    this.tokenJWTsuccess = token_JWT_success;
+  }
+
+  getTokenJWTsuccess(): boolean | null {
+    return this.tokenJWTsuccess;
+  }
+
+  setBodyLogin(body: any): void {
+    this.bodyLogin = body;
+  }
+
+  getBodyLogin(): any {
+    return this.bodyLogin;
   }
 }
 

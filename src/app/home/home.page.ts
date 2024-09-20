@@ -49,9 +49,9 @@ export class HomePage implements OnInit {
     this.toggleMenu();
   }
 
-  public token_JWT: string | undefined;
-  public user_role: string | undefined;
-  public token_JWT_success: boolean | undefined;
+  public token_JWT: string | null;
+  public user_role: string | null;
+  public token_JWT_success: boolean | null;
   public username: string | null = localStorage.getItem('username');
 
   public body_login: {
@@ -73,7 +73,7 @@ export class HomePage implements OnInit {
     private router: Router,
     private dataService: DataService
   ) {
-    this.token_JWT = this.dataService.getToken_JWT();
+    this.token_JWT = this.dataService.getTokenJWT();
     this.user_role = this.dataService.getUserRole();
     this.username = this.dataService.getUsername();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();

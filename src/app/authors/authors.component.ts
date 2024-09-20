@@ -24,10 +24,10 @@ import { baseURL } from '../enviroenment';
 export class AuthorsComponent {
   private platform = inject(Platform);
 
-  // public token_JWT: string;
-  // public user_role: string;
-  // public username: string | null;
-  // public token_JWT_success: boolean;
+  public token_JWT: string | null;
+  public user_role: string | null;
+  public token_JWT_success: boolean | null;
+  public username: string | null = localStorage.getItem('username');
 
   public body_login: {
     shopkeeper: string | null;
@@ -41,21 +41,18 @@ export class AuthorsComponent {
     username: '',
   };
 
-  username: string | null;
-  user_role: string | undefined;
-  token_JWT_success: boolean | undefined;
-  token_JWT: string | undefined;
 
   constructor(
     private modalCtrl: ModalController,
     private dataService: DataService
   ) {
-    this.username = this.dataService.getUsername();
-    this.token_JWT = this.dataService.getToken_JWT();
+    this.token_JWT = this.dataService.getTokenJWT();
     this.user_role = this.dataService.getUserRole();
+    this.username = this.dataService.getUsername();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
+
 
   @Input()
   author!: Author;

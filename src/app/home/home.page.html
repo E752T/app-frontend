@@ -569,7 +569,12 @@
       >
         <div
           class="card-object"
-          style="overflow-y: scroll; max-height: 55rem; scrollbar-width: 0rem"
+          style="
+            overflow-y: scroll;
+            overflow-y: hidden;
+            max-height: 55rem;
+            scrollbar-width: 0rem;
+          "
         >
           <ion-button
             *ngIf="screenSize === 'desktop'"
