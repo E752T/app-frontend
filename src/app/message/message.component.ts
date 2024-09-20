@@ -7,13 +7,14 @@ import {
 
 import { ModalController, Platform } from '@ionic/angular';
 import { DatabaseObject, ObjectCard } from '../services/interfaces.service';
-import { bodyAddObject } from '../services/data.service';
+import { bodyAddObject, DataService } from '../services/data.service';
 import { baseURL } from '../enviroenment';
 import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core/components';
 
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-message',
@@ -24,13 +25,39 @@ import { Router } from '@angular/router';
 export class MessageComponent {
   private platform = inject(Platform);
 
+  @Input() message?: DatabaseObject;
+
+  bodyAddObject = bodyAddObject;
+
   imageData: string | SafeUrl | undefined;
 
+  public token_JWT: string | null;
+  public user_role: string | null;
+  public token_JWT_success: boolean | null;
+  public username: string | null = localStorage.getItem('username');
+
+  public body_login: {
+    shopkeeper: string | null;
+    email: string | null;
+    password: string | null;
+    username: string | null;
+  } = {
+    shopkeeper: '',
+    email: '',
+    password: '',
+    username: '',
+  };
   constructor(
+    private http: HttpClient,
     private modalCtrl: ModalController,
-    private sanitizer: DomSanitizer,
+    private dataService: DataService,
     private router: Router
   ) {
+    this.token_JWT = this.dataService.getTokenJWT();
+    this.user_role = this.dataService.getUserRole();
+    this.username = this.dataService.getUsername();
+    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+    this.body_login = this.dataService.getBodyLogin();
     //const base64Data = 'data:image/png;base64,YourBase64ImageDataHere';
     //this.imageData = this.sanitizer.bypassSecurityTrustUrl(base64Data);
   }
@@ -38,11 +65,6 @@ export class MessageComponent {
   navigateToDetails(id: number) {
     this.router.navigate(['/details', id]);
   }
-
-  @Input() message?: DatabaseObject;
-
-  bodyAddObject = bodyAddObject;
-  user_role = localStorage.getItem('user_role');
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];

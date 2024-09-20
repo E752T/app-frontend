@@ -89,10 +89,9 @@
           <div style="margin-top: 2rem" *ngIf="user_role !== 'admin'"></div>
 
           <ion-modal
-            style="width: 100vw; height: 100vw"
             trigger="bottone-modifica-oggetto-{{ message.objectID }}"
             (willDismiss)="onWillDismiss($event)"
-            class="ion-padding"
+            class="fullscreen"
           >
             <ng-template style="height: 290px; border-radius: 100px">
               <ion-header>
@@ -601,7 +600,10 @@
             </ng-template>
           </ion-modal>
 
-          <ion-modal trigger="bottone-elimina-oggetto-{{ message.objectID }}">
+          <ion-modal
+            class="fullscreen"
+            trigger="bottone-elimina-oggetto-{{ message.objectID }}"
+          >
             <ng-template>
               <ion-header>
                 <ion-toolbar>
