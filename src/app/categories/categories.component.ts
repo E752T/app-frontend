@@ -12,7 +12,7 @@ import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
 import { baseURL } from '../enviroenment';
-import { today } from '../services/data.service';
+import { today, DataService } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core';
 import { Category } from '../services/interfaces.service';
@@ -24,7 +24,33 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent {
-  constructor(private http: HttpClient, private modalCtrl: ModalController) {}
+  public token_JWT: string | null;
+  public user_role: string | null;
+  public token_JWT_success: boolean | null;
+  public username: string | null = localStorage.getItem('username');
+
+  public body_login: {
+    shopkeeper: string | null;
+    email: string | null;
+    password: string | null;
+    username: string | null;
+  } = {
+    shopkeeper: '',
+    email: '',
+    password: '',
+    username: '',
+  };
+  constructor(
+    private http: HttpClient,
+    private modalCtrl: ModalController,
+    private dataService: DataService
+  ) {
+    this.token_JWT = this.dataService.getTokenJWT();
+    this.user_role = this.dataService.getUserRole();
+    this.username = this.dataService.getUsername();
+    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+    this.body_login = this.dataService.getBodyLogin();
+  }
 
   @Input()
   category!: Category;
@@ -40,8 +66,6 @@ export class CategoriesComponent {
 
   @ViewChild(IonModal)
   modal!: IonModal;
-
-  user_role = localStorage.getItem('user_role');
 
   body_add_category: Category = {
     categoryID: 0,

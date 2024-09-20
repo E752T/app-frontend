@@ -13,7 +13,7 @@ import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
 
 import { baseURL } from '../enviroenment';
-import { today } from '../services/data.service';
+import { DataService, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { Publisher } from '../services/interfaces.service';
 import { HttpClient } from '@angular/common/http';
@@ -24,8 +24,33 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./editors.component.scss'],
 })
 export class EditorsComponent {
-  constructor(private http: HttpClient, private modalCtrl: ModalController) {}
+  public token_JWT: string | null;
+  public user_role: string | null;
+  public token_JWT_success: boolean | null;
+  public username: string | null = localStorage.getItem('username');
 
+  public body_login: {
+    shopkeeper: string | null;
+    email: string | null;
+    password: string | null;
+    username: string | null;
+  } = {
+    shopkeeper: '',
+    email: '',
+    password: '',
+    username: '',
+  };
+  constructor(
+    private http: HttpClient,
+    private modalCtrl: ModalController,
+    private dataService: DataService
+  ) {
+    this.token_JWT = this.dataService.getTokenJWT();
+    this.user_role = this.dataService.getUserRole();
+    this.username = this.dataService.getUsername();
+    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
+    this.body_login = this.dataService.getBodyLogin();
+  }
   @Input()
   publisher!: Publisher;
 
@@ -40,10 +65,6 @@ export class EditorsComponent {
 
   @ViewChild(IonModal)
   modal!: IonModal;
-
-  user_role = localStorage.getItem('user_role');
-  username = localStorage.getItem('username');
-
 
   body_add_publisher: Publisher = {
     publisherID: 0,
