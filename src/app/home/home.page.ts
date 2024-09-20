@@ -47,13 +47,12 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.getScreenSize();
     this.toggleMenu();
-    
   }
 
   public token_JWT: string | null;
   public user_role: string | null;
   public token_JWT_success: boolean | null;
-  public username: string | null = localStorage.getItem('username');
+  public username: string | null;
 
   public body_login: {
     shopkeeper: string | null;

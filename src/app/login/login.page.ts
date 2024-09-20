@@ -22,6 +22,7 @@ export class LoginPage {
   public errorMessage: string | undefined;
   private minimal_len_token: number = 50; // JWT
   private token_JWT_success: boolean = false;
+
   modalCtrl: any;
 
   constructor(
@@ -82,7 +83,7 @@ export class LoginPage {
       const response = await PostRequest(baseURL + 'Login/', this.body_login);
       console.log('Risposta del server:', response);
 
-      if (response.success) {
+      if (response) {
         this.handleSuccessfulLogin(response);
       } else {
         this.handleFailedLogin();
@@ -113,6 +114,7 @@ export class LoginPage {
     if (this.checkToken(response.token)) {
       this.showToast('Accesso Eseguito', 'success');
       console.log('Login success | Navigazione eseguita');
+      this.token_JWT_success = true;
     } else {
       this.showToast('Token non valido', 'error');
       console.log('Login fallito | Token non definito o non valido');
