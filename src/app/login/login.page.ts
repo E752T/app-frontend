@@ -21,6 +21,7 @@ export class LoginPage {
   public toggle_remember_me: boolean = false;
   public errorMessage: string | undefined;
   private minimal_len_token: number = 50; // JWT
+  private token_JWT_success: boolean = false;
 
   modalCtrl: any;
 
@@ -146,14 +147,12 @@ export class LoginPage {
   }
 
   exit_login() {
-    this.rememberMe();
-    this.resetLoginForm();
-    this.dataService.setBodyLogin('');
-    this.dataService.setTokenJWT('');
-    this.dataService.setTokenJWTsuccess(false);
-    this.dataService.setUserRole('');
-    this.dataService.setUsername('');
-
+    if (this.toggle_remember_me) {
+      this.rememberMe();
+    } else {
+      this.resetLoginForm();
+      this.dataService.setUserRole('');
+    }
     this.modalCtrl.dismiss(this.body_login, 'confirm');
   }
 }
