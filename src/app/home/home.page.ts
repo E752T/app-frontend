@@ -78,6 +78,7 @@ export class HomePage implements OnInit {
     this.username = this.dataService.getUsername();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
+    this.getItems('');
   }
 
   imageUrl: string | ArrayBuffer | null = null;
@@ -219,8 +220,7 @@ export class HomePage implements OnInit {
     'TypeObject',
   ];
 
-  // OBJECTS
-
+  // OBJECTS messages
   allDatabase: Array<DatabaseObject> = [];
   filteredObjects: Array<DatabaseObject> = [];
 
@@ -233,6 +233,10 @@ export class HomePage implements OnInit {
 
     return (this.filteredObjects = this.allDatabase);
   });
+
+  getAllDatabase() {
+    return this.allDatabase;
+  }
 
   bodyAddObject: DatabaseObject = {
     objectID: 1,
@@ -287,6 +291,14 @@ export class HomePage implements OnInit {
       this.filteredObjects = this.filterByAvaiability(this.filteredObjects);
       this.filteredObjects = this.filterByGeneres(this.filteredObjects);
     }
+  }
+
+  getItemById(id: number): DatabaseObject {
+    const item = this.allDatabase.find((item) => item.objectID === id);
+    if (!item) {
+      throw new Error(`Oggetto con ID ${id} non trovato.`);
+    }
+    return item;
   }
 
   // AUTORI

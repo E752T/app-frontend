@@ -8,6 +8,7 @@ export interface LoginObject {
 }
 
 export interface DatabaseObject {
+[x: string]: any;
   objectID: number;
   shopkeeperID: number;
   userID: number;

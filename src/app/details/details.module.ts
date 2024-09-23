@@ -1,15 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { DettagliCartaPage } from './details.component';
+import { DetailsComponent } from './details.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule, // Assicurati che questo modulo sia importato
-  ],
-  declarations: [DettagliCartaPage],
+  imports: [CommonModule, FormsModule, IonicModule],
+  declarations: [DetailsComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Aggiungi questa riga
 })
-export class DettagliCartaPageModule {}
+export class DetailsModule {}

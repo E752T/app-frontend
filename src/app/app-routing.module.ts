@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { MessageComponent } from './message/message.component'; // Importa il componente specifico
 import { AuthGuard } from './auth-guard.service';
 import { NotFoundPageModule } from './not-found/not-found.module'; // Importa il modulo della pagina not-found
-
+import { DettagliCartaPage } from './details/details.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -19,8 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'details',
-    component: MessageComponent,
-    children: [{ path: ':id', component: MessageComponent }], // Rotta figlia per i messaggi
+    component: DettagliCartaPage ,
+    children: [{ path: ':id', component: DettagliCartaPage  }], // Rotta figlia per i messaggi
   },
   {
     path: '**', // Questa rotta cattura tutte le rotte non definite
