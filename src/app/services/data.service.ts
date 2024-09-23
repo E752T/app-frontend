@@ -10,13 +10,13 @@ import {
   Warehouse,
 } from '../services/interfaces.service';
 import { LoginObject } from '../services/interfaces.service';
+import { GetRequest } from '../services/request.service';
+
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root', // Questo rende il servizio disponibile in tutta l'app
 })
-
-// data.service.ts
 export class DataService {
   private username: string | null = null;
   private userRole: string | null = null;
@@ -24,27 +24,28 @@ export class DataService {
   private tokenJWTsuccess: boolean | null = null;
 
   private bodyLogin: any = {};
+  private allDatabase: Array<DatabaseObject> = [];
+  private filteredObjects: Array<DatabaseObject> = [];
 
   constructor() {
-    this.getAllDatabase();
-    bodyAddObject;
+    // Inizializzazione dei dati
+    this.getAllDatabase(); // Chiamata al metodo per ottenere il database
+    this.filteredObjects = this.allDatabase; // Inizializza filteredObjects
   }
 
   //////////////////////////////////////////////////////
 
-  allDatabase: Array<DatabaseObject> = [];
-  filteredObjects: Array<DatabaseObject> = [];
-
   // Metodo per esportare allDatabase
-  getAllDatabase(): Array<DatabaseObject> {
-    GetRequest(baseURL + 'GetObjects').then((res) => {
-      console.log('Oggetti inviati dal database', res);
+  async getAllDatabase(): Promise<Array<DatabaseObject>> {
+    try {
+      const res = await GetRequest(baseURL + 'GetObjects');
+      console.log('Database degli Oggetti', res);
       this.allDatabase = res;
-      console.log('Database degli Oggetti', this.allDatabase);
-      return (this.filteredObjects = this.allDatabase);
-    });
-
-    return this.allDatabase;
+      return this.allDatabase;
+    } catch (error) {
+      console.error('Errore nel recupero del database:', error);
+      return []; // Restituisce un array vuoto in caso di errore
+    }
   }
 
   // Metodo per esportare filteredObjects
@@ -144,7 +145,6 @@ export const today: Date = new Date();
 
 import { DatePipe } from '@angular/common';
 import { baseURL } from '../enviroenment';
-import { GetRequest } from './request.service';
 
 const datePipe = new DatePipe('en-US');
 

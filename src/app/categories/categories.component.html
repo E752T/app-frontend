@@ -21,62 +21,67 @@
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
+              <ion-modal
+                trigger="modale-elimina-categoria-'{{ category.categoryID }}'"
+              >
+                <ng-template>
+                  <ion-header>
+                    <ion-toolbar>
+                      <ion-buttons slot="start">
+                        <ion-button (click)="cancel()"
+                          ><ion-icon name="arrow-undo-outline"></ion-icon
+                        ></ion-button>
+                      </ion-buttons>
+
+                      <ion-buttons slot="end">
+                        <ion-button
+                          (click)="DeleteCategory(category.categoryID)"
+                          id="conferma-elimina-'{{ category.categoryID }}'"
+                          [strong]="true"
+                          >Conferma</ion-button
+                        >
+
+                        <ion-toast
+                          class="toast-autori"
+                          trigger="conferma-elimina-'{{ category.categoryID }}'"
+                          message=" Elemento Eliminato "
+                          style="
+                            max-width: 250px;
+                            margin-left: 40%;
+                            margin-right: 40%;
+                          "
+                          [duration]="2000"
+                          expand="block"
+                          color="danger"
+                        ></ion-toast>
+                      </ion-buttons>
+                    </ion-toolbar>
+                  </ion-header>
+                  <ion-text class="testo-conferma-elimina ion-text-center">
+                    <ion-title
+                      >Sei sicuro di eliminare questo elemento?</ion-title
+                    >
+                    <p></p>
+                    <p></p>
+                    <h1>{{ category.name }}</h1>
+                  </ion-text>
+                  <ion-toast
+                    class="toast-autori"
+                    trigger="confirmDeleteCategory-'{{ category.categoryID }}'"
+                    message=" Elemento Eliminato "
+                    style="
+                      max-width: 250px;
+                      margin-left: 40%;
+                      margin-right: 40%;
+                    "
+                    [duration]="2000"
+                    expand="block"
+                    color="danger"
+                  ></ion-toast>
+                </ng-template>
+              </ion-modal>
             </ion-button>
           </ion-item>
-
-          <ion-modal
-            trigger="modale-elimina-categoria-'{{ category.categoryID }}'"
-          >
-            <ng-template>
-              <ion-header>
-                <ion-toolbar>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="cancel()"
-                      ><ion-icon name="arrow-undo-outline"></ion-icon
-                    ></ion-button>
-                  </ion-buttons>
-
-                  <ion-buttons slot="end">
-                    <ion-button
-                      (click)="DeleteCategory(category.categoryID)"
-                      id="conferma-elimina-'{{ category.categoryID }}'"
-                      [strong]="true"
-                      >Conferma</ion-button
-                    >
-
-                    <ion-toast
-                      class="toast-autori"
-                      trigger="conferma-elimina-'{{ category.categoryID }}'"
-                      message=" Elemento Eliminato "
-                      style="
-                        max-width: 250px;
-                        margin-left: 40%;
-                        margin-right: 40%;
-                      "
-                      [duration]="2000"
-                      expand="block"
-                      color="danger"
-                    ></ion-toast>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <ion-text class="testo-conferma-elimina ion-text-center">
-                <ion-title>Sei sicuro di eliminare questo elemento?</ion-title>
-                <p></p>
-                <p></p>
-                <h1>{{ category.name }}</h1>
-              </ion-text>
-              <ion-toast
-                class="toast-autori"
-                trigger="confirmDeleteCategory-'{{ category.categoryID }}'"
-                message=" Elemento Eliminato "
-                style="max-width: 250px; margin-left: 40%; margin-right: 40%"
-                [duration]="2000"
-                expand="block"
-                color="danger"
-              ></ion-toast>
-            </ng-template>
-          </ion-modal>
 
           <div
             slot="content"

@@ -21,56 +21,57 @@
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
+            <ion-modal
+              trigger="elimina-autore-'{{
+                geographical_origin.geographicalOriginID
+              }}'"
+            >
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="
+                          DeleteElement(
+                            geographical_origin.geographicalOriginID
+                          )
+                        "
+                        id="conferma-elimina-autore-'{{
+                          geographical_origin.geographicalOriginID
+                        }}'"
+                        [strong]="true"
+                        >Conferma</ion-button
+                      >
+                      <ion-toast
+                        trigger="conferma-elimina-autore-'{{
+                          geographical_origin.geographicalOriginID
+                        }}'"
+                        message="Elemento eliminato"
+                        class="toast-elemento"
+                        [duration]="2000"
+                        expand="block"
+                        color="danger"
+                      ></ion-toast>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text class="testo-conferma-elimina ion-text-center">
+                  <ion-title
+                    >Sei sicuro di voler eliminare il seguente
+                    elemento?</ion-title
+                  >
+                  <p></p>
+                  <h1>{{ geographical_origin.name }}</h1>
+                </ion-text>
+              </ng-template>
+            </ion-modal>
           </ion-item>
-
-          <ion-modal
-            trigger="elimina-autore-'{{
-              geographical_origin.geographicalOriginID
-            }}'"
-          >
-            <ng-template>
-              <ion-header>
-                <ion-toolbar>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="cancel()"
-                      ><ion-icon name="arrow-undo-outline"></ion-icon
-                    ></ion-button>
-                  </ion-buttons>
-
-                  <ion-buttons slot="end">
-                    <ion-button
-                      (click)="
-                        DeleteElement(geographical_origin.geographicalOriginID)
-                      "
-                      id="conferma-elimina-autore-'{{
-                        geographical_origin.geographicalOriginID
-                      }}'"
-                      [strong]="true"
-                      >Conferma</ion-button
-                    >
-                    <ion-toast
-                      trigger="conferma-elimina-autore-'{{
-                        geographical_origin.geographicalOriginID
-                      }}'"
-                      message="Elemento eliminato"
-                      class="toast-elemento"
-                      [duration]="2000"
-                      expand="block"
-                      color="danger"
-                    ></ion-toast>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <ion-text class="testo-conferma-elimina ion-text-center">
-                <ion-title
-                  >Sei sicuro di voler eliminare il seguente
-                  elemento?</ion-title
-                >
-                <p></p>
-                <h1>{{ geographical_origin.name }}</h1>
-              </ion-text>
-            </ng-template>
-          </ion-modal>
 
           <div slot="content" style="margin-top: 15px">
             <ion-label class="label-autori">

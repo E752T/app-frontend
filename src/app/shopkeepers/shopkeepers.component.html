@@ -19,48 +19,50 @@
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
+
+            <ion-modal trigger="modale-elimina-'{{ shopkeeper.shopkeeperID }}'">
+              <ng-template>
+                <ion-header>
+                  <ion-toolbar>
+                    <ion-buttons slot="start">
+                      <ion-button (click)="cancel()"
+                        ><ion-icon name="arrow-undo-outline"></ion-icon
+                      ></ion-button>
+                    </ion-buttons>
+
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="DeleteElement(shopkeeper.shopkeeperID)"
+                        id="conferma-elimina-autore-'{{
+                          shopkeeper.shopkeeperID
+                        }}'"
+                        [strong]="true"
+                        >Conferma</ion-button
+                      >
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-header>
+                <ion-text class="testo-conferma-elimina ion-text-center">
+                  <ion-title
+                    >Sei sicuro di eliminare questo elemento?</ion-title
+                  >
+
+                  <p></p>
+                  <h1>{{ shopkeeper.uniqueName }}</h1>
+                </ion-text>
+                <ion-toast
+                  trigger="conferma-elimina-autore-'{{
+                    shopkeeper.shopkeeperID
+                  }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  [duration]="2000"
+                  expand="block"
+                  color="danger"
+                ></ion-toast>
+              </ng-template>
+            </ion-modal>
           </ion-item>
-
-          <ion-modal trigger="modale-elimina-'{{ shopkeeper.shopkeeperID }}'">
-            <ng-template>
-              <ion-header>
-                <ion-toolbar>
-                  <ion-buttons slot="start">
-                    <ion-button (click)="cancel()"
-                      ><ion-icon name="arrow-undo-outline"></ion-icon
-                    ></ion-button>
-                  </ion-buttons>
-
-                  <ion-buttons slot="end">
-                    <ion-button
-                      (click)="DeleteElement(shopkeeper.shopkeeperID)"
-                      id="conferma-elimina-autore-'{{
-                        shopkeeper.shopkeeperID
-                      }}'"
-                      [strong]="true"
-                      >Conferma</ion-button
-                    >
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
-              <ion-text class="testo-conferma-elimina ion-text-center">
-                <ion-title>Sei sicuro di eliminare questo elemento?</ion-title>
-
-                <p></p>
-                <h1>{{ shopkeeper.uniqueName }}</h1>
-              </ion-text>
-              <ion-toast
-                trigger="conferma-elimina-autore-'{{
-                  shopkeeper.shopkeeperID
-                }}'"
-                message="Elemento eliminato"
-                class="toast-elemento"
-                [duration]="2000"
-                expand="block"
-                color="danger"
-              ></ion-toast>
-            </ng-template>
-          </ion-modal>
 
           <div slot="content" style="margin-top: 15px">
             <ion-label class="label-autori">

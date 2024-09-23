@@ -40,13 +40,17 @@ export class HomePage implements OnInit {
   new_password: any;
   new_email: any;
 
-  allDatabase: DatabaseObject[];
-  filteredObjects: DatabaseObject[];
   bodyAddObject: any;
 
-  ngOnInit() {
+  async ngOnInit() {
     this.getScreenSize();
     this.toggleMenu();
+
+    try {
+      this.allDatabase = await this.dataService.getAllDatabase();
+    } catch (error) {
+      console.error('Errore nel recupero dei dati:', error);
+    }
   }
   public token_JWT: string | null;
   public user_role: string | null;
@@ -77,10 +81,14 @@ export class HomePage implements OnInit {
     this.username = this.dataService.getUsername();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
-    this.allDatabase = this.dataService.getAllDatabase(); // Inizialmente uguale a allDatabase
-    this.filteredObjects = this.allDatabase;
     this.bodyAddObject = this.dataService.getBodyAddObject();
   }
+
+  allDatabase: DatabaseObject[] = [];
+  filteredObjects: DatabaseObject[] = [];
+
+  //allDatabase: Array<DatabaseObject> = this.dataService.getAllDatabase();
+  //filteredObjects: Array<DatabaseObject> = this.dataService.getAllDatabase();
 
   imageUrl: string | ArrayBuffer | null = null;
 
@@ -111,7 +119,6 @@ export class HomePage implements OnInit {
   messageDismissModal: string = '';
 
   // FRONTEND FUNCTIONS
-
   @ViewChild('menuAncora', { static: false }) menuAncora:
     | ElementRef
     | undefined;
