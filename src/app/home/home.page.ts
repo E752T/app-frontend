@@ -35,6 +35,11 @@ export class HomePage implements OnInit {
   searchGeneres: Array<string> = []; // array for containing choosen generes
   searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
 
+  new_shopkeeper: any;
+  new_username: any;
+  new_password: any;
+  new_email: any;
+
   ngOnInit() {
     this.getScreenSize();
     this.toggleMenu();
@@ -112,6 +117,16 @@ export class HomePage implements OnInit {
   sizeColumnFilter: string = '0'; // Dimensione predefinita
 
   screenSize = this.checkScreenSize();
+
+  updateCredentials() {
+    let body_new_credentials = {
+      email: this.new_email,
+      password: this.new_password,
+      shopkeeper: this.new_shopkeeper,
+      username: this.new_username,
+    };
+    PostRequest(baseURL + 'UpdateCredentials/', body_new_credentials);
+  }
 
   logOut() {
     console.log('log out in corso');

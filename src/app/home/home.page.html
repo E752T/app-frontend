@@ -460,7 +460,7 @@
               <ion-input
                 placeholder="Esercente"
                 value="{{body_login.shopkeeper}}"
-                [(ngModel)]="body_login.shopkeeper"
+                [(ngModel)]="new_shopkeeper"
               >
               </ion-input>
             </ion-item>
@@ -471,7 +471,11 @@
                 >Email</ion-label
               >
 
-              <ion-input placeholder="Email" [(ngModel)]="body_login.email">
+              <ion-input
+                placeholder="Email"
+                value="{{body_login.email}}"
+                [(ngModel)]="new_email"
+              >
               </ion-input>
             </ion-item>
 
@@ -480,8 +484,8 @@
               <ion-label class="label-config-account">Username</ion-label>
               <ion-input
                 placeholder="Username"
-                value="{{username}}"
-                [(ngModel)]="username"
+                value="{{body_login.username }}"
+                [(ngModel)]="new_username"
               >
               </ion-input>
             </ion-item>
@@ -492,13 +496,14 @@
 
               <ion-input
                 placeholder="Password"
-                [(ngModel)]="body_login.password"
+                value="{{body_login.password}}"
+                [(ngModel)]="new_password"
               >
               </ion-input>
             </ion-item>
           </ion-content>
 
-          <ion-button id="confirm-exit-login" (click)="logOut()"
+          <ion-button id="confirm-exit-login" (click)="updateCredentials()"
             >Salva</ion-button
           >
         </ng-template>
@@ -1060,8 +1065,8 @@
                   <ion-label class="label-config-account">Username</ion-label>
                   <ion-input
                     placeholder="Username"
-                    [(ngModel)]="username"
-                    value="{{username}}"
+                    value="{{new_username }}"
+                    [(ngModel)]="body_login.username"
                   >
                   </ion-input>
                 </ion-item>
@@ -1078,7 +1083,7 @@
                 </ion-item>
               </ion-content>
 
-              <ion-button id="confirm-exit-login" (click)="logOut()"
+              <ion-button id="confirm-exit-login" (click)="updateCredentials()"
                 >Salva</ion-button
               >
             </ng-template>
