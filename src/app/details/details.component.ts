@@ -8,20 +8,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent {
-  [x: string]: any;
   objectId: string | null | undefined;
   objectData: any;
 
   constructor(private route: ActivatedRoute) {
     this.route.paramMap.subscribe((params) => {
       this.objectId = params.get('id');
-      this.objectData = this.getObjectData(String(this.objectId));
+      //this.objectData = this.getObjectData(String(this.objectId));
     });
   }
 
-  getObjectData(id: string) {
-    return allDatabase.find(
-      (item: { id: { toString: () => string } }) => item.id.toString() === id
-    );
-  }
+  // getObjectData(id: string) {
+  //   return allDatabase.find(
+  //     (item: { id: { toString: () => string } }) => item.id.toString() === id
+  //   );
+  // }
 }

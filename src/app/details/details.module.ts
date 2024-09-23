@@ -11,6 +11,4 @@ import { DatabaseObject } from '../services/interfaces.service';
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Aggiungi questa riga
 })
 export class DetailsModule {
-  allDatabase: Array<DatabaseObject> = [];
-  filteredObjects: Array<DatabaseObject> = [];
 }
