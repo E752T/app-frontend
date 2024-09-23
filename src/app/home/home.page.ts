@@ -40,6 +40,10 @@ export class HomePage implements OnInit {
   new_password: any;
   new_email: any;
 
+  allDatabase: DatabaseObject[];
+  filteredObjects: DatabaseObject[];
+  bodyAddObject: any;
+
   ngOnInit() {
     this.getScreenSize();
     this.toggleMenu();
@@ -73,7 +77,9 @@ export class HomePage implements OnInit {
     this.username = this.dataService.getUsername();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
-    this.filteredObjects = this.allDatabase; // Inizialmente uguale a allDatabase
+    this.allDatabase = this.dataService.getAllDatabase(); // Inizialmente uguale a allDatabase
+    this.filteredObjects = this.allDatabase;
+    this.bodyAddObject = this.dataService.getBodyAddObject();
   }
 
   imageUrl: string | ArrayBuffer | null = null;
@@ -117,6 +123,17 @@ export class HomePage implements OnInit {
   sizeColumnFilter: string = '0'; // Dimensione predefinita
 
   screenSize = this.checkScreenSize();
+
+  AdminTables: Array<string> = [
+    'Author',
+    'Publisher',
+    'Category',
+    'Shopkeeper',
+    'Warehouse',
+    'Provenance',
+    'GeographicalOrigin',
+    'TypeObject',
+  ];
 
   updateCredentials() {
     let body_new_credentials = {
@@ -212,75 +229,6 @@ export class HomePage implements OnInit {
     this.popover.event = e;
     this.isOpen = true;
   }
-
-  AdminTables: Array<string> = [
-    'Author',
-    'Publisher',
-    'Category',
-    'Shopkeeper',
-    'Warehouse',
-    'Provenance',
-    'GeographicalOrigin',
-    'TypeObject',
-  ];
-
-  // OBJECTS messages
-  allDatabase: Array<DatabaseObject> = [];
-  filteredObjects: Array<DatabaseObject> = [];
-
-  promiseDatabase: Promise<DatabaseObject[]> | undefined = GetRequest(
-    baseURL + 'GetObjects'
-  ).then((res) => {
-    console.log('Oggetti inviati dal database', res);
-    this.allDatabase = res;
-    console.log('Database degli Oggetti', this.allDatabase);
-
-    return (this.filteredObjects = this.allDatabase);
-  });
-
-  // Metodo per esportare allDatabase
-  getAllDatabase(): Array<DatabaseObject> {
-    return this.allDatabase;
-  }
-
-  // Metodo per esportare filteredObjects
-  getFilteredObjects(): Array<DatabaseObject> {
-    return this.filteredObjects;
-  }
-
-  bodyAddObject: DatabaseObject = {
-    objectID: 1,
-    authorID: 1,
-    userID: 1,
-    shopkeeperID: 1,
-    categoryID: 1,
-    typeID: 1,
-    warehouseID: 1,
-    provenanceID: 1,
-    geographicalOriginID: 1,
-    publisherID: 1,
-    genere: '',
-    avaiable: false,
-    authorDescription: '',
-    discoveryPlace: '',
-    addedDate: new Date(),
-    lastUpdateDate: new Date(),
-    discoveryDate: new Date(),
-    censusDate: new Date(),
-    sortOrder: 0,
-    cover: '',
-    scan01: '',
-    scan02: '',
-    scan03: '',
-    title: '',
-    subtitle: '',
-    objectNotes: '',
-    warehouseRoom: '',
-    rackNumber: 0,
-    position: 0,
-    htmlDescription1: '',
-    htmlDescription2: '',
-  };
 
   getItems(input: string | undefined | null) {
     console.log('Filter Object results');

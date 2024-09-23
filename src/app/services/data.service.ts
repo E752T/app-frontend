@@ -10,7 +10,6 @@ import {
   Warehouse,
 } from '../services/interfaces.service';
 import { LoginObject } from '../services/interfaces.service';
-
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -26,7 +25,72 @@ export class DataService {
 
   private bodyLogin: any = {};
 
-  constructor() {}
+  constructor() {
+    this.getAllDatabase();
+    bodyAddObject;
+  }
+
+  //////////////////////////////////////////////////////
+
+  allDatabase: Array<DatabaseObject> = [];
+  filteredObjects: Array<DatabaseObject> = [];
+
+  // Metodo per esportare allDatabase
+  getAllDatabase(): Array<DatabaseObject> {
+    GetRequest(baseURL + 'GetObjects').then((res) => {
+      console.log('Oggetti inviati dal database', res);
+      this.allDatabase = res;
+      console.log('Database degli Oggetti', this.allDatabase);
+      return (this.filteredObjects = this.allDatabase);
+    });
+
+    return this.allDatabase;
+  }
+
+  // Metodo per esportare filteredObjects
+  getFilteredObjects(): Array<DatabaseObject> {
+    return this.filteredObjects;
+  }
+
+  getBodyAddObject() {
+    return this.bodyAddObject;
+  }
+
+  bodyAddObject: DatabaseObject = {
+    objectID: 1,
+    authorID: 1,
+    userID: 1,
+    shopkeeperID: 1,
+    categoryID: 1,
+    typeID: 1,
+    warehouseID: 1,
+    provenanceID: 1,
+    geographicalOriginID: 1,
+    publisherID: 1,
+    genere: '',
+    avaiable: false,
+    authorDescription: '',
+    discoveryPlace: '',
+    addedDate: new Date(),
+    lastUpdateDate: new Date(),
+    discoveryDate: new Date(),
+    censusDate: new Date(),
+    sortOrder: 0,
+    cover: '',
+    scan01: '',
+    scan02: '',
+    scan03: '',
+    title: '',
+    subtitle: '',
+    objectNotes: '',
+    warehouseRoom: '',
+    rackNumber: 0,
+    position: 0,
+    htmlDescription1: '',
+    htmlDescription2: '',
+  };
+
+  /////////////////////////////////////////////////
 
   setUsername(username: string): void {
     this.username = username;
@@ -79,6 +143,8 @@ export let body_login: LoginObject = {
 export const today: Date = new Date();
 
 import { DatePipe } from '@angular/common';
+import { baseURL } from '../enviroenment';
+import { GetRequest } from './request.service';
 
 const datePipe = new DatePipe('en-US');
 
@@ -93,6 +159,7 @@ export const filterButtons = ['OK'];
 export const isOpen: boolean = false;
 
 //---------------- DATABASE INITIALIZATION ----------------
+
 export let bodyModifyObject: DatabaseObject = {
   objectID: 1,
   authorID: 1,

@@ -1,7 +1,7 @@
 <ion-item
   *ngIf="message"
   style="font-size: small"
-  [routerLink]="['/details', message.objectID]"
+  (click)="navigateToDetails(message.objectID)"
 >
   <div
     slot="start"

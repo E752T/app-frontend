@@ -6,13 +6,13 @@ import {
 } from '@angular/core';
 
 import { ModalController, Platform } from '@ionic/angular';
-import { DatabaseObject, ObjectCard } from '../services/interfaces.service';
+import { DatabaseObject } from '../services/interfaces.service';
 import { bodyAddObject, DataService } from '../services/data.service';
 import { baseURL } from '../enviroenment';
 import { PostRequest } from '../services/request.service';
 import { OverlayEventDetail } from '@ionic/core/components';
 
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -48,7 +48,6 @@ export class MessageComponent {
     username: '',
   };
   constructor(
-    private http: HttpClient,
     private modalCtrl: ModalController,
     private dataService: DataService,
     private router: Router
