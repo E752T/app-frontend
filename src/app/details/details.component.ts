@@ -1,7 +1,6 @@
 // details.component.ts
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { allDatabase } from '../home/home.page'; // Assicurati che il percorso sia corretto
 
 @Component({
   selector: 'app-details',
@@ -9,6 +8,7 @@ import { allDatabase } from '../home/home.page'; // Assicurati che il percorso s
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent {
+  [x: string]: any;
   objectId: string | null | undefined;
   objectData: any;
 

@@ -30,15 +30,6 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'], // page style
 })
 export class HomePage implements OnInit {
-  [x: string]: any;
-  $event: any;
-
-  // username = localStorage.getItem('username');
-  // token_JWT_success: string = token_JWT_success;
-  // token_JWT: string = token_JWT;
-  // body_login = body_login;
-  // user_role: string | null = localStorage.getItem('user_role');
-
   availability: string = 'tutti'; // initial aviability filter checkbox
   searchInput: string | undefined | null = ''; // initial search input
   searchGeneres: Array<string> = []; // array for containing choosen generes
@@ -48,7 +39,6 @@ export class HomePage implements OnInit {
     this.getScreenSize();
     this.toggleMenu();
   }
-
   public token_JWT: string | null;
   public user_role: string | null;
   public token_JWT_success: boolean | null;
@@ -78,7 +68,7 @@ export class HomePage implements OnInit {
     this.username = this.dataService.getUsername();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
-    this.getItems('');
+    this.filteredObjects = this.allDatabase; // Inizialmente uguale a allDatabase
   }
 
   imageUrl: string | ArrayBuffer | null = null;
@@ -100,7 +90,6 @@ export class HomePage implements OnInit {
   fileEvent: Event | undefined;
 
   // PopOver
-
   showAddPopover: boolean = false;
   showModifyPopover: boolean = false;
   showDeletePopover: boolean = false;
@@ -234,8 +223,14 @@ export class HomePage implements OnInit {
     return (this.filteredObjects = this.allDatabase);
   });
 
-  getAllDatabase() {
+  // Metodo per esportare allDatabase
+  getAllDatabase(): Array<DatabaseObject> {
     return this.allDatabase;
+  }
+
+  // Metodo per esportare filteredObjects
+  getFilteredObjects(): Array<DatabaseObject> {
+    return this.filteredObjects;
   }
 
   bodyAddObject: DatabaseObject = {
