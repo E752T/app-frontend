@@ -22,6 +22,7 @@
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
             <ion-modal
+              *ngIf="user_role === 'admin'"
               trigger="elimina-autore-'{{
                 geographical_origin.geographicalOriginID
               }}'"

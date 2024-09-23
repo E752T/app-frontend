@@ -17,7 +17,8 @@
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
-            <ion-modal trigger="modale-elimina-'{{ publisher.publisherID }}'">
+            <ion-modal               *ngIf="user_role === 'admin'"
+            trigger="modale-elimina-'{{ publisher.publisherID }}'">
               <ng-template>
                 <ion-header>
                   <ion-toolbar>
