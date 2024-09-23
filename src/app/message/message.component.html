@@ -1,4 +1,8 @@
-<ion-item *ngIf="message" style="font-size: small">
+<ion-item
+  *ngIf="message"
+  style="font-size: small"
+  [routerLink]="['/details', message.objectID]"
+>
   <div
     slot="start"
     [class]="!message.avaiable ? 'dot dot-unread' : 'dot'"
