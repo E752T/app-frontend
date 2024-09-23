@@ -19,8 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'details',
-    component: DetailsComponent,
-    children: [{ path: ':id', component: DetailsComponent }], // Rotta figlia per i messaggi
+    loadChildren: () =>
+      import('./details/details.module').then((m) => m.DetailsModule),
   },
   {
     path: '**', // Questa rotta cattura tutte le rotte non definite
