@@ -40,6 +40,7 @@ export class EditorsComponent {
     password: '',
     username: '',
   };
+
   constructor(
     private http: HttpClient,
     private modalCtrl: ModalController,
@@ -51,6 +52,7 @@ export class EditorsComponent {
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
+
   @Input()
   publisher!: Publisher;
 

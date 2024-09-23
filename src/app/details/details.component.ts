@@ -20,12 +20,13 @@ export class DetailsComponent implements OnInit {
       this.objectData = await this.getObjectData(String(this.objectId));
     });
     this.dataservice.getAllDatabase().then((res) => {
-      this.allDatabase = res; 
+      this.allDatabase = res;
     });
   }
 
   async ngOnInit() {
     this.allDatabase = await this.dataservice.getAllDatabase(); // Ora allDatabase è popolato
+
     this.objectId = this.route.snapshot.paramMap.get('id');
   }
 
