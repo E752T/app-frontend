@@ -215,7 +215,7 @@ export class HomePage implements OnInit {
   }
 
   switchToView(value: string) {
-    console.log('switchToView() | view before ', this.sectionToShow);
+    //console.log('switchToView() | view before ', this.sectionToShow);
     this.sectionToShow = value;
     this.searchInput = '';
     this.getAuthors(this.searchInput);
@@ -229,7 +229,7 @@ export class HomePage implements OnInit {
     this.getWarehouses(this.searchInput);
     this.searchYears.lower = 1805;
     this.searchYears.upper = 2024;
-    console.log('switchToView() | view after ', this.sectionToShow);
+    //console.log('switchToView() | view after ', this.sectionToShow);
   }
 
   presentPopover(e: Event) {
@@ -238,7 +238,8 @@ export class HomePage implements OnInit {
   }
 
   getItems(input: string | undefined | null) {
-    console.log('Filter Object results');
+    //console.log('Filter Object results');
+
     // Get all the items from the database request
     // 1. get all the values from the database
     // 2. filter the database objects based on the search text
@@ -301,7 +302,7 @@ export class HomePage implements OnInit {
       });
       this.filteredAuthors = this.filterByYears(this.filteredAuthors);
     }
-    console.log('Filter results of getAuthors() => ', this.allAuthors);
+    //console.log('Filter results of getAuthors() => ', this.allAuthors);
   }
 
   getNewIDAuthor(elementList: Array<Author>): number {
@@ -386,7 +387,7 @@ export class HomePage implements OnInit {
       });
       this.filteredCategories = this.filterByYears(this.filteredCategories);
     }
-    console.log('results of getCategories() => ', this.filteredCategories);
+    //console.log('results of getCategories() => ', this.filteredCategories);
   }
 
   getNewIDCategory(elementList: Array<Category>): number {
@@ -473,10 +474,7 @@ export class HomePage implements OnInit {
       });
       this.filteredPublishers = this.filterByYears(this.filteredPublishers);
     }
-    console.log(
-      'Filter results of getPublishers() => ',
-      this.filteredPublishers
-    );
+    //console.log('Filter results of getPublishers() => ',this.filteredPublishers);
   }
 
   getNewIDPublisher(elementList: Array<Publisher>): number {
@@ -569,10 +567,7 @@ export class HomePage implements OnInit {
       });
       this.filteredShopkeepers = this.filterByYears(this.filteredShopkeepers);
     }
-    console.log(
-      'Filter results of getShopkeepers() => ',
-      this.filteredShopkeepers
-    );
+    //console.log('Filter results of getShopkeepers() => ', this.filteredShopkeepers);
   }
 
   getNewIDShopkeeper(elementList: Array<Shopkeeper>): number {
@@ -663,10 +658,7 @@ export class HomePage implements OnInit {
       });
       this.filteredWarehouses = this.filterByYears(this.filteredWarehouses);
     }
-    console.log(
-      'Filter results of getWarehouses() => ',
-      this.filteredWarehouses
-    );
+    //console.log('Filter results of getWarehouses() => ',this.filteredWarehouses);
   }
 
   getNewIDWarehouse(elementList: Array<Warehouse>): number {
@@ -751,10 +743,7 @@ export class HomePage implements OnInit {
       });
       this.filteredProvenances = this.filterByYears(this.filteredProvenances);
     }
-    console.log(
-      'Filter results of getProvenances() => ',
-      this.filteredProvenances
-    );
+    //console.log('Filter results of getProvenances() => ',this.filteredProvenances);
   }
 
   getNewIDProvenance(elementList: Array<Provenance>): number {
@@ -842,10 +831,7 @@ export class HomePage implements OnInit {
         this.filteredGeographicalOrigins
       );
     }
-    console.log(
-      'Filter results of getGeographicalOrigins() => ',
-      this.filteredGeographicalOrigins
-    );
+    //console.log('Filter results of getGeographicalOrigins() => ',this.filteredGeographicalOrigins);
   }
 
   getNewIDGeographicalOrigin(elementList: Array<GeographicalOrigin>): number {
@@ -928,10 +914,7 @@ export class HomePage implements OnInit {
       });
       this.filteredTypeObjects = this.filterByYears(this.filteredTypeObjects);
     }
-    console.log(
-      'Filter results of getTypeObjects() => ',
-      this.filteredTypeObjects
-    );
+    //console.log('Filter results of getTypeObjects() => ',this.filteredTypeObjects);
   }
 
   getNewIDTypeObject(elementList: Array<TypeObject>): number {
@@ -992,7 +975,7 @@ export class HomePage implements OnInit {
   }
 
   filterByYears<T extends { addedDate: Date }>(filteredItems: T[]): T[] {
-    console.log(this.searchYears.lower, this.searchYears.upper);
+    //console.log(" filter by years ",this.searchYears.lower, this.searchYears.upper);
     return filteredItems.filter((item) => {
       if (item.addedDate != null) {
         const year = new Date(item.addedDate).getFullYear();

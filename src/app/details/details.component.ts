@@ -26,7 +26,6 @@ export class DetailsComponent implements OnInit {
 
   async ngOnInit() {
     this.allDatabase = await this.dataservice.getAllDatabase(); // Ora allDatabase è popolato
-
     this.objectId = this.route.snapshot.paramMap.get('id');
   }
 
