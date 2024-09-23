@@ -269,14 +269,14 @@
               color="secondary"
               style="padding-right: 3%"
               class="bottone-update"
-              id="button-update+'{{ category.categoryID }}'"
+              id="button-update-'{{ category.categoryID }}'"
               (click)="UpdateCategoryAPI()"
               >Salva</ion-button
             >
             <ion-toast
-              trigger="button-update+'{{ category.categoryID }}'"
-              message="  Nuovo Elemento Salvato"
-              class="toast-autori"
+              trigger="button-update-'{{ category.categoryID }}'"
+              message="Nuovo Elemento Salvato"
+              class="toast-elemento"
               color="success"
               [duration]="2000"
               expand="block"

@@ -18,7 +18,7 @@ const routes: Routes = [
       import('./home/home.module').then((m) => m.HomePageModule), // Importa il modulo della home
   },
   {
-    path: 'messages',
+    path: 'details',
     component: MessageComponent,
     children: [{ path: ':id', component: MessageComponent }], // Rotta figlia per i messaggi
   },

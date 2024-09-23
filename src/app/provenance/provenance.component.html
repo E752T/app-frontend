@@ -215,11 +215,20 @@
           <div slot="content" *ngIf="user_role === 'admin'">
             <ion-button
               color="secondary"
+              style="padding-right: 3%"
               class="bottone-update"
-              id="button-UpdateAuthorAPI-'{{ provenance.provenanceID }}'"
+              id="button-update-'{{ provenance.provenanceID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
+            <ion-toast
+              trigger="button-update-'{{ provenance.provenanceID }}'"
+              message="Nuovo Elemento Salvato"
+              class="toast-elemento"
+              color="success"
+              [duration]="2000"
+              expand="block"
+            ></ion-toast>
 
             <ion-button
               id="elimina2-autore-'{{ provenance.provenanceID }}'"
@@ -271,15 +280,6 @@
                 ></ion-toast>
               </ng-template>
             </ion-modal>
-
-            <ion-toast
-              trigger="button-UpdateAuthorAPI-'{{ provenance.provenanceID }}'"
-              message="Nuovo elemento salvato"
-              class="toast-elemento"
-              color="success"
-              [duration]="2000"
-              expand="block"
-            ></ion-toast>
           </div>
         </ion-accordion>
       </ion-accordion-group>
