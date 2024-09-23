@@ -20,7 +20,10 @@
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
 
-            <ion-modal trigger="modale-elimina-'{{ shopkeeper.shopkeeperID }}'">
+            <ion-modal
+              *ngIf="user_role === 'admin'"
+              trigger="modale-elimina-'{{ shopkeeper.shopkeeperID }}'"
+            >
               <ng-template>
                 <ion-header>
                   <ion-toolbar>

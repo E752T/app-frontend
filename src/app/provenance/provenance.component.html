@@ -19,7 +19,10 @@
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
-            <ion-modal trigger="elimina-autore-'{{ provenance.provenanceID }}'">
+            <ion-modal
+              *ngIf="user_role === 'admin'"
+              trigger="elimina-autore-'{{ provenance.provenanceID }}'"
+            >
               <ng-template>
                 <ion-header>
                   <ion-toolbar>
