@@ -1,5 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+import {
+  EventEmitter,
+  inject,
+  input,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { IonModal } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -14,6 +28,5 @@ export class DettagliCartaPage implements OnInit {
 
   ngOnInit() {
     this.objectId = this.route.snapshot.paramMap.get('id');
-    // Qui puoi utilizzare objectId per recuperare i dettagli della carta
   }
 }
