@@ -10,5 +10,4 @@ import { DatabaseObject } from '../services/interfaces.service';
   declarations: [DetailsComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Aggiungi questa riga
 })
-export class DetailsModule {
-}
+export class DetailsModule {}
