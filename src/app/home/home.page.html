@@ -1173,6 +1173,8 @@
             </ion-text>
           </ion-button>
           <ion-modal
+          *ngIf="user_role=== 'admin'"
+
             trigger="add-new-object-button"
             (willDismiss)="onWillDismiss($event)"
             class="ion-padding"
@@ -1747,6 +1749,7 @@
           </ion-text>
         </ion-button>
         <ion-modal
+          *ngIf="user_role=== 'admin'"
           trigger="bottone-aggiungi-nuova-categoria"
           (willDismiss)="onWillDismiss($event)"
           class="ion-padding"
@@ -1861,6 +1864,7 @@
           </ion-text>
         </ion-button>
         <ion-modal
+          *ngIf="user_role=== 'admin'"
           trigger="bottone-aggiungi-nuova-categoria"
           (willDismiss)="onWillDismiss($event)"
           class="ion-padding"
@@ -1978,6 +1982,7 @@
           </ion-title>
         </ion-button>
         <ion-modal
+          *ngIf="user_role=== 'admin'"
           trigger="bottone-aggiungi-shopkeeper"
           (willDismiss)="onWillDismiss($event)"
           class="ion-padding"
@@ -2188,6 +2193,7 @@
           </ion-title>
         </ion-button>
         <ion-modal
+          *ngIf="user_role=== 'admin'"
           trigger="add-new-publisher-button"
           (willDismiss)="onWillDismiss($event)"
           class="ion-padding"
@@ -2398,6 +2404,7 @@
           </ion-title>
         </ion-button>
         <ion-modal
+          *ngIf="user_role=== 'admin'"
           trigger="bottone-aggiungi-type-object"
           (willDismiss)="onWillDismiss($event)"
           class="ion-padding"
@@ -2514,6 +2521,7 @@
           </ion-title>
         </ion-button>
         <ion-modal
+          *ngIf="user_role=== 'admin'"
           trigger="bottone-aggiungi-warehouse"
           (willDismiss)="onWillDismiss($event)"
           class="ion-padding"
@@ -2724,6 +2732,7 @@
           </ion-title>
         </ion-button>
         <ion-modal
+          *ngIf="user_role=== 'admin'"
           trigger="bottone-aggiungi-provenance"
           (willDismiss)="onWillDismiss($event)"
           class="ion-padding"
@@ -2845,6 +2854,7 @@
           </ion-title>
         </ion-button>
         <ion-modal
+          *ngIf="user_role=== 'admin'"
           trigger="bottone-aggiungi-GeographicalOrigin"
           (willDismiss)="onWillDismiss($event)"
           class="ion-padding"

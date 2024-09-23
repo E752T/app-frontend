@@ -20,7 +20,10 @@
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
 
-            <ion-modal trigger="modale-elimina-'{{ type_object.typeID }}'">
+            <ion-modal
+              *ngIf="user_role === 'admin'"
+              trigger="modale-elimina-'{{ type_object.typeID }}'"
+            >
               <ng-template>
                 <ion-header>
                   <ion-toolbar>
@@ -29,7 +32,7 @@
                         ><ion-icon name="arrow-undo-outline"></ion-icon
                       ></ion-button>
                     </ion-buttons>
-  
+
                     <ion-buttons slot="end">
                       <ion-button
                         (click)="DeleteElement(type_object.typeID)"
@@ -59,8 +62,6 @@
               </ng-template>
             </ion-modal>
           </ion-item>
-
-
 
           <div slot="content" style="margin-top: 15px">
             <ion-label class="label-autori">
