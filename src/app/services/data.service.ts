@@ -48,6 +48,10 @@ export class DataService {
     }
   }
 
+  getAllData() {
+    return this.allDatabase;
+  }
+
   // Metodo per esportare filteredObjects
   getFilteredObjects(): Array<DatabaseObject> {
     return this.filteredObjects;

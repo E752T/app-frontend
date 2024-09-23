@@ -1,6 +1,8 @@
 // details.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../services/data.service';
+import { DatabaseObject } from '../services/interfaces.service';
 
 @Component({
   selector: 'app-details',
@@ -10,23 +12,36 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailsComponent implements OnInit {
   objectId: string | null | undefined;
   objectData: any;
-  allDatabase: any;
+  private allDatabase: Array<DatabaseObject> = [];
 
-  constructor(private route: ActivatedRoute) {
-    this.route.paramMap.subscribe((params) => {
+  constructor(private route: ActivatedRoute, private dataservice: DataService) {
+    this.route.paramMap.subscribe(async (params) => {
       this.objectId = params.get('id');
-      this.objectData = this.getObjectData(String(this.objectId));
+      this.objectData = await this.getObjectData(String(this.objectId));
+    });
+    this.dataservice.getAllDatabase().then((res) => {
+      this.allDatabase = res; 
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.allDatabase = await this.dataservice.getAllDatabase(); // Ora allDatabase è popolato
     this.objectId = this.route.snapshot.paramMap.get('id');
-    // Logica per caricare i dettagli in base all'ID
   }
 
-  getObjectData(id: string) {
-    return this.allDatabase.find(
-      (item: { id: { toString: () => string } }) => item.id.toString() === id
+  async getObjectData(id: string) {
+    this.allDatabase = await this.dataservice.getAllDatabase(); // Ora allDatabase è popolato
+
+    const result = this.allDatabase.find(
+      (item) => String(item.objectID) === id
     );
+    console.log('Database ', this.allDatabase);
+    console.log('Object ID Details ', id);
+
+    if (result) {
+      return result; // Restituisce i dati dell'oggetto trovato
+    } else {
+      throw new Error(`Oggetto con ID ${id} non trovato.`);
+    }
   }
 }
