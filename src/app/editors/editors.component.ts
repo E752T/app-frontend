@@ -21,6 +21,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-editors',
   templateUrl: './editors.component.html',
+
   styleUrls: ['./editors.component.scss'],
 })
 export class EditorsComponent {

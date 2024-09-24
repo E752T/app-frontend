@@ -10,38 +10,33 @@ import { DatabaseObject } from '../services/interfaces.service';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  objectId: string | null | undefined;
-  objectData: any;
+  objectId: string | null = null;
+  objectData: DatabaseObject | null = null;
   private allDatabase: Array<DatabaseObject> = [];
 
-  constructor(private route: ActivatedRoute, private dataservice: DataService) {
-    this.route.paramMap.subscribe(async (params) => {
-      this.objectId = params.get('id');
-      this.objectData = await this.getObjectData(String(this.objectId));
-    });
-    this.dataservice.getAllDatabase().then((res) => {
-      this.allDatabase = res;
-    });
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private dataservice: DataService
+  ) {}
 
   async ngOnInit() {
-    this.allDatabase = await this.dataservice.getAllDatabase(); // Ora allDatabase è popolato
+    this.allDatabase = await this.dataservice.getAllDatabase();
     this.objectId = this.route.snapshot.paramMap.get('id');
+    if (this.objectId) {
+      this.objectData = await this.getObjectData(this.objectId);
+    }
   }
 
-  async getObjectData(id: string) {
-    this.allDatabase = await this.dataservice.getAllDatabase(); // Ora allDatabase è popolato
-
+  async getObjectData(id: string): Promise<DatabaseObject | null> {
     const result = this.allDatabase.find(
       (item) => String(item.objectID) === id
     );
-    console.log('Database ', this.allDatabase);
-    console.log('Object ID Details ', id);
 
     if (result) {
       return result; // Restituisce i dati dell'oggetto trovato
     } else {
-      throw new Error(`Oggetto con ID ${id} non trovato.`);
+      console.error(`Oggetto con ID ${id} non trovato.`);
+      return null; // Restituisce null se non trovato
     }
   }
 }

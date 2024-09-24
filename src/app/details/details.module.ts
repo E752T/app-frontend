@@ -8,6 +8,7 @@ import { DatabaseObject } from '../services/interfaces.service';
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule],
   declarations: [DetailsComponent],
+  exports: [DetailsComponent], // Aggiungi questa riga se necessario
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Aggiungi questa riga
 })
 export class DetailsModule {}
