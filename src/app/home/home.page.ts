@@ -82,11 +82,18 @@ export class HomePage implements OnInit {
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
     this.bodyAddObject = this.dataService.getBodyAddObject();
+
+    localStorage.setItem('token_JWT', '');
+    localStorage.setItem('token_JWT_success', '');
+    localStorage.setItem('shopkeeper', '');
+    localStorage.setItem('email', '');
+    localStorage.setItem('password', '');
+    localStorage.setItem('username', '');
+    localStorage.setItem('user_role', '');
   }
 
   allDatabase: DatabaseObject[] = [];
   filteredObjects: DatabaseObject[] = [];
-
   //allDatabase: Array<DatabaseObject> = this.dataService.getAllDatabase();
   //filteredObjects: Array<DatabaseObject> = this.dataService.getAllDatabase();
 
