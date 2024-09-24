@@ -1,9 +1,41 @@
-<header>ESEMPIO PAGINA</header>
-
 <body>
-  <div>OGGETTO</div>
-  <div>I dati dell' oggetto {{ objectData?.objectID }}</div>
-  <div>I dati dell' oggetto {{ objectData?.title }}</div>
-
-  <div>Example</div>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-title color="secondary">Dettagli dell'oggetto</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">
+        <ion-text>Torna indietro</ion-text>
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-card>
+    <ion-item>
+      <ion-text>Titolo {{ objectData?.title }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>Sottotitolo {{ objectData?.subtitle }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text
+        >Descrizione dell'Autore{{ objectData?.authorDescription }}</ion-text
+      >
+    </ion-item>
+    <ion-item>
+      <ion-text>Genere {{ objectData?.genere }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>Data di scoprerta {{ objectData?.discoveryDate }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>Data di aggiunta {{ objectData?.addedDate }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>Note {{ objectData?.objectNotes }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>Posizione {{ objectData?.position }}</ion-text>
+    </ion-item>
+  </ion-card>
 </body>

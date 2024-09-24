@@ -1,6 +1,6 @@
 // details.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { DatabaseObject } from '../services/interfaces.service';
 
@@ -16,7 +16,8 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dataservice: DataService
+    private dataservice: DataService,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -38,5 +39,9 @@ export class DetailsComponent implements OnInit {
       console.error(`Oggetto con ID ${id} non trovato.`);
       return null; // Restituisce null se non trovato
     }
+  }
+
+  cancel() {
+    this.router.navigate(['']); // Navigates to the root path
   }
 }
