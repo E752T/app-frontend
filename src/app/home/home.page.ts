@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ModalController, RefresherCustomEvent } from '@ionic/angular';
 import { GetRequest, PostRequest } from '../services/request.service';
 import { ViewChild } from '@angular/core';
@@ -42,16 +42,11 @@ export class HomePage implements OnInit {
 
   bodyAddObject: any;
 
-  async ngOnInit() {
-    this.getScreenSize();
-    this.toggleMenu();
+  allDatabase: DatabaseObject[] = [];
+  filteredObjects: DatabaseObject[] = [];
 
-    try {
-      this.allDatabase = await this.dataService.getAllDatabase();
-    } catch (error) {
-      console.error('Errore nel recupero dei dati:', error);
-    }
-  }
+  imageUrl: string | ArrayBuffer | null = null;
+
   public token_JWT: string | null;
   public user_role: string | null;
   public token_JWT_success: boolean | null;
@@ -69,12 +64,26 @@ export class HomePage implements OnInit {
     username: '',
   };
 
+  async ngOnInit() {
+    this.getScreenSize();
+    this.toggleMenu();
+
+    try {
+      this.allDatabase = await this.dataService.getAllDatabase();
+      this.filteredObjects = this.allDatabase;
+      this.cdr.detectChanges(); // Manually trigger change detection
+    } catch (error) {
+      console.error('Error retrieving data:', error);
+    }
+  }
+
   constructor(
     private http: HttpClient,
     private modalCtrl: ModalController,
     private menuCtrl: MenuController,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
   ) {
     this.token_JWT = this.dataService.getTokenJWT();
     this.user_role = this.dataService.getUserRole();
@@ -91,13 +100,6 @@ export class HomePage implements OnInit {
     localStorage.setItem('username', '');
     localStorage.setItem('user_role', '');
   }
-
-  allDatabase: DatabaseObject[] = [];
-  filteredObjects: DatabaseObject[] = [];
-  //allDatabase: Array<DatabaseObject> = this.dataService.getAllDatabase();
-  //filteredObjects: Array<DatabaseObject> = this.dataService.getAllDatabase();
-
-  imageUrl: string | ArrayBuffer | null = null;
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];

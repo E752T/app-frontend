@@ -29,7 +29,7 @@ export class DataService {
 
   constructor() {
     // Inizializzazione dei dati
-    this.getAllDatabase(); // Chiamata al metodo per ottenere il database
+    // this.getAllDatabase(); // Chiamata al metodo per ottenere il database
     this.filteredObjects = this.allDatabase; // Inizializza filteredObjects
   }
 
