@@ -364,7 +364,7 @@ export class HomePage implements OnInit {
     return this.allAuthors;
   }
 
-  //       Category
+  // Category
 
   allCategories: Array<Category> = [];
   filteredCategories: Array<Category> = [];
@@ -447,7 +447,7 @@ export class HomePage implements OnInit {
     return this.filteredCategories;
   }
 
-  //       Publisher
+  // Publisher
 
   allPublishers: Array<Publisher> = [];
   filteredPublishers: Array<Publisher> = [];
@@ -540,7 +540,7 @@ export class HomePage implements OnInit {
     return this.filteredPublishers;
   }
 
-  //       ESERCENTI
+  // ESERCENTI
 
   allShopkeepers: Array<Shopkeeper> = [];
   filteredShopkeepers: Array<Shopkeeper> = [];
@@ -631,7 +631,7 @@ export class HomePage implements OnInit {
     return this.filteredShopkeepers;
   }
 
-  //       MAGAZZINI
+  // MAGAZZINI
 
   allWarehouses: Array<Warehouse> = [];
   filteredWarehouses: Array<Warehouse> = [];
@@ -720,7 +720,7 @@ export class HomePage implements OnInit {
     return this.filteredWarehouses;
   }
 
-  //       PROVENIENZE
+  // PROVENIENZE
 
   allProvenances: Array<Provenance> = [];
   filteredProvenances: Array<Provenance> = [];
@@ -891,7 +891,7 @@ export class HomePage implements OnInit {
     return this.filteredGeographicalOrigins;
   }
 
-  //      TIPI DI OGGETTI
+  // TIPI DI OGGETTI
 
   allTypeObjects: Array<TypeObject> = [];
   filteredTypeObjects: Array<TypeObject> = [];
