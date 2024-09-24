@@ -15,6 +15,7 @@ import { TypeObjectModule } from '../type-objects/type-objects.module';
 import { GeographicalOriginModule } from '../geographical-origins/geographical-origin.module';
 import { ProvenanceModule } from '../provenance/provenance.module';
 import { WarehousetModule } from '../warehouses/warehouses.module';
+
 @NgModule({
   imports: [
     CommonModule,
