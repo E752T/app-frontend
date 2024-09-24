@@ -390,12 +390,10 @@
         class="ion-padding"
       >
         <ng-template class="template-angular">
-          <ion-header>
+          <ion-header style="width: 100% !important">
             <ion-toolbar>
               <ion-buttons slot="start">
-                <ion-title class="centrato" color="secondary"
-                  >Assistenza</ion-title
-                >
+                <ion-title color="secondary">Assistenza</ion-title>
               </ion-buttons>
               <ion-buttons slot="end">
                 <ion-button (click)="cancel()">
@@ -438,20 +436,16 @@
         class="ion-padding"
       >
         <ng-template class="template-angular">
-          <ion-header>
-            <ion-toolbar>
-              <ion-buttons slot="start">
-                <ion-title class="centrato" color="secondary"
-                  >Configurazione Account</ion-title
-                >
-              </ion-buttons>
-              <ion-buttons slot="end">
-                <ion-button (click)="cancel()">
-                  <ion-icon name="close-outline"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-title color="secondary">Configurazione Account</ion-title>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="cancel()">
+                <ion-icon name="close-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
           <ion-content>
             <ion-item>
               <ion-icon name="home"></ion-icon>
@@ -522,21 +516,16 @@
         class="ion-padding"
       >
         <ng-template class="template-angular">
-          <ion-header>
-            <ion-toolbar>
-              <ion-title
-                class="centrato"
-                color="secondary"
-                classe="titolo-modale-centrato"
-                >Esci dal tuo Account</ion-title
-              >
-              <ion-buttons slot="start">
-                <ion-button (click)="cancel()">
-                  <ion-icon name="arrow-undo-outline"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-title color="secondary">Log Out</ion-title>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="cancel()">
+                <ion-icon name="close-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
           <ion-text class="modale-esci">
             <br />
             Ciao {{this.username}}, sei sicuro di voler uscire?
@@ -977,12 +966,10 @@
             class="ion-padding"
           >
             <ng-template class="template-angular">
-              <ion-header>
+              <ion-header style="width: 100% !important">
                 <ion-toolbar>
                   <ion-buttons slot="start">
-                    <ion-title class="centrato" color="secondary"
-                      >Assistenza</ion-title
-                    >
+                    <ion-title color="secondary">Assistenza</ion-title>
                   </ion-buttons>
                   <ion-buttons slot="end">
                     <ion-button (click)="cancel()">
@@ -1022,20 +1009,18 @@
             class="ion-padding"
           >
             <ng-template class="template-angular">
-              <ion-header>
-                <ion-toolbar>
-                  <ion-buttons slot="start">
-                    <ion-title class="centrato" color="secondary"
-                      >Configurazione Account</ion-title
-                    >
-                  </ion-buttons>
-                  <ion-buttons slot="end">
-                    <ion-button (click)="cancel()">
-                      <ion-icon name="close-outline"></ion-icon>
-                    </ion-button>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-title color="secondary"
+                    >Configurazione Account</ion-title
+                  >
+                </ion-buttons>
+                <ion-buttons slot="end">
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
               <ion-content>
                 <ion-item>
                   <ion-icon name="home"></ion-icon>
@@ -1102,20 +1087,16 @@
             class="ion-padding"
           >
             <ng-template class="template-angular">
-              <ion-header>
-                <ion-toolbar>
-                  <ion-title
-                    class="centrato titolo-modale-centrato"
-                    color="secondary"
-                    >Esci dal tuo Account</ion-title
-                  >
-                  <ion-buttons slot="start">
-                    <ion-button (click)="cancel()">
-                      <ion-icon name="arrow-undo-outline"></ion-icon>
-                    </ion-button>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-header>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-title color="secondary">Log out</ion-title>
+                </ion-buttons>
+                <ion-buttons slot="end">
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
               <ion-text class="modale-esci">
                 <br />
                 Ciao {{this.username}}, sei sicuro di voler uscire?
@@ -1173,8 +1154,7 @@
             </ion-text>
           </ion-button>
           <ion-modal
-          *ngIf="user_role=== 'admin'"
-
+            *ngIf="user_role=== 'admin'"
             trigger="add-new-object-button"
             (willDismiss)="onWillDismiss($event)"
             class="ion-padding"
