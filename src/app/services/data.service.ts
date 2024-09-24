@@ -11,8 +11,10 @@ import {
 } from '../services/interfaces.service';
 import { LoginObject } from '../services/interfaces.service';
 import { GetRequest } from '../services/request.service';
+import { baseURL } from '../enviroenment';
 
 import { Injectable } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root', // Questo rende il servizio disponibile in tutta l'app
@@ -29,11 +31,8 @@ export class DataService {
 
   constructor() {
     // Inizializzazione dei dati
-    // this.getAllDatabase(); // Chiamata al metodo per ottenere il database
-    this.filteredObjects = this.allDatabase; // Inizializza filteredObjects
+    this.filteredObjects = this.allDatabase;
   }
-
-  //////////////////////////////////////////////////////
 
   // Metodo per esportare allDatabase
   async getAllDatabase(): Promise<Array<DatabaseObject>> {
@@ -52,7 +51,6 @@ export class DataService {
     return this.allDatabase;
   }
 
-  // Metodo per esportare filteredObjects
   getFilteredObjects(): Array<DatabaseObject> {
     return this.filteredObjects;
   }
@@ -94,8 +92,6 @@ export class DataService {
     htmlDescription1: '',
     htmlDescription2: '',
   };
-
-  /////////////////////////////////////////////////
 
   setUsername(username: string): void {
     this.username = username;
@@ -146,9 +142,6 @@ export let body_login: LoginObject = {
 };
 
 export const today: Date = new Date();
-
-import { DatePipe } from '@angular/common';
-import { baseURL } from '../enviroenment';
 
 const datePipe = new DatePipe('en-US');
 
@@ -379,4 +372,3 @@ export let bodyAddAuthor: Author = {
   telephone2: '',
   notes: '',
 };
-export { LoginObject };
