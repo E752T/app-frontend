@@ -43,13 +43,12 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-text class="ion-text-center" class="text-conferma-elimina">
-                  <ion-title
-                    >Sei sicuro di voler eliminare il seguente
-                    elemento?</ion-title
-                  >
-                  <p></p>
-                  <h1>{{ type_object.name }}</h1>
+                <ion-text class="vertical-align-container">
+                  <ion-title>
+                    Sei sicuro di eliminare questo elemento?
+                    <br />
+                    {{ type_object.name }}
+                  </ion-title>
                 </ion-text>
                 <ion-toast
                   trigger="conferma-elimina-autore-'{{ type_object.typeID }}'"
@@ -318,13 +317,12 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-text class="ion-text-center" class="text-conferma-elimina">
-                  <ion-title
-                    >Sei sicuro di voler eliminare il seguente
-                    elemento?</ion-title
-                  >
-                  <p></p>
-                  <h1>{{ type_object.name }}</h1>
+                <ion-text class="vertical-align-container">
+                  <ion-title>
+                    Sei sicuro di eliminare questo elemento?
+                    <br />
+                    {{ type_object.name }}
+                  </ion-title>
                 </ion-text>
                 <ion-toast
                   trigger="conferma2-elimina-autore-'{{ type_object.typeID }}'"

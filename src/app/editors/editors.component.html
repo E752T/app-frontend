@@ -48,12 +48,12 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-text class="testo-conferma-elimina ion-text-center">
-                  <ion-title
-                    >Sei sicuro di eliminare questo elemento?</ion-title
-                  >
-                  <p></p>
-                  <h1>{{ publisher.name }}</h1>
+                <ion-text class="vertical-align-container">
+                  <ion-title>
+                    Sei sicuro di eliminare questo elemento?
+                    <br />
+                    {{ publisher.name }}
+                  </ion-title>
                 </ion-text>
 
                 <ion-toast
@@ -307,12 +307,11 @@
                   expand="block"
                 ></ion-toast>
 
-                <ion-text class="testo-conferma-elimina ion-text-center">
+                <ion-text class="vertical-align-container">
                   <ion-title>
                     Sei sicuro di eliminare questo elemento?
                     <br />
-                    <p></p>
-                    <h1>{{ publisher.name }}</h1>
+                    {{ publisher.name }}
                   </ion-title>
                   <ion-toast
                     trigger="conferma-elimina-'{{ publisher.publisherID }}'"

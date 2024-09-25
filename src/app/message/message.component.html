@@ -624,16 +624,12 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-text
-                  class="ion-text-center"
-                  style="margin-bottom: 50%; font-family: serif"
-                >
-                  <ion-title
-                    >Sei sicuro di voler eliminare il seguente
-                    elemento?</ion-title
-                  >
-                  <p></p>
-                  <h1>{{ message.title }}</h1>
+                <ion-text class="vertical-align-container">
+                  <ion-title>
+                    Sei sicuro di eliminare questo elemento?
+                    <br />
+                    {{ message.title }}
+                  </ion-title>
                 </ion-text>
               </ng-template>
             </ion-modal>
