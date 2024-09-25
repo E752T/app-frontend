@@ -57,13 +57,42 @@
                       </ion-buttons>
                     </ion-toolbar>
                   </ion-header>
-                  <ion-text class="vertical-align-container">
-                    <ion-title>
-                      Sei sicuro di eliminare questo elemento?
-                      <br />
-                      {{ category.name }}
-                    </ion-title>
+                  <ion-text class="center-element titolo-elimina-elemento">
+                    Sei sicuro di eliminare questo elemento?
                   </ion-text>
+                  <ion-card class="center-element card-elimina-elemento">
+                    <ion-text>
+                      <ion-icon name="person"></ion-icon>
+                      Nome
+                      <br />
+                      <ion-text>
+                        {{ category.name }}
+                      </ion-text>
+                    </ion-text>
+                    <br />
+                    <br />
+                    <ion-text>
+                      <ion-icon name="newspaper-outline"></ion-icon>
+                      Descrizione:
+                      <br />
+  
+                      <ion-text>
+                        {{ category.description }}
+                      </ion-text>
+                    </ion-text>
+                    <br />
+                    <br />
+  
+                    <ion-text>
+                      <ion-icon name="calendar-outline"></ion-icon>
+                      Data dell'ultimo aggiornamento
+                      <br />
+  
+                      <ion-text>
+                        {{ category.lastUpdateDate }}
+                      </ion-text>
+                    </ion-text>
+                  </ion-card>
                   <ion-toast
                     class="toast-autori"
                     trigger="confirmDeleteCategory-'{{ category.categoryID }}'"
@@ -330,13 +359,42 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-text class="vertical-align-container">
-                  <ion-title>
-                    Sei sicuro di eliminare questo elemento?
-                    <br />
-                    {{ category.name }}
-                  </ion-title>
+                <ion-text class="center-element titolo-elimina-elemento">
+                  Sei sicuro di eliminare questo elemento?
                 </ion-text>
+                <ion-card class="center-element card-elimina-elemento">
+                  <ion-text>
+                    <ion-icon name="person"></ion-icon>
+                    Nome
+                    <br />
+                    <ion-text>
+                      {{ category.name }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+                  <ion-text>
+                    <ion-icon name="newspaper-outline"></ion-icon>
+                    Descrizione:
+                    <br />
+
+                    <ion-text>
+                      {{ category.description }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+
+                  <ion-text>
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    Data dell'ultimo aggiornamento
+                    <br />
+
+                    <ion-text>
+                      {{ category.lastUpdateDate }}
+                    </ion-text>
+                  </ion-text>
+                </ion-card>
               </ng-template>
             </ion-modal>
           </div>

@@ -43,13 +43,42 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-text class="vertical-align-container">
-                  <ion-title>
-                    Sei sicuro di eliminare questo elemento?
-                    <br />
-                    {{ warehouse.name }}
-                  </ion-title>
+                <ion-text class="center-element titolo-elimina-elemento">
+                  Sei sicuro di eliminare questo elemento?
                 </ion-text>
+                <ion-card class="center-element card-elimina-elemento">
+                  <ion-text>
+                    <ion-icon name="person"></ion-icon>
+                    Nome
+                    <br />
+                    <ion-text>
+                      {{ warehouse.name }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+                  <ion-text>
+                    <ion-icon name="newspaper-outline"></ion-icon>
+                    Descrizione:
+                    <br />
+
+                    <ion-text>
+                      {{ warehouse.description }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+
+                  <ion-text>
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    Data dell'ultimo aggiornamento
+                    <br />
+
+                    <ion-text>
+                      {{ warehouse.lastUpdateDate }}
+                    </ion-text>
+                  </ion-text>
+                </ion-card>
                 <ion-toast
                   trigger="conferma-elimina-autore-'{{
                     warehouse.warehouseID
@@ -469,13 +498,42 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-text class="vertical-align-container">
-                  <ion-title>
-                    Sei sicuro di eliminare questo elemento?
-                    <br />
-                    {{ warehouse.name }}
-                  </ion-title>
+                <ion-text class="center-element titolo-elimina-elemento">
+                  Sei sicuro di eliminare questo elemento?
                 </ion-text>
+                <ion-card class="center-element card-elimina-elemento">
+                  <ion-text>
+                    <ion-icon name="person"></ion-icon>
+                    Nome
+                    <br />
+                    <ion-text>
+                      {{ warehouse.name }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+                  <ion-text>
+                    <ion-icon name="newspaper-outline"></ion-icon>
+                    Descrizione:
+                    <br />
+
+                    <ion-text>
+                      {{ warehouse.description }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+
+                  <ion-text>
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    Data dell'ultimo aggiornamento
+                    <br />
+
+                    <ion-text>
+                      {{ warehouse.lastUpdateDate }}
+                    </ion-text>
+                  </ion-text>
+                </ion-card>
                 <ion-toast
                   trigger="conferma-elimina-autore-'{{
                     warehouse.warehouseID

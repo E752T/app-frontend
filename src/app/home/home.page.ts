@@ -35,6 +35,21 @@ export class HomePage implements OnInit {
   searchGeneres: Array<string> = []; // array for containing choosen generes
   searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
 
+  isMenuAnchored: boolean = false; // default: true
+
+  sizeColumnFilter: string = '0'; // default: 0 Dimensione predefinita
+
+  AdminTables: Array<string> = [
+    'Author',
+    'Publisher',
+    'Category',
+    'Shopkeeper',
+    'Warehouse',
+    'Provenance',
+    'GeographicalOrigin',
+    'TypeObject',
+  ];
+
   new_shopkeeper: any;
   new_username: any;
   new_password: any;
@@ -135,21 +150,7 @@ export class HomePage implements OnInit {
     | ElementRef
     | undefined;
 
-  isMenuAnchored: boolean = true;
-  sizeColumnFilter: string = '0'; // Dimensione predefinita
-
   screenSize = this.checkScreenSize();
-
-  AdminTables: Array<string> = [
-    'Author',
-    'Publisher',
-    'Category',
-    'Shopkeeper',
-    'Warehouse',
-    'Provenance',
-    'GeographicalOrigin',
-    'TypeObject',
-  ];
 
   updateCredentials() {
     let body_new_credentials = {

@@ -12,10 +12,10 @@ import { baseURL } from '../enviroenment';
 })
 export class LoginPage {
   public body_login = {
-    shopkeeper: '',
-    email: '',
-    password: '',
-    username: '',
+    shopkeeper: 'admin',
+    email: 'admin',
+    password: 'admin',
+    username: 'admin',
   };
 
   public toggle_remember_me: boolean = false;

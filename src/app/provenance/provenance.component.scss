@@ -70,7 +70,7 @@
 
 .toast-elemento {
   text-align: center;
-  color:rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
   font-size: larger;
 }
 
@@ -94,4 +94,24 @@
     width: 75vw;
     white-space: nowrap;
   }
+}
+
+.center-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-elimina-elemento {
+  min-height: 40vh;
+  display: grid;
+  margin-bottom: 33%;
+  font-size: larger;
+  padding-top: 3rem;
+  padding-bottom: 3dvb;
+}
+
+.titolo-elimina-elemento {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }

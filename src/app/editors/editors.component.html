@@ -48,13 +48,42 @@
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
-                <ion-text class="vertical-align-container">
-                  <ion-title>
-                    Sei sicuro di eliminare questo elemento?
-                    <br />
-                    {{ publisher.name }}
-                  </ion-title>
+                <ion-text class="center-element titolo-elimina-elemento">
+                  Sei sicuro di eliminare questo elemento?
                 </ion-text>
+                <ion-card class="center-element card-elimina-elemento">
+                  <ion-text>
+                    <ion-icon name="person"></ion-icon>
+                    Nome
+                    <br />
+                    <ion-text>
+                      {{ publisher.name }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+                  <ion-text>
+                    <ion-icon name="newspaper-outline"></ion-icon>
+                    Descrizione:
+                    <br />
+
+                    <ion-text>
+                      {{ publisher.description }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+
+                  <ion-text>
+                    <ion-icon name="mail"></ion-icon>
+                    Email
+                    <br />
+
+                    <ion-text>
+                      {{ publisher.email }}
+                    </ion-text>
+                  </ion-text>
+                </ion-card>
 
                 <ion-toast
                   trigger="conferma-elimina-'{{ publisher.publisherID }}'"
@@ -307,21 +336,50 @@
                   expand="block"
                 ></ion-toast>
 
-                <ion-text class="vertical-align-container">
-                  <ion-title>
-                    Sei sicuro di eliminare questo elemento?
-                    <br />
-                    {{ publisher.name }}
-                  </ion-title>
-                  <ion-toast
-                    trigger="conferma-elimina-'{{ publisher.publisherID }}'"
-                    message="Elemento eliminato"
-                    class="toast-elemento"
-                    color="danger"
-                    [duration]="2000"
-                    expand="block"
-                  ></ion-toast>
+                <ion-text class="center-element titolo-elimina-elemento">
+                  Sei sicuro di eliminare questo elemento?
                 </ion-text>
+                <ion-card class="center-element card-elimina-elemento">
+                  <ion-text>
+                    <ion-icon name="person"></ion-icon>
+                    Nome
+                    <br />
+                    <ion-text>
+                      {{ publisher.name }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+                  <ion-text>
+                    <ion-icon name="newspaper-outline"></ion-icon>
+                    Descrizione:
+                    <br />
+
+                    <ion-text>
+                      {{ publisher.description }}
+                    </ion-text>
+                  </ion-text>
+                  <br />
+                  <br />
+
+                  <ion-text>
+                    <ion-icon name="mail"></ion-icon>
+                    Email
+                    <br />
+
+                    <ion-text>
+                      {{ publisher.email }}
+                    </ion-text>
+                  </ion-text>
+                </ion-card>
+                <ion-toast
+                  trigger="conferma-elimina-'{{ publisher.publisherID }}'"
+                  message="Elemento eliminato"
+                  class="toast-elemento"
+                  color="danger"
+                  [duration]="2000"
+                  expand="block"
+                ></ion-toast>
               </ng-template>
             </ion-modal>
           </div>
