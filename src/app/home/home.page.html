@@ -1715,9 +1715,10 @@
 
       <ion-grid *ngIf="sectionToShow === 'Author'" class="griglia-store">
         <ion-title class="titolo-categoria-singola">Autori </ion-title>
+
         <ion-button
           *ngIf="user_role=== 'admin'"
-          id="bottone-aggiungi-nuova-categoria"
+          id="bottone-aggiungi-nuovo-autore"
           class="bottone-aggiungi-nuovo-oggetto"
           color="lighter"
           ><ion-icon
@@ -1725,12 +1726,13 @@
             name="add-circle-outline"
           ></ion-icon>
           <ion-text class="testo-aggiungi-nuovo">
-            Aggiungi un nuovo Autore
+            Aggiungi una nuovo Autore
           </ion-text>
         </ion-button>
+
         <ion-modal
           *ngIf="user_role=== 'admin'"
-          trigger="bottone-aggiungi-nuova-categoria"
+          trigger="bottone-aggiungi-nuovo-autore"
           (willDismiss)="onWillDismiss($event)"
           class="ion-padding"
         >
@@ -1844,6 +1846,7 @@
             Aggiungi una nuova Categoria
           </ion-text>
         </ion-button>
+
         <ion-modal
           *ngIf="user_role=== 'admin'"
           trigger="bottone-aggiungi-nuova-categoria"
@@ -1955,12 +1958,9 @@
             class="icona-aggiungi-elemento"
             name="add-circle-outline"
           ></ion-icon>
-          <p style="padding-left: 20px"></p>
-          <ion-title class="center titolo-aggiungi-elemento">
-            <ion-text class="testo-aggiungi-nuovo">
-              Aggiungi un nuovo Esercente
-            </ion-text>
-          </ion-title>
+          <ion-text class="testo-aggiungi-nuovo">
+            Aggiungi un nuovo Esercente
+          </ion-text>
         </ion-button>
         <ion-modal
           *ngIf="user_role=== 'admin'"
@@ -2167,11 +2167,9 @@
             class="icona-aggiungi-elemento"
             name="add-circle-outline"
           ></ion-icon>
-          <ion-title class="center titolo-aggiungi-elemento">
-            <ion-text class="testo-aggiungi-nuovo">
-              Aggiungi un nuovo Editore
-            </ion-text>
-          </ion-title>
+          <ion-text class="testo-aggiungi-nuovo">
+            Aggiungi una nuovo Editore
+          </ion-text>
         </ion-button>
         <ion-modal
           *ngIf="user_role=== 'admin'"
@@ -2379,11 +2377,9 @@
             class="icona-aggiungi-elemento"
             name="add-circle-outline"
           ></ion-icon>
-          <ion-title class="center titolo-aggiungi-elemento">
-            <ion-text class="testo-aggiungi-nuovo">
-              Aggiungi un nuovo Tipo di oggetto
-            </ion-text>
-          </ion-title>
+          <ion-text class="testo-aggiungi-nuovo">
+            Aggiungi una nuovo Tipo di Oggetto
+          </ion-text>
         </ion-button>
         <ion-modal
           *ngIf="user_role=== 'admin'"
@@ -2496,11 +2492,9 @@
             class="icona-aggiungi-elemento"
             name="add-circle-outline"
           ></ion-icon>
-          <ion-title class="center titolo-aggiungi-elemento">
-            <ion-text class="testo-aggiungi-nuovo">
-              Aggiungi un nuovo Magazzino
-            </ion-text>
-          </ion-title>
+          <ion-text class="testo-aggiungi-nuovo">
+            Aggiungi una nuovo Magazzino
+          </ion-text>
         </ion-button>
         <ion-modal
           *ngIf="user_role=== 'admin'"
@@ -2707,11 +2701,9 @@
             class="icona-aggiungi-elemento"
             name="add-circle-outline"
           ></ion-icon>
-          <ion-title class="center titolo-aggiungi-elemento">
-            <ion-text class="testo-aggiungi-nuovo">
-              Aggiungi una nuova Provenienza
-            </ion-text>
-          </ion-title>
+          <ion-text class="testo-aggiungi-nuovo">
+            Aggiungi una nuova Provenienza
+          </ion-text>
         </ion-button>
         <ion-modal
           *ngIf="user_role=== 'admin'"
@@ -2829,11 +2821,9 @@
             class="icona-aggiungi-elemento"
             name="add-circle-outline"
           ></ion-icon>
-          <ion-title class="center titolo-aggiungi-elemento">
-            <ion-text class="testo-aggiungi-nuovo">
-              Aggiungi una nuova Origine
-            </ion-text>
-          </ion-title>
+          <ion-text class="testo-aggiungi-nuovo">
+            Aggiungi una nuova Origine Geografica
+          </ion-text>
         </ion-button>
         <ion-modal
           *ngIf="user_role=== 'admin'"
