@@ -12,14 +12,14 @@
             <ion-label class="cartellino-nome">{{ publisher.name }} </ion-label>
             <ion-button
               *ngIf="user_role === 'admin'"
-              id="modale-elimina-'{{ publisher.publisherID }}'"
+              id="modale-elimina-publisher'{{ publisher.publisherID }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
             <ion-modal
               *ngIf="user_role === 'admin'"
-              trigger="modale-elimina-'{{ publisher.publisherID }}'"
+              trigger="modale-elimina-publisher'{{ publisher.publisherID }}'"
             >
               <ng-template>
                 <ion-header>

@@ -14,7 +14,7 @@
             </ion-label>
             <ion-button
               *ngIf="user_role === 'admin'"
-              id="modale-elimina-'{{ type_object.typeID }}'"
+              id="modale-elimina-type_object-'{{ type_object.typeID }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
@@ -22,7 +22,7 @@
 
             <ion-modal
               *ngIf="user_role === 'admin'"
-              trigger="modale-elimina-'{{ type_object.typeID }}'"
+              trigger="modale-elimina-type_object-'{{ type_object.typeID }}'"
             >
               <ng-template>
                 <ion-header>
