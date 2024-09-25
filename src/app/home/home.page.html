@@ -1735,35 +1735,36 @@
           class="ion-padding"
         >
           <ng-template>
-            <ion-header>
-              <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi un nuovo autore</ion-title
-              >
-
+            <ion-header style="width: 100% !important">
               <ion-toolbar>
                 <ion-buttons slot="start">
-                  <ion-button (click)="cancel()" [strong]="true"
-                    ><ion-icon name="arrow-undo-outline"></ion-icon
-                  ></ion-button>
+                  <ion-title color="secondary"
+                    >Aggiungi un nuovo autore</ion-title
+                  >
                 </ion-buttons>
                 <ion-buttons slot="end">
                   <ion-button
-                    id="bottone-aggiungi-categoria"
-                    (click)="CreateAuthor()"
+                    id="button-add-element"
+                    (click)="CreateAuthor();"
                     [strong]="true"
-                    >Conferma</ion-button
+                    >Salva</ion-button
                   >
                   <ion-toast
-                    trigger="bottone-aggiungi-categoria"
+                    trigger="button-add-element"
                     message="Nuovo Elemento Aggiunto"
                     class="toast-nuovo-elemento"
                     [duration]="2000"
                     expand="block"
                     color="success"
                   ></ion-toast>
+
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-header>
+
             <ion-content class="ion-padding">
               <ion-item>
                 <ion-label class="label-autori">
@@ -1850,32 +1851,32 @@
           class="ion-padding"
         >
           <ng-template>
-            <ion-header>
-              <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi una nuova categoria</ion-title
-              >
-
+            <ion-header style="width: 100% !important">
               <ion-toolbar>
                 <ion-buttons slot="start">
-                  <ion-button (click)="cancel()" [strong]="true"
-                    ><ion-icon name="arrow-undo-outline"></ion-icon
-                  ></ion-button>
+                  <ion-title color="secondary"
+                    >Aggiungi una nuova Categoria</ion-title
+                  >
                 </ion-buttons>
                 <ion-buttons slot="end">
                   <ion-button
-                    id="bottone-aggiungi-categoria"
-                    (click)="CreateCategory()"
+                    id="button-add-element"
+                    (click)="CreateCategory();"
                     [strong]="true"
-                    >Conferma</ion-button
+                    >Salva</ion-button
                   >
                   <ion-toast
-                    trigger="bottone-aggiungi-categoria"
+                    trigger="button-add-element"
                     message="Nuovo Elemento Aggiunto"
                     class="toast-nuovo-elemento"
                     [duration]="2000"
                     expand="block"
                     color="success"
                   ></ion-toast>
+
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-header>
@@ -1968,23 +1969,19 @@
           class="ion-padding"
         >
           <ng-template>
-            <ion-header>
-              <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi un nuovo Esercente</ion-title
-              >
-
+            <ion-header style="width: 100% !important">
               <ion-toolbar>
                 <ion-buttons slot="start">
-                  <ion-button (click)="cancel()" [strong]="true"
-                    ><ion-icon name="arrow-undo-outline"></ion-icon
-                  ></ion-button>
+                  <ion-title color="secondary"
+                    >Aggiungi un nuovo Esercente</ion-title
+                  >
                 </ion-buttons>
                 <ion-buttons slot="end">
                   <ion-button
                     id="button-add-element"
-                    (click)="CreateShopkeeper()"
+                    (click)="CreateShopkeeper();"
                     [strong]="true"
-                    >Conferma</ion-button
+                    >Salva</ion-button
                   >
                   <ion-toast
                     trigger="button-add-element"
@@ -1994,6 +1991,10 @@
                     expand="block"
                     color="success"
                   ></ion-toast>
+
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-header>
@@ -2179,22 +2180,19 @@
           class="ion-padding"
         >
           <ng-template>
-            <ion-header>
-              <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi un nuovo Editore</ion-title
-              >
-
+            <ion-header style="width: 100% !important">
               <ion-toolbar>
                 <ion-buttons slot="start">
-                  <ion-button (click)="cancel()" [strong]="true"
-                    ><ion-icon name="arrow-undo-outline"></ion-icon
-                  ></ion-button>
+                  <ion-title color="secondary"
+                    >Aggiungi un nuovo Editore</ion-title
+                  >
                 </ion-buttons>
                 <ion-buttons slot="end">
                   <ion-button
                     id="button-add-element"
-                    (click)="CreatePublisher()"
-                    >Conferma</ion-button
+                    (click)="CreatePublisher();"
+                    [strong]="true"
+                    >Salva</ion-button
                   >
                   <ion-toast
                     trigger="button-add-element"
@@ -2204,6 +2202,10 @@
                     expand="block"
                     color="success"
                   ></ion-toast>
+
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-header>
@@ -2390,23 +2392,19 @@
           class="ion-padding"
         >
           <ng-template>
-            <ion-header>
-              <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi un nuovo Tipo di oggetto</ion-title
-              >
-
+            <ion-header style="width: 100% !important">
               <ion-toolbar>
                 <ion-buttons slot="start">
-                  <ion-button (click)="cancel()" [strong]="true"
-                    ><ion-icon name="arrow-undo-outline"></ion-icon
-                  ></ion-button>
+                  <ion-title color="secondary"
+                    >Aggiungi un nuovo Tipo di Oggetto</ion-title
+                  >
                 </ion-buttons>
                 <ion-buttons slot="end">
                   <ion-button
                     id="button-add-element"
-                    (click)="CreateTypeObject()"
+                    (click)="CreateTypeObject();"
                     [strong]="true"
-                    >Conferma</ion-button
+                    >Salva</ion-button
                   >
                   <ion-toast
                     trigger="button-add-element"
@@ -2416,6 +2414,10 @@
                     expand="block"
                     color="success"
                   ></ion-toast>
+
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-header>
@@ -2507,23 +2509,19 @@
           class="ion-padding"
         >
           <ng-template>
-            <ion-header>
-              <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi un nuovo Magazzino
-              </ion-title>
-
+            <ion-header style="width: 100% !important">
               <ion-toolbar>
                 <ion-buttons slot="start">
-                  <ion-button (click)="cancel()" [strong]="true"
-                    ><ion-icon name="arrow-undo-outline"></ion-icon
-                  ></ion-button>
+                  <ion-title color="secondary"
+                    >Aggiungi un nuovo Magazzino</ion-title
+                  >
                 </ion-buttons>
                 <ion-buttons slot="end">
                   <ion-button
                     id="button-add-element"
-                    (click)="CreateWarehouse()"
+                    (click)="CreateWarehouse();"
                     [strong]="true"
-                    >Conferma</ion-button
+                    >Salva</ion-button
                   >
                   <ion-toast
                     trigger="button-add-element"
@@ -2533,6 +2531,10 @@
                     expand="block"
                     color="success"
                   ></ion-toast>
+
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-header>
@@ -2718,23 +2720,19 @@
           class="ion-padding"
         >
           <ng-template>
-            <ion-header>
-              <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi una nuova Provenienza
-              </ion-title>
-
+            <ion-header style="width: 100% !important">
               <ion-toolbar>
                 <ion-buttons slot="start">
-                  <ion-button (click)="cancel()" [strong]="true"
-                    ><ion-icon name="arrow-undo-outline"></ion-icon
-                  ></ion-button>
+                  <ion-title color="secondary"
+                    >Aggiungi una nuova Provenienza</ion-title
+                  >
                 </ion-buttons>
                 <ion-buttons slot="end">
                   <ion-button
                     id="button-add-element"
-                    (click)="CreateProvenance()"
+                    (click)="CreateProvenance();"
                     [strong]="true"
-                    >Conferma</ion-button
+                    >Salva</ion-button
                   >
                   <ion-toast
                     trigger="button-add-element"
@@ -2744,6 +2742,10 @@
                     expand="block"
                     color="success"
                   ></ion-toast>
+
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-header>
@@ -2840,23 +2842,19 @@
           class="ion-padding"
         >
           <ng-template>
-            <ion-header>
-              <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi una nuova Origine
-              </ion-title>
-
+            <ion-header style="width: 100% !important">
               <ion-toolbar>
                 <ion-buttons slot="start">
-                  <ion-button (click)="cancel()" [strong]="true"
-                    ><ion-icon name="arrow-undo-outline"></ion-icon
-                  ></ion-button>
+                  <ion-title color="secondary"
+                    >Aggiungi una nuova Origine Geografica</ion-title
+                  >
                 </ion-buttons>
                 <ion-buttons slot="end">
                   <ion-button
                     id="button-add-element"
-                    (click)="CreateGeographicalOrigin()"
+                    (click)="CreateGeographicalOrigin();"
                     [strong]="true"
-                    >Conferma</ion-button
+                    >Salva</ion-button
                   >
                   <ion-toast
                     trigger="button-add-element"
@@ -2866,6 +2864,10 @@
                     expand="block"
                     color="success"
                   ></ion-toast>
+
+                  <ion-button (click)="cancel()">
+                    <ion-icon name="close-outline"></ion-icon>
+                  </ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-header>
