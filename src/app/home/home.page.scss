@@ -313,7 +313,7 @@ ion-button.bottone-accedi {
 
 .bottone-aggiungi-nuovo-oggetto {
   margin-bottom: 2%;
-  width: 34rem;
+  max-width: 84vw;
   padding-left: 5%;
   border-radius: 15%;
   color: #000000;
@@ -324,10 +324,10 @@ ion-button.bottone-accedi {
   padding-right: 20px;
 }
 
-.toast-nuovo-elemento-aggiunto {
-  max-width: 250px;
-  margin-left: 40%;
-  margin-right: 40%;
+.toast-elemento {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: larger;
 }
 
 .testo-input {
