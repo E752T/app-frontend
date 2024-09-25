@@ -450,7 +450,6 @@
             <ion-item>
               <ion-icon name="home"></ion-icon>
               <ion-label class="label-config-account">Esercente</ion-label>
-
               <ion-input
                 placeholder="Esercente"
                 value="{{body_login.shopkeeper}}"
@@ -1160,22 +1159,19 @@
             class="ion-padding"
           >
             <ng-template>
-              <ion-header>
-                <ion-title class="titolo-aggiungi-oggetto"
-                  >Aggiungi un nuovo oggetto</ion-title
-                >
+              <ion-header style="width: 100% !important">
                 <ion-toolbar>
                   <ion-buttons slot="start">
-                    <ion-button (click)="cancel()" [strong]="true"
-                      ><ion-icon name="arrow-undo-outline"></ion-icon
-                    ></ion-button>
+                    <ion-title color="secondary"
+                      >Aggiungi un nuovo oggetto</ion-title
+                    >
                   </ion-buttons>
                   <ion-buttons slot="end">
                     <ion-button
                       id="button-add-element"
                       (click)="CreateAuthor();"
                       [strong]="true"
-                      >Conferma</ion-button
+                      >Salva</ion-button
                     >
                     <ion-toast
                       trigger="button-add-element"
@@ -1185,6 +1181,10 @@
                       expand="block"
                       color="success"
                     ></ion-toast>
+
+                    <ion-button (click)="cancel()">
+                      <ion-icon name="close-outline"></ion-icon>
+                    </ion-button>
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
@@ -1725,7 +1725,7 @@
             name="add-circle-outline"
           ></ion-icon>
           <ion-text class="testo-aggiungi-nuovo">
-            Aggiungi una nuovo Autore
+            Aggiungi un nuovo Autore
           </ion-text>
         </ion-button>
         <ion-modal
@@ -1737,7 +1737,7 @@
           <ng-template>
             <ion-header>
               <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi una nuovo autore</ion-title
+                >Aggiungi un nuovo autore</ion-title
               >
 
               <ion-toolbar>
@@ -2392,7 +2392,7 @@
           <ng-template>
             <ion-header>
               <ion-title class="center titolo-aggiungi-elemento2"
-                >Aggiungi una nuovo Tipo di oggetto</ion-title
+                >Aggiungi un nuovo Tipo di oggetto</ion-title
               >
 
               <ion-toolbar>
