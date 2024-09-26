@@ -1,5 +1,5 @@
 // details.component.ts
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { DatabaseObject } from '../services/interfaces.service';
@@ -12,19 +12,28 @@ import { DatabaseObject } from '../services/interfaces.service';
 export class DetailsComponent implements OnInit {
   objectId: string | null = null;
   objectData: DatabaseObject | null = null;
-  private allDatabase: Array<DatabaseObject> = [];
+
 
   constructor(
     private route: ActivatedRoute,
     private dataservice: DataService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+
   ) {}
 
+  //public allDatabase: Array<DatabaseObject> = [];
+
+  allDatabase: DatabaseObject[] = [];
+  filteredObjects: DatabaseObject[] = [];
+  
   async ngOnInit() {
-    this.allDatabase = await this.dataservice.getAllDatabase();
-    this.objectId = this.route.snapshot.paramMap.get('id');
-    if (this.objectId) {
-      this.objectData = await this.getObjectData(this.objectId);
+    try {
+      this.allDatabase = this.dataservice.allDatabase;
+      this.filteredObjects = this.allDatabase;
+      this.cdr.detectChanges(); // Manually trigger change detection
+    } catch (error) {
+      console.error('Error retrieving data:', error);
     }
   }
 

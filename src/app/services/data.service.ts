@@ -13,38 +13,58 @@ import { LoginObject } from '../services/interfaces.service';
 import { GetRequest } from '../services/request.service';
 import { baseURL } from '../enviroenment';
 
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root', // Questo rende il servizio disponibile in tutta l'app
 })
-export class DataService {
+export class DataService implements OnInit {
   private username: string | null = null;
   private userRole: string | null = null;
   private tokenJWT: string | null = null;
   private tokenJWTsuccess: boolean | null = null;
 
   private bodyLogin: any = {};
-  private allDatabase: Array<DatabaseObject> = [];
-  private filteredObjects: Array<DatabaseObject> = [];
 
-  constructor() {
-    // Inizializzazione dei dati
-    this.filteredObjects = this.allDatabase;
+  allDatabase: Array<DatabaseObject> = [];
+  filteredObjects: Array<DatabaseObject> = [];
+
+  // eslint-disable-next-line @angular-eslint/contextual-lifecycle
+  ngOnInit() {
+    this.initializeData();
+  }
+
+  // Metodo per inizializzare i dati
+  private initializeData() {
+    this.getAllDatabase().subscribe({
+      next: (data) => {
+        this.allDatabase = data;
+        this.filteredObjects = this.allDatabase;
+      },
+      error: (error) => {
+        console.error('Errore nel recupero del database:', error);
+        this.filteredObjects = []; // Gestione dell'errore
+      }
+    });
   }
 
   // Metodo per esportare allDatabase
-  async getAllDatabase(): Promise<Array<DatabaseObject>> {
-    try {
-      const res = await GetRequest(baseURL + 'GetObjects');
-      console.log('Database degli Oggetti', res);
-      this.allDatabase = res;
-      return this.allDatabase;
-    } catch (error) {
-      console.error('Errore nel recupero del database:', error);
-      return []; // Restituisce un array vuoto in caso di errore
-    }
+  getAllDatabase(): Observable<Array<DatabaseObject>> {
+    return new Observable(observer => {
+      GetRequest(baseURL + 'GetObjects')
+        .then(res => {
+          this.allDatabase = res;
+          observer.next(this.allDatabase);
+          observer.complete();
+        })
+        .catch(error => {
+          console.error('Errore nel recupero del database:', error);
+          observer.next([]); // Emit an empty array in caso di errore
+          observer.complete();
+        });
+    });
   }
 
   getAllData() {
