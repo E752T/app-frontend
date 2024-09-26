@@ -14,7 +14,7 @@
             </ion-label>
             <ion-button
               *ngIf="user_role === 'admin'"
-              id="modale-elimina-type_object-'{{ type_object.typeID }}'"
+              id="modale-elimina-tipo-1-'{{ type_object.typeID }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
@@ -22,7 +22,7 @@
 
             <ion-modal
               *ngIf="user_role === 'admin'"
-              trigger="modale-elimina-type_object-'{{ type_object.typeID }}'"
+              trigger="modale-elimina-tipo-1-'{{ type_object.typeID }}'"
             >
               <ng-template>
                 <ion-header>
@@ -231,7 +231,6 @@
             <br />
             <ion-text
               class="input-form"
-              id="open-modal-addedDate-'{{ type_object.typeID }}'"
               color="lighter"
               style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
@@ -339,10 +338,18 @@
                     <ion-buttons slot="end">
                       <ion-button
                         (click)="DeleteElement(type_object.typeID)"
-                        id="conferma2-elimina-autore-'{{ type_object.typeID }}'"
+                        id="modale-elimina-tipo-'{{ type_object.typeID }}'"
                         [strong]="true"
                         >Conferma</ion-button
                       >
+                      <ion-toast
+                      trigger="modale-elimina-tipo-'{{ type_object.typeID }}'"
+                      message="Elemento eliminato"
+                      class="toast-elemento"
+                      [duration]="2000"
+                      expand="block"
+                      color="danger"
+                    ></ion-toast>
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
@@ -382,14 +389,7 @@
                     </ion-text>
                   </ion-text>
                 </ion-card>
-                <ion-toast
-                  trigger="conferma2-elimina-autore-'{{ type_object.typeID }}'"
-                  message="Elemento eliminato"
-                  class="toast-elemento"
-                  [duration]="2000"
-                  expand="block"
-                  color="danger"
-                ></ion-toast>
+
               </ng-template>
             </ion-modal>
           </div>
