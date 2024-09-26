@@ -1156,10 +1156,11 @@
             *ngIf="user_role=== 'admin'"
             trigger="add-new-object-button"
             (willDismiss)="onWillDismiss($event)"
-            class="ion-padding"
+            class="fullscreen-nuovo-oggetto"
+            
           >
-            <ng-template>
-              <ion-header style="width: 100% !important">
+            <ng-template style="width: 100% !important">
+              <ion-header >
                 <ion-toolbar>
                   <ion-buttons slot="start">
                     <ion-title color="secondary"
@@ -1469,7 +1470,7 @@
                   >
                     Disponibile
                   </ion-label>
-                  <ion-toggle id="{{bodyAddObject.avaiable }}"> </ion-toggle>
+                  <ion-toggle color="success" style="direction: rtl;margin-right: 15vw;" id="{{bodyAddObject.avaiable }}"> </ion-toggle>
                 </ion-item>
 
                 <ion-item class="titoli-modale" style="margin-left: -5px">
