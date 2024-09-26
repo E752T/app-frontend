@@ -249,7 +249,6 @@ export class HomePage implements OnInit {
 
   getItems(input: string | undefined | null) {
     //console.log('Filter Object results');
-
     // Get all the items from the database request
     // 1. get all the values from the database
     // 2. filter the database objects based on the search text

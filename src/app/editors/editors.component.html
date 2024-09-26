@@ -84,15 +84,6 @@
                     </ion-text>
                   </ion-text>
                 </ion-card>
-
-                <ion-toast
-                  trigger="conferma-elimina-'{{ publisher.publisherID }}'"
-                  message="Elemento eliminato"
-                  class="toast-elemento"
-                  color="danger"
-                  [duration]="2000"
-                  expand="block"
-                ></ion-toast>
               </ng-template>
             </ion-modal>
           </ion-item>
@@ -321,14 +312,14 @@
                       <ion-button
                         (click)="DeleteElement(publisher.publisherID)"
                         [strong]="true"
-                        id="conferma-elimina-'{{ publisher.publisherID }}'"
+                        id="conferma-elimina-2-'{{ publisher.publisherID }}'"
                         >Conferma</ion-button
                       >
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
                 <ion-toast
-                  trigger="conferma-elimina-'{{ publisher.publisherID }}'"
+                  trigger="conferma-elimina-2-'{{ publisher.publisherID }}'"
                   message="Elemento eliminato"
                   class="toast-elemento"
                   color="danger"
@@ -372,14 +363,6 @@
                     </ion-text>
                   </ion-text>
                 </ion-card>
-                <ion-toast
-                  trigger="conferma-elimina-'{{ publisher.publisherID }}'"
-                  message="Elemento eliminato"
-                  class="toast-elemento"
-                  color="danger"
-                  [duration]="2000"
-                  expand="block"
-                ></ion-toast>
               </ng-template>
             </ion-modal>
           </div>

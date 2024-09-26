@@ -36,7 +36,7 @@
                     <ion-buttons slot="end">
                       <ion-button
                         (click)="DeleteElement(type_object.typeID)"
-                        id="conferma-elimina-autore-'{{ type_object.typeID }}'"
+                        id="conferma-elimina-tipo-'{{ type_object.typeID }}'"
                         [strong]="true"
                         >Conferma</ion-button
                       >
@@ -80,7 +80,7 @@
                   </ion-text>
                 </ion-card>
                 <ion-toast
-                  trigger="conferma-elimina-autore-'{{ type_object.typeID }}'"
+                  trigger="conferma-elimina-tipo-'{{ type_object.typeID }}'"
                   message="Elemento eliminato"
                   class="toast-elemento"
                   [duration]="2000"
@@ -320,13 +320,13 @@
               expand="block"
             ></ion-toast>
             <ion-button
-              id="modale2-elimina-'{{ type_object.typeID }}'"
+              id="conferma-elimina-tipo-2-'{{ type_object.typeID }}'"
               color="danger"
             >
               Elimina
             </ion-button>
 
-            <ion-modal trigger="modale2-elimina-'{{ type_object.typeID }}'">
+            <ion-modal trigger="conferma-elimina-tipo-2-'{{ type_object.typeID }}'">
               <ng-template>
                 <ion-header>
                   <ion-toolbar>
