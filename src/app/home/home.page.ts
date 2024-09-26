@@ -155,12 +155,16 @@ export class HomePage implements OnInit {
 
   updateCredentials() {
     let body_new_credentials = {
-      email: this.new_email,
-      password: this.new_password,
-      shopkeeper: this.new_shopkeeper,
-      username: this.new_username,
+      email: this.body_login.email,
+      password: this.body_login.password,
+      shopkeeper: this.body_login.shopkeeper,
+      username: this.body_login.username,
     };
+
+    console.log("UpdateCredentials | body = ",body_new_credentials)
+    
     PostRequest(baseURL + 'UpdateCredentials/', body_new_credentials);
+  
   }
 
   logOut() {
