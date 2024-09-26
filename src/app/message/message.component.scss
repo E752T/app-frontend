@@ -193,10 +193,17 @@ ion-radio.ios::part(container) {
 }
 
 
+@media (min-width: 801px) {
+  .fullscreen {
+    --width: 40vw !important;
+    --height: 90vh !important;
+    }
+}
 
-.fullscreen {
-  --width: 40vw !important;
-  --height: 90vh !important;
+@media (max-width: 800px) {
+  .fullscreen {
+    --width: 90vw !important;
+    --height: 90vh !important;  }
 }
 
 .center-element {
@@ -205,14 +212,6 @@ ion-radio.ios::part(container) {
   justify-content: center;
 }
 
-.card-elimina-elemento {
-  min-height: 40vh;
-  display: grid;
-  margin-bottom: 33%;
-  font-size: larger;
-  padding-top: 3rem;
-  padding-bottom: 3dvb;
-}
 
 .titolo-elimina-elemento {
   margin-top: 2rem;
@@ -222,9 +221,8 @@ ion-radio.ios::part(container) {
 .card-elimina-elemento {
   min-height: 40vh;
   display: grid;
-  margin-bottom: 33%;
   font-size: larger;
-  padding-top: 3rem;
-  padding-bottom: 3dvb;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   width: 95%;
 }

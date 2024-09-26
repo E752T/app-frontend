@@ -630,29 +630,29 @@
                 <ion-text class="center-element titolo-elimina-elemento">
                   Sei sicuro di eliminare questo elemento?
                 </ion-text>
-                <ion-card class="center-element card-elimina-elemento">
-                  <ion-item>
-                    <ion-icon name="document-text-outline"></ion-icon>
+                <ion-card style="margin-bottom: 15rem;" class="center-element card-elimina-elemento">
+                  <ion-text>
+                    <ion-icon name="document-text"></ion-icon>
                     Titolo
                     <br />
                     <ion-text>
                       {{ message.title }}
                     </ion-text>
-                  </ion-item>
+                  </ion-text>
                   <br />
                   <br />
-                  <ion-item>
-                    <ion-icon name="document-text-outline"></ion-icon>
+                  <ion-text>
+                    <ion-icon name="document-text"></ion-icon>
                     Sottotitolo
                     <br />
 
                     <ion-text>
                       {{ message.subtitle }}
                     </ion-text>
-                  </ion-item>
+                  </ion-text>
                   <br />
                   <br />
-                  <ion-item>
+                  <ion-text>
                     <svg
                       class="icone-aggiungi-oggetto-modified"
                       version="1.1"
@@ -688,10 +688,10 @@
                     </svg>
                     Genere
                     <br />
-                    <ion-text>
+                    <ion-text style="margin-left:3rem">
                       {{ message.genere }}
                     </ion-text>
-                  </ion-item>
+                  </ion-text>
                 </ion-card>
                 <ion-toast
                   trigger="conferma-elimina-oggetto-'{{ message.objectID }}'"

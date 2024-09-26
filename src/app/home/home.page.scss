@@ -716,18 +716,28 @@ ion-content {
   margin-right: 5px;
 }
 
-.fullscreen {
-  --width: 40vw !important;
-  --height: 90vh !important;
+@media (min-width: 801px) {
+  .fullscreen {
+    --width: 40vw !important;
+    --height: 90vh !important;
+    }
 }
 
-//.fullscreen-nuovo-oggetto{
-//  --width: 100vw !important;
-//  --height: 100vh !important;}
+@media (max-width: 800px) {
+  .fullscreen {
+    --width: 90vw !important;
+    --height: 90vh !important;  }
+}
 
 .label-container {
   display: flex;
   justify-content: space-between; /* This will space the items evenly */
   align-items: center; /* Aligns items vertically in the center */
   padding: 10px; /* Optional: Adds some padding */
+}
+
+.center-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
