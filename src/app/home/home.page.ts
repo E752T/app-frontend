@@ -35,7 +35,7 @@ export class HomePage implements OnInit {
   searchGeneres: Array<string> = []; // array for containing choosen generes
   searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
 
-  isMenuAnchored: boolean = false; // default: true
+  isMenuAnchored: boolean = true; // default: true = menu non ancorato
 
   sizeColumnFilter: string = '0'; // default: 0 Dimensione predefinita
 
