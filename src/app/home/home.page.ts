@@ -87,11 +87,8 @@ export class HomePage implements OnInit {
       (data: DatabaseObject[]) => {
         this.allDatabase = data;
         this.filteredObjects = this.allDatabase; // Filtrare gli oggetti se necessario
-        console.log("Database caricato con successo:", this.allDatabase);
+        console.log("Database caricato con successo dentro Home:", this.allDatabase);
         this.cdr.detectChanges(); // Attivare manualmente il rilevamento delle modifiche
-      },
-      (error: any) => {
-        console.error('Errore durante il recupero dei dati:', error);
       }
     );
   }

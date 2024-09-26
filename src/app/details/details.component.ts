@@ -1,8 +1,9 @@
 // details.component.ts
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../services/data.service';
 import { DatabaseObject } from '../services/interfaces.service';
+import { DataService } from '../services/data.service';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'app-details',
@@ -10,13 +11,16 @@ import { DatabaseObject } from '../services/interfaces.service';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
+
   objectId: string | null = null;
   objectData: DatabaseObject | null = null;
 
-
+  private dataSubject = new BehaviorSubject<any[]>([]);
+  public data$ = this.dataSubject.asObservable();
+  
   constructor(
     private route: ActivatedRoute,
-    private dataservice: DataService,
+    private dataService: DataService,
     private router: Router,
     private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
 
@@ -28,13 +32,15 @@ export class DetailsComponent implements OnInit {
   filteredObjects: DatabaseObject[] = [];
   
   async ngOnInit() {
-    try {
-      this.allDatabase = this.dataservice.allDatabase;
-      this.filteredObjects = this.allDatabase;
-      this.cdr.detectChanges(); // Manually trigger change detection
-    } catch (error) {
-      console.error('Error retrieving data:', error);
-    }
+    this.dataService.getAllDatabase().subscribe(
+      (data: DatabaseObject[]) => {
+        this.allDatabase = data;
+        this.filteredObjects = this.allDatabase; // Filtrare gli oggetti se necessario
+        console.log("Database caricato con successo dentro details", this.allDatabase);
+        this.cdr.detectChanges(); // Attivare manualmente il rilevamento delle modifiche
+      }
+      
+    );
   }
 
   async getObjectData(id: string): Promise<DatabaseObject | null> {
