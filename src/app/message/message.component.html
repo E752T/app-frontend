@@ -630,12 +630,15 @@
                 <ion-text class="center-element titolo-elimina-elemento">
                   Sei sicuro di eliminare questo elemento?
                 </ion-text>
-                <ion-card style="margin-bottom: 15rem;" class="center-element card-elimina-elemento">
+                <ion-card
+                  style="margin-bottom: 15rem"
+                  class="center-element card-elimina-elemento"
+                >
                   <ion-text>
                     <ion-icon name="document-text"></ion-icon>
                     Titolo
                     <br />
-                    <ion-text>
+                    <ion-text style="margin-left: 3rem">
                       {{ message.title }}
                     </ion-text>
                   </ion-text>
@@ -646,7 +649,7 @@
                     Sottotitolo
                     <br />
 
-                    <ion-text>
+                    <ion-text style="margin-left: 3rem">
                       {{ message.subtitle }}
                     </ion-text>
                   </ion-text>
@@ -688,7 +691,7 @@
                     </svg>
                     Genere
                     <br />
-                    <ion-text style="margin-left:3rem">
+                    <ion-text style="margin-left: 3rem">
                       {{ message.genere }}
                     </ion-text>
                   </ion-text>

@@ -17,14 +17,16 @@ export class DetailsComponent implements OnInit {
 
   private dataSubject = new BehaviorSubject<any[]>([]);
   public data$ = this.dataSubject.asObservable();
-  
+  public user_role: string | null;
+
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
     private router: Router,
     private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
 
-  ) {}
+  ) {    this.user_role = this.dataService.getUserRole();
+  }
 
   //public allDatabase: Array<DatabaseObject> = [];
 
