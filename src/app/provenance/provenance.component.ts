@@ -107,9 +107,7 @@ export class ProvenancesComponent {
     return PostRequest(baseURL + 'UpdateProvenance/', this.provenance);
   }
 
-  confirm() {
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
+
 
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });

@@ -115,9 +115,6 @@ export class ShopkeepersComponent {
     return PostRequest(baseURL + 'UpdateShopkeeper/', this.shopkeeper);
   }
 
-  confirm() {
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
 
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });

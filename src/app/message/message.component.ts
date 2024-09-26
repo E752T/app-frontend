@@ -29,7 +29,7 @@ export class MessageComponent {
 
   bodyAddObject = bodyAddObject;
 
-  imageData: string | SafeUrl | undefined;
+  imageData: string | SafeUrl | undefined = this.message?.cover;
 
   public token_JWT: string | null;
   public user_role: string | null;
@@ -104,9 +104,6 @@ export class MessageComponent {
     this.modalCtrl.dismiss({ confirmed: true });
   }
 
-  confirm() {
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
 
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });

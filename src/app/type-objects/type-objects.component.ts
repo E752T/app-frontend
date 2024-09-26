@@ -108,9 +108,6 @@ export class TypeObjectComponent {
     return PostRequest(baseURL + 'UpdateTypeObject/', this.type_object);
   }
 
-  confirm() {
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
 
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });

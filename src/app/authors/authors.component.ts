@@ -114,9 +114,6 @@ export class AuthorsComponent {
     return PostRequest(baseURL + 'UpdateAuthor/', this.author);
   }
 
-  confirm() {
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
 
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });

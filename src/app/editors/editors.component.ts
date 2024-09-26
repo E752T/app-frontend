@@ -121,9 +121,7 @@ export class EditorsComponent {
     return highestID + 1;
   }
 
-  confirm() {
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
+
 
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });
