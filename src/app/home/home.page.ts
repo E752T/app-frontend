@@ -9,6 +9,8 @@ import { ElementRef } from '@angular/core';
 import { DataService, today } from '../services/data.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
+import  *  as CryptoJS from  'crypto-js';
+
 import {
   DatabaseObject,
   Author,
@@ -49,6 +51,37 @@ export class HomePage implements OnInit {
     'GeographicalOrigin',
     'TypeObject',
   ];
+
+
+  ///////////////////////////////////////////////////////
+  ////////////    ENCRYPTION    /////////////////////////
+  ///////////////////////////////////////////////////////
+
+  key: string | undefined;
+
+  private encrypt(txt: string): string {
+    return CryptoJS.AES.encrypt(txt, this.key).toString();
+  }
+
+  private decrypt(txtToDecrypt: string) {
+    return CryptoJS.AES.decrypt(txtToDecrypt, this.key).toString(CryptoJS.enc.Utf8);
+  }
+  
+  public saveData(key: string, value: string) {
+    localStorage.setItem(key, this.encrypt(value));
+  }
+
+  public getData(key: string) {
+    let data = localStorage.getItem(key)|| "";
+    return this.decrypt(data);
+  }
+  
+  public clearData() {
+    localStorage.clear();
+  }
+  
+  ///////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////
 
   new_shopkeeper: any;
   new_username: any;
@@ -108,13 +141,7 @@ export class HomePage implements OnInit {
     this.body_login = this.dataService.getBodyLogin();
     this.bodyAddObject = this.dataService.getBodyAddObject();
 
-    localStorage.setItem('token_JWT', '');
-    localStorage.setItem('token_JWT_success', '');
-    localStorage.setItem('shopkeeper', '');
-    localStorage.setItem('email', '');
-    localStorage.setItem('password', '');
-    localStorage.setItem('username', '');
-    localStorage.setItem('user_role', '');
+    localStorage.clear()
   }
 
   onFileSelected(event: Event) {
