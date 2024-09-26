@@ -1021,7 +1021,9 @@ export class HomePage implements OnInit {
   filterByYearsObjects<T extends { discoveryDate: Date }>(
     filteredItems: T[]
   ): T[] {
-    console.log(this.searchYears.lower, this.searchYears.upper);
+    
+    //console.log("Filtri degli anni impostato su :",this.searchYears.lower," | ", this.searchYears.upper);
+    
     return filteredItems.filter((item) => {
       if (item.discoveryDate != null) {
         const year = new Date(item.discoveryDate).getFullYear();
