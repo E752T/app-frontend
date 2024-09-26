@@ -14,7 +14,7 @@
             </ion-label>
             <ion-button
               *ngIf="user_role === 'admin'"
-              id="elimina-autore-'{{
+              id="modale-elimina-origine-'{{
                 geographical_origin.geographicalOriginID
               }}'"
               color="danger"
@@ -23,7 +23,7 @@
             </ion-button>
             <ion-modal
               *ngIf="user_role === 'admin'"
-              trigger="elimina-autore-'{{
+              trigger="modale-elimina-origine-'{{
                 geographical_origin.geographicalOriginID
               }}'"
             >
@@ -303,9 +303,7 @@
             <br />
             <ion-text
               class="input-form"
-              id="open-modal-lastUpdateDate-'{{
-                geographical_origin.geographicalOriginID
-              }}'"
+
               color="lighter"
               style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
@@ -338,7 +336,7 @@
             ></ion-toast>
 
             <ion-button
-              id="elimina2-autore-'{{
+              id="modale-elimina-origine-2-'{{
                 geographical_origin.geographicalOriginID
               }}'"
               color="danger"
@@ -347,7 +345,7 @@
             </ion-button>
 
             <ion-modal
-              trigger="elimina2-autore-'{{
+              trigger="modale-elimina-origine-2-'{{
                 geographical_origin.geographicalOriginID
               }}'"
             >

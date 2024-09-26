@@ -12,7 +12,7 @@
             <ion-label class="cartellino-nome">{{ warehouse.name }} </ion-label>
             <ion-button
               *ngIf="user_role === 'admin'"
-              id="elimina-autore-'{{ warehouse.warehouseID }}'"
+              id="modale-elimina-magazzino-'{{ warehouse.warehouseID }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
@@ -20,7 +20,7 @@
 
             <ion-modal
               *ngIf="user_role === 'admin'"
-              trigger="elimina-autore-'{{ warehouse.warehouseID }}'"
+              trigger="modale-elimina-magazzino-'{{ warehouse.warehouseID }}'"
             >
               <ng-template>
                 <ion-header>
@@ -440,7 +440,6 @@
             <br />
             <ion-text
               class="input-form"
-              id="open-modal-lastUpdateDate-'{{ warehouse.warehouseID }}'"
               color="lighter"
               style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
@@ -469,13 +468,13 @@
             ></ion-toast>
 
             <ion-button
-              id="elimina2-autore-'{{ warehouse.warehouseID }}'"
+              id="modale-elimina-magazzino-2-'{{ warehouse.warehouseID }}'"
               color="danger"
             >
               Elimina
             </ion-button>
 
-            <ion-modal trigger="elimina2-autore-'{{ warehouse.warehouseID }}'">
+            <ion-modal trigger="modale-elimina-magazzino-2-'{{ warehouse.warehouseID }}'">
               <ng-template>
                 <ion-header>
                   <ion-toolbar>

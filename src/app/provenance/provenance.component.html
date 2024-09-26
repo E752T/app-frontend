@@ -14,14 +14,14 @@
             </ion-label>
             <ion-button
               *ngIf="user_role === 'admin'"
-              id="elimina-autore-'{{ provenance.provenanceID }}'"
+              id="modale-elimina-provenienza'{{ provenance.provenanceID }}'"
               color="danger"
             >
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
             <ion-modal
               *ngIf="user_role === 'admin'"
-              trigger="elimina-autore-'{{ provenance.provenanceID }}'"
+              trigger="modale-elimina-provenienza'{{ provenance.provenanceID }}'"
             >
               <ng-template>
                 <ion-header>
@@ -234,7 +234,6 @@
             <br />
             <ion-text
               class="input-form"
-              id="open-modal-lastUpdateDate-'{{ provenance.provenanceID }}'"
               color="lighter"
               style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
@@ -264,14 +263,14 @@
             ></ion-toast>
 
             <ion-button
-              id="elimina2-autore-'{{ provenance.provenanceID }}'"
+              id="modale-elimina-provenienza-2-'{{ provenance.provenanceID }}'"
               color="danger"
             >
               Elimina
             </ion-button>
 
             <ion-modal
-              trigger="elimina2-autore-'{{ provenance.provenanceID }}'"
+              trigger="modale-elimina-provenienza-2-'{{ provenance.provenanceID }}'"
             >
               <ng-template>
                 <ion-header>
