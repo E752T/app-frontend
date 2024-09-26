@@ -8,8 +8,8 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { ElementRef } from '@angular/core';
 import { DataService, today } from '../services/data.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import * as CryptoJS from 'crypto-js';
 
-import  *  as CryptoJS from  'crypto-js';
 
 import {
   DatabaseObject,
@@ -57,7 +57,7 @@ export class HomePage implements OnInit {
   ////////////    ENCRYPTION    /////////////////////////
   ///////////////////////////////////////////////////////
 
-  key: string | undefined;
+  key: string = "PidGCxd0zOp8eu4ou1uOtrgwVYAoztSmU164JLSW1OaaCyfi6AyhzpxJLTck9uVx";
 
   private encrypt(txt: string): string {
     return CryptoJS.AES.encrypt(txt, this.key).toString();
@@ -79,7 +79,7 @@ export class HomePage implements OnInit {
   public clearData() {
     localStorage.clear();
   }
-  
+
   ///////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////
 
