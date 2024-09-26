@@ -579,16 +579,18 @@ ion-button.bottone-accedi {
 }
 
 .label-anni {
-  margin-bottom: -40px;
-  position: fixed;
+  position: relative;
 }
 
 .margine-anni {
-  margin-left: 11rem;
+  margin-left: 13rem;
+
 }
 
 .margine-anni-sinistra {
   margin-left: 1rem;
+  //margin-top: 2rem;
+  //margin-bottom: 1rem;
 }
 
 .bottone-assistenza {
@@ -726,7 +728,13 @@ ion-content {
   --height: 90vh !important;
 }
 
-.fullscreen-nuovo-oggetto{
-  --width: 100vw !important;
-  --height: 100vh !important;
+//.fullscreen-nuovo-oggetto{
+//  --width: 100vw !important;
+//  --height: 100vh !important;}
+
+.label-container {
+  display: flex;
+  justify-content: space-between; /* This will space the items evenly */
+  align-items: center; /* Aligns items vertically in the center */
+  padding: 10px; /* Optional: Adds some padding */
 }

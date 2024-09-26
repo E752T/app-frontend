@@ -106,17 +106,10 @@
           </ion-text>
         </div>
         <div class="centered margin-top">
-          <small>
-            <p class="label-anni margine-anni-sinistra">1800</p>
-          </small>
-          <small>
-            <p
-              classe="margine-destro-etichetta"
-              class="label-anni margine-anni"
-            >
-              2024
-            </p>
-          </small>
+          <div class="label-container">
+            <ion-label>1800</ion-label>
+            <ion-label>2024</ion-label>
+          </div>
 
           <ion-range
             class="dual-knobs"
@@ -183,17 +176,10 @@
         </div>
 
         <div class="centered margin-top">
-          <small>
-            <p class="label-anni margine-anni-sinistra">1800</p>
-          </small>
-          <small>
-            <p
-              classe="margine-destro-etichetta"
-              class="label-anni margine-anni"
-            >
-              2024
-            </p>
-          </small>
+          <div class="label-container">
+            <ion-label>1800</ion-label>
+            <ion-label>2024</ion-label>
+          </div>
 
           <ion-range
             class="dual-knobs"
@@ -1157,10 +1143,9 @@
             trigger="add-new-object-button"
             (willDismiss)="onWillDismiss($event)"
             class="fullscreen-nuovo-oggetto"
-            
           >
-            <ng-template style="width: 100% !important">
-              <ion-header >
+            <ng-template >
+              <ion-header>
                 <ion-toolbar>
                   <ion-buttons slot="start">
                     <ion-title color="secondary"
@@ -1470,7 +1455,12 @@
                   >
                     Disponibile
                   </ion-label>
-                  <ion-toggle color="success" style="direction: rtl;margin-right: 15vw;" id="{{bodyAddObject.avaiable }}"> </ion-toggle>
+                  <ion-toggle
+                    color="success"
+                    style="direction: rtl; margin-right: 15vw"
+                    id="{{bodyAddObject.avaiable }}"
+                  >
+                  </ion-toggle>
                 </ion-item>
 
                 <ion-item class="titoli-modale" style="margin-left: -5px">
@@ -1593,7 +1583,7 @@
           </ion-row>
         </ion-col>
 
-        <ion-col  [size]="sizeColumnFilter">
+        <ion-col [size]="sizeColumnFilter">
           <ion-title class="titolo-categoria">Autori </ion-title>
           <ion-row>
             <app-authors
