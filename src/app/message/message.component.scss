@@ -144,7 +144,11 @@ ion-radio.ios::part(container) {
   width: 30px;
   height: 30px;
 }
-
+.icone-aggiungi-oggetto {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
 .icona-esterna {
   width: 40px !important ;
   height: 40px !important;
@@ -188,11 +192,7 @@ ion-radio.ios::part(container) {
   margin-bottom: -4px;
 }
 
-.icone-aggiungi-oggetto {
-  width: 40px;
-  height: 40px;
-  margin-right: 5px;
-}
+
 
 .fullscreen {
   --width: 40vw !important;
