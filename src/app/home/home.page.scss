@@ -506,8 +506,8 @@ ion-button.bottone-accedi {
 
 .testo-anno-di-pubblicazione {
   display: inline-block;
-  margin: 20px auto;
-  text-align: center;
+  margin-top:1rem;
+  margin-bottom:2rem;
 }
 
 .numero-anno-di-pubblicazione {
@@ -518,7 +518,7 @@ ion-button.bottone-accedi {
 
 .dual-knobs {
   margin-right: 2rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 .min-width-button {
@@ -580,6 +580,7 @@ ion-button.bottone-accedi {
 
 .label-anni {
   position: relative;
+  margin-bottom: -3rem;
 }
 
 .margine-anni {
