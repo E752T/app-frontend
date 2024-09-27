@@ -47,20 +47,20 @@ export class DataService implements OnInit {
       error: (error) => {
         console.error('Errore nel recupero del database:', error);
         this.filteredObjects = []; // Gestione dell'errore
-      }
+      },
     });
   }
 
   // Metodo per esportare allDatabase
   getAllDatabase(): Observable<Array<DatabaseObject>> {
-    return new Observable(observer => {
+    return new Observable((observer) => {
       GetRequest(baseURL + 'GetObjects')
-        .then(res => {
+        .then((res) => {
           this.allDatabase = res;
           observer.next(this.allDatabase);
           observer.complete();
         })
-        .catch(error => {
+        .catch((error) => {
           console.error('Errore nel recupero del database:', error);
           observer.next([]); // Emit an empty array in caso di errore
           observer.complete();
@@ -176,20 +176,21 @@ export const modifyButtons = ['OK'];
 export const filterButtons = ['OK'];
 export const isOpen: boolean = false;
 
-
 export let user: User = {
   admin: 0,
-  description: "",
+  username: '',
+  description: '',
   userID: 0,
   addedDate: new Date(),
   lastUpdateDate: new Date(),
-  notes: "",
-  password: "",
+  notes: '',
+  password: '',
   shopkeeperID: 0,
-  telephone1: "",
-  telephone2: ""
-
-}
+  telephone1: '',
+  telephone2: '',
+  email: '',
+  shopkeeper: ''
+};
 //---------------- DATABASE INITIALIZATION ----------------
 
 export let bodyModifyObject: DatabaseObject = {

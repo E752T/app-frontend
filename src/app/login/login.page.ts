@@ -11,12 +11,13 @@ import { baseURL } from '../enviroenment';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
+  
   public body_login = {
-   shopkeeper: 'admin',
-   email: 'admin',
- password: 'admin',
-  username: 'admin'};
-
+    shopkeeper: 'admin',
+    email: 'admin',
+    password: 'admin',
+    username: 'admin',
+  };
 
   public toggle_remember_me: boolean = false;
   public errorMessage: string | undefined;
@@ -158,7 +159,4 @@ export class LoginPage {
     }
     this.modalCtrl.dismiss(this.body_login, 'confirm');
   }
-
-
-
 }

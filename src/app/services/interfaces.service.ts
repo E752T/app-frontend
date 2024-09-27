@@ -2,6 +2,9 @@
 
 export interface User {
   admin: number;
+  username: string;
+  email: string;
+  shopkeeper: string;
   description: string;
   userID: number;
   addedDate: Date;

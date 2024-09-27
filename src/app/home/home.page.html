@@ -997,7 +997,7 @@
 
                   <ion-input
                     placeholder="Esercente"
-                    [(ngModel)]="body_login.shopkeeper"
+                    [(ngModel)]="user.shopkeeper"
                   >
                   </ion-input>
                 </ion-item>
@@ -1010,7 +1010,7 @@
                     >Email</ion-label
                   >
 
-                  <ion-input placeholder="Email" [(ngModel)]="body_login.email">
+                  <ion-input placeholder="Email" [(ngModel)]="user.email">
                   </ion-input>
                 </ion-item>
 
@@ -1019,8 +1019,8 @@
                   <ion-label class="label-config-account">Username</ion-label>
                   <ion-input
                     placeholder="Username"
-                    value="{{new_username }}"
-                    [(ngModel)]="body_login.username"
+                    value="{{user.username }}"
+                    [(ngModel)]="user.username"
                   >
                   </ion-input>
                 </ion-item>
@@ -1031,7 +1031,7 @@
 
                   <ion-input
                     placeholder="Password"
-                    [(ngModel)]="body_login.password"
+                    [(ngModel)]="user.password"
                   >
                   </ion-input>
                 </ion-item>

@@ -54,6 +54,22 @@ export class HomePage implements OnInit {
     'TypeObject',
   ];
 
+  user: User = {
+    admin: 0,
+    description: '',
+    userID: 0,
+    addedDate: new Date(),
+    lastUpdateDate: new Date(),
+    notes: '',
+    password: '',
+    shopkeeperID: 0,
+    telephone1: '',
+    telephone2: '',
+    username: '',
+    email: '',
+    shopkeeper: ''
+  }
+
   ///////////////////////////////////////////////////////
   ////////////    ENCRYPTION    /////////////////////////
   ///////////////////////////////////////////////////////
@@ -103,8 +119,6 @@ export class HomePage implements OnInit {
   public user_role: string | null;
   public token_JWT_success: boolean | null;
   public username: string | null;
-
-  public user: {} | undefined;
 
   public body_login: {
     shopkeeper: string | null;
