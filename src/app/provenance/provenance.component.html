@@ -249,12 +249,12 @@
               color="secondary"
               style="padding-right: 3%"
               class="bottone-update"
-              id="button-update-'{{ provenance.provenanceID }}'"
+              id="salva-provenienza-'{{ provenance.provenanceID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
             <ion-toast
-              trigger="button-update-'{{ provenance.provenanceID }}'"
+              trigger="salva-provenienza-'{{ provenance.provenanceID }}'"
               message="Nuovo Elemento Salvato"
               class="toast-elemento"
               color="success"

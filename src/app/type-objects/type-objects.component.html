@@ -305,13 +305,13 @@
             <ion-button
               color="secondary"
               class="bottone-update"
-              id="button-update-'{{ type_object.typeID }}'"
+              id="salva-tipo-'{{ type_object.typeID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
 
             <ion-toast
-              trigger="button-update-'{{ type_object.typeID }}'"
+              trigger="salva-tipo-'{{ type_object.typeID }}'"
               message="Nuovo elemento salvato"
               class="toast-elemento"
               color="success"
