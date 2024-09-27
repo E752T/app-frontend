@@ -11,7 +11,6 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-
   objectId: string | null = null;
   objectData: DatabaseObject | null = null;
 
@@ -24,25 +23,27 @@ export class DetailsComponent implements OnInit {
     private dataService: DataService,
     private router: Router,
     private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
-
-  ) {    this.user_role = this.dataService.getUserRole();
+  ) {
+    this.user_role = this.dataService.getUserRole();
   }
-
-  //public allDatabase: Array<DatabaseObject> = [];
 
   allDatabase: DatabaseObject[] = [];
   filteredObjects: DatabaseObject[] = [];
-  
+
   async ngOnInit() {
-    this.dataService.getAllDatabase().subscribe(
-      (data: DatabaseObject[]) => {
-        this.allDatabase = data;
-        this.filteredObjects = this.allDatabase; // Filtrare gli oggetti se necessario
-        console.log("Database caricato con successo dentro details", this.allDatabase);
-        this.cdr.detectChanges(); // Attivare manualmente il rilevamento delle modifiche
-      }
+    this.dataService.getAllDatabase().subscribe((data: DatabaseObject[]) => {
       
-    );
+      // Filtrare gli oggetti se necessario
+      this.allDatabase = data;
+      this.filteredObjects = this.allDatabase;
+      console.log(
+        'Database caricato con successo dentro details',
+        this.allDatabase
+      );
+      
+      // Attivare manualmente il rilevamento delle modifiche
+      this.cdr.detectChanges();
+    });
   }
 
   async getObjectData(id: string): Promise<DatabaseObject | null> {
