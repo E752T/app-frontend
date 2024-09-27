@@ -7,6 +7,7 @@ import {
   Publisher,
   Shopkeeper,
   TypeObject,
+  User,
   Warehouse,
 } from '../services/interfaces.service';
 import { LoginObject } from '../services/interfaces.service';
@@ -175,6 +176,20 @@ export const modifyButtons = ['OK'];
 export const filterButtons = ['OK'];
 export const isOpen: boolean = false;
 
+
+export let user: User = {
+  admin: 0,
+  description: "",
+  userID: 0,
+  addedDate: new Date(),
+  lastUpdateDate: new Date(),
+  notes: "",
+  password: "",
+  shopkeeperID: 0,
+  telephone1: "",
+  telephone2: ""
+
+}
 //---------------- DATABASE INITIALIZATION ----------------
 
 export let bodyModifyObject: DatabaseObject = {

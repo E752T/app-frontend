@@ -1,15 +1,17 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ModalController, RefresherCustomEvent } from '@ionic/angular';
-import { GetRequest, PostRequest } from '../services/request.service';
 import { ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { ElementRef } from '@angular/core';
-import { DataService, today } from '../services/data.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 
+//////////////////////////////////////////////////////////////////////
+import { GetRequest, PostRequest } from '../services/request.service';
+import { DataService, today } from '../services/data.service';
 
 import {
   DatabaseObject,
@@ -21,10 +23,10 @@ import {
   GeographicalOrigin,
   Warehouse,
   TypeObject,
+  User,
 } from '../services/interfaces.service';
 
 import { baseURL } from '../enviroenment';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home', // page name
@@ -52,30 +54,32 @@ export class HomePage implements OnInit {
     'TypeObject',
   ];
 
-
   ///////////////////////////////////////////////////////
   ////////////    ENCRYPTION    /////////////////////////
   ///////////////////////////////////////////////////////
 
-  key: string = "PidGCxd0zOp8eu4ou1uOtrgwVYAoztSmU164JLSW1OaaCyfi6AyhzpxJLTck9uVx";
+  key: string =
+    'PidGCxd0zOp8eu4ou1uOtrgwVYAoztSmU164JLSW1OaaCyfi6AyhzpxJLTck9uVx';
 
   private encrypt(txt: string): string {
     return CryptoJS.AES.encrypt(txt, this.key).toString();
   }
 
   private decrypt(txtToDecrypt: string) {
-    return CryptoJS.AES.decrypt(txtToDecrypt, this.key).toString(CryptoJS.enc.Utf8);
+    return CryptoJS.AES.decrypt(txtToDecrypt, this.key).toString(
+      CryptoJS.enc.Utf8
+    );
   }
-  
+
   public saveData(key: string, value: string) {
     localStorage.setItem(key, this.encrypt(value));
   }
 
   public getData(key: string) {
-    let data = localStorage.getItem(key)|| "";
+    let data = localStorage.getItem(key) || '';
     return this.decrypt(data);
   }
-  
+
   public clearData() {
     localStorage.clear();
   }
@@ -100,6 +104,8 @@ export class HomePage implements OnInit {
   public token_JWT_success: boolean | null;
   public username: string | null;
 
+  public user: {} | undefined;
+
   public body_login: {
     shopkeeper: string | null;
     email: string | null;
@@ -116,14 +122,15 @@ export class HomePage implements OnInit {
     this.getScreenSize();
     this.toggleMenu();
 
-    this.dataService.getAllDatabase().subscribe(
-      (data: DatabaseObject[]) => {
-        this.allDatabase = data;
-        this.filteredObjects = this.allDatabase; // Filtrare gli oggetti se necessario
-        console.log("Database caricato con successo dentro Home:", this.allDatabase);
-        this.cdr.detectChanges(); // Attivare manualmente il rilevamento delle modifiche
-      }
-    );
+    this.dataService.getAllDatabase().subscribe((data: DatabaseObject[]) => {
+      this.allDatabase = data;
+      this.filteredObjects = this.allDatabase; // Filtrare gli oggetti se necessario
+      console.log(
+        'Database caricato con successo dentro Home:',
+        this.allDatabase
+      );
+      this.cdr.detectChanges(); // Attivare manualmente il rilevamento delle modifiche
+    });
   }
 
   constructor(
@@ -141,7 +148,7 @@ export class HomePage implements OnInit {
     this.body_login = this.dataService.getBodyLogin();
     this.bodyAddObject = this.dataService.getBodyAddObject();
 
-    localStorage.clear()
+    localStorage.clear();
   }
 
   onFileSelected(event: Event) {
@@ -179,20 +186,6 @@ export class HomePage implements OnInit {
     | undefined;
 
   screenSize = this.checkScreenSize();
-
-  updateCredentials() {
-    let body_new_credentials = {
-      email: this.body_login.email,
-      password: this.body_login.password,
-      shopkeeper: this.body_login.shopkeeper,
-      username: this.body_login.username,
-    };
-
-    console.log("UpdateCredentials | body = ",body_new_credentials)
-    
-    PostRequest(baseURL + 'UpdateCredentials/', body_new_credentials);
-  
-  }
 
   logOut() {
     console.log('log out in corso');
@@ -1053,9 +1046,8 @@ export class HomePage implements OnInit {
   filterByYearsObjects<T extends { discoveryDate: Date }>(
     filteredItems: T[]
   ): T[] {
-    
     //console.log("Filtri degli anni impostato su :",this.searchYears.lower," | ", this.searchYears.upper);
-    
+
     return filteredItems.filter((item) => {
       if (item.discoveryDate != null) {
         const year = new Date(item.discoveryDate).getFullYear();
@@ -1103,5 +1095,16 @@ export class HomePage implements OnInit {
     setTimeout(() => {
       (ev as RefresherCustomEvent).detail.complete();
     }, 3000);
+  }
+
+  async updateCredentials() {
+    let body_new_credentials = {
+      email: this.body_login.email,
+      password: this.body_login.password,
+      shopkeeper: this.body_login.shopkeeper,
+      username: this.body_login.username,
+    };
+    console.log('UpdateCredentials | body = ', body_new_credentials);
+    let response = await PostRequest(baseURL + 'UpdateCredentials/', this.user);
   }
 }

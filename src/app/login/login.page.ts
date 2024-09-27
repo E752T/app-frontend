@@ -11,18 +11,12 @@ import { baseURL } from '../enviroenment';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-  //public body_login = {
-  //  shopkeeper: 'admin',
-  //  email: 'admin',
-  //  password: 'admin',
-  //  username: 'admin'};
-
   public body_login = {
-    shopkeeper: '',
-    email: '',
-    password: '',
-    username: '',
-  };
+   shopkeeper: 'admin',
+   email: 'admin',
+ password: 'admin',
+  username: 'admin'};
+
 
   public toggle_remember_me: boolean = false;
   public errorMessage: string | undefined;
@@ -107,7 +101,7 @@ export class LoginPage {
   }
 
   private handleSuccessfulLogin(response: any) {
-    this.dataService.setUsername(response.username);
+    this.dataService.setUsername(response.user.username);
     this.dataService.setUserRole(response.role);
     this.dataService.setTokenJWT(response.token);
     this.dataService.setBodyLogin(this.body_login);
@@ -164,4 +158,7 @@ export class LoginPage {
     }
     this.modalCtrl.dismiss(this.body_login, 'confirm');
   }
+
+
+
 }

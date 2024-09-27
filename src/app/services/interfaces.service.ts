@@ -1,5 +1,18 @@
 // object element names & data types
 
+export interface User {
+  admin: number;
+  description: string;
+  userID: number;
+  addedDate: Date;
+  lastUpdateDate: Date;
+  notes: string;
+  password: string;
+  shopkeeperID: number;
+  telephone1: string;
+  telephone2: string;
+}
+
 export interface LoginObject {
   email: string | null;
   password: string | null;
@@ -8,7 +21,7 @@ export interface LoginObject {
 }
 
 export interface DatabaseObject {
-[x: string]: any;
+  [x: string]: any;
   objectID: number;
   shopkeeperID: number;
   userID: number;
