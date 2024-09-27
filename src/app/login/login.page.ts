@@ -11,24 +11,29 @@ import { baseURL } from '../enviroenment';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
+  //public body_login = {
+  //  shopkeeper: 'admin',
+  //  email: 'admin',
+  //  password: 'admin',
+  //  username: 'admin'};
+
   public body_login = {
-    shopkeeper: 'admin',
-    email: 'admin',
-    password: 'admin',
-    username: 'admin',
+    shopkeeper: '',
+    email: '',
+    password: '',
+    username: '',
   };
 
   public toggle_remember_me: boolean = false;
   public errorMessage: string | undefined;
   private minimal_len_token: number = 50; // JWT
-  private token_JWT_success: boolean = false;
 
   modalCtrl: any;
 
   constructor(
-    private loadingController: LoadingController,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private loadingController: LoadingController
   ) {
     this.loadCredentials();
   }

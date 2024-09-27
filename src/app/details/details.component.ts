@@ -19,7 +19,6 @@ export class DetailsComponent implements OnInit {
   public user_role: string | null;
 
   constructor(
-    private route: ActivatedRoute,
     private dataService: DataService,
     private router: Router,
     private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
@@ -32,7 +31,6 @@ export class DetailsComponent implements OnInit {
 
   async ngOnInit() {
     this.dataService.getAllDatabase().subscribe((data: DatabaseObject[]) => {
-      
       // Filtrare gli oggetti se necessario
       this.allDatabase = data;
       this.filteredObjects = this.allDatabase;
@@ -40,7 +38,7 @@ export class DetailsComponent implements OnInit {
         'Database caricato con successo dentro details',
         this.allDatabase
       );
-      
+
       // Attivare manualmente il rilevamento delle modifiche
       this.cdr.detectChanges();
     });
