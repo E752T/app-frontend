@@ -196,13 +196,9 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-text
-              class="input-form text-label"
-              color="lighter"
-              >{{
-                publisher.addedDate ? publisher.addedDate : "NOT FOUND"
-              }}</ion-text
-            >
+            <ion-text class="input-form text-label" color="lighter">{{
+              publisher.addedDate ? publisher.addedDate : "NOT FOUND"
+            }}</ion-text>
           </div>
 
           <div slot="content">
@@ -324,7 +320,7 @@
                   color="danger"
                   [duration]="3000"
                   expand="block"
-                  ></ion-toast>
+                ></ion-toast>
 
                 <ion-text class="center-element titolo-elimina-elemento">
                   Sei sicuro di eliminare questo elemento?
