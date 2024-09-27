@@ -67,8 +67,8 @@ export class HomePage implements OnInit {
     telephone2: '',
     username: '',
     email: '',
-    shopkeeper: ''
-  }
+    shopkeeper: '',
+  };
 
   ///////////////////////////////////////////////////////
   ////////////    ENCRYPTION    /////////////////////////

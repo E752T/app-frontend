@@ -32,9 +32,20 @@ export class DataService implements OnInit {
   allDatabase: Array<DatabaseObject> = [];
   filteredObjects: Array<DatabaseObject> = [];
 
+  private user: User | null = null;
+
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit() {
     this.initializeData();
+  }
+
+  getObjectById(id: number): DatabaseObject | undefined | null {
+    let response = this.allDatabase.find((obj) => obj.objectID === id);
+    if (response !== null) {
+      return response;
+    } else {
+      return null;
+    }
   }
 
   // Metodo per inizializzare i dati
@@ -176,21 +187,6 @@ export const modifyButtons = ['OK'];
 export const filterButtons = ['OK'];
 export const isOpen: boolean = false;
 
-export let user: User = {
-  admin: 0,
-  username: '',
-  description: '',
-  userID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  notes: '',
-  password: '',
-  shopkeeperID: 0,
-  telephone1: '',
-  telephone2: '',
-  email: '',
-  shopkeeper: ''
-};
 //---------------- DATABASE INITIALIZATION ----------------
 
 export let bodyModifyObject: DatabaseObject = {
@@ -408,3 +404,6 @@ export let bodyAddAuthor: Author = {
   telephone2: '',
   notes: '',
 };
+function setUser(user: any, User: any, token: any, string: any) {
+  throw new Error('Function not implemented.');
+}

@@ -17,44 +17,32 @@ export class DetailsComponent implements OnInit {
   private dataSubject = new BehaviorSubject<any[]>([]);
   public data$ = this.dataSubject.asObservable();
   public user_role: string | null;
+  id: number | undefined;
 
   constructor(
     private dataService: DataService,
     private router: Router,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+    private cdr: ChangeDetectorRef, // Inject ChangeDetectorRef
+    private route: ActivatedRoute
   ) {
     this.user_role = this.dataService.getUserRole();
   }
 
-  allDatabase: DatabaseObject[] = [];
-  filteredObjects: DatabaseObject[] = [];
+  allDatabase: DatabaseObject[] | undefined = [];
 
-  async ngOnInit() {
-    this.dataService.getAllDatabase().subscribe((data: DatabaseObject[]) => {
-      // Filtrare gli oggetti se necessario
-      this.allDatabase = data;
-      this.filteredObjects = this.allDatabase;
-      console.log(
-        'Database caricato con successo dentro details',
-        this.allDatabase
-      );
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.id = +params['id'];
+      let response = this.dataService.getObjectById(this.id);
+      console.log('caricamento dettagli ID ', this.id);
+      console.log('caricamento dettagli OGGETTO ', response);
 
-      // Attivare manualmente il rilevamento delle modifiche
-      this.cdr.detectChanges();
+      if (response !== null && response !== undefined) {
+        this.objectData = response;
+      } else {
+        this.objectData = null;
+      }
     });
-  }
-
-  async getObjectData(id: string): Promise<DatabaseObject | null> {
-    const result = this.allDatabase.find(
-      (item) => String(item.objectID) === id
-    );
-
-    if (result) {
-      return result; // Restituisce i dati dell'oggetto trovato
-    } else {
-      console.error(`Oggetto con ID ${id} non trovato.`);
-      return null; // Restituisce null se non trovato
-    }
   }
 
   cancel() {
