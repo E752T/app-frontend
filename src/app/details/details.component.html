@@ -26,8 +26,8 @@
 
       <ion-label class="label-autori">Titolo</ion-label>
 
-      <ion-text *ngIf="user_role !== 'admin'"
-        > {{ objectData?.title }}</ion-text
+      <ion-text *ngIf="user_role !== 'admin'">
+        {{ objectData?.title }}</ion-text
       >
 
       <ion-input
@@ -53,9 +53,21 @@
         />
       </svg>
 
-      <ion-text *ngIf="user_role !== 'admin'"
-        >Sottotitolo {{ objectData?.subtitle }}</ion-text
+      <ion-label class="label-autori">Sottotitolo</ion-label>
+
+      <ion-text *ngIf="user_role !== 'admin'">
+        {{ objectData?.subtitle }}</ion-text
       >
+
+      <ion-input
+        *ngIf="user_role === 'admin' && objectData"
+        class="input-form"
+        placeholder="Titolo oggetto"
+        [(ngModel)]="objectData.subtitle"
+        id="{{ objectData.subtitle }}"
+        value="{{ objectData.subtitle }}"
+      >
+      </ion-input>
     </ion-item>
     <ion-item>
       <svg
@@ -83,9 +95,22 @@
           fill-rule="evenodd"
         />
       </svg>
-      <ion-text *ngIf="user_role !== 'admin'"
-        >Descrizione dell'autore{{ objectData?.authorDescription }}</ion-text
+
+      <ion-label class="label-autori">Descrizione dell'autore</ion-label>
+
+      <ion-text *ngIf="user_role !== 'admin'">
+        {{ objectData?.authorDescription }}</ion-text
       >
+
+      <ion-input
+        *ngIf="user_role === 'admin' && objectData"
+        class="input-form"
+        placeholder="Descrizione"
+        [(ngModel)]="objectData.authorDescription"
+        id="{{ objectData.authorDescription }}"
+        value="{{ objectData.authorDescription }}"
+      >
+      </ion-input>
     </ion-item>
     <ion-item>
       <svg
@@ -116,9 +141,22 @@
           </g>
         </g>
       </svg>
-      <ion-text *ngIf="user_role !== 'admin'"
-        >Posizione {{ objectData?.position }}</ion-text
+
+      <ion-label class="label-autori">Posizione</ion-label>
+
+      <ion-text *ngIf="user_role !== 'admin'">
+        {{ objectData?.position }}</ion-text
       >
+
+      <ion-input
+        *ngIf="user_role === 'admin' && objectData"
+        class="input-form"
+        placeholder="Posizione"
+        [(ngModel)]="objectData.position"
+        id="{{ objectData.position }}"
+        value="{{ objectData.position }}"
+      >
+      </ion-input>
     </ion-item>
     <ion-item>
       <svg
@@ -134,6 +172,18 @@
           fill="#000000"
         />
       </svg>
+
+      <ion-label class="label-autori">Stanza magazzino</ion-label>
+      <ion-input
+        *ngIf="user_role === 'admin' && objectData"
+        class="input-form"
+        placeholder="Stanza magazzino"
+        [(ngModel)]="objectData.warehouseRoom"
+        id="{{ objectData.warehouseRoom }}"
+        value="{{ objectData.warehouseRoom }}"
+      >
+      </ion-input>
+
       <ion-text *ngIf="user_role !== 'admin'"
         >Stanza magazzino {{ objectData?.warehouseRoom }}</ion-text
       >
@@ -167,9 +217,21 @@
           </g>
         </g>
       </svg>
-      <ion-text *ngIf="user_role !== 'admin'"
-        >Ordinamento {{ objectData?.genere }}</ion-text
+
+      <ion-label class="label-autori">Ordinamento</ion-label>
+      <ion-input
+        *ngIf="user_role === 'admin' && objectData"
+        class="input-form"
+        placeholder="Ordinamento"
+        [(ngModel)]="objectData.sortOrder"
+        id="{{ objectData.sortOrder }}"
+        value="{{ objectData.sortOrder }}"
       >
+      </ion-input>
+
+      <ion-text *ngIf="user_role !== 'admin'">{{
+        objectData?.sortOrder
+      }}</ion-text>
     </ion-item>
     <ion-item>
       <svg
@@ -179,7 +241,6 @@
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
       >
-        <defs></defs>
         <g
           id="Page-1"
           stroke="none"
@@ -201,6 +262,18 @@
           </g>
         </g>
       </svg>
+
+      <ion-label class="label-autori">Numero dell'armadio</ion-label>
+      <ion-input
+        *ngIf="user_role === 'admin' && objectData"
+        class="input-form"
+        placeholder="Numero dell'armadio"
+        [(ngModel)]="objectData.rackNumber"
+        id="{{ objectData.rackNumber }}"
+        value="{{ objectData.rackNumber }}"
+      >
+      </ion-input>
+
       <ion-text *ngIf="user_role !== 'admin'"
         >Numero dell'armadio {{ objectData?.rackNumber }}</ion-text
       >
@@ -230,6 +303,18 @@
           d="M1004.237,99.152l-611.44,611.441L194.492,512.288L0,706.779  l198.305,198.306l195.762,195.763L588.56,906.355L1200,294.916L1004.237,99.152z"
         />
       </svg>
+
+      <ion-label class="label-autori">Disponibile</ion-label>
+      <ion-input
+        *ngIf="user_role === 'admin' && objectData"
+        class="input-form"
+        placeholder="Disponibile"
+        [(ngModel)]="objectData.avaiable"
+        id="{{ objectData.avaiable }}"
+        value="{{ objectData.avaiable }}"
+      >
+      </ion-input>
+
       <ion-text *ngIf="user_role !== 'admin'"
         >Disponibile {{ objectData?.avaiable }}</ion-text
       >
@@ -268,6 +353,18 @@
           />
         </g>
       </svg>
+
+      <ion-label class="label-autori">Genere</ion-label>
+      <ion-input
+        *ngIf="user_role === 'admin' && objectData"
+        class="input-form"
+        placeholder="Genere"
+        [(ngModel)]="objectData.genere"
+        id="{{ objectData.genere }}"
+        value="{{ objectData.genere }}"
+      >
+      </ion-input>
+
       <ion-text *ngIf="user_role !== 'admin'"
         >Genere {{ objectData?.genere }}</ion-text
       >
