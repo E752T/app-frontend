@@ -26,7 +26,11 @@
 }
 
 .titolo {
-  min-width: 100vw;
+  display: flex; /* Utilizza Flexbox per il layout */
+  flex-direction: column; /* Dispone gli elementi in colonna */
+  align-items: center; /* Centra gli elementi all'interno della card */
+  border-top: 4rem;
+  font-size: 2rem;
 }
 
 .titolo-store {
