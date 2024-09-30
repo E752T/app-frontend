@@ -93,51 +93,6 @@ ion-content {
   justify-content: flex-end;
 }
 
-
-.ng-template-custom {
-  height: 290px;
-  border-radius: 100px;
-}
-
-.ionic-title-custom {
-  width: 100%;
-  text-align: center;
-}
-
-.ionic-text-custom {
-  margin-top: 5%;
-  font-size: 15px;
-}
-
-.credenziali-login {
-  font-size: 22px;
-}
-
-.credenziali-dimenticate {
-  color: black;
-  width: fit-content;
-  font-size: smaller;
-  padding-top: 5%;
-}
-
-.bottone-contatti {
-  font-family: serif;
-  max-width: 250px;
-  font-size: 18px;
-  border-radius: 10px;
-  background: white;
-  max-width: 250px;
-  width: 120%;
-  margin: 0 auto;
-  display: block;
-}
-
-.contatti-testo {
-  color: #000000;
-  border-radius: 20px;
-}
-
-
 .titolo-filtri-ricerca {
   font-family: Georgia, serif;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -165,12 +120,6 @@ ion-content {
   padding-bottom: 2%;
 }
 
-.titolo-aggiungi-elemento {
-  font-weight: bolder;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-}
 
 .titolo-categoria {
   margin-top: 40px;
@@ -204,22 +153,12 @@ ion-content {
   text-transform: capitalize;
 }
 
-.titolo-aggiungi-oggetto {
-  margin-top: 20px;
-}
-
 .carta-elemento {
   min-width: 400px;
   width: 100%;
   text-align: left;
 }
 
-.ultimo-elemento {
-  margin-bottom: 100px;
-}
-.sidebar {
-  will-change: auto;
-}
 
 .background-title-bar {
   background: #0054e9;
@@ -227,15 +166,6 @@ ion-content {
 
 .titolo-icona {
   font-size: larger;
-}
-
-.header-titolo {
-  background: #0054e9;
-}
-
-.stile-titolo {
-  color: rgb(232, 23, 23);
-  align-items: center;
 }
 
 .header-menu-home {
@@ -248,9 +178,7 @@ ion-content {
   padding: 10px;
 }
 
-.centrato {
-  text-align: center;
-}
+
 .searchbar-menu {
   width: 100%;
 }
@@ -357,8 +285,6 @@ ion-content {
   margin-left: 20px;
 }
 
-
-
 .icone-aggiungi-oggetto-modified {
   width: 25px;
   height: 25px;
@@ -385,17 +311,6 @@ ion-content {
   margin: auto;
   width: 20vw;
   padding: 0;
-}
-
-.vertical-align-container {
-  display: flex;
-  flex-direction: column; /* Align items in a column */
-  justify-content: center; /* Center items vertically */
-  height: 100vh; /* Full height of the viewport */
-  text-align: center; /* Center text horizontally */
-  width: 100%; /* Adjusts to full width of the toolbar */
-  padding: 10px; /* Adds some padding for better appearance */
-  box-sizing: border-box; /* Ensures padding is included in the width */
 }
 
 .align-right {
@@ -462,8 +377,8 @@ ion-content {
 
 .testo-anno-di-pubblicazione {
   display: inline-block;
-  margin-top:1rem;
-  margin-bottom:2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .numero-anno-di-pubblicazione {
@@ -520,10 +435,6 @@ ion-content {
   justify-content: flex-start;
   margin-right: 1rem;
 }
-.titolo-aggiungi-elemento2 {
-  margin-top: 20px;
-  display: table;
-}
 
 .ion-range-margin {
   margin-left: 10px;
@@ -541,7 +452,6 @@ ion-content {
 
 .margine-anni {
   margin-left: 13rem;
-
 }
 
 .margine-anni-sinistra {
@@ -632,11 +542,6 @@ ion-content {
   margin-left: 14rem;
 }
 
-.titolo-modale-centrato {
-  font-weight: bolder;
-  margin-left: -30px;
-  margin-top: 10px;
-}
 
 .modale-esci {
   font-size: large;
@@ -679,13 +584,14 @@ ion-content {
   .fullscreen {
     --width: 40vw !important;
     --height: 90vh !important;
-    }
+  }
 }
 
 @media (max-width: 800px) {
   .fullscreen {
     --width: 90vw !important;
-    --height: 90vh !important;  }
+    --height: 90vh !important;
+  }
 }
 
 .label-container {

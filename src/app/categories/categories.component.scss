@@ -1,6 +1,4 @@
-.sidebar {
-  will-change: auto;
-}
+
 
 .input-form {
   background-color: rgb(255, 255, 255);
@@ -56,17 +54,6 @@
   font-size: larger;
 }
 
-
-.vertical-align-container {
-  display: flex;
-  flex-direction: column; /* Align items in a column */
-  justify-content: center; /* Center items vertically */
-  height: 100vh; /* Full height of the viewport */
-  text-align: center; /* Center text horizontally */
-  width: 100%; /* Adjusts to full width of the toolbar */
-  padding: 10px; /* Adds some padding for better appearance */
-  box-sizing: border-box; /* Ensures padding is included in the width */
-}
 
 .input-form-text {
   margin-top: 1rem;
