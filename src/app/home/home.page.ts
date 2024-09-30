@@ -31,7 +31,7 @@ import { baseURL } from '../enviroenment';
 @Component({
   selector: 'app-home', // page name
   templateUrl: 'home.page.html', // page html
-  styleUrls: ['home.page.scss'], // page style
+  styleUrls: ['./../app.component.scss', 'home.page.scss'], // page style
 })
 export class HomePage implements OnInit {
   availability: string = 'tutti'; // initial aviability filter checkbox
@@ -238,7 +238,6 @@ export class HomePage implements OnInit {
   cancel() {
     this.modalCtrl.dismiss(null, 'cancel');
   }
-
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
@@ -1089,7 +1088,11 @@ export class HomePage implements OnInit {
     }
   }
 
-
+  refresh(ev: any) {
+    setTimeout(() => {
+      (ev as RefresherCustomEvent).detail.complete();
+    }, 3000);
+  }
 
   async updateCredentials() {
     let body_new_credentials = {

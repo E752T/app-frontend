@@ -251,11 +251,9 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-text
-              class="input-form estetica-data"
-              color="lighter"
-              >{{ author.addedDate ? author.addedDate : "NOT FOUND" }}</ion-text
-            >
+            <ion-text class="input-form estetica-data" color="lighter">{{
+              author.addedDate ? author.addedDate : "NOT FOUND"
+            }}</ion-text>
           </div>
 
           <div slot="content">
@@ -321,7 +319,7 @@
             <ion-button
               color="secondary"
               class="bottone-update"
-              id="button-UpdateAuthorAPI-'{{ author.authorID }}'"
+              id="bottone-update-autore-'{{ author.authorID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
@@ -401,7 +399,7 @@
             </ion-modal>
 
             <ion-toast
-              trigger="button-UpdateAuthorAPI-'{{ author.authorID }}'"
+              trigger="bottone-update-autore-'{{ author.authorID }}'"
               message="Nuovo elemento salvato"
               class="toast-elemento"
               color="success"
@@ -422,7 +420,7 @@
                     <ion-buttons slot="end">
                       <ion-button
                         (click)="DeleteElement(author.authorID)"
-                        id="conferma-elimina-autore-'{{ author.authorID }}'"
+                        id="conferma-elimina-autore-2-'{{ author.authorID }}'"
                         [strong]="true"
                         >Conferma</ion-button
                       >
@@ -466,7 +464,7 @@
                   </ion-text>
                 </ion-card>
                 <ion-toast
-                  trigger="conferma-elimina-autore-'{{ author.authorID }}'"
+                  trigger="conferma-elimina-autore-2-'{{ author.authorID }}'"
                   message="Elemento eliminato"
                   class="toast-elemento"
                   color="danger"
