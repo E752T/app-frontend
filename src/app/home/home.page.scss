@@ -120,7 +120,6 @@ ion-content {
   padding-bottom: 2%;
 }
 
-
 .titolo-categoria {
   margin-top: 40px;
   margin-left: 10px;
@@ -159,7 +158,6 @@ ion-content {
   text-align: left;
 }
 
-
 .background-title-bar {
   background: #0054e9;
 }
@@ -177,7 +175,6 @@ ion-content {
   width: 50%;
   padding: 10px;
 }
-
 
 .searchbar-menu {
   width: 100%;
@@ -206,10 +203,6 @@ ion-content {
   color: #000000;
 }
 
-.small-margin {
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
 .titolo-modale-aggiungi {
   max-width: 70vw;
   font-size: 2vh;
@@ -234,15 +227,6 @@ ion-content {
   font-size: 15px;
 }
 
-.testo-input-edited {
-  font-size: 22px;
-}
-
-.testo-form {
-  padding-top: 3%;
-  font-size: 12px;
-}
-
 .testo-aggiungi-nuovo {
   text-align: center;
   font-family: "Times New Roman", Times, serif;
@@ -256,13 +240,6 @@ ion-content {
   font-variant: normal;
   text-transform: none;
   display: table;
-}
-
-.modale-modifica-oggetto {
-  font-weight: bolder;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
 }
 
 .icone-autori {
@@ -319,10 +296,6 @@ ion-content {
   padding: 10px; /* Aggiunge un po' di spazio attorno all'elemento */
 }
 
-.center-button {
-  display: inline list-item;
-}
-
 .menu-button-custom {
   display: flex;
   justify-content: flex-start;
@@ -341,15 +314,6 @@ ion-content {
 
 .anchor-button {
   width: min-content;
-}
-
-.float-right {
-  float: right;
-}
-
-.button-container {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .header-md {
@@ -541,7 +505,6 @@ ion-content {
 .margine-destro-etichetta {
   margin-left: 14rem;
 }
-
 
 .modale-esci {
   font-size: large;

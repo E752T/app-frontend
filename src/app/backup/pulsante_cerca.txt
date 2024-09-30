@@ -1,9 +1,0 @@
-<ion-button
-color="secondary"
-id="menu-button-custom"
-class="center"
-style="width: 80%"
-(click)="getItems(searchInput)"
->
-Cerca
-</ion-button>
