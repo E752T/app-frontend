@@ -42,6 +42,18 @@ ion-item ion-note.md {
   margin-right: 14px;
 }
 
+.dot {
+  display: block;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  align-self: start;
+  margin: 16px 10px 16px 16px;
+}
+
+.dot-unread {
+  background: var(--ion-color-primary);
+}
 
 ion-footer ion-title {
   font-size: 12px;
@@ -99,6 +111,13 @@ ion-radio.ios::part(container) {
   height: 220px;
 }
 
+.immagine-copertina-modale {
+  margin-bottom: 70px;
+  max-width: 200px;
+  max-height: 300px;
+  margin-bottom: 70px;
+}
+
 .modale-modifica-oggetto {
   font-weight: bolder;
   width: 100%;
@@ -133,6 +152,10 @@ ion-radio.ios::part(container) {
 .icona-esterna {
   width: 40px !important ;
   height: 40px !important;
+}
+
+.sidebar {
+  will-change: auto;
 }
 
 .vertical-align-container {
