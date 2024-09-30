@@ -303,7 +303,7 @@
             <ion-button
               color="secondary"
               class="bottone-update"
-              id="button-UpdateShopkeeperAPI-'{{ shopkeeper.shopkeeperID }}'"
+              id="update-shopkeeper-'{{ shopkeeper.shopkeeperID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
@@ -389,9 +389,7 @@
             </ion-modal>
 
             <ion-toast
-              trigger="button-UpdateShopkeeperAPI-'{{
-                shopkeeper.shopkeeperID
-              }}'"
+              trigger="update-shopkeeper-'{{ shopkeeper.shopkeeperID }}'"
               message="Nuovo elemento salvato"
               class="toast-elemento"
               color="success"
