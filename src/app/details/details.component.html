@@ -55,7 +55,7 @@
         />
       </svg>
 
-      <ion-label class="label-autori">Titolo</ion-label>
+      <ion-label class="label-autori spacing-right">Titolo</ion-label>
 
       <ion-text *ngIf="user_role !== 'admin'">
         {{ objectData?.title }}</ion-text
@@ -84,7 +84,7 @@
         />
       </svg>
 
-      <ion-label class="label-autori">Sottotitolo</ion-label>
+      <ion-label class="label-autori spacing-right">Sottotitolo</ion-label>
 
       <ion-text *ngIf="user_role !== 'admin'">
         {{ objectData?.subtitle }}</ion-text
@@ -141,7 +141,9 @@
         />
       </svg>
 
-      <ion-label class="label-autori">Descrizione dell'autore</ion-label>
+      <ion-label class="label-autori spacing-right"
+        >Descrizione dell'autore</ion-label
+      >
 
       <ion-text *ngIf="user_role !== 'admin'">
         {{ objectData?.authorDescription }}</ion-text
@@ -187,7 +189,7 @@
         </g>
       </svg>
 
-      <ion-label class="label-autori">Posizione</ion-label>
+      <ion-label class="label-autori spacing-right">Posizione</ion-label>
 
       <ion-text *ngIf="user_role !== 'admin'">
         {{ objectData?.position }}</ion-text
@@ -218,7 +220,7 @@
         />
       </svg>
 
-      <ion-label class="label-autori">Stanza magazzino</ion-label>
+      <ion-label class="label-autori spacing-right">Stanza magazzino</ion-label>
       <ion-input
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
@@ -263,7 +265,7 @@
         </g>
       </svg>
 
-      <ion-label class="label-autori">Ordinamento</ion-label>
+      <ion-label class="label-autori spacing-right">Ordinamento</ion-label>
       <ion-input
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
@@ -308,7 +310,9 @@
         </g>
       </svg>
 
-      <ion-label class="label-autori">Numero dell'armadio</ion-label>
+      <ion-label class="label-autori spacing-right"
+        >Numero dell'armadio</ion-label
+      >
       <ion-input
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
@@ -349,8 +353,10 @@
         />
       </svg>
 
-      <ion-label class="label-autori">Disponibile</ion-label>
-      <ion-input
+      <ion-label style="max-width: 6rem" class="label-autori spacing-right"
+        >Disponibile</ion-label
+      >
+      <ion-toggle
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
         placeholder="Disponibile"
@@ -404,7 +410,7 @@
         </g>
       </svg>
 
-      <ion-label class="label-autori">Genere</ion-label>
+      <ion-label class="label-autori spacing-right">Genere</ion-label>
       <ion-input
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
