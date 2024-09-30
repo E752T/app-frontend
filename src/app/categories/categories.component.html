@@ -31,9 +31,7 @@
                       <ion-buttons slot="end">
                         <ion-button
                           (click)="DeleteCategory(category.categoryID)"
-                          id="conferma-elimina-categoria-'{{
-                            category.categoryID
-                          }}'"
+                          id="conferma-elimina-'{{ category.categoryID }}'"
                           [strong]="true"
                           >Conferma</ion-button
                         >
@@ -85,9 +83,7 @@
                   </ion-card>
                   <ion-toast
                     class="toast-elemento"
-                    trigger="conferma-elimina-categoria-'{{
-                      category.categoryID
-                    }}'"
+                    trigger="confirmDeleteCategory-'{{ category.categoryID }}'"
                     message="Elemento Eliminato"
                     [duration]="2000"
                     expand="block"
@@ -98,7 +94,10 @@
             </ion-button>
           </ion-item>
 
-          <div slot="content" class="elemento-categoria-dettagli">
+          <div
+            slot="content"
+            style="padding-bottom: 1%; padding-top: 1%; margin-top: 20px"
+          >
             <svg
               fill="#000000"
               class="icone-autori"
@@ -204,9 +203,13 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-text class="input-form estetica-data" color="lighter">{{
-              category.addedDate ? category.addedDate : "NOT FOUND"
-            }}</ion-text>
+            <ion-text
+              class="input-form estetica-data"
+              color="lighter"
+              >{{
+                category.addedDate ? category.addedDate : "NOT FOUND"
+              }}</ion-text
+            >
           </div>
 
           <div slot="content">
@@ -270,7 +273,11 @@
             >
           </div>
 
-          <div *ngIf="user_role === 'admin'" slot="content">
+          <div
+            *ngIf="user_role === 'admin'"
+            slot="content"
+            style="padding-bottom: 1%; padding-top: 1%"
+          >
             <ion-button
               color="secondary"
               style="padding-right: 3%"
@@ -311,18 +318,14 @@
                     <ion-buttons slot="end">
                       <ion-button
                         (click)="DeleteCategory(category.categoryID)"
-                        id="conferma-elimina-categoria-2-{{
-                          category.categoryID
-                        }}'"
+                        id="conferma-elimina-'{{ category.categoryID }}'"
                         [strong]="true"
                         >Conferma</ion-button
                       >
 
                       <ion-toast
                         class="toast-elemento"
-                        trigger="conferma-elimina-categoria-2-'{{
-                          category.categoryID
-                        }}'"
+                        trigger="conferma-elimina-'{{ category.categoryID }}'"
                         message="Elemento Eliminato"
                         [duration]="2000"
                         expand="block"

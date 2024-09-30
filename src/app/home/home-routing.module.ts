@@ -13,7 +13,7 @@ const routes: Routes = [
 
   {
     path: 'details/:id',
-    component: DetailsComponent, // Pagina dei dettagli dei sigoli oggetti
+    component: DetailsComponent, // Pagina dei dettagli
   },
   {
     path: '**', // Rotta di fallback per gestire percorsi non definiti

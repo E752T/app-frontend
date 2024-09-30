@@ -88,7 +88,10 @@
             </ion-modal>
           </ion-item>
 
-          <div slot="content" class="elemento-categoria-dettagli">
+          <div
+            slot="content"
+            style="padding-bottom: 1%; padding-top: 1%; margin-top: 20px"
+          >
             <svg
               fill="#000000"
               class="icone-autori"
@@ -261,16 +264,20 @@
             >
           </div>
 
-          <div slot="content" *ngIf="user_role === 'admin'">
+          <div
+            slot="content"
+            *ngIf="user_role === 'admin'"
+            style="padding-bottom: 1%; padding-top: 1%"
+          >
             <ion-button
               color="secondary"
               class="bottoni-crud"
-              id="bottone-aggiorna-categoria'{{ publisher.publisherID }}'"
+              id="button-update-category-'{{ publisher.publisherID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
             >
             <ion-toast
-              trigger="bottone-aggiorna-categoria'{{ publisher.publisherID }}'"
+              trigger="button-update-category-'{{ publisher.publisherID }}'"
               message="Nuovo Elemento Salvato"
               class="toast-elemento"
               color="success"
