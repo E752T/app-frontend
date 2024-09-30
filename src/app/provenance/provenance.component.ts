@@ -1,18 +1,6 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { IonModal } from '@ionic/angular';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core';
-
 import { baseURL } from '../enviroenment';
-
 import { PostRequest } from '../services/request.service';
 import { DataService, today } from '../services/data.service';
 import { HttpClient } from '@angular/common/http';
