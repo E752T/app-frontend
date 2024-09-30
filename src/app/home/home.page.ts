@@ -23,8 +23,7 @@ import {
   GeographicalOrigin,
   Warehouse,
   TypeObject,
-  User,
-} from '../services/interfaces.service';
+  User} from '../services/interfaces.service';
 
 import { baseURL } from '../enviroenment';
 
@@ -177,17 +176,9 @@ export class HomePage implements OnInit {
   }
 
   // FRONTEND VARIABLES
-
   isOpen: boolean = false;
-  fileEvent: Event | undefined;
-
-  // PopOver
-  showAddPopover: boolean = false;
-  showModifyPopover: boolean = false;
-  showDeletePopover: boolean = false;
 
   // VIEWS TO SHOW
-
   sectionToShow: string = 'Store'; // initial value = Store
   messageDismissModal: string = '';
 

@@ -1,5 +1,3 @@
-// object element names & data types
-
 export interface User {
   admin: number;
   username: string;

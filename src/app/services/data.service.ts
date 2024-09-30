@@ -7,7 +7,6 @@ import {
   Publisher,
   Shopkeeper,
   TypeObject,
-  User,
   Warehouse,
 } from '../services/interfaces.service';
 import { LoginObject } from '../services/interfaces.service';
@@ -26,13 +25,10 @@ export class DataService implements OnInit {
   private userRole: string | null = null;
   private tokenJWT: string | null = null;
   private tokenJWTsuccess: boolean | null = null;
-
   private bodyLogin: any = {};
 
   allDatabase: Array<DatabaseObject> = [];
   filteredObjects: Array<DatabaseObject> = [];
-
-  private user: User | null = null;
 
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit() {
@@ -48,8 +44,8 @@ export class DataService implements OnInit {
     }
   }
 
-  // Metodo per inizializzare i dati
   private initializeData() {
+    // Metodo per inizializzare i dati
     this.getAllDatabase().subscribe({
       next: (data) => {
         this.allDatabase = data;
@@ -62,8 +58,8 @@ export class DataService implements OnInit {
     });
   }
 
-  // Metodo per esportare allDatabase
   getAllDatabase(): Observable<Array<DatabaseObject>> {
+    // Metodo per esportare allDatabase
     return new Observable((observer) => {
       GetRequest(baseURL + 'GetObjects')
         .then((res) => {
@@ -173,22 +169,10 @@ export let body_login: LoginObject = {
   username: localStorage.getItem('username'),
 };
 
-export const today: Date = new Date();
-
 const datePipe = new DatePipe('en-US');
-
-let formattedDate = datePipe.transform(today, 'yyyy-MM-dd');
-
-export let messageDismissModal: string = '';
-
-export const alertButtons = ['OK'];
-export const saveButtons = ['OK'];
-export const modifyButtons = ['OK'];
-export const filterButtons = ['OK'];
-export const isOpen: boolean = false;
+export const today = new Date(); // datePipe.transform(new Date(), 'yyyy-MM-dd');
 
 //---------------- DATABASE INITIALIZATION ----------------
-
 export let bodyModifyObject: DatabaseObject = {
   objectID: 1,
   authorID: 1,
@@ -404,6 +388,3 @@ export let bodyAddAuthor: Author = {
   telephone2: '',
   notes: '',
 };
-function setUser(user: any, User: any, token: any, string: any) {
-  throw new Error('Function not implemented.');
-}
