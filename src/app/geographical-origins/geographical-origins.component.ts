@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   inject,
-  input,
   Input,
   Output,
   ViewChild,
@@ -11,7 +10,6 @@ import { Platform } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
-import { OverlayEventDetail } from '@ionic/core';
 
 import { GeographicalOrigin } from '../services/interfaces.service';
 import { DataService, today } from '../services/data.service';
@@ -41,7 +39,6 @@ export class GeographicalOriginComponent {
     username: '',
   };
   constructor(
-    private http: HttpClient,
     private modalCtrl: ModalController,
     private dataService: DataService
   ) {
@@ -51,7 +48,6 @@ export class GeographicalOriginComponent {
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
-  private platform = inject(Platform);
 
   @Input()
   geographical_origin!: GeographicalOrigin;
@@ -64,9 +60,6 @@ export class GeographicalOriginComponent {
 
   @Output()
   updateGeographicalOrigin = new EventEmitter<any>();
-
-  @ViewChild(IonModal)
-  modal!: IonModal;
 
   body_add_geographical_origin: GeographicalOrigin = {
     geographicalOriginID: 0,
@@ -114,10 +107,7 @@ export class GeographicalOriginComponent {
     );
   }
 
-
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });
   }
-
-
 }

@@ -14,7 +14,6 @@ import { ModalController } from '@ionic/angular';
 import { baseURL } from '../enviroenment';
 import { DataService, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
-import { OverlayEventDetail } from '@ionic/core';
 import { HttpClient } from '@angular/common/http';
 import { TypeObject } from '../services/interfaces.service';
 
@@ -42,7 +41,6 @@ export class TypeObjectComponent {
     username: '',
   };
   constructor(
-    private http: HttpClient,
     private modalCtrl: ModalController,
     private dataService: DataService
   ) {
@@ -63,9 +61,6 @@ export class TypeObjectComponent {
 
   @Output()
   updateTypeObject = new EventEmitter<any>();
-
-  @ViewChild(IonModal)
-  modal!: IonModal;
 
   body_add_type_object: TypeObject = {
     typeID: 0,
@@ -108,10 +103,7 @@ export class TypeObjectComponent {
     return PostRequest(baseURL + 'UpdateTypeObject/', this.type_object);
   }
 
-
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });
   }
-
-
 }
