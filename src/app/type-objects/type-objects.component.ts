@@ -21,7 +21,7 @@ import { TypeObject } from '../services/interfaces.service';
 @Component({
   selector: 'app-type-objects',
   templateUrl: './type-objects.component.html',
-  styleUrls: ['./type-objects.component.scss'],
+  styleUrls: ['./../app.component.scss'],
 })
 export class TypeObjectComponent {
   private platform = inject(Platform);

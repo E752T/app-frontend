@@ -7,7 +7,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
@@ -19,7 +18,7 @@ import { baseURL } from '../enviroenment';
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
-  styleUrls: ['./authors.component.scss'],
+  styleUrls: ['./../app.component.scss'],
 })
 export class AuthorsComponent {
   private platform = inject(Platform);

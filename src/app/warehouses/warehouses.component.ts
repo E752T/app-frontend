@@ -20,7 +20,7 @@ import { Warehouse } from '../services/interfaces.service';
 @Component({
   selector: 'app-warehouses',
   templateUrl: './warehouses.component.html',
-  styleUrls: ['./warehouses.component.scss'],
+  styleUrls: ['./../app.component.scss'],
 })
 export class WarehouseComponent {
   public token_JWT: string | null;

@@ -21,7 +21,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-shopkeepers',
   templateUrl: './shopkeepers.component.html',
-  styleUrls: ['./shopkeepers.component.scss'],
+  styleUrls: ['./../app.component.scss'],
 })
 export class ShopkeepersComponent {
   private platform = inject(Platform);

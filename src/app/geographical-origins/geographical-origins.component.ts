@@ -21,7 +21,7 @@ import { baseURL } from '../enviroenment';
 @Component({
   selector: 'app-geographical-origin',
   templateUrl: './geographical-origins.component.html',
-  styleUrls: ['./geographical-origins.component.scss'],
+  styleUrls: ['./../app.component.scss'],
 })
 export class GeographicalOriginComponent {
   public token_JWT: string | null;

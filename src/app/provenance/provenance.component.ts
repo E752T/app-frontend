@@ -21,7 +21,7 @@ import { Provenance } from '../services/interfaces.service';
 @Component({
   selector: 'app-provenances',
   templateUrl: './provenance.component.html',
-  styleUrls: ['./provenance.component.scss'],
+  styleUrls: ['./../app.component.scss'],
 })
 export class ProvenancesComponent {
   private platform = inject(Platform);
