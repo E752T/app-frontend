@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./../app.component.scss', './details.component.scss'],
+  styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
   objectId: string | null = null;
