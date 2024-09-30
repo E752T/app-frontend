@@ -11,7 +11,6 @@ import { baseURL } from '../enviroenment';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-  
   public body_login = {
     shopkeeper: 'admin',
     email: 'admin',
@@ -107,7 +106,7 @@ export class LoginPage {
     this.dataService.setTokenJWT(response.token);
     this.dataService.setBodyLogin(this.body_login);
 
-    console.log('Username impostato:', this.dataService.getUsername());
+    console.log('Nome utente:', this.dataService.getUsername());
 
     const parts = response.token ? response.token.split('.') : null;
     if (this.toggle_remember_me) {
