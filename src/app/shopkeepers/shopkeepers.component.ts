@@ -1,22 +1,10 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core';
-
 import { baseURL } from '../enviroenment';
-
 import { Shopkeeper } from '../services/interfaces.service';
 import { PostRequest } from '../services/request.service';
 import { DataService, today } from '../services/data.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-shopkeepers',
@@ -110,9 +98,7 @@ export class ShopkeepersComponent {
     return PostRequest(baseURL + 'UpdateShopkeeper/', this.shopkeeper);
   }
 
-
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });
   }
-
 }
