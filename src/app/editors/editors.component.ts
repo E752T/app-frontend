@@ -37,6 +37,7 @@ export class EditorsComponent {
   };
 
   constructor(
+    private http: HttpClient,
     private modalCtrl: ModalController,
     private dataService: DataService
   ) {
@@ -58,6 +59,9 @@ export class EditorsComponent {
 
   @Output()
   updatePublishers = new EventEmitter<any>();
+
+  @ViewChild(IonModal)
+  modal!: IonModal;
 
   body_add_publisher: Publisher = {
     publisherID: 0,
@@ -112,7 +116,11 @@ export class EditorsComponent {
     return highestID + 1;
   }
 
+
+
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });
   }
+
+
 }

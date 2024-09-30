@@ -1,5 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
+import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { baseURL } from '../enviroenment';
 import { Shopkeeper } from '../services/interfaces.service';
@@ -30,6 +32,7 @@ export class ShopkeepersComponent {
     username: '',
   };
   constructor(
+    private http: HttpClient,
     private modalCtrl: ModalController,
     private dataService: DataService
   ) {
@@ -50,6 +53,10 @@ export class ShopkeepersComponent {
 
   @Output()
   updateShopkeepers = new EventEmitter<any>();
+
+  @ViewChild(IonModal)
+  modal!: IonModal;
+
 
   body_add_shopkeeper: Shopkeeper = {
     shopkeeperID: 0,

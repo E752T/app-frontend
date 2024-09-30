@@ -21,6 +21,8 @@ import { baseURL } from '../enviroenment';
   styleUrls: ['./../app.component.scss'],
 })
 export class AuthorsComponent {
+  private platform = inject(Platform);
+
   public token_JWT: string | null;
   public user_role: string | null;
   public token_JWT_success: boolean | null;
@@ -60,6 +62,9 @@ export class AuthorsComponent {
 
   @Output()
   updateAuthors = new EventEmitter<any>();
+
+  @ViewChild(IonModal)
+  modal!: IonModal;
 
   body_add_author: Author = {
     authorID: 0,
