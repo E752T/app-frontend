@@ -1,7 +1,7 @@
 <body style="overflow-y: scroll">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-title style="max-width: 43vw; margin-right: 1rem" color="secondary"
+      <ion-title style="max-width: 43vw; margin-right: 1rem"
         >Dettagli dell'oggetto</ion-title
       >
     </ion-buttons>
@@ -35,7 +35,6 @@
 
       <ion-button
         style="min-width: 8vw; max-width: 4rem; margin-left: -1rem"
-        color="primary"
         (click)="cancel()"
       >
         <ion-icon name="arrow-forward-outline"></ion-icon>
@@ -115,7 +114,9 @@
       </svg>
       <ion-label class="label-autori spacing-right">Note</ion-label>
 
-      <ion-text>{{ objectData?.objectNotes }}</ion-text>
+      <ion-text *ngIf="user_role !== 'admin'">{{
+        objectData?.objectNotes
+      }}</ion-text>
 
       <ion-input
         *ngIf="user_role === 'admin' && objectData"
