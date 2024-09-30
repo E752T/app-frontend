@@ -8,7 +8,7 @@ import { Warehouse } from '../services/interfaces.service';
 @Component({
   selector: 'app-warehouses',
   templateUrl: './warehouses.component.html',
-  styleUrls: ['./../app.component.scss'],
+  styleUrls: ['./warehouses.component.scss'],
 })
 export class WarehouseComponent {
   public token_JWT: string | null;

@@ -9,7 +9,7 @@ import { Provenance } from '../services/interfaces.service';
 @Component({
   selector: 'app-provenances',
   templateUrl: './provenance.component.html',
-  styleUrls: ['./../app.component.scss'],
+  styleUrls: ['./provenance.component.scss'],
 })
 export class ProvenancesComponent {
   public token_JWT: string | null;

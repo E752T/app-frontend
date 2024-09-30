@@ -1,12 +1,16 @@
 import {
   Component,
   EventEmitter,
+  inject,
+  input,
   Input,
   Output,
   ViewChild,
 } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
 
 import { baseURL } from '../enviroenment';
 import { DataService, today } from '../services/data.service';
@@ -16,7 +20,7 @@ import { Publisher } from '../services/interfaces.service';
 @Component({
   selector: 'app-editors',
   templateUrl: './editors.component.html',
-  styleUrls: ['./../app.component.scss'],
+  styleUrls: ['./editors.component.scss'],
 })
 export class EditorsComponent {
   public token_JWT: string | null;

@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
@@ -18,7 +19,7 @@ import { baseURL } from '../enviroenment';
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
-  styleUrls: ['./../app.component.scss'],
+  styleUrls: ['./authors.component.scss'],
 })
 export class AuthorsComponent {
   public token_JWT: string | null;
