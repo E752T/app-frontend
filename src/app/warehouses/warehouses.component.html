@@ -444,7 +444,6 @@
             <ion-button
               color="secondary"
               class="bottoni-crud"
-              class="bottone-update"
               id="salva-magazzino-'{{ warehouse.warehouseID }}'"
               (click)="UpdateElement()"
               >Salva</ion-button
@@ -465,9 +464,7 @@
               Elimina
             </ion-button>
 
-            <ion-modal
-              trigger="modale-elimina-magazzino-2-'{{ warehouse.warehouseID }}'"
-            >
+            <ion-modal trigger="modale-elimina-magazzino-2-'{{ warehouse.warehouseID }}'">
               <ng-template>
                 <ion-header>
                   <ion-toolbar>

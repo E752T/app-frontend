@@ -1,0 +1,107 @@
+.oggetto-anteprima {
+  border-radius: 104px 104px 104px 104px;
+  -webkit-border-radius: 104px 104px 104px 104px;
+  -moz-border-radius: 104px 104px 104px 104px;
+}
+
+.bottone-update {
+  padding-right: 3%;
+}
+
+.testo-conferma-elimina {
+  margin-bottom: 50%;
+  font-family: serif;
+}
+
+.label-autori {
+  font-weight: bold;
+  padding-bottom: 2%;
+}
+
+.titolo-data {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.icone-autori {
+  width: 20px;
+  height: 20px;
+  margin-bottom: -4px;
+}
+
+.input-form {
+  margin-left: 11px;
+  display: flex !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+
+.div-svg-input:hover .icone-autori-edit {
+  display: block;
+  position: absolute;
+  margin-bottom: 20px;
+  top: 330px;
+  right: 0px;
+  width: 35px;
+  height: 20px;
+}
+
+.icone-autori-edit {
+  display: none;
+  position: absolute;
+  margin-top: -50px;
+}
+
+.accordion-oggetto {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.cartellino-nome {
+  letter-spacing: 1px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.testo-conferma-elimina {
+  margin-bottom: 100%;
+  font-family: serif;
+}
+
+.toast-elemento {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: larger;
+}
+
+
+.input-form-text {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+@media screen and (max-width: 569px) {
+  .accordion-oggetto {
+    width: 75vw;
+    white-space: nowrap;
+  }
+}
+
+.center-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-elimina-elemento {
+  min-height: 40vh;
+  display: grid;
+  margin-bottom: 33%;
+  font-size: larger;
+  padding-top: 3rem;
+  padding-bottom: 3dvb;
+}
+
+.titolo-elimina-elemento {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
