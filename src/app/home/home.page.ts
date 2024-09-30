@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ModalController, RefresherCustomEvent } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
@@ -1089,11 +1089,7 @@ export class HomePage implements OnInit {
     }
   }
 
-  refresh(ev: any) {
-    setTimeout(() => {
-      (ev as RefresherCustomEvent).detail.complete();
-    }, 3000);
-  }
+
 
   async updateCredentials() {
     let body_new_credentials = {
