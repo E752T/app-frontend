@@ -1,13 +1,10 @@
 import {
   Component,
   EventEmitter,
-  inject,
-  input,
   Input,
   Output,
   ViewChild,
 } from '@angular/core';
-import { Platform } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,14 +12,13 @@ import { OverlayEventDetail } from '@ionic/core';
 import { baseURL } from '../enviroenment';
 import { today, DataService } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
-import { OverlayEventDetail } from '@ionic/core';
 import { Category } from '../services/interfaces.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.scss'],
+  styleUrls: ['./../app.component.scss'],
 })
 export class CategoriesComponent {
   public token_JWT: string | null;
@@ -110,10 +106,7 @@ export class CategoriesComponent {
     return highestID + 1;
   }
 
-
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });
   }
-
-
 }
