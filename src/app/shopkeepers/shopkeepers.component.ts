@@ -9,6 +9,7 @@ import {
 import { Platform } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
 
 import { baseURL } from '../enviroenment';
 

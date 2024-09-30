@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseObject } from '../services/interfaces.service';
 import { DataService } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-
+import { HttpClient } from '@angular/common/http';
+import { OverlayEventDetail } from '@ionic/core';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',

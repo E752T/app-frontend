@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
 
 import { baseURL } from '../enviroenment';
 import { DataService, today } from '../services/data.service';
