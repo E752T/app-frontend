@@ -12,13 +12,6 @@ export class AppComponent {
   }
 
   initializeApp() {
-    const isFirstLoad = localStorage.getItem('isFirstLoad');
-    if (!isFirstLoad) {
-      localStorage.setItem('isFirstLoad', 'true');
-      //localStorage.setItem('token_JWT', '');
-      //localStorage.setItem('token_JWT_success', '');
-
-      this.router.navigate(['/login']); // Reindirizza alla pagina di login
-    }
+    this.router.navigate(['/login']); // Reindirizza alla pagina di login
   }
 }
