@@ -1,7 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-
 import { baseURL } from '../enviroenment';
 import { Shopkeeper } from '../services/interfaces.service';
 import { PostRequest } from '../services/request.service';

@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseObject } from '../services/interfaces.service';
 import { DataService } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',

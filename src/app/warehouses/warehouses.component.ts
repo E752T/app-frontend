@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-
 import { baseURL } from '../enviroenment';
 import { DataService, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
