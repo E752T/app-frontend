@@ -1,5 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
+
 import { baseURL } from '../enviroenment';
 import { DataService, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
@@ -100,4 +109,5 @@ export class WarehouseComponent {
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });
   }
+
 }

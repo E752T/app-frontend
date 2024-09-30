@@ -14,6 +14,7 @@ import { OverlayEventDetail } from '@ionic/core/components';
 
 import { SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-message',
@@ -102,6 +103,7 @@ export class MessageComponent {
     PostRequest(baseURL + 'DeleteObject/', this.message?.objectID);
     this.modalCtrl.dismiss({ confirmed: true });
   }
+
 
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });

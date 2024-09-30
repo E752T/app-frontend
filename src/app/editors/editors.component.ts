@@ -12,6 +12,8 @@ import { baseURL } from '../enviroenment';
 import { DataService, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { Publisher } from '../services/interfaces.service';
+import { HttpClient } from '@angular/common/http';
+import { OverlayEventDetail } from '@ionic/core';
 
 @Component({
   selector: 'app-editors',

@@ -13,7 +13,6 @@ import { LoginObject } from '../services/interfaces.service';
 import { GetRequest } from '../services/request.service';
 import { baseURL } from '../enviroenment';
 
-import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -30,8 +29,6 @@ export class DataService implements OnInit {
 
   allDatabase: Array<DatabaseObject> = [];
   filteredObjects: Array<DatabaseObject> = [];
-
-  constructor(private http: HttpClient) {}
 
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit() {
