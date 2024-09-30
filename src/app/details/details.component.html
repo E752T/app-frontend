@@ -352,19 +352,26 @@
         />
       </svg>
 
-      <ion-label class="label-autori spacing-right">Disponibile</ion-label>
-      <ion-input
+      <ion-label style="max-width: 6rem" class="label-autori spacing-right"
+        >Disponibile</ion-label
+      >
+      <ion-toggle
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
         placeholder="Disponibile"
         [(ngModel)]="objectData.avaiable"
         id="{{ objectData.avaiable }}"
         value="{{ objectData.avaiable }}"
+        [disabled]="false"
+        color="success"
       >
-      </ion-input>
+      </ion-toggle>
 
-      <ion-text *ngIf="user_role !== 'admin'"
-        >Disponibile {{ objectData?.avaiable }}</ion-text
+      <ion-toggle
+        *ngIf="user_role !== 'admin'"
+        [disabled]="true"
+        color="success"
+        >Disponibile {{ objectData?.avaiable }}</ion-toggle
       >
     </ion-item>
     <ion-item>
