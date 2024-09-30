@@ -81,7 +81,19 @@
           fill-rule="evenodd"
         />
       </svg>
-      <ion-text>Note{{ objectData?.objectNotes }}</ion-text>
+      <ion-label class="label-autori spacing-right">Note</ion-label>
+
+      <ion-text>{{ objectData?.objectNotes }}</ion-text>
+
+      <ion-input
+        *ngIf="user_role === 'admin' && objectData"
+        class="input-form"
+        placeholder="Descrizione"
+        [(ngModel)]="objectData.objectNotes"
+        id="{{ objectData.objectNotes }}"
+        value="{{ objectData.objectNotes }}"
+      >
+      </ion-input>
     </ion-item>
     <ion-item>
       <svg
@@ -96,7 +108,9 @@
         />
       </svg>
 
-      <ion-label class="label-autori spacing-right">Descrizione dell'autore</ion-label>
+      <ion-label class="label-autori spacing-right"
+        >Descrizione dell'autore</ion-label
+      >
 
       <ion-text *ngIf="user_role !== 'admin'">
         {{ objectData?.authorDescription }}</ion-text
@@ -263,7 +277,9 @@
         </g>
       </svg>
 
-      <ion-label class="label-autori spacing-right">Numero dell'armadio</ion-label>
+      <ion-label class="label-autori spacing-right"
+        >Numero dell'armadio</ion-label
+      >
       <ion-input
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
@@ -414,7 +430,12 @@
           stroke-linecap="round"
         />
       </svg>
-      <ion-text>Data di scoprerta {{ objectData?.discoveryDate }}</ion-text>
+      <ion-label class="label-autori spacing-right"
+        >Data di scoprerta</ion-label
+      >
+      <ion-text style="flex: -moz-available">{{
+        objectData?.discoveryDate
+      }}</ion-text>
     </ion-item>
     <ion-item>
       <svg
@@ -461,7 +482,10 @@
           stroke-linecap="round"
         />
       </svg>
-      <ion-text>Data di aggiunta {{ objectData?.addedDate }}</ion-text>
+      <ion-label class="label-autori spacing-right">Data di aggiunta</ion-label>
+      <ion-text style="flex: -moz-available">
+        {{ objectData?.addedDate }}</ion-text
+      >
     </ion-item>
 
     <ion-item>
@@ -479,7 +503,11 @@
           stroke-linejoin="round"
         />
       </svg>
-      <ion-text>Imagine di Copertina </ion-text>
+      <ion-label class="label-autori spacing-right"
+        >Imagine di Copertina</ion-label
+      >
+    </ion-item>
+    <ion-item style="max-width: 40rem; margin-left: 4rem; margin-top: 1rem">
       <img *ngIf="objectData?.cover" [src]="objectData?.cover" />
     </ion-item>
   </ion-card>
