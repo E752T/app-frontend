@@ -23,7 +23,8 @@ import {
   GeographicalOrigin,
   Warehouse,
   TypeObject,
-  User} from '../services/interfaces.service';
+  User,
+} from '../services/interfaces.service';
 
 import { baseURL } from '../enviroenment';
 
@@ -238,14 +239,6 @@ export class HomePage implements OnInit {
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  showToast(message: string, color: string) {
-    const toast = document.createElement('ion-toast');
-    toast.message = message;
-    toast.color = color;
-    toast.duration = 3000;
-    document.body.appendChild(toast);
-    return toast.present();
-  }
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;

@@ -117,7 +117,5 @@ export class CategoriesComponent {
     this.modalCtrl.dismiss({ confirmed: false });
   }
 
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-  }
+
 }

@@ -127,7 +127,5 @@ export class EditorsComponent {
     this.modalCtrl.dismiss({ confirmed: false });
   }
 
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-  }
+
 }
