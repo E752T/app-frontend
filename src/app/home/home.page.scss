@@ -334,21 +334,10 @@ ion-content {
   margin-bottom: 25px;
 }
 
-.lista-selezione {
-  margin-bottom: 15px;
-  min-width: 300px;
-}
-
 .testo-anno-di-pubblicazione {
   display: inline-block;
   margin-top: 1rem;
   margin-bottom: 2rem;
-}
-
-.numero-anno-di-pubblicazione {
-  margin-bottom: -40px;
-  padding: 10px;
-  position: fixed;
 }
 
 .dual-knobs {
@@ -359,9 +348,6 @@ ion-content {
 .min-width-button {
   min-width: 215px;
 }
-.bolder {
-  font-weight: bold;
-}
 
 .label-fine {
   position: fixed;
@@ -371,11 +357,6 @@ ion-content {
   margin-left: -1rem;
   padding-left: 3rem;
   bottom: 0;
-}
-
-.app-template {
-  margin-top: 40px;
-  margin-bottom: 350px;
 }
 
 .menu-ancora {
@@ -400,10 +381,6 @@ ion-content {
   margin-right: 1rem;
 }
 
-.ion-range-margin {
-  margin-left: 10px;
-  margin-right: 10px;
-}
 .anno-di-pubblicazione {
   display: inline-block;
   margin: 10px auto;
@@ -412,16 +389,6 @@ ion-content {
 .label-anni {
   position: relative;
   margin-bottom: -3rem;
-}
-
-.margine-anni {
-  margin-left: 13rem;
-}
-
-.margine-anni-sinistra {
-  margin-left: 1rem;
-  //margin-top: 2rem;
-  //margin-bottom: 1rem;
 }
 
 .bottone-assistenza {
@@ -451,31 +418,6 @@ ion-content {
   margin-right: 1rem;
   min-height: 100vh;
   width: 90vw;
-  //display: grid;
-  //margin-bottom: 32rem; // margine in basso dell'app
-}
-.testo-logout {
-  font-size: large;
-  margin: auto;
-  height: 15vw;
-  margin-top: 5vw;
-}
-
-.testo-logout-2 {
-  font-weight: bolder;
-  margin-left: -30px;
-  margin-top: 10px;
-}
-
-.container-label {
-  display: flex;
-  justify-content: space-between; /* Spazia gli elementi ai lati opposti */
-  align-items: center; /* Allinea verticalmente al centro */
-  height: 100px; /* Imposta un'altezza per il contenitore */
-}
-
-.spacer-label {
-  flex-grow: 5; /* Permette di espandere lo spazio tra gli elementi */
 }
 
 .custom-background item-native {
@@ -502,10 +444,6 @@ ion-content {
   width: 100vw;
   max-width: 15rem;
 }
-.margine-destro-etichetta {
-  margin-left: 14rem;
-}
-
 .modale-esci {
   font-size: large;
   margin: auto;
