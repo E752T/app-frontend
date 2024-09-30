@@ -233,14 +233,9 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-text
-              class="input-form"
-              color="lighter"
-              style="color: black; margin-top: 10px; margin-bottom: 10px"
-              >{{
-                shopkeeper.addedDate ? shopkeeper.addedDate : "NOT FOUND"
-              }}</ion-text
-            >
+            <ion-text class="input-form estetica-data" color="lighter">{{
+              shopkeeper.addedDate ? shopkeeper.addedDate : "NOT FOUND"
+            }}</ion-text>
           </div>
 
           <div slot="content">
@@ -293,10 +288,9 @@
             </ion-label>
             <br />
             <ion-text
-              class="input-form"
+              class="input-form estetica-data"
               id="open-modal-lastUpdateDate-'{{ shopkeeper.shopkeeperID }}'"
               color="lighter"
-              style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
                 shopkeeper.lastUpdateDate
                   ? shopkeeper.lastUpdateDate
