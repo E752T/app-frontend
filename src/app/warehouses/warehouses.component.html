@@ -379,14 +379,9 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-text
-              class="input-form"
-              color="lighter"
-              style="color: black; margin-top: 10px; margin-bottom: 10px"
-              >{{
-                warehouse.addedDate ? warehouse.addedDate : "NOT FOUND"
-              }}</ion-text
-            >
+            <ion-text class="input-form estetica-data" color="lighter">{{
+              warehouse.addedDate ? warehouse.addedDate : "NOT FOUND"
+            }}</ion-text>
           </div>
 
           <div slot="content">
@@ -438,16 +433,11 @@
               Data dell'ultimo aggiornamento:
             </ion-label>
             <br />
-            <ion-text
-              class="input-form"
-              color="lighter"
-              style="color: black; margin-top: 10px; margin-bottom: 10px"
-              >{{
-                warehouse.lastUpdateDate
-                  ? warehouse.lastUpdateDate
-                  : "Clicca per aggiungere una data"
-              }}</ion-text
-            >
+            <ion-text class="input-form estetica-data" color="lighter">{{
+              warehouse.lastUpdateDate
+                ? warehouse.lastUpdateDate
+                : "Clicca per aggiungere una data"
+            }}</ion-text>
           </div>
 
           <div slot="content" *ngIf="user_role === 'admin'">
