@@ -61,9 +61,6 @@ export class CategoriesComponent {
   @Output()
   updateCategories = new EventEmitter<any>();
 
-  @ViewChild(IonModal)
-  modal!: IonModal;
-
   body_add_category: Category = {
     categoryID: 0,
     name: '',

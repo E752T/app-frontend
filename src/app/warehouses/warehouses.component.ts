@@ -1,17 +1,5 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { IonModal } from '@ionic/angular';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
-import { OverlayEventDetail } from '@ionic/core';
-
 import { baseURL } from '../enviroenment';
 import { DataService, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
@@ -40,7 +28,6 @@ export class WarehouseComponent {
     username: '',
   };
   constructor(
-    private http: HttpClient,
     private modalCtrl: ModalController,
     private dataService: DataService
   ) {
@@ -50,7 +37,6 @@ export class WarehouseComponent {
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
-  private platform = inject(Platform);
 
   @Input()
   warehouse!: Warehouse;
@@ -63,9 +49,6 @@ export class WarehouseComponent {
 
   @Output()
   updateWarehouses = new EventEmitter<any>();
-
-  @ViewChild(IonModal)
-  modal!: IonModal;
 
   body_add_warehouse: Warehouse = {
     warehouseID: 0,

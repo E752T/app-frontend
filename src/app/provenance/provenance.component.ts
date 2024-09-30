@@ -1,14 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core';
-import { IonModal } from '@ionic/angular';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { baseURL } from '../enviroenment';
 import { PostRequest } from '../services/request.service';
@@ -22,7 +12,6 @@ import { Provenance } from '../services/interfaces.service';
   styleUrls: ['./../app.component.scss'],
 })
 export class ProvenancesComponent {
-  private platform = inject(Platform);
   public token_JWT: string | null;
   public user_role: string | null;
   public token_JWT_success: boolean | null;
@@ -61,9 +50,6 @@ export class ProvenancesComponent {
 
   @Output()
   updateProvenances = new EventEmitter<any>();
-
-  @ViewChild(IonModal)
-  modal!: IonModal;
 
   body_add_provenance: Provenance = {
     provenanceID: 0,
@@ -105,11 +91,7 @@ export class ProvenancesComponent {
     return PostRequest(baseURL + 'UpdateProvenance/', this.provenance);
   }
 
-
-
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });
   }
-
-
 }
