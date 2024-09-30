@@ -1,3 +1,7 @@
+.background-app {
+  background-color: #0054e9;
+}
+
 ion-range {
   padding-left: 1px;
   padding-right: 1px;
@@ -158,10 +162,6 @@ ion-content {
   text-align: left;
 }
 
-.background-title-bar {
-  background: #0054e9;
-}
-
 .titolo-icona {
   font-size: larger;
 }
@@ -170,29 +170,9 @@ ion-content {
   margin-bottom: 200px;
 }
 
-.center {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-}
-
-.searchbar-menu {
-  width: 100%;
-}
-
-.label-years {
-  padding: 5px;
-}
-
 .accordion-gestionale {
   margin-left: 10%;
   margin-right: 10%;
-}
-
-.testo-contatti {
-  margin-top: 5%;
-  font-size: 15px;
-  margin-bottom: 5%;
 }
 
 .bottone-aggiungi-nuovo-oggetto {
@@ -215,12 +195,6 @@ ion-content {
 .icona-aggiungi-nuovo-oggetto {
   justify-content: flex-start;
   padding-right: 20px;
-}
-
-.toast-elemento {
-  text-align: center;
-  color: rgb(255, 255, 255);
-  font-size: larger;
 }
 
 .testo-input {
@@ -308,7 +282,6 @@ ion-content {
 }
 
 .menu-button-icon {
-  color: rgb(255, 255, 255);
   margin-right: 40px;
 }
 
@@ -349,21 +322,10 @@ ion-content {
   min-width: 215px;
 }
 
-.label-fine {
-  position: fixed;
-  margin-top: 17rem; /* Margine per distanziare l'etichetta dal contenuto */
-  width: 23rem;
-  background: #0054e9;
-  margin-left: -1rem;
-  padding-left: 3rem;
-  bottom: 0;
-}
-
 .menu-ancora {
   max-width: fit-content;
   margin-top: -1rem;
   margin-left: -21px;
-  background-color: #0054e9;
   padding-left: 2rem;
   min-width: 23rem;
 }
@@ -371,6 +333,7 @@ ion-content {
 .colore-bianco {
   color: rgb(255, 255, 255);
 }
+
 
 .margine-categoria {
   margin-bottom: 5rem;
@@ -457,13 +420,8 @@ ion-content {
 }
 
 .card-object {
-  background-color: #0054e9;
   position: fixed;
   max-width: 19rem;
-}
-
-.background-app {
-  background-color: #0054e9;
 }
 
 .label-autori-icona {
@@ -502,8 +460,3 @@ ion-content {
   padding: 10px; /* Optional: Adds some padding */
 }
 
-.center-element {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}

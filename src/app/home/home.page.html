@@ -1,8 +1,8 @@
 <ion-content [fullscreen]="true" id="ioncontentemain">
   <ion-header class="header-menu-home ion-page ion-no-border" id="main-content">
-    <ion-buttons slot="start" class="background-title-bar">
-      <ion-menu-button class="menu-button-icon"></ion-menu-button>
-      <ion-title class="background-title-bar">
+    <ion-buttons slot="start" class="background-app">
+      <ion-menu-button class="menu-button-icon colore-bianco"></ion-menu-button>
+      <ion-title class="background-app">
         <ion-icon
           class="titolo-icona logo-store"
           name="logo-dropbox"
@@ -99,10 +99,9 @@
             </ion-select>
           </ion-item>
         </ion-list>
-          <ion-text style="width: 50%;
-          margin: auto;">
-            Anno di pubblicazione
-          </ion-text>
+        <ion-text style="width: 50%; margin: auto">
+          Anno di pubblicazione
+        </ion-text>
         <div class="centered margin-top">
           <div class="label-container">
             <ion-label class="label-anni">1800</ion-label>
@@ -539,13 +538,13 @@
       <ion-col
         #grigliaElementi
         [size]="sizeColumnFilter"
-        class="ion-no-border menu-ancora"
+        class="ion-no-border menu-ancora background-app"
         contentId="main-content"
         #menuAncora
         *ngIf="isMenuAnchored"
       >
         <div
-          class="card-object"
+          class="card-object background-app"
           style="overflow-y: scroll; max-height: 55rem; scrollbar-width: 0rem"
         >
           <ion-button
@@ -1029,10 +1028,7 @@
                   <ion-icon name="lock-closed"></ion-icon>
                   <ion-label class="label-config-account">Password</ion-label>
 
-                  <ion-input
-                    placeholder="Password"
-                    [(ngModel)]="user.password"
-                  >
+                  <ion-input placeholder="Password" [(ngModel)]="user.password">
                   </ion-input>
                 </ion-item>
               </ion-content>
@@ -1128,7 +1124,7 @@
             (willDismiss)="onWillDismiss($event)"
             class="fullscreen-nuovo-oggetto"
           >
-            <ng-template >
+            <ng-template>
               <ion-header>
                 <ion-toolbar>
                   <ion-buttons slot="start">
