@@ -229,9 +229,14 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-text class="input-form estetica-data" color="lighter">{{
-              type_object.addedDate ? type_object.addedDate : "NOT FOUND"
-            }}</ion-text>
+            <ion-text
+              class="input-form"
+              color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
+              >{{
+                type_object.addedDate ? type_object.addedDate : "NOT FOUND"
+              }}</ion-text
+            >
           </div>
 
           <div slot="content">
@@ -284,9 +289,10 @@
             </ion-label>
             <br />
             <ion-text
-              class="input-form estetica-data"
+              class="input-form"
               id="open-modal-lastUpdateDate-'{{ type_object.typeID }}'"
               color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
                 type_object.lastUpdateDate
                   ? type_object.lastUpdateDate
@@ -319,9 +325,7 @@
               Elimina
             </ion-button>
 
-            <ion-modal
-              trigger="conferma-elimina-tipo-2-'{{ type_object.typeID }}'"
-            >
+            <ion-modal trigger="conferma-elimina-tipo-2-'{{ type_object.typeID }}'">
               <ng-template>
                 <ion-header>
                   <ion-toolbar>
@@ -339,13 +343,13 @@
                         >Conferma</ion-button
                       >
                       <ion-toast
-                        trigger="modale-elimina-tipo-'{{ type_object.typeID }}'"
-                        message="Elemento eliminato"
-                        class="toast-elemento"
-                        [duration]="2000"
-                        expand="block"
-                        color="danger"
-                      ></ion-toast>
+                      trigger="modale-elimina-tipo-'{{ type_object.typeID }}'"
+                      message="Elemento eliminato"
+                      class="toast-elemento"
+                      [duration]="2000"
+                      expand="block"
+                      color="danger"
+                    ></ion-toast>
                     </ion-buttons>
                   </ion-toolbar>
                 </ion-header>
@@ -385,6 +389,7 @@
                     </ion-text>
                   </ion-text>
                 </ion-card>
+
               </ng-template>
             </ion-modal>
           </div>

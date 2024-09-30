@@ -148,6 +148,7 @@
                   fill="#1C274C"
                 />
               </svg>
+
               Telefono principale:
             </ion-label>
 
@@ -183,6 +184,7 @@
                   fill="#1C274C"
                 />
               </svg>
+
               Telefono di riserva:
             </ion-label>
 
@@ -195,6 +197,7 @@
               value="{{ author.telephone2 }}"
             >
             </ion-input>
+
             <ion-text
               *ngIf="user_role !== 'admin'"
               class="input-form input-form-text"
@@ -251,9 +254,12 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-text class="input-form estetica-data" color="lighter">{{
-              author.addedDate ? author.addedDate : "NOT FOUND"
-            }}</ion-text>
+            <ion-text
+              class="input-form"
+              color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
+              >{{ author.addedDate ? author.addedDate : "NOT FOUND" }}</ion-text
+            >
           </div>
 
           <div slot="content">
@@ -306,9 +312,10 @@
             </ion-label>
             <br />
             <ion-text
-              class="input-form estetica-data"
+              class="input-form"
               id="open-modal-lastUpdateDate-'{{ author.authorID }}'"
               color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
                 author.lastUpdateDate ? author.lastUpdateDate : "NOT FOUND"
               }}</ion-text

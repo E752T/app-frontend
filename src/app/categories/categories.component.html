@@ -5,8 +5,13 @@
         <ion-accordion value="first" class="accordion-oggetto">
           <ion-item
             slot="header"
-            class="oggetto-anteprima"
-            style="--background: #8f3b76; color: white"
+            style="
+              border-radius: 104px 104px 104px 104px;
+              -webkit-border-radius: 104px 104px 104px 104px;
+              -moz-border-radius: 104px 104px 104px 104px;
+              --background: #8f3b76;
+              color: white;
+            "
           >
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome">{{ category.name }} </ion-label>
@@ -204,9 +209,14 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-text class="input-form estetica-data" color="lighter">{{
-              category.addedDate ? category.addedDate : "NOT FOUND"
-            }}</ion-text>
+            <ion-text
+              class="input-form"
+              color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
+              >{{
+                category.addedDate ? category.addedDate : "NOT FOUND"
+              }}</ion-text
+            >
           </div>
 
           <div slot="content">
@@ -259,11 +269,12 @@
             </ion-label>
             <br />
             <ion-text
-              class="input-form estetica-data"
+              class="input-form"
               id="open-modal-lastUpdateDate-Category-'{{
                 category.categoryID
               }}'"
               color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
               >{{
                 category.lastUpdateDate ? category.lastUpdateDate : "NOT FOUND"
               }}</ion-text

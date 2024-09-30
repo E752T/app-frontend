@@ -240,11 +240,16 @@
               Anno di aggiunta:
             </ion-label>
             <br />
-            <ion-text class="input-form estetica-data" color="lighter">{{
-              geographical_origin.addedDate
-                ? geographical_origin.addedDate
-                : "NOT FOUND"
-            }}</ion-text>
+            <ion-text
+              class="input-form"
+              color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
+              >{{
+                geographical_origin.addedDate
+                  ? geographical_origin.addedDate
+                  : "NOT FOUND"
+              }}</ion-text
+            >
           </div>
 
           <div slot="content">
@@ -296,11 +301,17 @@
               Data dell'ultimo aggiornamento:
             </ion-label>
             <br />
-            <ion-text class="input-form estetica-data" color="lighter">{{
-              geographical_origin.lastUpdateDate
-                ? geographical_origin.lastUpdateDate
-                : "Clicca per aggiungere una data"
-            }}</ion-text>
+            <ion-text
+              class="input-form"
+
+              color="lighter"
+              style="color: black; margin-top: 10px; margin-bottom: 10px"
+              >{{
+                geographical_origin.lastUpdateDate
+                  ? geographical_origin.lastUpdateDate
+                  : "Clicca per aggiungere una data"
+              }}</ion-text
+            >
           </div>
 
           <div slot="content" *ngIf="user_role === 'admin'">
