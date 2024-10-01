@@ -571,3 +571,10 @@ ion-content {
   align-items: center; /* Aligns items vertically in the center */
   padding: 10px; /* Optional: Adds some padding */
 }
+
+@media only screen and (max-width: 768px) {
+  .label-menu-non-ancorato-mobile {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
