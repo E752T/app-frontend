@@ -1092,11 +1092,29 @@
                 </ion-item>
 
                 <ion-item>
-                  <ion-icon name="image-outline"></ion-icon>
+                  <ion-icon name="person"></ion-icon>
                   <ion-label class="label-config-account"
-                    >Immagine profilo</ion-label
+                    >Profilo amministratore</ion-label
                   >
 
+                  <ion-toggle
+                    color="success"
+                    style="flex: -moz-available"
+                    class="move-to-left"
+                    [(ngModel)]="current_user.admin"
+                    value="{{current_user.admin}}"
+                  >
+                  </ion-toggle>
+                </ion-item>
+
+                <ion-item>
+                  <ion-icon name="image"></ion-icon>
+                  <ion-label class="label-config-account"
+                    >Immagine del profilo</ion-label
+                  >
+                </ion-item>
+
+                <ion-item>
                   <input
                     style="flex: -moz-available"
                     class="move-to-left"

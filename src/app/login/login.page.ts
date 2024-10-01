@@ -105,6 +105,7 @@ export class LoginPage {
   }
 
   private handleSuccessfulLogin(response: any) {
+    
     this.current_user = response.user;
     this.dataService.setCurrentUser(this.current_user);
 
