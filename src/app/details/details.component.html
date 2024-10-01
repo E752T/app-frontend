@@ -666,11 +666,17 @@
         />
       </svg>
       <ion-label class="label-autori spacing-right"
-        >Imagine di Copertina</ion-label
+        >Immagine di Copertina</ion-label
       >
+      <input style="flex: -moz-available" type="file" (change)="onFileSelected($event)" accept="image/*" />
     </ion-item>
+
     <ion-item style="max-width: 40rem; margin-left: 4rem; margin-top: 1rem">
-      <img *ngIf="objectData?.cover" [src]="objectData?.cover" />
+      <img
+        *ngIf="objectData?.cover"
+        [src]="objectData?.cover"
+        alt="Immagine caricata"
+      />
     </ion-item>
   </ion-card>
 </body>

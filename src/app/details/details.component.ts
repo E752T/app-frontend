@@ -69,4 +69,24 @@ export class DetailsComponent implements OnInit {
   cancel() {
     this.router.navigate(['']); // Navigates to the root path
   }
+
+  onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        // Verifica se objectData è definito
+        if (this.objectData) {
+          // Associa il risultato del caricamento all'oggetto objectData.cover
+          this.objectData.cover = reader.result as string;
+        } else {
+          console.error("objectData non è definito.");
+        }
+      };
+      // Legge il file come URL di dati
+      reader.readAsDataURL(file);
+    } else {
+      console.error("Nessun file selezionato.");
+    }
+  }
 }
