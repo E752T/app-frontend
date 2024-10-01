@@ -38,6 +38,17 @@ export class DataService implements OnInit {
     this.initializeData();
   }
 
+  private allCategories: Array<Category> = [];
+  
+  setCategories(categories: Array<Category>) {
+    this.allCategories = categories;
+  }
+
+  getCategories(): Array<Category> {
+    return this.allCategories;
+  }
+
+
   getObjectById(id: number): DatabaseObject | undefined | null {
     let response = this.allDatabase.find((obj) => obj.objectID === id);
     if (response !== null) {

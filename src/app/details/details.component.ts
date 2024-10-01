@@ -1,7 +1,7 @@
 // details.component.ts
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DatabaseObject } from '../services/interfaces.service';
+import { Category, DatabaseObject } from '../services/interfaces.service';
 import { bodyAddObject, DataService } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { ModalController } from '@ionic/angular';
@@ -24,7 +24,6 @@ export class DetailsComponent implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-
     private dataService: DataService,
     private router: Router,
     private cdr: ChangeDetectorRef, // Inject ChangeDetectorRef
@@ -32,10 +31,14 @@ export class DetailsComponent implements OnInit {
   ) {
     this.user_role = this.dataService.getUserRole();
   }
-
+  allCategories: Array<Category> = [];
   allDatabase: DatabaseObject[] | undefined = [];
 
   ngOnInit() {
+    this.allCategories = this.dataService.getCategories(); // Ottieni le categorie dal servizio
+    console.log('Categorie disponibili in Details:', this.allCategories);
+
+
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
       let response = this.dataService.getObjectById(this.id);

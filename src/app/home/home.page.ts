@@ -401,6 +401,7 @@ export class HomePage implements OnInit {
   ).then((res) => {
     console.log('Category inviati dal database', res);
     this.allCategories = res;
+    this.dataService.setCategories(this.allCategories); // Imposta le categorie nel servizio
     return (this.filteredCategories = this.allCategories);
   });
 
