@@ -2,8 +2,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatabaseObject } from '../services/interfaces.service';
-import { DataService } from '../services/data.service';
+import { bodyAddObject, DataService } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { ModalController } from '@ionic/angular';
+import { PostRequest } from '../services/request.service';
+import { baseURL } from '../enviroenment';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -12,6 +15,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 export class DetailsComponent implements OnInit {
   objectId: string | null = null;
   objectData: DatabaseObject | null = null;
+  bodyAddObject = bodyAddObject;
 
   private dataSubject = new BehaviorSubject<any[]>([]);
   public data$ = this.dataSubject.asObservable();
@@ -19,6 +23,8 @@ export class DetailsComponent implements OnInit {
   id: number | undefined;
 
   constructor(
+    private modalCtrl: ModalController,
+
     private dataService: DataService,
     private router: Router,
     private cdr: ChangeDetectorRef, // Inject ChangeDetectorRef
@@ -42,6 +48,18 @@ export class DetailsComponent implements OnInit {
         this.objectData = null;
       }
     });
+  }
+
+  confirmUpdate() {
+    console.log('API UpdateObjectArchive => ', this.bodyAddObject);
+    this.cancel();
+    PostRequest(baseURL + 'UpdateObjectArchive/', this.bodyAddObject);
+  }
+
+  confirmDelete() {
+    console.log('API DeleteObject/  => ', this.bodyAddObject);
+    PostRequest(baseURL + 'DeleteObject/', this.objectData?.objectID);
+    this.cancel();
   }
 
   cancel() {
