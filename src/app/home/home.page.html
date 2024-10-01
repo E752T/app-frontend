@@ -545,7 +545,7 @@
       >
         <div
           class="card-object background-app"
-          style="overflow-y: scroll; max-height: 55rem; scrollbar-width: 0rem"
+          style="overflow-y: scroll; min-height: 55rem; scrollbar-width: 0rem"
         >
           <ion-button
             *ngIf="screenSize === 'desktop'"
@@ -1085,7 +1085,17 @@
             </ng-template>
           </ion-modal>
 
-          <ion-footer slot="end" class="label-fine">
+          <ion-footer
+            slot="end"
+            class="label-fine"
+            style="
+              position: fixed;
+              bottom: 0;
+              width: 22rem;
+              padding-left: 2rem;
+              z-index: -9999;
+            "
+          >
             <ion-icon
               class="titolo-icona logo-store"
               name="logo-dropbox"
