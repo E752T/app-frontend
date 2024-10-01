@@ -45,7 +45,7 @@
             src="https://ionicframework.com/docs/img/demos/avatar.svg"
           />
         </ion-avatar>
-        <ion-label class="label-menu-non-ancorato-mobile" >
+        <ion-label class="label-menu-non-ancorato-mobile">
           Ciao, {{this.username}}!</ion-label
         >
       </ion-item>
@@ -158,6 +158,7 @@
           type="text"
           placeholder="Cerca un elemento"
           class="searchbar-custom"
+          style="margin-top: 1rem"
           (ionChange)="setInput($event.target.value)"
           [(ngModel)]="searchInput"
         >
