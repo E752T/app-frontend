@@ -52,7 +52,7 @@ export class DetailsComponent implements OnInit {
 
   confirmUpdate() {
     console.log('API UpdateObjectArchive => ', this.bodyAddObject);
-    this.cancel();
+    //this.cancel();
     PostRequest(baseURL + 'UpdateObjectArchive/', this.bodyAddObject);
   }
 
@@ -60,6 +60,10 @@ export class DetailsComponent implements OnInit {
     console.log('API DeleteObject/  => ', this.bodyAddObject);
     PostRequest(baseURL + 'DeleteObject/', this.objectData?.objectID);
     this.cancel();
+  }
+
+  getTriggerId(): string {
+    return `conferma-salva-oggetto-${this.objectData?.objectID}`;
   }
 
   cancel() {

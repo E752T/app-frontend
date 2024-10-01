@@ -10,9 +10,18 @@
         class="bottone-crud"
         style="background-color: yellowgreen"
         (click)="confirmUpdate()"
+        id="salva-oggetto"
       >
         <ion-text>Salva</ion-text>
       </ion-button>
+      <ion-toast
+        trigger="salva-oggetto"
+        message="Elemento salvato"
+        class="toast-elemento"
+        color="success"
+        [duration]="3000"
+        expand="block"
+      ></ion-toast>
 
       <ion-button
         class="bottone-crud"
