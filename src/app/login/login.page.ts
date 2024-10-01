@@ -8,7 +8,7 @@ import { baseURL } from '../enviroenment';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  styleUrls: ['./../app.component.scss', './login.page.scss'],
 })
 export class LoginPage {
   public body_login = {
@@ -72,6 +72,8 @@ export class LoginPage {
     toast.message = message;
     toast.color = color;
     toast.duration = 3000;
+    toast.cssClass = 'toast-elemento'; // Aggiunta della classe CSS personalizzata
+    toast.className = 'toast-elemento'; // Aggiunta della classe CSS personalizzata
     document.body.appendChild(toast);
     return toast.present();
   }
@@ -122,7 +124,7 @@ export class LoginPage {
       console.log('Login success | Navigazione eseguita');
       this.dataService.setTokenJWTsuccess(true);
     } else {
-      this.showToast('Token non valido', 'error');
+      this.showToast('Accesso Fallito', 'error');
       console.log('Login fallito | Token non definito o non valido');
     }
   }

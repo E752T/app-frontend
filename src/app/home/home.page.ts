@@ -195,7 +195,6 @@ export class HomePage implements OnInit {
 
   logOut() {
     console.log('log out in corso');
-    this.router.navigate(['/login']); // Reindirizza alla pagina di login
     localStorage.setItem('token_JWT', '');
     localStorage.setItem('token_JWT_success', '');
     localStorage.setItem('shopkeeper', '');
@@ -203,7 +202,11 @@ export class HomePage implements OnInit {
     localStorage.setItem('password', '');
     localStorage.setItem('username', '');
     localStorage.setItem('user_role', '');
-    this.cancel();
+
+    setTimeout(() => {
+      this.cancel();
+      this.router.navigate(['/login']); // Reindirizza alla pagina di login
+    }, 2200);
   }
 
   toggleMenu() {
