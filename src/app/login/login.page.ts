@@ -72,8 +72,7 @@ export class LoginPage {
     toast.message = message;
     toast.color = color;
     toast.duration = 3000;
-    toast.cssClass = 'toast-elemento'; // Aggiunta della classe CSS personalizzata
-    toast.className = 'toast-elemento'; // Aggiunta della classe CSS personalizzata
+    toast.classList.add('toast-elemento');
     document.body.appendChild(toast);
     return toast.present();
   }
@@ -91,6 +90,7 @@ export class LoginPage {
     } catch (error) {
       console.error('Si è verificato un errore durante il login: ', error);
       this.errorMessage = 'Si è verificato un errore durante il login.';
+      this.showToast('Credenziali Errate', 'error');
     } finally {
       if (!this.toggle_remember_me) {
         this.resetLoginForm();
@@ -123,6 +123,7 @@ export class LoginPage {
       this.showToast('Accesso Eseguito', 'success');
       console.log('Login success | Navigazione eseguita');
       this.dataService.setTokenJWTsuccess(true);
+      setTimeout(() => {}, 2200);
     } else {
       this.showToast('Accesso Fallito', 'error');
       console.log('Login fallito | Token non definito o non valido');

@@ -47,15 +47,9 @@ export class AuthGuard implements CanActivate {
     console.log('canActivate token ', this.dataService.getTokenJWTsuccess());
 
     if (this.dataService.getTokenJWTsuccess()) {
-      // Modificato per confrontare con un booleano
-      console.log('accesso eseguito');
       return true;
     } else {
-      console.log(
-        'accesso fallito | token_JWT_success = ',
-        this.dataService.getTokenJWTsuccess()
-      );
-      alert('ACCESS DENIED');
+      alert('Accesso Negato: Credenziali Errate');
       this.router.navigate(['/login']);
       return false;
     }
