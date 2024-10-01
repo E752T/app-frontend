@@ -531,17 +531,15 @@
 
       <ion-text
         *ngIf="user_role !== 'admin' && objectData"
-        class="input-form"
+        class="input-form move-to-left"
         placeholder="Genere"
         value="{{ objectData.genere }}"
-        style="flex: -moz-available"
       >
       </ion-text>
 
       <ion-list
         *ngIf="user_role === 'admin' && objectData"
-        class="margine-scheda"
-        style="flex: -moz-available"
+        class="margine-scheda move-to-left"
       >
         <ion-item class="seleziona-generi">
           <ion-select
@@ -610,9 +608,7 @@
       <ion-label class="label-autori spacing-right"
         >Data di scoprerta</ion-label
       >
-      <ion-text style="flex: -moz-available">{{
-        objectData?.discoveryDate
-      }}</ion-text>
+      <ion-text class="move-to-left">{{ objectData?.discoveryDate }}</ion-text>
     </ion-item>
     <ion-item>
       <svg
@@ -660,9 +656,7 @@
         />
       </svg>
       <ion-label class="label-autori spacing-right">Data di aggiunta</ion-label>
-      <ion-text style="flex: -moz-available">
-        {{ objectData?.addedDate }}</ion-text
-      >
+      <ion-text class="move-to-left"> {{ objectData?.addedDate }}</ion-text>
     </ion-item>
 
     <ion-item>
@@ -684,14 +678,14 @@
         >Immagine di Copertina</ion-label
       >
       <input
-        style="flex: -moz-available"
+        class="move-to-left"
         type="file"
         (change)="onFileSelected($event)"
         accept="image/*"
       />
     </ion-item>
 
-    <ion-item style="max-width: 40rem; margin-left: 4rem; margin-top: 1rem">
+    <ion-item class="grandezza-blocco-immagine">
       <img
         *ngIf="objectData?.cover"
         [src]="objectData?.cover"

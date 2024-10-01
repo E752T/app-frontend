@@ -25,3 +25,7 @@
   min-width: 8vw;
   max-width: 4rem;
 }
+
+.move-to-left {
+  flex: -moz-available;
+}
