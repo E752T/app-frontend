@@ -181,7 +181,7 @@
       <ion-input
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
-        placeholder="Titolo oggetto"
+        placeholder="Titolo"
         [(ngModel)]="objectData.title"
         id="{{ objectData.title }}"
         value="{{ objectData.title }}"
@@ -210,7 +210,7 @@
       <ion-input
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
-        placeholder="Titolo oggetto"
+        placeholder="Sottotitolo"
         [(ngModel)]="objectData.subtitle"
         id="{{ objectData.subtitle }}"
         value="{{ objectData.subtitle }}"
@@ -238,7 +238,7 @@
       <ion-input
         *ngIf="user_role === 'admin' && objectData"
         class="input-form"
-        placeholder="Descrizione"
+        placeholder="Note"
         [(ngModel)]="objectData.objectNotes"
         id="{{ objectData.objectNotes }}"
         value="{{ objectData.objectNotes }}"
@@ -447,6 +447,7 @@
     <ion-item>
       <svg
         class="icone-aggiungi-oggetto-modified"
+        style="padding-right: 1rem; max-width: 40px"
         version="1.1"
         id="svg2"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
