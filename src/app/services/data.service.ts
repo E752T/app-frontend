@@ -7,6 +7,7 @@ import {
   Publisher,
   Shopkeeper,
   TypeObject,
+  User,
   Warehouse,
 } from '../services/interfaces.service';
 import { LoginObject } from '../services/interfaces.service';
@@ -27,9 +28,8 @@ export class DataService implements OnInit {
   private tokenJWT: string | null = null;
   private tokenJWTsuccess: boolean | null = null;
   private bodyLogin: any = {};
-
-  allDatabase: Array<DatabaseObject> = [];
-  filteredObjects: Array<DatabaseObject> = [];
+  public allDatabase: Array<DatabaseObject> = [];
+  public filteredObjects: Array<DatabaseObject> = [];
 
   constructor(private http: HttpClient) {}
 
@@ -38,8 +38,11 @@ export class DataService implements OnInit {
     this.initializeData();
   }
 
+  //////////////////////////////////////////
+  ////////////// CATEGIRIES ////////////////
+
   private allCategories: Array<Category> = [];
-  
+
   setCategories(categories: Array<Category>) {
     this.allCategories = categories;
   }
@@ -48,6 +51,35 @@ export class DataService implements OnInit {
     return this.allCategories;
   }
 
+  ////////////////////////////////////
+  ////////////// USER ////////////////
+
+  private current_user: User = {
+    admin: 0,
+    username: '',
+    email: '',
+    shopkeeper: '',
+    description: '',
+    userID: 0,
+    addedDate: today,
+    lastUpdateDate: today,
+    notes: '',
+    password: '',
+    shopkeeperID: 0,
+    telephone1: '',
+    telephone2: '',
+  };
+
+  setCurrentUser(user: User) {
+    this.current_user = user;
+  }
+
+  getCurrentUser(): User {
+    return this.current_user;
+  }
+
+  //////////////////////////////////////////
+  ////////////// OBJECTS DATABASE  /////////
 
   getObjectById(id: number): DatabaseObject | undefined | null {
     let response = this.allDatabase.find((obj) => obj.objectID === id);
@@ -59,7 +91,7 @@ export class DataService implements OnInit {
   }
 
   private initializeData() {
-    // Metodo per inizializzare i dati
+    // inizializzare i dati del database con un obervable
     this.getAllDatabase().subscribe({
       next: (data) => {
         this.allDatabase = data;
