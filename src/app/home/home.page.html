@@ -1001,8 +1001,8 @@
 
                   <ion-input
                     placeholder="Esercente"
-                    [(ngModel)]="user.shopkeeper"
-                    value="{{user.shopkeeper}}"
+                    [(ngModel)]="current_user.shopkeeper"
+                    value="{{current_user.shopkeeper}}"
                   >
                   </ion-input>
                 </ion-item>
@@ -1013,8 +1013,8 @@
 
                   <ion-input
                     placeholder="Email"
-                    [(ngModel)]="user.email"
-                    value="{{user.email}}"
+                    [(ngModel)]="current_user.email"
+                    value="{{current_user.email}}"
                   >
                   </ion-input>
                 </ion-item>
@@ -1024,8 +1024,8 @@
                   <ion-label class="label-config-account">Username</ion-label>
                   <ion-input
                     placeholder="Username"
-                    value="{{user.username }}"
-                    [(ngModel)]="user.username"
+                    value="{{current_user.username }}"
+                    [(ngModel)]="current_user.username"
                   >
                   </ion-input>
                 </ion-item>
@@ -1034,7 +1034,10 @@
                   <ion-icon name="lock-closed"></ion-icon>
                   <ion-label class="label-config-account">Password</ion-label>
 
-                  <ion-input placeholder="Password" [(ngModel)]="user.password">
+                  <ion-input
+                    placeholder="Password"
+                    [(ngModel)]="current_user.password"
+                  >
                   </ion-input>
                 </ion-item>
 
@@ -1046,7 +1049,7 @@
 
                   <ion-input
                     placeholder="Descrizione dell'account"
-                    [(ngModel)]="user.description"
+                    [(ngModel)]="current_user.description"
                   >
                   </ion-input>
                 </ion-item>
@@ -1059,7 +1062,7 @@
 
                   <ion-input
                     placeholder="+0000000000"
-                    [(ngModel)]="user.telephone1"
+                    [(ngModel)]="current_user.telephone1"
                   >
                   </ion-input>
                 </ion-item>
@@ -1072,7 +1075,7 @@
 
                   <ion-input
                     placeholder="+0000000000"
-                    [(ngModel)]="user.telephone2"
+                    [(ngModel)]="current_user.telephone2"
                   >
                   </ion-input>
                 </ion-item>
@@ -1081,7 +1084,10 @@
                   <ion-icon name="document"></ion-icon>
                   <ion-label class="label-config-account">Note</ion-label>
 
-                  <ion-input placeholder="Note" [(ngModel)]="user.notes">
+                  <ion-input
+                    placeholder="Note"
+                    [(ngModel)]="current_user.notes"
+                  >
                   </ion-input>
                 </ion-item>
 

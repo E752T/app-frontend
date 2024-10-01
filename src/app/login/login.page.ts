@@ -21,7 +21,6 @@ export class LoginPage {
   public toggle_remember_me: boolean = false;
   public errorMessage: string | undefined;
   private minimal_len_token: number = 50; // JWT
-  current_user: any;
 
   modalCtrl: any;
 
@@ -32,6 +31,8 @@ export class LoginPage {
   ) {
     this.loadCredentials();
   }
+
+  current_user = this.dataService.getCurrentUser();
 
   private loadCredentials() {
     if (localStorage.getItem('shopkeeper')) {
@@ -105,7 +106,8 @@ export class LoginPage {
 
   private handleSuccessfulLogin(response: any) {
     this.current_user = response.user;
-
+    this.dataService.setCurrentUser(this.current_user);
+    
     this.dataService.setUsername(response.user.username);
     this.dataService.setUserRole(response.role);
     this.dataService.setTokenJWT(response.token);

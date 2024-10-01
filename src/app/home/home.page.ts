@@ -102,13 +102,12 @@ export class HomePage implements OnInit {
 
   ///////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////
+  current_user: any;
   imageAvatar: any;
-  
   new_shopkeeper: any;
   new_username: any;
   new_password: any;
   new_email: any;
-
   bodyAddObject: any;
 
   allDatabase: DatabaseObject[] = [];
@@ -136,6 +135,9 @@ export class HomePage implements OnInit {
   async ngOnInit() {
     this.getScreenSize();
     this.toggleMenu();
+
+    this.current_user = this.dataService.getCurrentUser();
+    console.log('This current user ', this.current_user);
 
     this.dataService.getAllDatabase().subscribe((data: DatabaseObject[]) => {
       this.allDatabase = data;
