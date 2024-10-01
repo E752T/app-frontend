@@ -102,7 +102,8 @@ export class HomePage implements OnInit {
 
   ///////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////
-
+  imageAvatar: any;
+  
   new_shopkeeper: any;
   new_username: any;
   new_password: any;
