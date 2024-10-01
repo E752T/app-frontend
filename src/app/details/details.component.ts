@@ -1,10 +1,9 @@
 // details.component.ts
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category, DatabaseObject } from '../services/interfaces.service';
 import { bodyAddObject, DataService } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { ModalController } from '@ionic/angular';
 import { PostRequest } from '../services/request.service';
 import { baseURL } from '../enviroenment';
 @Component({
@@ -23,10 +22,8 @@ export class DetailsComponent implements OnInit {
   id: number | undefined;
 
   constructor(
-    private modalCtrl: ModalController,
     private dataService: DataService,
     private router: Router,
-    private cdr: ChangeDetectorRef, // Inject ChangeDetectorRef
     private route: ActivatedRoute
   ) {
     this.user_role = this.dataService.getUserRole();
@@ -37,7 +34,6 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     this.allCategories = this.dataService.getCategories(); // Ottieni le categorie dal servizio
     console.log('Categorie disponibili in Details:', this.allCategories);
-
 
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
@@ -55,7 +51,6 @@ export class DetailsComponent implements OnInit {
 
   confirmUpdate() {
     console.log('API UpdateObjectArchive => ', this.bodyAddObject);
-    //this.cancel();
     PostRequest(baseURL + 'UpdateObjectArchive/', this.bodyAddObject);
   }
 
@@ -83,13 +78,13 @@ export class DetailsComponent implements OnInit {
           // Associa il risultato del caricamento all'oggetto objectData.cover
           this.objectData.cover = reader.result as string;
         } else {
-          console.error("objectData non è definito.");
+          console.error('objectData non è definito.');
         }
       };
       // Legge il file come URL di dati
       reader.readAsDataURL(file);
     } else {
-      console.error("Nessun file selezionato.");
+      console.error('Nessun file selezionato.');
     }
   }
 }
