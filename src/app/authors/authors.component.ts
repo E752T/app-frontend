@@ -18,7 +18,7 @@ import { baseURL } from '../enviroenment';
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
-  styleUrls: ['./../app.component.scss'],
+  styleUrls: ['./../app.component.scss', './authors.component.scss'],
 })
 export class AuthorsComponent {
   public token_JWT: string | null;

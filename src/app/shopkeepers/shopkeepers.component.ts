@@ -9,7 +9,7 @@ import { DataService, today } from '../services/data.service';
 @Component({
   selector: 'app-shopkeepers',
   templateUrl: './shopkeepers.component.html',
-  styleUrls: ['./../app.component.scss'],
+  styleUrls: ['./../app.component.scss','./shopkeepers.component.scss'],
 })
 export class ShopkeepersComponent {
   private platform = inject(Platform);

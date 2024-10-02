@@ -16,7 +16,7 @@ import { Publisher } from '../services/interfaces.service';
 @Component({
   selector: 'app-editors',
   templateUrl: './editors.component.html',
-  styleUrls: ['./../app.component.scss'],
+  styleUrls: ['./../app.component.scss','./editors.component.scss'],
 })
 export class EditorsComponent {
   public token_JWT: string | null;

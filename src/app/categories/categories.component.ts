@@ -18,7 +18,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./../app.component.scss'],
+  styleUrls: ['./../app.component.scss', './categories.component.scss'],
 })
 export class CategoriesComponent {
   public token_JWT: string | null;
