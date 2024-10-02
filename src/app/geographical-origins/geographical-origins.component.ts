@@ -8,7 +8,10 @@ import { baseURL } from '../enviroenment';
 @Component({
   selector: 'app-geographical-origin',
   templateUrl: './geographical-origins.component.html',
-  styleUrls: ['./../app.component.scss','./geographical-origins.component.scss'],
+  styleUrls: [
+    './../app.component.scss',
+    './geographical-origins.component.scss',
+  ],
 })
 export class GeographicalOriginComponent {
   public token_JWT: string | null;

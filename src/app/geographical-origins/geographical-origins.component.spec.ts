@@ -9,8 +9,8 @@ describe('GeographicalOriginsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeographicalOriginComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [GeographicalOriginComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GeographicalOriginComponent);
