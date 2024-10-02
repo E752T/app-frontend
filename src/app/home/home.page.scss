@@ -578,3 +578,8 @@ ion-content {
     margin-bottom: 2rem;
   }
 }
+
+.footer-md {
+  -webkit-box-shadow: none !important; /* Rimuove il box-shadow */
+  box-shadow: none !important; /* Rimuove il box-shadow per altri browser */
+}
