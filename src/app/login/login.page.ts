@@ -12,6 +12,9 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./../app.component.scss', './login.page.scss'],
 })
 export class LoginPage {
+  // credenziali di accesso
+  // impostare tutti i valori come 'admin' in fase di sviluppo
+  // al fine di sviluppare più velocemente
   public body_login = {
     shopkeeper: 'admin',
     email: 'admin',
@@ -19,22 +22,26 @@ export class LoginPage {
     username: 'admin',
   };
 
+  // ricordati di me
   public toggle_remember_me: boolean = false;
+
+  // messaggio di errore di credenziali errate
   public errorMessage: string | undefined;
+
+  // lunghezza minima del token JWT
   private minimal_len_token: number = 50; // JWT
 
-  modalCtrl: any;
+  // prendi i dati dell'utente e mettile dentro questo oggetto
+  current_user = this.dataService.getCurrentUser();
 
   constructor(
     private router: Router,
     private dataService: DataService,
-    private loadingController: LoadingController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loadingController: LoadingController
   ) {
     this.loadCredentials();
   }
-
-  current_user = this.dataService.getCurrentUser();
 
   private loadCredentials() {
     if (localStorage.getItem('shopkeeper')) {
@@ -109,7 +116,10 @@ export class LoginPage {
   private handleSuccessfulLogin(response: any) {
     this.current_user = response.user;
 
+    // salva i dati di login nella variabile current user
     this.dataService.setCurrentUser(this.current_user);
+
+    // salva i dati di login nel LocalStorage
     this.dataService.setUsername(response.user.username);
     this.dataService.setUserRole(response.role);
     this.dataService.setTokenJWT(response.token);
@@ -117,15 +127,21 @@ export class LoginPage {
 
     console.log('Nome utente:', this.dataService.getUsername());
 
+    // dividi il token ricevuto splittandolo in 3 parti
     const parts = response.token ? response.token.split('.') : null;
-    if (this.toggle_remember_me) {
-      this.rememberMe();
-    }
 
+    // se il token JWT non è corretto emetti un errore
+    // il token JWT deve poter essere diviso in 3 parti, separate da un punto
     if (!parts || parts.length !== 3) {
       throw new Error('Token non valido');
     }
 
+    // se hai premuto "Ricordami" salva le credenziali per rientrare senza doverle reinserire
+    if (this.toggle_remember_me) {
+      this.rememberMe();
+    }
+
+    // contolla il token JWT
     if (this.checkToken(response.token)) {
       this.showToast('Accesso Eseguito', 'success');
       console.log('Login success | Navigazione eseguita');
@@ -137,12 +153,14 @@ export class LoginPage {
     }
   }
 
+  // gestisci il login fallito
   private handleFailedLogin() {
     console.warn('Login fallito: Nessuna stringa valida ricevuta.');
     this.dataService.setTokenJWTsuccess(false);
     this.errorMessage = 'Login fallito. Controlla le credenziali.';
   }
 
+  // resetta le credenziali di login
   private resetLoginForm() {
     this.body_login = {
       shopkeeper: '',
@@ -150,22 +168,5 @@ export class LoginPage {
       password: '',
       username: '',
     };
-  }
-
-  getUserRole(): string {
-    if (String(this.dataService.getTokenJWT())) {
-      return String(this.dataService.getTokenJWT()).includes('admin')
-        ? 'admin'
-        : 'user';
-    }
-    return 'token not found';
-  }
-
-  exit_login() {
-    if (this.toggle_remember_me == false) {
-      this.resetLoginForm();
-      this.dataService.setUserRole('');
-    }
-    this.modalCtrl.dismiss(this.body_login, 'confirm');
   }
 }
