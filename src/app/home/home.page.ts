@@ -1,5 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ModalController, RefresherCustomEvent } from '@ionic/angular';
+import {
+  ModalController,
+  RefresherCustomEvent,
+  ToastController,
+} from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
@@ -153,6 +157,7 @@ export class HomePage implements OnInit {
   constructor(
     private http: HttpClient,
     private modalCtrl: ModalController,
+    private toastController: ToastController,
     private menuCtrl: MenuController,
     private router: Router,
     private dataService: DataService,
@@ -1101,14 +1106,26 @@ export class HomePage implements OnInit {
     }, 3000);
   }
 
+  async showToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      color: color,
+      duration: 3000,
+      cssClass: 'toast-elemento', // Mantieni questa classe per la personalizzazione
+    });
+    await toast.present();
+  }
+
   async updateCredentials() {
-    let body_new_credentials = {
-      email: this.body_login.email,
-      password: this.body_login.password,
-      shopkeeper: this.body_login.shopkeeper,
-      username: this.body_login.username,
-    };
-    console.log('UpdateCredentials | body = ', body_new_credentials);
-    let response = await PostRequest(baseURL + 'UpdateCredentials/', this.user);
+    let current_user = this.dataService.getCurrentUser();
+    console.log('UpdateCredentials | new credentials = ', current_user);
+    let response = await PostRequest(
+      baseURL + 'UpdateCredentials/',
+      this.current_user
+    );
+    setTimeout(() => {
+      this.showToast("Uscita dall'account", 'primary');
+      this.logOut(), console.log("Uscita dall' account");
+    }, 1500);
   }
 }
