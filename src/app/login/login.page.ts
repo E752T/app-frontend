@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { baseURL } from '../enviroenment';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginPage {
   constructor(
     private router: Router,
     private dataService: DataService,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private toastController: ToastController
   ) {
     this.loadCredentials();
   }
@@ -69,14 +71,14 @@ export class LoginPage {
     return false;
   }
 
-  showToast(message: string, color: string) {
-    const toast = document.createElement('ion-toast');
-    toast.message = message;
-    toast.color = color;
-    toast.duration = 3000;
-    toast.classList.add('toast-elemento');
-    document.body.appendChild(toast);
-    return toast.present();
+  async showToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      color: color,
+      duration: 3000,
+      cssClass: 'toast-elemento', // Mantieni questa classe per la personalizzazione
+    });
+    await toast.present();
   }
 
   async confirmLogin() {
@@ -105,10 +107,9 @@ export class LoginPage {
   }
 
   private handleSuccessfulLogin(response: any) {
-    
     this.current_user = response.user;
-    this.dataService.setCurrentUser(this.current_user);
 
+    this.dataService.setCurrentUser(this.current_user);
     this.dataService.setUsername(response.user.username);
     this.dataService.setUserRole(response.role);
     this.dataService.setTokenJWT(response.token);
