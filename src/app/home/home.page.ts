@@ -90,6 +90,9 @@ export class HomePage implements OnInit {
   ///////////////////////////////////////////////////////////////////
   //// CONTENITORE VUOTO DELL'USER //////////////////////////////////
   ///////////////////////////////////////////////////////////////////
+  current_user: any;
+  imageAvatar: any;
+  user_role: any;
 
   user: User = {
     admin: 0,
@@ -106,6 +109,16 @@ export class HomePage implements OnInit {
     email: '',
     shopkeeper: '',
   };
+
+  ///////////////////////////////////////////////////////////////////
+  //// VARIABILI GENERALI ///////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  isOpen: boolean = false;
+  // salva in che sezione si trova attualmente l'utente
+  // valore iniziale è Store, ovvero tutti gli elementi assieme
+  sectionToShow: string = 'Store';
+  // messaggio
+  messageDismissModal: string = '';
 
   ///////////////////////////////////////////////////////////////////
   //// CRITTOGRAFIA  ////////////////////////////////////////////////
@@ -143,14 +156,10 @@ export class HomePage implements OnInit {
     localStorage.clear();
   }
 
-  ///////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////
-  current_user: any;
-  imageAvatar: any;
-  new_shopkeeper: any;
-  new_username: any;
-  new_password: any;
-  new_email: any;
+  ///////////////////////////////////////////////////////////////////
+  //// OGGETTI DEL DATABASE  ////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+
   bodyAddObject: any;
 
   allDatabase: DatabaseObject[] = [];
@@ -158,35 +167,21 @@ export class HomePage implements OnInit {
 
   imageUrl: string | ArrayBuffer | null = null;
 
-  public token_JWT: string | null;
-  public user_role: string | null;
-  public token_JWT_success: boolean | null;
-  public username: string | null;
-
-  public body_login: {
-    shopkeeper: string | null;
-    email: string | null;
-    password: string | null;
-    username: string | null;
-  } = {
-    shopkeeper: '',
-    email: '',
-    password: '',
-    username: '',
-  };
-
+  ///////////////////////////////////////////////////////////////////
+  //// INIZIALIZZAZIONE APP  ////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
   async ngOnInit() {
-    this.getScreenSize();
-    this.toggleMenu();
-
-    this.current_user = this.dataService.getCurrentUser();
+    this.getScreenSize(); // prendi la grandezza dello schermo
+    this.toggleMenu(); // controlla e modifica il menù se è o meno ancorato
+    this.current_user = this.dataService.getCurrentUser(); // prendi le credenziali inserite nel login
     console.log('This current user ', this.current_user);
 
+    // prendi gli oggetti dal database non appena li invia
     this.dataService.getAllDatabase().subscribe((data: DatabaseObject[]) => {
       this.allDatabase = data;
-      this.filteredObjects = this.allDatabase; // Filtrare gli oggetti se necessario
+      this.filteredObjects = this.allDatabase;
       console.log(
-        'Database caricato con successo dentro Home:',
+        'Database degli oggetti caricato dentro Home:',
         this.allDatabase
       );
       this.cdr.detectChanges(); // Attivare manualmente il rilevamento delle modifiche
@@ -202,17 +197,17 @@ export class HomePage implements OnInit {
     private dataService: DataService,
     private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
   ) {
-    this.token_JWT = this.dataService.getTokenJWT();
+    // prendi il ruolo dell'utente, quindi se è un admin o no
     this.user_role = this.dataService.getUserRole();
-    this.username = this.dataService.getUsername();
-    this.token_JWT_success = this.dataService.getTokenJWTsuccess();
-    this.body_login = this.dataService.getBodyLogin();
+    // prendi le credenziali inserite nel login
     this.bodyAddObject = this.dataService.getBodyAddObject();
-
-    localStorage.clear();
+    // elimina tutte le variabili salvate nel browser
+    this.clearData();
   }
 
   onFileSelected(event: Event) {
+    // funzione che prende il file immagine selezionato
+    // e lo associa alla variabile imageUrl
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -222,13 +217,6 @@ export class HomePage implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-
-  // FRONTEND VARIABLES
-  isOpen: boolean = false;
-
-  // VIEWS TO SHOW
-  sectionToShow: string = 'Store'; // initial value = Store
-  messageDismissModal: string = '';
 
   // FRONTEND FUNCTIONS
   @ViewChild('menuAncora', { static: false }) menuAncora:
@@ -293,7 +281,7 @@ export class HomePage implements OnInit {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.messageDismissModal = `Ciao ${this.username}!`;
+      this.messageDismissModal = `Ciao !`;
     }
   }
 

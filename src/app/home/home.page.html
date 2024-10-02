@@ -46,7 +46,7 @@
           />
         </ion-avatar>
         <ion-label class="label-menu-non-ancorato-mobile">
-          Ciao, {{this.username}}!</ion-label
+          Ciao, {{this.current_user.username}}!</ion-label
         >
       </ion-item>
 
@@ -602,7 +602,7 @@
           </ion-toolbar>
           <ion-text class="modale-esci">
             <br />
-            Ciao {{this.username}}, sei sicuro di voler uscire?
+            Ciao {{this.current_user.username}, sei sicuro di voler uscire?
             <br />
           </ion-text>
           <ion-button
@@ -673,7 +673,7 @@
                 src="https://ionicframework.com/docs/img/demos/avatar.svg"
               />
             </ion-avatar>
-            <ion-label> Ciao, {{this.username}}! </ion-label>
+            <ion-label> Ciao, {{this.current_user.username}}! </ion-label>
           </ion-item>
 
           <ion-card *ngIf="sectionToShow === 'Store'" style="padding: 1vw">
@@ -1260,7 +1260,7 @@
               </ion-toolbar>
               <ion-text class="modale-esci">
                 <br />
-                Ciao {{this.username}}, sei sicuro di voler uscire?
+                Ciao {{this.current_user.username}}, sei sicuro di voler uscire?
                 <br />
               </ion-text>
               <ion-button
@@ -1325,7 +1325,7 @@
             </ion-text>
           </ion-button>
           <ion-modal
-            *ngIf="user_role=== 'admin'"
+            *ngIf="current_user.role=== 'admin'"
             trigger="add-new-object-button"
             (willDismiss)="onWillDismiss($event)"
             class="fullscreen-nuovo-oggetto"
