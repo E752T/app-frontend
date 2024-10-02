@@ -48,7 +48,7 @@ export class GeographicalOriginComponent {
   search_input!: string | null | undefined;
 
   @Output()
-  updateGeographicalOrigin = new EventEmitter<any>();
+  updateGeographicalOrigins = new EventEmitter<any>();
 
   body_add_geographical_origin: GeographicalOrigin = {
     geographicalOriginID: 0,
@@ -70,7 +70,7 @@ export class GeographicalOriginComponent {
     this.geographical_origins = this.geographical_origins.filter(
       (element: GeographicalOrigin) => element.geographicalOriginID !== objectID
     );
-    this.updateGeographicalOrigin.emit(this.geographical_origins);
+    this.updateGeographicalOrigins.emit(this.geographical_origins);
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteGeographicalOrigin/' + objectID);
   }

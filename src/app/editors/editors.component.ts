@@ -93,10 +93,6 @@ export class EditorsComponent {
     return PostRequest(baseURL + 'DeletePublisher/' + objectID);
   }
 
-  confirmDelete() {
-    this.DeleteElement(this.publisher?.publisherID);
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
 
   UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdatePublisher/', this.publisher);
