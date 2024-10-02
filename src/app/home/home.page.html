@@ -417,171 +417,165 @@
         <ion-text> Account </ion-text></ion-button
       >
       <ion-modal
-      trigger="account-page"
-      (willDismiss)="onWillDismiss($event)"
-      class="ion-padding"
-    >
-      <ng-template class="template-angular">
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-title color="secondary"
-              >Configurazione Account</ion-title
-            >
-          </ion-buttons>
-          <ion-buttons slot="end">
-            <ion-button (click)="cancel()">
-              <ion-icon name="close-outline"></ion-icon>
-            </ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-        <ion-content>
-          <ion-item>
-            <ion-icon name="home"></ion-icon>
-            <ion-label class="label-config-account">Esercente</ion-label>
+        trigger="account-page"
+        (willDismiss)="onWillDismiss($event)"
+        class="ion-padding"
+      >
+        <ng-template class="template-angular">
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-title color="secondary">Configurazione Account</ion-title>
+            </ion-buttons>
+            <ion-buttons slot="end">
+              <ion-button (click)="cancel()">
+                <ion-icon name="close-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+          <ion-content>
+            <ion-item>
+              <ion-icon name="home"></ion-icon>
+              <ion-label class="label-config-account">Esercente</ion-label>
 
-            <ion-input
-              placeholder="Esercente"
-              [(ngModel)]="current_user.shopkeeper"
-              value="{{current_user.shopkeeper}}"
-            >
-            </ion-input>
-          </ion-item>
+              <ion-input
+                placeholder="Esercente"
+                [(ngModel)]="current_user.shopkeeper"
+                value="{{current_user.shopkeeper}}"
+              >
+              </ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-icon name="mail"></ion-icon>
-            <ion-label class="label-config-account">Email</ion-label>
+            <ion-item>
+              <ion-icon name="mail"></ion-icon>
+              <ion-label class="label-config-account">Email</ion-label>
 
-            <ion-input
-              placeholder="Email"
-              [(ngModel)]="current_user.email"
-              value="{{current_user.email}}"
-            >
-            </ion-input>
-          </ion-item>
+              <ion-input
+                placeholder="Email"
+                [(ngModel)]="current_user.email"
+                value="{{current_user.email}}"
+              >
+              </ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-icon name="person"></ion-icon>
-            <ion-label class="label-config-account">Username</ion-label>
-            <ion-input
-              placeholder="Username"
-              value="{{current_user.username }}"
-              [(ngModel)]="current_user.username"
-            >
-            </ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-icon name="person"></ion-icon>
+              <ion-label class="label-config-account">Username</ion-label>
+              <ion-input
+                placeholder="Username"
+                value="{{current_user.username }}"
+                [(ngModel)]="current_user.username"
+              >
+              </ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-icon name="lock-closed"></ion-icon>
-            <ion-label class="label-config-account">Password</ion-label>
+            <ion-item>
+              <ion-icon name="lock-closed"></ion-icon>
+              <ion-label class="label-config-account">Password</ion-label>
 
-            <ion-input
-              placeholder="Password"
-              [(ngModel)]="current_user.password"
-            >
-            </ion-input>
-          </ion-item>
+              <ion-input
+                placeholder="Password"
+                [(ngModel)]="current_user.password"
+              >
+              </ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-icon name="document"></ion-icon>
-            <ion-label class="label-config-account"
-              >Descrizione</ion-label
-            >
+            <ion-item>
+              <ion-icon name="document"></ion-icon>
+              <ion-label class="label-config-account">Descrizione</ion-label>
 
-            <ion-input
-              placeholder="Descrizione dell'account"
-              [(ngModel)]="current_user.description"
-            >
-            </ion-input>
-          </ion-item>
+              <ion-input
+                placeholder="Descrizione dell'account"
+                [(ngModel)]="current_user.description"
+              >
+              </ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-icon name="call"></ion-icon>
-            <ion-label class="label-config-account"
-              >Telefono primario</ion-label
-            >
+            <ion-item>
+              <ion-icon name="call"></ion-icon>
+              <ion-label class="label-config-account"
+                >Telefono primario</ion-label
+              >
 
-            <ion-input
-              placeholder="+0000000000"
-              [(ngModel)]="current_user.telephone1"
-            >
-            </ion-input>
-          </ion-item>
+              <ion-input
+                placeholder="+0000000000"
+                [(ngModel)]="current_user.telephone1"
+              >
+              </ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-icon name="call"></ion-icon>
-            <ion-label class="label-config-account"
-              >Telefono secondario</ion-label
-            >
+            <ion-item>
+              <ion-icon name="call"></ion-icon>
+              <ion-label class="label-config-account"
+                >Telefono secondario</ion-label
+              >
 
-            <ion-input
-              placeholder="+0000000000"
-              [(ngModel)]="current_user.telephone2"
-            >
-            </ion-input>
-          </ion-item>
+              <ion-input
+                placeholder="+0000000000"
+                [(ngModel)]="current_user.telephone2"
+              >
+              </ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-icon name="document"></ion-icon>
-            <ion-label class="label-config-account">Note</ion-label>
+            <ion-item>
+              <ion-icon name="document"></ion-icon>
+              <ion-label class="label-config-account">Note</ion-label>
 
-            <ion-input
-              placeholder="Note sull'account"
-              [(ngModel)]="current_user.notes"
-            >
-            </ion-input>
-          </ion-item>
+              <ion-input
+                placeholder="Note sull'account"
+                [(ngModel)]="current_user.notes"
+              >
+              </ion-input>
+            </ion-item>
 
-          <ion-item>
-            <ion-icon name="person"></ion-icon>
-            <ion-label
-              class="label-config-account"
-              style="min-width: 9rem"
-              >Profilo amministratore</ion-label
-            >
+            <ion-item>
+              <ion-icon name="person"></ion-icon>
+              <ion-label class="label-config-account" style="min-width: 9rem"
+                >Profilo amministratore</ion-label
+              >
 
-            <ion-toggle
-              color="danger"
-              style="flex: -moz-available"
-              class="move-to-left"
-              [(ngModel)]="current_user.admin"
-              value="{{current_user.admin}}"
-            >
-            </ion-toggle>
-          </ion-item>
+              <ion-toggle
+                color="danger"
+                style="flex: -moz-available"
+                class="move-to-left"
+                [(ngModel)]="current_user.admin"
+                value="{{current_user.admin}}"
+              >
+              </ion-toggle>
+            </ion-item>
 
-          <ion-item>
-            <ion-icon name="image"></ion-icon>
-            <ion-label class="label-config-account"
-              >Immagine del profilo</ion-label
-            >
-          </ion-item>
+            <ion-item>
+              <ion-icon name="image"></ion-icon>
+              <ion-label class="label-config-account"
+                >Immagine del profilo</ion-label
+              >
+            </ion-item>
 
-          <ion-item>
-            <input
-              style="
-                flex: -moz-available;
-                margin-top: 1.5rem;
-                margin-bottom: 3rem;
-              "
-              class="move-to-left"
-              type="file"
-              (change)="onFileSelected($event)"
-              accept="image/*"
-            />
-            <img
-              *ngIf="imageAvatar"
-              [src]="imageAvatar"
-              alt="Immagine caricata"
-              style="border-radius: 10px"
-            />
-          </ion-item>
-        </ion-content>
+            <ion-item>
+              <input
+                style="
+                  flex: -moz-available;
+                  margin-top: 1.5rem;
+                  margin-bottom: 3rem;
+                "
+                class="move-to-left"
+                type="file"
+                (change)="onFileSelected($event)"
+                accept="image/*"
+              />
+              <img
+                *ngIf="imageAvatar"
+                [src]="imageAvatar"
+                alt="Immagine caricata"
+                style="border-radius: 10px"
+              />
+            </ion-item>
+          </ion-content>
 
-        <ion-button id="confirm-exit-login" (click)="updateCredentials()"
-          >Salva</ion-button
-        >
-      </ng-template>
-    </ion-modal>
+          <ion-button id="confirm-exit-login" (click)="updateCredentials()"
+            >Salva</ion-button
+          >
+        </ng-template>
+      </ion-modal>
 
       <ion-button class="menu-button-custom bottone-assistenza" id="exit-login">
         <ion-icon
