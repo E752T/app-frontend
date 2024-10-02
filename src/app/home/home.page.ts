@@ -232,6 +232,10 @@ export class HomePage implements OnInit {
 
   @ViewChild('popover') popover: any;
 
+  /////////////////////////////////////////////////////////////
+  ////////////   CREDENZIALI    ///////////////////////////////
+  /////////////////////////////////////////////////////////////
+
   logOut() {
     console.log('Log out in corso...');
     // elimina tutte le variabili trattenute nel localStorage
@@ -249,6 +253,35 @@ export class HomePage implements OnInit {
       this.router.navigate(['/login']); // Reindirizza alla pagina di login
     }, 2200);
   }
+
+  async updateCredentials() {
+    // prendi da dataService le credenziali attuali
+    let current_user = this.dataService.getCurrentUser();
+
+    // converti i valori del Profilo Amministratore dentro la modale
+    // per cambiare i valori da true/false a 0 e 1, dove 1 = admin e 0 = user
+    if (this.current_user.admin == true) {
+      this.current_user.admin = 1;
+    } else {
+      this.current_user.admin = 0;
+    }
+
+    console.log('UpdateCredentials | new credentials = ', current_user);
+
+    // manda al server le nuove credenziali
+    let response = await PostRequest(
+      baseURL + 'UpdateCredentials/',
+      this.current_user
+    );
+    setTimeout(() => {
+      this.showToast("Uscita dall'account", 'primary');
+      this.logOut(), console.log("Uscita dall' account");
+    }, 1500);
+  }
+
+  /////////////////////////////////////////////////////////////
+  ////////////   FUNZIONI GENERALI   //////////////////////////
+  /////////////////////////////////////////////////////////////
 
   toggleMenu() {
     // imposta il valore opposto a isMenuAnchored rispetto a quello che aveva adesso
@@ -289,15 +322,26 @@ export class HomePage implements OnInit {
     }
   }
 
+  async showToast(message: string, color: string) {
+    // Mantieni questa classe per la personalizzazione
+    const toast = await this.toastController.create({
+      message: message,
+      color: color,
+      duration: 3000,
+      cssClass: 'toast-elemento',
+    });
+    await toast.present();
+  }
+
   switchToView(value: string) {
-    // cambia categoria che sai visualizzando
+    // cambia i dati a seconda della categoria che sai visualizzando
+    // contemporaneamente filtra i risultati secondo gli anni (searchYears)
+    // ed anche secondo la barra di ricerca (searchInput)
 
     //console.log('switchToView() | view before ', this.sectionToShow);
-
     this.sectionToShow = value;
     // reimposta il testo nella barra di ricerca
     this.searchInput = '';
-
     this.getAuthors(this.searchInput);
     this.getCategories(this.searchInput);
     this.getGeographicalOrigins(this.searchInput);
@@ -313,749 +357,6 @@ export class HomePage implements OnInit {
     this.searchYears.upper = this.upper_range;
 
     //console.log('switchToView() | view after ', this.sectionToShow);
-  }
-
-  getItems(input: string | undefined | null) {
-    // Get all the items from the database request
-    // 1. get all the values from the database
-    // 2. filter the database objects based on the search text
-
-    this.filteredObjects = this.allDatabase;
-    //console.log('Filter Object results');
-
-    // if there is no search text give me every datapoint
-    if (input == '' || input == null || input == undefined) {
-      this.filteredObjects = this.filterByYearsObjects(this.filteredObjects);
-      this.filteredObjects = this.filterByAvaiability(this.filteredObjects);
-      this.filteredObjects = this.filterByGeneres(this.filteredObjects);
-    } else {
-      this.filteredObjects = this.allDatabase.filter((object) => {
-        return object.title.toLowerCase().includes(input.toLowerCase());
-      });
-      this.filteredObjects = this.filterByYearsObjects(this.filteredObjects);
-      this.filteredObjects = this.filterByAvaiability(this.filteredObjects);
-      this.filteredObjects = this.filterByGeneres(this.filteredObjects);
-    }
-  }
-
-  getItemById(id: number): DatabaseObject {
-    const item = this.allDatabase.find((item) => item.objectID === id);
-    if (!item) {
-      throw new Error(`Oggetto con ID ${id} non trovato.`);
-    }
-    return item;
-  }
-
-  // AUTORI
-  allAuthors: Array<Author> = [];
-  filteredAuthors: Array<Author> = [];
-
-  promiseallAuthors: Promise<Author[]> = GetRequest(
-    baseURL + 'GetAuthors'
-  ).then((res) => {
-    console.log('Author inviati dal database', res);
-    this.allAuthors = res;
-    return (this.filteredAuthors = this.allAuthors);
-  });
-
-  body_add_author: Author = {
-    authorID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
-  };
-
-  getAuthors(input: string | undefined | null) {
-    this.filteredAuthors = this.allAuthors;
-    // if there is no search text give me every datapoint
-    if (input == '' || input == null || input == undefined) {
-      this.filteredAuthors = this.filterByYears(this.filteredAuthors);
-    } else {
-      this.filteredAuthors = this.allAuthors.filter((object) => {
-        return object.name.toLowerCase().includes(input.toLowerCase());
-      });
-      this.filteredAuthors = this.filterByYears(this.filteredAuthors);
-    }
-    //console.log('Filter results of getAuthors() => ', this.allAuthors);
-  }
-
-  getNewIDAuthor(elementList: Array<Author>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].authorID > highestID) {
-        highestID = elementList[i].authorID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  CreateAuthor(): Promise<any> {
-    this.body_add_author.authorID = this.getNewIDAuthor(this.filteredAuthors);
-    let newAuthor = this.body_add_author;
-    this.allAuthors.unshift(newAuthor);
-    this.getAuthors(this.searchInput);
-    console.log('POST api/AddAuthor/ ', this.body_add_author);
-    // Perform the PostRequest
-
-    this.cancel();
-    return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
-      .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_author = {
-          authorID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-          email: '',
-          telephone1: '',
-          telephone2: '',
-          notes: '',
-        };
-        return response;
-      })
-      .catch((error) => {
-        console.error('Error in PostRequest: ', error);
-        throw error;
-      });
-  }
-
-  updateAuthors(items: any[], itemToDelete: any, key: string) {
-    this.filteredAuthors = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    this.allAuthors = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    console.log('Update Authors/', this.allAuthors, this.filteredAuthors);
-    return this.allAuthors;
-  }
-
-  // Category
-
-  allCategories: Array<Category> = [];
-  filteredCategories: Array<Category> = [];
-
-  promiseallCategories: Promise<Category[]> = GetRequest(
-    baseURL + 'GetCategories'
-  ).then((res) => {
-    console.log('Category inviati dal database', res);
-    this.allCategories = res;
-    this.dataService.setCategories(this.allCategories); // Imposta le categorie nel servizio
-    return (this.filteredCategories = this.allCategories);
-  });
-
-  body_add_category: Category = {
-    categoryID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-
-  getCategories(input: string | undefined | null) {
-    this.filteredCategories = this.allCategories;
-    // if there is no search text give me every datapoint
-    if (input == '' || input == null || input == undefined) {
-      this.filteredCategories = this.filterByYears(this.filteredCategories);
-    } else {
-      this.filteredCategories = this.allCategories.filter((object) => {
-        return object.name.toLowerCase().includes(input.toLowerCase());
-      });
-      this.filteredCategories = this.filterByYears(this.filteredCategories);
-    }
-    //console.log('results of getCategories() => ', this.filteredCategories);
-  }
-
-  getNewIDCategory(elementList: Array<Category>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].categoryID > highestID) {
-        highestID = elementList[i].categoryID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  CreateCategory(): Promise<any> {
-    this.body_add_category.categoryID = this.getNewIDCategory(
-      this.filteredCategories
-    );
-    let new_element = this.body_add_category;
-
-    this.allCategories.unshift(new_element);
-    this.getCategories(this.searchInput);
-    console.log('POST api/AddCategory/ ', this.body_add_category);
-    // Perform the PostRequest
-    this.cancel();
-
-    return PostRequest(baseURL + 'AddCategory/', this.body_add_category)
-      .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_category = {
-          categoryID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-        };
-        return response;
-      })
-      .catch((error) => {
-        console.error('Error in PostRequest: ', error);
-        throw error; // Propagate the error
-      });
-  }
-
-  updateCategories(items: any[], itemToDelete: any, key: string) {
-    this.allCategories = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    console.log('Update Categories/', items);
-    this.getCategories('');
-    this.filteredCategories = this.allCategories;
-    return this.filteredCategories;
-  }
-
-  // Publisher
-
-  allPublishers: Array<Publisher> = [];
-  filteredPublishers: Array<Publisher> = [];
-
-  promiseallPublishers: Promise<Publisher[]> = GetRequest(
-    baseURL + 'GetPublishers'
-  ).then((res) => {
-    console.log('Publisher inviati dal database', res);
-    this.allPublishers = res;
-    return (this.filteredPublishers = this.allPublishers);
-  });
-
-  body_add_publisher: Publisher = {
-    publisherID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
-  };
-
-  getPublishers(input: string | undefined | null) {
-    this.filteredPublishers = this.allPublishers;
-    // if there is no search text give me every datapoint
-    if (input == '' || input == null || input == undefined) {
-      this.filteredPublishers = this.filterByYears(this.filteredPublishers);
-    } else {
-      this.filteredPublishers = this.allPublishers.filter((object) => {
-        return object.name.toLowerCase().includes(input.toLowerCase());
-      });
-      this.filteredPublishers = this.filterByYears(this.filteredPublishers);
-    }
-    //console.log('Filter results of getPublishers() => ',this.filteredPublishers);
-  }
-
-  getNewIDPublisher(elementList: Array<Publisher>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].publisherID > highestID) {
-        highestID = elementList[i].publisherID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  CreatePublisher(): Promise<any> {
-    this.body_add_publisher.publisherID = this.getNewIDPublisher(
-      this.filteredPublishers
-    );
-
-    let new_element = this.body_add_publisher;
-    this.allPublishers.unshift(new_element);
-    this.getPublishers(this.searchInput);
-
-    console.log('POST api/AddPublisher/ ', this.body_add_publisher);
-    this.cancel();
-
-    // Perform the PostRequest
-    return PostRequest(baseURL + 'AddPublisher/', this.body_add_publisher)
-      .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_publisher = {
-          publisherID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-          email: '',
-          telephone1: '',
-          telephone2: '',
-          notes: '',
-        };
-        return response;
-      })
-      .catch((error) => {
-        console.error('Error in PostRequest: ', error);
-        throw error; // Propagate the error
-      });
-  }
-
-  updatePublishers(items: any[], itemToDelete: any, key: string) {
-    this.allPublishers = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    console.log('Update Publishers/', items);
-    this.getPublishers('');
-    this.filteredPublishers = this.allPublishers;
-    return this.filteredPublishers;
-  }
-
-  // ESERCENTI
-
-  allShopkeepers: Array<Shopkeeper> = [];
-  filteredShopkeepers: Array<Shopkeeper> = [];
-
-  promiseallShopkeepers: Promise<Shopkeeper[]> = GetRequest(
-    baseURL + 'GetShopkeepers'
-  ).then((res) => {
-    console.log('Shopkeeper inviati dal database', res);
-    this.allShopkeepers = res;
-    return (this.filteredShopkeepers = this.allShopkeepers);
-  });
-
-  body_add_shopkeeper: Shopkeeper = {
-    shopkeeperID: 0,
-    uniqueName: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    telephone1: '',
-    telephone2: '',
-    email: '',
-    notes: '',
-  };
-
-  getShopkeepers(input: string | undefined | null) {
-    this.filteredShopkeepers = this.allShopkeepers;
-    // if there is no search text give me every datapoint
-    if (input == '' || input == null || input == undefined) {
-      this.filteredShopkeepers = this.filterByYears(this.filteredShopkeepers);
-    } else {
-      this.filteredShopkeepers = this.allShopkeepers.filter((object) => {
-        return object.uniqueName.toLowerCase().includes(input.toLowerCase());
-      });
-      this.filteredShopkeepers = this.filterByYears(this.filteredShopkeepers);
-    }
-    //console.log('Filter results of getShopkeepers() => ', this.filteredShopkeepers);
-  }
-
-  getNewIDShopkeeper(elementList: Array<Shopkeeper>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].shopkeeperID > highestID) {
-        highestID = elementList[i].shopkeeperID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  CreateShopkeeper(): Promise<any> {
-    this.body_add_shopkeeper.shopkeeperID = this.getNewIDShopkeeper(
-      this.filteredShopkeepers
-    );
-    let new_element = this.body_add_shopkeeper;
-    this.allShopkeepers.unshift(new_element);
-    this.getShopkeepers(this.searchInput);
-
-    console.log('POST api/AddShopkeeper/ ', this.body_add_shopkeeper);
-    this.cancel();
-
-    // Perform the PostRequest
-    return PostRequest(baseURL + 'AddShopkeeper/', this.body_add_shopkeeper)
-      .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_shopkeeper = {
-          shopkeeperID: 0,
-          uniqueName: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-          telephone1: '',
-          telephone2: '',
-          email: '',
-          notes: '',
-        };
-        return response;
-      })
-      .catch((error) => {
-        console.error('Error in PostRequest: ', error);
-        throw error; // Propagate the error
-      });
-  }
-
-  updateShopkeepers(items: any[], itemToDelete: any, key: string) {
-    this.allShopkeepers = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    console.log('Update Shopkeepers/', items);
-    this.getShopkeepers('');
-    this.filteredShopkeepers = this.allShopkeepers;
-    return this.filteredShopkeepers;
-  }
-
-  // MAGAZZINI
-
-  allWarehouses: Array<Warehouse> = [];
-  filteredWarehouses: Array<Warehouse> = [];
-
-  promiseallWarehouses: Promise<Warehouse[]> = GetRequest(
-    baseURL + 'GetWarehouses'
-  ).then((res) => {
-    console.log('Warehouse inviati dal database', res);
-    this.allWarehouses = res;
-    return (this.filteredWarehouses = this.allWarehouses);
-  });
-
-  body_add_warehouse: Warehouse = {
-    warehouseID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    notes: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-  };
-
-  getWarehouses(input: string | undefined | null) {
-    this.filteredWarehouses = this.allWarehouses;
-    // if there is no search text give me every datapoint
-    if (input == '' || input == null || input == undefined) {
-      this.filteredWarehouses = this.filterByYears(this.filteredWarehouses);
-    } else {
-      this.filteredWarehouses = this.allWarehouses.filter((object) => {
-        return object.name.toLowerCase().includes(input.toLowerCase());
-      });
-      this.filteredWarehouses = this.filterByYears(this.filteredWarehouses);
-    }
-    //console.log('Filter results of getWarehouses() => ',this.filteredWarehouses);
-  }
-
-  getNewIDWarehouse(elementList: Array<Warehouse>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].warehouseID > highestID) {
-        highestID = elementList[i].warehouseID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  CreateWarehouse(): Promise<any> {
-    this.body_add_warehouse.warehouseID = this.getNewIDWarehouse(
-      this.filteredWarehouses
-    );
-    let new_element = this.body_add_warehouse;
-    this.allWarehouses.unshift(new_element);
-    this.getWarehouses(this.searchInput);
-    this.cancel();
-
-    // Perform the PostRequest
-    return PostRequest(baseURL + 'AddWarehouse/', this.body_add_warehouse)
-      .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_warehouse = {
-          warehouseID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-          notes: '',
-          email: '',
-          telephone1: '',
-          telephone2: '',
-        };
-        return response;
-      })
-      .catch((error) => {
-        console.error('Error in PostRequest: ', error);
-        throw error; // Propagate the error
-      });
-  }
-
-  updateWarehouses(items: any[], itemToDelete: any, key: string) {
-    this.allWarehouses = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    console.log('Update Warehouses/', items);
-    this.getWarehouses('');
-    this.filteredWarehouses = this.allWarehouses;
-    return this.filteredWarehouses;
-  }
-
-  // PROVENIENZE
-
-  allProvenances: Array<Provenance> = [];
-  filteredProvenances: Array<Provenance> = [];
-
-  promiseallProvenances: Promise<Provenance[]> = GetRequest(
-    baseURL + 'GetProvenances'
-  ).then((res) => {
-    console.log('Provenance inviati dal database', res);
-    this.allProvenances = res;
-    return (this.filteredProvenances = this.allProvenances);
-  });
-
-  body_add_provenance: Provenance = {
-    provenanceID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-
-  getProvenances(input: string | undefined | null) {
-    this.filteredProvenances = this.allProvenances;
-    // if there is no search text give me every datapoint
-    if (input == '' || input == null || input == undefined) {
-      this.filteredProvenances = this.filterByYears(this.filteredProvenances);
-    } else {
-      this.filteredProvenances = this.allProvenances.filter((object) => {
-        return object.name.toLowerCase().includes(input.toLowerCase());
-      });
-      this.filteredProvenances = this.filterByYears(this.filteredProvenances);
-    }
-    //console.log('Filter results of getProvenances() => ',this.filteredProvenances);
-  }
-
-  getNewIDProvenance(elementList: Array<Provenance>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].provenanceID > highestID) {
-        highestID = elementList[i].provenanceID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  CreateProvenance(): Promise<any> {
-    this.body_add_provenance.provenanceID = this.getNewIDProvenance(
-      this.filteredProvenances
-    );
-    let new_element = this.body_add_provenance;
-    this.allProvenances.unshift(new_element);
-    this.getProvenances(this.searchInput);
-    this.cancel();
-
-    // Perform the PostRequest
-    console.log('AddProvenance/ -->  ', this.body_add_provenance);
-    return PostRequest(baseURL + 'AddProvenance/', this.body_add_provenance)
-      .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_provenance = {
-          provenanceID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-        };
-        return response;
-      })
-      .catch((error) => {
-        console.error('Error in PostRequest: ', error);
-        throw error; // Propagate the error
-      });
-  }
-
-  updateProvenances(items: any[], itemToDelete: any, key: string) {
-    this.allProvenances = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    console.log('Update Provenances/', this.allProvenances);
-    this.getProvenances('');
-    this.filteredProvenances = this.allProvenances;
-    return this.filteredProvenances;
-  }
-
-  //      ORIGINE GEOGRAFICA
-
-  allGeographicalOrigins: Array<GeographicalOrigin> = [];
-  filteredGeographicalOrigins: Array<GeographicalOrigin> = [];
-
-  promiseallGeographicalOrigins: Promise<GeographicalOrigin[]> = GetRequest(
-    baseURL + 'GetGeographicalOrigins'
-  ).then((res) => {
-    console.log('GeographicalOrigin inviati dal database', res);
-    this.allGeographicalOrigins = res;
-    return (this.filteredGeographicalOrigins = this.allGeographicalOrigins);
-  });
-
-  body_add_geographical_origin: GeographicalOrigin = {
-    geographicalOriginID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-
-  getGeographicalOrigins(input: string | undefined | null) {
-    this.filteredGeographicalOrigins = this.allGeographicalOrigins;
-    // if there is no search text give me every datapoint
-    if (input == '' || input == null || input == undefined) {
-      this.filteredGeographicalOrigins = this.filterByYears(
-        this.filteredGeographicalOrigins
-      );
-    } else {
-      this.filteredGeographicalOrigins = this.allGeographicalOrigins.filter(
-        (object) => {
-          return object.name.toLowerCase().includes(input.toLowerCase());
-        }
-      );
-      this.filteredGeographicalOrigins = this.filterByYears(
-        this.filteredGeographicalOrigins
-      );
-    }
-    //console.log('Filter results of getGeographicalOrigins() => ',this.filteredGeographicalOrigins);
-  }
-
-  getNewIDGeographicalOrigin(elementList: Array<GeographicalOrigin>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].geographicalOriginID > highestID) {
-        highestID = elementList[i].geographicalOriginID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  CreateGeographicalOrigin(): Promise<any> {
-    this.body_add_geographical_origin.geographicalOriginID =
-      this.getNewIDGeographicalOrigin(this.filteredGeographicalOrigins);
-    let new_element = this.body_add_geographical_origin;
-    this.allGeographicalOrigins.unshift(new_element);
-    this.getGeographicalOrigins(this.searchInput);
-    this.cancel();
-
-    // Perform the PostRequest
-    return PostRequest(
-      baseURL + 'AddGeographicalOrigin/',
-      this.body_add_geographical_origin
-    )
-      .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_geographical_origin = {
-          geographicalOriginID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-        };
-        return response;
-      })
-      .catch((error) => {
-        console.error('Error in PostRequest: ', error);
-        throw error; // Propagate the error
-      });
-  }
-
-  updateGeographicalOrigins(items: any[], itemToDelete: any, key: string) {
-    this.allGeographicalOrigins = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    console.log('Update GeographicalOrigins/', items);
-    this.getGeographicalOrigins(this.searchInput);
-    this.filteredGeographicalOrigins = this.allGeographicalOrigins;
-    return this.filteredGeographicalOrigins;
-  }
-
-  // TIPI DI OGGETTI
-
-  allTypeObjects: Array<TypeObject> = [];
-  filteredTypeObjects: Array<TypeObject> = [];
-
-  promiseallTypeObjects: Promise<TypeObject[]> = GetRequest(
-    baseURL + 'GetTypeObjects'
-  ).then((res) => {
-    console.log('TypeObject inviati dal database', res);
-    this.allTypeObjects = res;
-    return (this.filteredTypeObjects = this.allTypeObjects);
-  });
-
-  body_add_type_object: TypeObject = {
-    typeID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-
-  getTypeObjects(input: string | undefined | null) {
-    this.filteredTypeObjects = this.allTypeObjects;
-    // if there is no search text give me every datapoint
-    if (input == '' || input == null || input == undefined) {
-      this.filteredTypeObjects = this.filterByYears(this.filteredTypeObjects);
-    } else {
-      this.filteredTypeObjects = this.allTypeObjects.filter((object) => {
-        return object.name.toLowerCase().includes(input.toLowerCase());
-      });
-      this.filteredTypeObjects = this.filterByYears(this.filteredTypeObjects);
-    }
-    //console.log('Filter results of getTypeObjects() => ',this.filteredTypeObjects);
-  }
-
-  getNewIDTypeObject(elementList: Array<TypeObject>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].typeID > highestID) {
-        highestID = elementList[i].typeID;
-      }
-    }
-    return highestID + 1;
-  }
-
-  CreateTypeObject(): Promise<any> {
-    this.body_add_type_object.typeID = this.getNewIDTypeObject(
-      this.filteredTypeObjects
-    );
-    let new_element = this.body_add_type_object;
-    this.allTypeObjects.unshift(new_element);
-    this.getTypeObjects(this.searchInput);
-    this.cancel();
-
-    // Perform the PostRequest
-    return PostRequest(baseURL + 'AddType/', this.body_add_type_object)
-      .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_type_object = {
-          typeID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-        };
-        return response;
-      })
-      .catch((error) => {
-        console.error('Error in PostRequest: ', error);
-        throw error; // Propagate the error
-      });
-  }
-
-  updateTypeObject(items: any[], itemToDelete: any, key: string) {
-    this.allTypeObjects = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    this.getTypeObjects(this.searchInput);
-    this.filteredTypeObjects = this.allTypeObjects;
-    console.log('Update TypeObjects ', this.filteredTypeObjects);
-    return this.filteredTypeObjects;
   }
 
   /////////////////////////////////////////////////////////////
@@ -1177,45 +478,766 @@ export class HomePage implements OnInit {
     }
   }
 
-  refresh(ev: any) {
-    setTimeout(() => {
-      (ev as RefresherCustomEvent).detail.complete();
-    }, 3000);
-  }
+  /////////////////////////////////////////////////////
+  ///////  Oggetti   //////////////////////////////////
+  /////////////////////////////////////////////////////
 
-  async showToast(message: string, color: string) {
-    // Mantieni questa classe per la personalizzazione
-    const toast = await this.toastController.create({
-      message: message,
-      color: color,
-      duration: 3000,
-      cssClass: 'toast-elemento',
-    });
-    await toast.present();
-  }
+  getItems(input: string | undefined | null) {
+    // Ottiene tutti gli elementi dalla richiesta del database
+    // 1. ottiene tutti i valori dal database
+    // 2. filtra gli oggetti del database in base al testo di ricerca
 
-  async updateCredentials() {
-    // prendi da dataService le credenziali attuali
-    let current_user = this.dataService.getCurrentUser();
+    this.filteredObjects = this.allDatabase;
+    //console.log('Filter Object results');
 
-    // converti i valori del Profilo Amministratore dentro la modale
-    // per cambiare i valori da true/false a 0 e 1, dove 1 = admin e 0 = user
-    if (this.current_user.admin == true) {
-      this.current_user.admin = 1;
+    // se non è presente alcun testo di ricerca, forniscimi ogni punto dati
+    if (input == '' || input == null || input == undefined) {
+      this.filteredObjects = this.filterByYearsObjects(this.filteredObjects);
+      this.filteredObjects = this.filterByAvaiability(this.filteredObjects);
+      this.filteredObjects = this.filterByGeneres(this.filteredObjects);
     } else {
-      this.current_user.admin = 0;
+      this.filteredObjects = this.allDatabase.filter((object) => {
+        return object.title.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredObjects = this.filterByYearsObjects(this.filteredObjects);
+      this.filteredObjects = this.filterByAvaiability(this.filteredObjects);
+      this.filteredObjects = this.filterByGeneres(this.filteredObjects);
     }
+  }
 
-    console.log('UpdateCredentials | new credentials = ', current_user);
+  getItemById(id: number): DatabaseObject {
+    // data una ID in input, ritorna l'oggetto che presenta quella ID
+    const item = this.allDatabase.find((item) => item.objectID === id);
+    if (!item) {
+      throw new Error(`Oggetto con ID ${id} non trovato.`);
+    }
+    return item;
+  }
 
-    // manda al server le nuove credenziali
-    let response = await PostRequest(
-      baseURL + 'UpdateCredentials/',
-      this.current_user
+  /////////////////////////////////////////////////////
+  ///////  Autori /////////////////////////////////////
+  /////////////////////////////////////////////////////
+
+  allAuthors: Array<Author> = [];
+  filteredAuthors: Array<Author> = [];
+
+  promiseallAuthors: Promise<Author[]> = GetRequest(
+    baseURL + 'GetAuthors'
+  ).then((res) => {
+    console.log('Author inviati dal database', res);
+    this.allAuthors = res;
+    return (this.filteredAuthors = this.allAuthors);
+  });
+
+  body_add_author: Author = {
+    authorID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
+
+  getAuthors(input: string | undefined | null) {
+    this.filteredAuthors = this.allAuthors;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredAuthors = this.filterByYears(this.filteredAuthors);
+    } else {
+      this.filteredAuthors = this.allAuthors.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredAuthors = this.filterByYears(this.filteredAuthors);
+    }
+    //console.log('Filter results of getAuthors() => ', this.allAuthors);
+  }
+
+  getNewIDAuthor(elementList: Array<Author>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].authorID > highestID) {
+        highestID = elementList[i].authorID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateAuthor(): Promise<any> {
+    this.body_add_author.authorID = this.getNewIDAuthor(this.filteredAuthors);
+    let newAuthor = this.body_add_author;
+    this.allAuthors.unshift(newAuthor);
+    this.getAuthors(this.searchInput);
+    console.log('POST api/AddAuthor/ ', this.body_add_author);
+    // Perform the PostRequest
+
+    this.cancel();
+    return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_author = {
+          authorID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+          email: '',
+          telephone1: '',
+          telephone2: '',
+          notes: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error;
+      });
+  }
+
+  updateAuthors(items: any[], itemToDelete: any, key: string) {
+    this.filteredAuthors = items.filter(
+      (element) => element[key] !== itemToDelete[key]
     );
-    setTimeout(() => {
-      this.showToast("Uscita dall'account", 'primary');
-      this.logOut(), console.log("Uscita dall' account");
-    }, 1500);
+    this.allAuthors = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Authors/', this.allAuthors, this.filteredAuthors);
+    return this.allAuthors;
+  }
+
+  /////////////////////////////////////////////////////
+  ///////  Categorie //////////////////////////////////
+  /////////////////////////////////////////////////////
+
+  allCategories: Array<Category> = [];
+  filteredCategories: Array<Category> = [];
+
+  promiseallCategories: Promise<Category[]> = GetRequest(
+    baseURL + 'GetCategories'
+  ).then((res) => {
+    console.log('Category inviati dal database', res);
+    this.allCategories = res;
+    // Imposta le categorie nel servizio dei dati
+    this.dataService.setCategories(this.allCategories);
+    return (this.filteredCategories = this.allCategories);
+  });
+
+  body_add_category: Category = {
+    categoryID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  getCategories(input: string | undefined | null) {
+    this.filteredCategories = this.allCategories;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredCategories = this.filterByYears(this.filteredCategories);
+    } else {
+      this.filteredCategories = this.allCategories.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredCategories = this.filterByYears(this.filteredCategories);
+    }
+    //console.log('results of getCategories() => ', this.filteredCategories);
+  }
+
+  getNewIDCategory(elementList: Array<Category>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].categoryID > highestID) {
+        highestID = elementList[i].categoryID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateCategory(): Promise<any> {
+    this.body_add_category.categoryID = this.getNewIDCategory(
+      this.filteredCategories
+    );
+    let new_element = this.body_add_category;
+
+    this.allCategories.unshift(new_element);
+    this.getCategories(this.searchInput);
+    console.log('POST api/AddCategory/ ', this.body_add_category);
+    // Perform the PostRequest
+    this.cancel();
+
+    return PostRequest(baseURL + 'AddCategory/', this.body_add_category)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_category = {
+          categoryID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateCategories(items: any[], itemToDelete: any, key: string) {
+    this.allCategories = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Categories/', items);
+    this.getCategories('');
+    this.filteredCategories = this.allCategories;
+    return this.filteredCategories;
+  }
+
+  /////////////////////////////////////////////////////
+  ///////  Editori   //////////////////////////////////
+  /////////////////////////////////////////////////////
+  allPublishers: Array<Publisher> = [];
+  filteredPublishers: Array<Publisher> = [];
+
+  promiseallPublishers: Promise<Publisher[]> = GetRequest(
+    baseURL + 'GetPublishers'
+  ).then((res) => {
+    console.log('Publisher inviati dal database', res);
+    this.allPublishers = res;
+    return (this.filteredPublishers = this.allPublishers);
+  });
+
+  body_add_publisher: Publisher = {
+    publisherID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
+
+  getPublishers(input: string | undefined | null) {
+    this.filteredPublishers = this.allPublishers;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredPublishers = this.filterByYears(this.filteredPublishers);
+    } else {
+      this.filteredPublishers = this.allPublishers.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredPublishers = this.filterByYears(this.filteredPublishers);
+    }
+    //console.log('Filter results of getPublishers() => ',this.filteredPublishers);
+  }
+
+  getNewIDPublisher(elementList: Array<Publisher>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].publisherID > highestID) {
+        highestID = elementList[i].publisherID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreatePublisher(): Promise<any> {
+    this.body_add_publisher.publisherID = this.getNewIDPublisher(
+      this.filteredPublishers
+    );
+
+    let new_element = this.body_add_publisher;
+    this.allPublishers.unshift(new_element);
+    this.getPublishers(this.searchInput);
+
+    console.log('POST api/AddPublisher/ ', this.body_add_publisher);
+    this.cancel();
+
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddPublisher/', this.body_add_publisher)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_publisher = {
+          publisherID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+          email: '',
+          telephone1: '',
+          telephone2: '',
+          notes: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updatePublishers(items: any[], itemToDelete: any, key: string) {
+    this.allPublishers = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Publishers/', items);
+    this.getPublishers('');
+    this.filteredPublishers = this.allPublishers;
+    return this.filteredPublishers;
+  }
+
+  /////////////////////////////////////////////////////
+  ///////  Esercenti  /////////////////////////////////
+  /////////////////////////////////////////////////////
+
+  allShopkeepers: Array<Shopkeeper> = [];
+  filteredShopkeepers: Array<Shopkeeper> = [];
+
+  promiseallShopkeepers: Promise<Shopkeeper[]> = GetRequest(
+    baseURL + 'GetShopkeepers'
+  ).then((res) => {
+    console.log('Shopkeeper inviati dal database', res);
+    this.allShopkeepers = res;
+    return (this.filteredShopkeepers = this.allShopkeepers);
+  });
+
+  body_add_shopkeeper: Shopkeeper = {
+    shopkeeperID: 0,
+    uniqueName: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    telephone1: '',
+    telephone2: '',
+    email: '',
+    notes: '',
+  };
+
+  getShopkeepers(input: string | undefined | null) {
+    this.filteredShopkeepers = this.allShopkeepers;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredShopkeepers = this.filterByYears(this.filteredShopkeepers);
+    } else {
+      this.filteredShopkeepers = this.allShopkeepers.filter((object) => {
+        return object.uniqueName.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredShopkeepers = this.filterByYears(this.filteredShopkeepers);
+    }
+    //console.log('Filter results of getShopkeepers() => ', this.filteredShopkeepers);
+  }
+
+  getNewIDShopkeeper(elementList: Array<Shopkeeper>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].shopkeeperID > highestID) {
+        highestID = elementList[i].shopkeeperID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateShopkeeper(): Promise<any> {
+    this.body_add_shopkeeper.shopkeeperID = this.getNewIDShopkeeper(
+      this.filteredShopkeepers
+    );
+    let new_element = this.body_add_shopkeeper;
+    this.allShopkeepers.unshift(new_element);
+    this.getShopkeepers(this.searchInput);
+
+    console.log('POST api/AddShopkeeper/ ', this.body_add_shopkeeper);
+    this.cancel();
+
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddShopkeeper/', this.body_add_shopkeeper)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_shopkeeper = {
+          shopkeeperID: 0,
+          uniqueName: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+          telephone1: '',
+          telephone2: '',
+          email: '',
+          notes: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateShopkeepers(items: any[], itemToDelete: any, key: string) {
+    this.allShopkeepers = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Shopkeepers/', items);
+    this.getShopkeepers('');
+    this.filteredShopkeepers = this.allShopkeepers;
+    return this.filteredShopkeepers;
+  }
+
+  /////////////////////////////////////////////////////
+  ///////  Magazzini  /////////////////////////////////
+  /////////////////////////////////////////////////////
+
+  allWarehouses: Array<Warehouse> = [];
+  filteredWarehouses: Array<Warehouse> = [];
+
+  promiseallWarehouses: Promise<Warehouse[]> = GetRequest(
+    baseURL + 'GetWarehouses'
+  ).then((res) => {
+    console.log('Warehouse inviati dal database', res);
+    this.allWarehouses = res;
+    return (this.filteredWarehouses = this.allWarehouses);
+  });
+
+  body_add_warehouse: Warehouse = {
+    warehouseID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    notes: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+  };
+
+  getWarehouses(input: string | undefined | null) {
+    this.filteredWarehouses = this.allWarehouses;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredWarehouses = this.filterByYears(this.filteredWarehouses);
+    } else {
+      this.filteredWarehouses = this.allWarehouses.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredWarehouses = this.filterByYears(this.filteredWarehouses);
+    }
+    //console.log('Filter results of getWarehouses() => ',this.filteredWarehouses);
+  }
+
+  getNewIDWarehouse(elementList: Array<Warehouse>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].warehouseID > highestID) {
+        highestID = elementList[i].warehouseID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateWarehouse(): Promise<any> {
+    this.body_add_warehouse.warehouseID = this.getNewIDWarehouse(
+      this.filteredWarehouses
+    );
+    let new_element = this.body_add_warehouse;
+    this.allWarehouses.unshift(new_element);
+    this.getWarehouses(this.searchInput);
+    this.cancel();
+
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddWarehouse/', this.body_add_warehouse)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_warehouse = {
+          warehouseID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+          notes: '',
+          email: '',
+          telephone1: '',
+          telephone2: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateWarehouses(items: any[], itemToDelete: any, key: string) {
+    this.allWarehouses = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Warehouses/', items);
+    this.getWarehouses('');
+    this.filteredWarehouses = this.allWarehouses;
+    return this.filteredWarehouses;
+  }
+
+  /////////////////////////////////////////////////////
+  ///////  Provenienza  ///////////////////////////////
+  /////////////////////////////////////////////////////
+  allProvenances: Array<Provenance> = [];
+  filteredProvenances: Array<Provenance> = [];
+
+  promiseallProvenances: Promise<Provenance[]> = GetRequest(
+    baseURL + 'GetProvenances'
+  ).then((res) => {
+    console.log('Provenance inviati dal database', res);
+    this.allProvenances = res;
+    return (this.filteredProvenances = this.allProvenances);
+  });
+
+  body_add_provenance: Provenance = {
+    provenanceID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  getProvenances(input: string | undefined | null) {
+    this.filteredProvenances = this.allProvenances;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredProvenances = this.filterByYears(this.filteredProvenances);
+    } else {
+      this.filteredProvenances = this.allProvenances.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredProvenances = this.filterByYears(this.filteredProvenances);
+    }
+    //console.log('Filter results of getProvenances() => ',this.filteredProvenances);
+  }
+
+  getNewIDProvenance(elementList: Array<Provenance>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].provenanceID > highestID) {
+        highestID = elementList[i].provenanceID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateProvenance(): Promise<any> {
+    this.body_add_provenance.provenanceID = this.getNewIDProvenance(
+      this.filteredProvenances
+    );
+    let new_element = this.body_add_provenance;
+    this.allProvenances.unshift(new_element);
+    this.getProvenances(this.searchInput);
+    this.cancel();
+
+    // Perform the PostRequest
+    console.log('AddProvenance/ -->  ', this.body_add_provenance);
+    return PostRequest(baseURL + 'AddProvenance/', this.body_add_provenance)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_provenance = {
+          provenanceID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateProvenances(items: any[], itemToDelete: any, key: string) {
+    this.allProvenances = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Provenances/', this.allProvenances);
+    this.getProvenances('');
+    this.filteredProvenances = this.allProvenances;
+    return this.filteredProvenances;
+  }
+
+  /////////////////////////////////////////////////////
+  ///////  Origine Geografica  ////////////////////////
+  /////////////////////////////////////////////////////
+
+  allGeographicalOrigins: Array<GeographicalOrigin> = [];
+  filteredGeographicalOrigins: Array<GeographicalOrigin> = [];
+
+  promiseallGeographicalOrigins: Promise<GeographicalOrigin[]> = GetRequest(
+    baseURL + 'GetGeographicalOrigins'
+  ).then((res) => {
+    console.log('GeographicalOrigin inviati dal database', res);
+    this.allGeographicalOrigins = res;
+    return (this.filteredGeographicalOrigins = this.allGeographicalOrigins);
+  });
+
+  body_add_geographical_origin: GeographicalOrigin = {
+    geographicalOriginID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  getGeographicalOrigins(input: string | undefined | null) {
+    this.filteredGeographicalOrigins = this.allGeographicalOrigins;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredGeographicalOrigins = this.filterByYears(
+        this.filteredGeographicalOrigins
+      );
+    } else {
+      this.filteredGeographicalOrigins = this.allGeographicalOrigins.filter(
+        (object) => {
+          return object.name.toLowerCase().includes(input.toLowerCase());
+        }
+      );
+      this.filteredGeographicalOrigins = this.filterByYears(
+        this.filteredGeographicalOrigins
+      );
+    }
+    //console.log('Filter results of getGeographicalOrigins() => ',this.filteredGeographicalOrigins);
+  }
+
+  getNewIDGeographicalOrigin(elementList: Array<GeographicalOrigin>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].geographicalOriginID > highestID) {
+        highestID = elementList[i].geographicalOriginID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateGeographicalOrigin(): Promise<any> {
+    this.body_add_geographical_origin.geographicalOriginID =
+      this.getNewIDGeographicalOrigin(this.filteredGeographicalOrigins);
+    let new_element = this.body_add_geographical_origin;
+    this.allGeographicalOrigins.unshift(new_element);
+    this.getGeographicalOrigins(this.searchInput);
+    this.cancel();
+
+    // Perform the PostRequest
+    return PostRequest(
+      baseURL + 'AddGeographicalOrigin/',
+      this.body_add_geographical_origin
+    )
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_geographical_origin = {
+          geographicalOriginID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateGeographicalOrigins(items: any[], itemToDelete: any, key: string) {
+    this.allGeographicalOrigins = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update GeographicalOrigins/', items);
+    this.getGeographicalOrigins(this.searchInput);
+    this.filteredGeographicalOrigins = this.allGeographicalOrigins;
+    return this.filteredGeographicalOrigins;
+  }
+
+  /////////////////////////////////////////////////////
+  ///////  Tipi di oggetti  ///////////////////////////
+  /////////////////////////////////////////////////////
+  allTypeObjects: Array<TypeObject> = [];
+  filteredTypeObjects: Array<TypeObject> = [];
+
+  promiseallTypeObjects: Promise<TypeObject[]> = GetRequest(
+    baseURL + 'GetTypeObjects'
+  ).then((res) => {
+    console.log('TypeObject inviati dal database', res);
+    this.allTypeObjects = res;
+    return (this.filteredTypeObjects = this.allTypeObjects);
+  });
+
+  body_add_type_object: TypeObject = {
+    typeID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  getTypeObjects(input: string | undefined | null) {
+    this.filteredTypeObjects = this.allTypeObjects;
+    // if there is no search text give me every datapoint
+    if (input == '' || input == null || input == undefined) {
+      this.filteredTypeObjects = this.filterByYears(this.filteredTypeObjects);
+    } else {
+      this.filteredTypeObjects = this.allTypeObjects.filter((object) => {
+        return object.name.toLowerCase().includes(input.toLowerCase());
+      });
+      this.filteredTypeObjects = this.filterByYears(this.filteredTypeObjects);
+    }
+    //console.log('Filter results of getTypeObjects() => ',this.filteredTypeObjects);
+  }
+
+  getNewIDTypeObject(elementList: Array<TypeObject>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].typeID > highestID) {
+        highestID = elementList[i].typeID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateTypeObject(): Promise<any> {
+    this.body_add_type_object.typeID = this.getNewIDTypeObject(
+      this.filteredTypeObjects
+    );
+    let new_element = this.body_add_type_object;
+    this.allTypeObjects.unshift(new_element);
+    this.getTypeObjects(this.searchInput);
+    this.cancel();
+
+    // Perform the PostRequest
+    return PostRequest(baseURL + 'AddType/', this.body_add_type_object)
+      .then((response) => {
+        // Reset bodyAddAuthor to null after the PostRequest
+        this.body_add_type_object = {
+          typeID: 0,
+          name: '',
+          addedDate: today,
+          lastUpdateDate: today,
+          description: '',
+        };
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error; // Propagate the error
+      });
+  }
+
+  updateTypeObject(items: any[], itemToDelete: any, key: string) {
+    this.allTypeObjects = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    this.getTypeObjects(this.searchInput);
+    this.filteredTypeObjects = this.allTypeObjects;
+    console.log('Update TypeObjects ', this.filteredTypeObjects);
+    return this.filteredTypeObjects;
   }
 }
