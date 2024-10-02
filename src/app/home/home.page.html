@@ -1096,7 +1096,9 @@
 
                 <ion-item>
                   <ion-icon name="person"></ion-icon>
-                  <ion-label class="label-config-account"
+                  <ion-label
+                    class="label-config-account"
+                    style="min-width: 9rem"
                     >Profilo amministratore</ion-label
                   >
 
@@ -1119,7 +1121,11 @@
 
                 <ion-item>
                   <input
-                    style="flex: -moz-available"
+                    style="
+                      flex: -moz-available;
+                      margin-top: 1.5rem;
+                      margin-bottom: 3rem;
+                    "
                     class="move-to-left"
                     type="file"
                     (change)="onFileSelected($event)"

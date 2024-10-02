@@ -23,7 +23,7 @@
       ></ion-toast>
 
       <ion-button
-        class="bottone-crud btn-green"
+        class="bottone-crud btn-red"
         id="bottone-elimina-oggetto-{{ objectData?.objectID }}"
         (click)="cancel()"
       >
@@ -468,7 +468,7 @@
         />
       </svg>
 
-      <ion-label class="label-autori spacing-right"
+      <ion-label style="max-width: 6rem" class="label-autori spacing-right"
         >Disponibile</ion-label
       >
       <ion-toggle
