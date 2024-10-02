@@ -96,13 +96,11 @@ export class LoginPage {
 
       if (response) {
         this.handleSuccessfulLogin(response);
-      } else {
-        this.handleFailedLogin();
       }
     } catch (error) {
-      console.error('Si è verificato un errore durante il login: ', error);
-      this.errorMessage = 'Si è verificato un errore durante il login.';
-      this.showToast('Credenziali Errate', 'error');
+      this.handleFailedLogin();
+      this.showToast('Credenziali Errate', 'danger');
+      //console.log('Si è verificato un errore durante il login: ', error);
     } finally {
       if (!this.toggle_remember_me) {
         this.resetLoginForm();
@@ -157,6 +155,7 @@ export class LoginPage {
   // gestisci il login fallito
   private handleFailedLogin() {
     console.warn('Login fallito: Nessuna stringa valida ricevuta.');
+    this.showToast('Credenziali Errate', 'error');
     this.dataService.setTokenJWTsuccess(false);
     this.errorMessage = 'Login fallito. Controlla le credenziali.';
   }
