@@ -69,9 +69,10 @@ export class LoginPage {
   }
 
   checkToken(token: string): boolean {
-    // filtro del token
+    // controlla il token che abbia la lunghezza minima
     if (token.length > this.minimal_len_token) {
-      this.router.navigate(['/']); // Reindirizza alla home
+      // naviga su Home se ha successo
+      this.router.navigate(['/']);
       console.log('Login success | Accesso ad Home | Token |', token);
       return true;
     }
