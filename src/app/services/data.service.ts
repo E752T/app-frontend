@@ -167,6 +167,40 @@ export class DataService implements OnInit {
     htmlDescription2: '',
   };
 
+  objectData: DatabaseObject = {
+    objectID: 1,
+    authorID: 1,
+    userID: 1,
+    shopkeeperID: 1,
+    categoryID: 1,
+    typeID: 1,
+    warehouseID: 1,
+    provenanceID: 1,
+    geographicalOriginID: 1,
+    publisherID: 1,
+    genere: '',
+    avaiable: false,
+    authorDescription: '',
+    discoveryPlace: '',
+    addedDate: new Date(),
+    lastUpdateDate: new Date(),
+    discoveryDate: new Date(),
+    censusDate: new Date(),
+    sortOrder: 0,
+    cover: '',
+    scan01: '',
+    scan02: '',
+    scan03: '',
+    title: '',
+    subtitle: '',
+    objectNotes: '',
+    warehouseRoom: '',
+    rackNumber: 0,
+    position: 0,
+    htmlDescription1: '',
+    htmlDescription2: '',
+  };
+
   setUsername(username: string): void {
     this.username = username;
   }
@@ -177,6 +211,16 @@ export class DataService implements OnInit {
 
   setUserRole(role: string): void {
     this.userRole = role;
+  }
+
+  getObjectData(): DatabaseObject | null {
+    return this.objectData;
+  }
+
+  setObjectData(objectData: DatabaseObject | null): void {
+    if (objectData) {
+      this.objectData = objectData;
+    }
   }
 
   getUserRole(): string | null {

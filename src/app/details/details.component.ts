@@ -27,6 +27,7 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.user_role = this.dataService.getUserRole();
+    this.objectData = this.dataService.getObjectData();
   }
   allCategories: Array<Category> = [];
   allDatabase: DatabaseObject[] | undefined = [];
@@ -43,19 +44,20 @@ export class DetailsComponent implements OnInit {
 
       if (response !== null && response !== undefined) {
         this.objectData = response;
+        this.dataService.setObjectData(this.objectData);
       } else {
-        this.objectData = null;
+        this.dataService.setObjectData(null);
       }
     });
   }
 
   confirmUpdate() {
-    console.log('API UpdateObjectArchive => ', this.bodyAddObject);
-    PostRequest(baseURL + 'UpdateObjectArchive/', this.bodyAddObject);
+    console.log('API UpdateObjectArchive => ', this.objectData);
+    PostRequest(baseURL + 'UpdateObjectArchive/', this.objectData);
   }
 
   confirmDelete() {
-    console.log('API DeleteObject/  => ', this.bodyAddObject);
+    console.log('API DeleteObject/  => ', this.dataService.getObjectData());
     PostRequest(baseURL + 'DeleteObject/', this.objectData?.objectID);
     this.cancel();
   }
