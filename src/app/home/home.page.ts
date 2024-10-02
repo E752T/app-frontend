@@ -1118,6 +1118,12 @@ export class HomePage implements OnInit {
 
   async updateCredentials() {
     let current_user = this.dataService.getCurrentUser();
+    if (this.current_user.admin == true) {
+      this.current_user.admin = 1;
+    } else {
+      this.current_user.admin = 0;
+    }
+
     console.log('UpdateCredentials | new credentials = ', current_user);
     let response = await PostRequest(
       baseURL + 'UpdateCredentials/',
