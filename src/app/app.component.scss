@@ -10,6 +10,10 @@
 
 .label-autori {
   font-weight: bold;
+  min-width: 7rem;
+  letter-spacing: 1px;
+  font-size: small;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .spacing-right {
@@ -21,7 +25,6 @@
 .icone-autori {
   width: 20px;
   height: 20px;
-  margin-bottom: -4px;
 }
 
 .input-form {
@@ -95,9 +98,9 @@
 }
 
 .estetica-data {
-  color: black;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  color: rgb(71, 71, 71);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .titolo-categoria {
   margin-top: 40px;

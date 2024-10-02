@@ -231,8 +231,7 @@ ion-button.bottone-accedi {
 }
 
 .label-autori {
-  font-weight: bold;
-  padding-bottom: 2%;
+  margin-left: 1rem;
 }
 
 .carta-elemento {
@@ -276,10 +275,6 @@ ion-button.bottone-accedi {
   padding-right: 20px;
 }
 
-.testo-input {
-  font-size: 15px;
-}
-
 .testo-aggiungi-nuovo {
   text-align: center;
   font-family: "Times New Roman", Times, serif;
@@ -298,7 +293,6 @@ ion-button.bottone-accedi {
 .icone-autori {
   width: 20px;
   height: 20px;
-  margin-right: 5px;
 }
 
 .row:after {
@@ -323,9 +317,7 @@ ion-button.bottone-accedi {
 
 .input-form {
   background-color: rgb(255, 255, 255);
-  margin-top: 10px;
   box-sizing: border-box;
-  padding: 20px;
   border-radius: 5%;
   margin-left: 11px;
   display: flex !important;
