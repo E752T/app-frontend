@@ -42,7 +42,7 @@ import { baseURL } from '../enviroenment';
 @Component({
   selector: 'app-home', // page name
   templateUrl: 'home.page.html', // page html
-  styleUrls: ['./../app.component.scss', 'home.page.scss'], // page style
+  styleUrls: ['./../app.component.scss', './home.page.scss'], // page style
 })
 export class HomePage implements OnInit {
   //////////////////////////////////////////////////////////////
