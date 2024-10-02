@@ -1,3 +1,7 @@
+//////////////////////////////////////////////////////////////
+//////////// LIBRERIE ESTERNE ////////////////////////////////
+//////////////////////////////////////////////////////////////
+
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {
   ModalController,
@@ -9,11 +13,14 @@ import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { ElementRef } from '@angular/core';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
-//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////// LIBRERIE DEL PROGETTO ///////////////////////////
+//////////////////////////////////////////////////////////////
+
 import { GetRequest, PostRequest } from '../services/request.service';
 import { DataService, today } from '../services/data.service';
 
@@ -38,14 +45,36 @@ import { baseURL } from '../enviroenment';
   styleUrls: ['./../app.component.scss', 'home.page.scss'], // page style
 })
 export class HomePage implements OnInit {
+  //////////////////////////////////////////////////////////////
+  //////////// VARIABILI DEL PROGETTO //////////////////////////
+  //////////////////////////////////////////////////////////////
+
+  ///////////////////////////////////////////////////////////////////
+  ////  FILTRI DI RICERCA   /////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+
   availability: string = 'tutti'; // initial aviability filter checkbox
   searchInput: string | undefined | null = ''; // initial search input
   searchGeneres: Array<string> = []; // array for containing choosen generes
   searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
 
-  isMenuAnchored: boolean = true; // default: true = menu non ancorato
+  ///////////////////////////////////////////////////////////////////
+  //// MENU ANCORATO ////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
 
-  sizeColumnFilter: string = '0'; // default: 0 Dimensione predefinita
+  // dimensione della colonna del menuAncorato
+  // dove sono presenti i filtri, i bottoni di Assistenza, Account e LogOut
+  // default: 0 Dimensione predefinita, poichè inizialmente sia su Desktop che su Mobile
+  // solo il menù volante è attivato, al click del bottone con ancora
+  // il valore viene cambiato da 0 a 4, così il menù ancorato diventa fisso nella pagina
+  sizeColumnFilter: string = '0';
+  // variabile che definisce se il menù deve essere ancorato
+  // il valore di default: true per iniziare con il menù non ancorato
+  isMenuAnchored: boolean = true;
+
+  ///////////////////////////////////////////////////////////////////
+  //// CATEGORIE DELL'APPLICAZIONE //////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
 
   AdminTables: Array<string> = [
     'Author',
@@ -57,6 +86,10 @@ export class HomePage implements OnInit {
     'GeographicalOrigin',
     'TypeObject',
   ];
+
+  ///////////////////////////////////////////////////////////////////
+  //// CONTENITORE VUOTO DELL'USER //////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
 
   user: User = {
     admin: 0,
@@ -74,35 +107,42 @@ export class HomePage implements OnInit {
     shopkeeper: '',
   };
 
-  ///////////////////////////////////////////////////////
-  ////////////    ENCRYPTION    /////////////////////////
-  ///////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
+  //// CRITTOGRAFIA  ////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////
 
+  // chiave di crittografia per l'applicazione
   key: string =
     'PidGCxd0zOp8eu4ou1uOtrgwVYAoztSmU164JLSW1OaaCyfi6AyhzpxJLTck9uVx';
 
   private encrypt(txt: string): string {
+    // funzione per crittografare il testo con AES
     return CryptoJS.AES.encrypt(txt, this.key).toString();
   }
 
   private decrypt(txtToDecrypt: string) {
+    // funzione per decriptare il testo con AES
     return CryptoJS.AES.decrypt(txtToDecrypt, this.key).toString(
       CryptoJS.enc.Utf8
     );
   }
 
   public saveData(key: string, value: string) {
+    // funzione per salvare il testo con crittografia su localStorage
     localStorage.setItem(key, this.encrypt(value));
   }
 
   public getData(key: string) {
+    // funzione per prendere il testo con crittografia da localStorage e decriptarlo
     let data = localStorage.getItem(key) || '';
     return this.decrypt(data);
   }
 
   public clearData() {
+    // funzione per eliminare il testo da localStorage
     localStorage.clear();
   }
+  
 
   ///////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////
@@ -202,7 +242,8 @@ export class HomePage implements OnInit {
   screenSize = this.checkScreenSize();
 
   logOut() {
-    console.log('log out in corso');
+    console.log('Log out in corso...');
+    // elimina tutte le variabili trattenute nel localStorage
     localStorage.setItem('token_JWT', '');
     localStorage.setItem('token_JWT_success', '');
     localStorage.setItem('shopkeeper', '');
@@ -1021,9 +1062,15 @@ export class HomePage implements OnInit {
     return this.filteredTypeObjects;
   }
 
-  ////// FILTRI DI RICERCA
+  /////////////////////////////////////////////////////////////
+  ////////////   FILTRI DI RICERCA   //////////////////////////
+  /////////////////////////////////////////////////////////////
 
   setInput(input: string | undefined | null) {
+    // prendi il valore testuale inserito nella barra di ricerca
+    // ed associalo a searchInput per poterlo usare come filtro
+    // cambia questo valore ad ogni cambiamento del contenuto della barra di ricerca
+
     if (input !== undefined && input !== null) {
       this.searchInput = input;
     } else {
@@ -1032,6 +1079,19 @@ export class HomePage implements OnInit {
   }
 
   filterByYears<T extends { addedDate: Date }>(filteredItems: T[]): T[] {
+    // filtra gli elementi per il range di anni selezionati
+    // questa funzione lavora su tutte le categorie disponibili:
+    // quindi: esercenti, provenienza, origine etc... (tranne gli oggetti)
+
+    // item.discoveryDate: data di scoperta dell oggetto
+    // searchYears.lower: valore più basso del range di anni
+    // searchYears.upper: valore più alto del range di anni
+
+    // prende tutti gli oggetti e ritorna solamente quelli la cui
+    // data di aggiunta (item.addedDate) espressa in anni,
+    // è compresa fra il range degli anni selezionato, ovvero è
+    // compresa fra searchYears.lower ed searchYears.upper
+
     //console.log(" filter by years ",this.searchYears.lower, this.searchYears.upper);
     return filteredItems.filter((item) => {
       if (item.addedDate != null) {
@@ -1053,16 +1113,29 @@ export class HomePage implements OnInit {
   }
 
   filterByYearsObjects<T extends { discoveryDate: Date }>(
+    // filtra gli oggetti per il range di anni selezionati
+    // item.discoveryDate: data di scoperta dell oggetto
+    // searchYears.lower: valore più basso del range di anni
+    // searchYears.upper: valore più alto del range di anni
+
+    // prende tutti gli oggetti e ritorna solamente quelli la cui
+    // data di scoperta (item.discoveryDate) espressa in anni,
+    // è compresa fra il range degli anni selezionato, ovvero è
+    // compresa fra searchYears.lower ed searchYears.upper
+
+    // inizializza un vettore vuoto di oggetti
     filteredItems: T[]
   ): T[] {
     //console.log("Filtri degli anni impostato su :",this.searchYears.lower," | ", this.searchYears.upper);
-
     return filteredItems.filter((item) => {
       if (item.discoveryDate != null) {
+        // estrai l'anno di scoperta dell'oggetto
         const year = new Date(item.discoveryDate).getFullYear();
+        // estrai l'anno del range più basso
         const lowerYear = Number.isNaN(this.searchYears.lower)
           ? 1800
           : this.searchYears.lower;
+        // estrai l'anno del range più alto
         const upperYear = Number.isNaN(this.searchYears.upper)
           ? new Date().getFullYear()
           : this.searchYears.upper;
@@ -1077,7 +1150,13 @@ export class HomePage implements OnInit {
   }
 
   filterByAvaiability(filteredObjects: DatabaseObject[]) {
+    // filtra gli oggetti per la disponibilià
+
+    // inizializza i risultati filtrati come un vettore vuoto
     var result: DatabaseObject[] = filteredObjects;
+
+    // availability: variabile selezionata, controlla se prendere
+    // solo gli oggetti disponibili o tutti gli oggetti
     if (this.availability == 'solo_disponibili') {
       result = filteredObjects.filter((object) => {
         return object.avaiable == true;
@@ -1089,6 +1168,8 @@ export class HomePage implements OnInit {
   }
 
   filterByGeneres(filteredObjects: DatabaseObject[]) {
+    // filtra gli oggetti per i generi selezionati
+    // la variabile searchGeneres è per i generi selezionati da trovare
     var result: DatabaseObject[] = filteredObjects;
     if (this.searchGeneres.length > 0) {
       result = filteredObjects.filter((obj) =>
@@ -1107,17 +1188,22 @@ export class HomePage implements OnInit {
   }
 
   async showToast(message: string, color: string) {
+    // Mantieni questa classe per la personalizzazione
     const toast = await this.toastController.create({
       message: message,
       color: color,
       duration: 3000,
-      cssClass: 'toast-elemento', // Mantieni questa classe per la personalizzazione
+      cssClass: 'toast-elemento',
     });
     await toast.present();
   }
 
   async updateCredentials() {
+    // prendi da dataService le credenziali attuali
     let current_user = this.dataService.getCurrentUser();
+
+    // converti i valori del Profilo Amministratore dentro la modale
+    // per cambiare i valori da true/false a 0 e 1, dove 1 = admin e 0 = user
     if (this.current_user.admin == true) {
       this.current_user.admin = 1;
     } else {
@@ -1125,6 +1211,8 @@ export class HomePage implements OnInit {
     }
 
     console.log('UpdateCredentials | new credentials = ', current_user);
+
+    // manda al server le nuove credenziali
     let response = await PostRequest(
       baseURL + 'UpdateCredentials/',
       this.current_user
