@@ -56,7 +56,9 @@ export class HomePage implements OnInit {
   availability: string = 'tutti'; // initial aviability filter checkbox
   searchInput: string | undefined | null = ''; // initial search input
   searchGeneres: Array<string> = []; // array for containing choosen generes
-  searchYears = { lower: 1800, upper: 2024 }; // min and maximum years filter
+  lower_range = 1805;
+  upper_range = 2024;
+  searchYears = { lower: this.lower_range, upper: this.upper_range }; // min and maximum years filter
 
   ///////////////////////////////////////////////////////////////////
   //// MENU ANCORATO ////////////////////////////////////////////////
@@ -119,6 +121,8 @@ export class HomePage implements OnInit {
   sectionToShow: string = 'Store';
   // messaggio
   messageDismissModal: string = '';
+  // grandezza schermo
+  screenSize = this.checkScreenSize();
 
   ///////////////////////////////////////////////////////////////////
   //// CRITTOGRAFIA  ////////////////////////////////////////////////
@@ -160,12 +164,11 @@ export class HomePage implements OnInit {
   //// OGGETTI DEL DATABASE  ////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
 
-  bodyAddObject: any;
+  bodyAddObject: any; // body di richiesta per un nuovo oggetto da inserire
 
-  allDatabase: DatabaseObject[] = [];
-  filteredObjects: DatabaseObject[] = [];
-
-  imageUrl: string | ArrayBuffer | null = null;
+  allDatabase: DatabaseObject[] = []; // array di tutti gli oggetti
+  filteredObjects: DatabaseObject[] = []; // array di tutti gli oggetti filtrati
+  imageUrl: string | ArrayBuffer | null = null; // url immagine
 
   ///////////////////////////////////////////////////////////////////
   //// INIZIALIZZAZIONE APP  ////////////////////////////////////////
@@ -218,15 +221,16 @@ export class HomePage implements OnInit {
     }
   }
 
-  // FRONTEND FUNCTIONS
+  // Menù dei filtri di ricerca ( a sinistra nell'app )
   @ViewChild('menuAncora', { static: false }) menuAncora:
     | ElementRef
     | undefined;
+  // Griglia degli elementi del database ( a destra nell'app )
   @ViewChild('grigliaElementi', { static: false }) grigliaElementi:
     | ElementRef
     | undefined;
 
-  screenSize = this.checkScreenSize();
+  @ViewChild('popover') popover: any;
 
   logOut() {
     console.log('Log out in corso...');
@@ -239,6 +243,7 @@ export class HomePage implements OnInit {
     localStorage.setItem('username', '');
     localStorage.setItem('user_role', '');
 
+    // aspetta 2 secondi e ritorna alla schermata di Login
     setTimeout(() => {
       this.cancel();
       this.router.navigate(['/login']); // Reindirizza alla pagina di login
@@ -246,49 +251,53 @@ export class HomePage implements OnInit {
   }
 
   toggleMenu() {
+    // imposta il valore opposto a isMenuAnchored rispetto a quello che aveva adesso
     this.isMenuAnchored = !this.isMenuAnchored;
-    this.updateSize();
-  }
-
-  updateSize() {
+    // cambia la grandezza del menù ancorato da 2 a 0 e viceversa
+    // se l'ancora è disattivata, il menù ancorato ha grandezza della colonna  0 (0 su 12),
+    // se l'ancora è attivata, il menù ancorato ha grandezza della colonna 2 (2 su 12)
     this.sizeColumnFilter = this.isMenuAnchored ? '2' : '0';
   }
 
   checkScreenSize(): string {
+    // controlla la grandezza dello schermo
+    // imposta myScreen su 'mobile' o 'desktop'
+    // a seconda se lo schermo è più largo di thresholdScreen = 700px
+    const thresholdScreen = 700;
     const screenWidth = window.innerWidth;
-    const myScreen = screenWidth < 700 ? 'mobile' : 'desktop';
+    const myScreen = screenWidth < thresholdScreen ? 'mobile' : 'desktop';
     return myScreen;
   }
 
   getScreenSize() {
+    // controlla la grandezza dello schermo in pixel
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-
     console.log('Larghezza dello schermo: ' + screenWidth + 'px');
     console.log('Altezza dello schermo: ' + screenHeight + 'px');
   }
 
-  openFirstMenu() {
-    this.menuCtrl.open('first-menu');
-  }
-
-  @ViewChild('popover') popover: any;
-
   cancel() {
+    // esci dalla modale
     this.modalCtrl.dismiss(null, 'cancel');
   }
 
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      this.messageDismissModal = `Ciao !`;
+      this.messageDismissModal = ``;
     }
   }
 
   switchToView(value: string) {
+    // cambia categoria che sai visualizzando
+
     //console.log('switchToView() | view before ', this.sectionToShow);
+
     this.sectionToShow = value;
+    // reimposta il testo nella barra di ricerca
     this.searchInput = '';
+
     this.getAuthors(this.searchInput);
     this.getCategories(this.searchInput);
     this.getGeographicalOrigins(this.searchInput);
@@ -298,22 +307,22 @@ export class HomePage implements OnInit {
     this.getShopkeepers(this.searchInput);
     this.getTypeObjects(this.searchInput);
     this.getWarehouses(this.searchInput);
-    this.searchYears.lower = 1805;
-    this.searchYears.upper = 2024;
+
+    // reimposta i filtri di ricerca degli anni
+    this.searchYears.lower = this.lower_range;
+    this.searchYears.upper = this.upper_range;
+
     //console.log('switchToView() | view after ', this.sectionToShow);
   }
 
-  presentPopover(e: Event) {
-    this.popover.event = e;
-    this.isOpen = true;
-  }
-
   getItems(input: string | undefined | null) {
-    //console.log('Filter Object results');
     // Get all the items from the database request
     // 1. get all the values from the database
     // 2. filter the database objects based on the search text
+
     this.filteredObjects = this.allDatabase;
+    //console.log('Filter Object results');
+
     // if there is no search text give me every datapoint
     if (input == '' || input == null || input == undefined) {
       this.filteredObjects = this.filterByYearsObjects(this.filteredObjects);
