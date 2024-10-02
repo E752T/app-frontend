@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { DataService } from '../services/interfaces.service';
+import { DataService } from '../services/data.service';
 //import { MessageComponent } from './message.component';
 
 describe('DataService', () => {

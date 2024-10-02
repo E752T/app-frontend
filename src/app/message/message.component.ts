@@ -14,7 +14,7 @@ import { bodyAddObject, DataService } from '../services/data.service';
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss'],
+  styleUrls: ['./../app.component.scss', './message.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageComponent {

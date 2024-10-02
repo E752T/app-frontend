@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { MessageComponent } from './message.component';
+
 const routes: Routes = [
   { path: '', component: MessageComponent },
   { path: ':id' },

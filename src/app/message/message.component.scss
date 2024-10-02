@@ -106,84 +106,6 @@ ion-radio.ios::part(container) {
   margin-top: 1rem;
 }
 
-.modale-modifica-oggetto {
-  font-weight: bolder;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-}
-
-.titoli-modale {
-  margin-right: 2rem;
-  width: 6rem;
-}
-
-.titoli-modale-custom {
-  width: 6rem;
-}
-
-.button-container-icon {
-  display: flex; /* Enables flexbox layout */
-  justify-content: center; /* Centers items horizontally */
-  align-items: center; /* Centers items vertically */
-}
-
-.icone-aggiungi-oggetto-modified {
-  width: 30px;
-  height: 30px;
-}
-.icone-aggiungi-oggetto {
-  width: 40px;
-  height: 40px;
-  margin-right: 5px;
-}
-.icona-esterna {
-  width: 40px !important ;
-  height: 40px !important;
-}
-
-.vertical-align-container {
-  display: flex;
-  flex-direction: column; /* Align items in a column */
-  justify-content: center; /* Center items vertically */
-  height: 100vh; /* Full height of the viewport */
-  text-align: center; /* Center text horizontally */
-  width: 100%; /* Adjusts to full width of the toolbar */
-  padding: 10px; /* Adds some padding for better appearance */
-  box-sizing: border-box; /* Ensures padding is included in the width */
-}
-.input-form {
-  background-color: rgb(255, 255, 255);
-  margin-top: 10px;
-  box-sizing: border-box;
-  padding: 20px;
-  border-radius: 5%;
-  margin-left: 11px;
-  display: flex !important;
-  align-content: center !important;
-  align-items: center !important;
-}
-
-.div-svg-input:hover .icone-autori-edit {
-  display: block;
-  position: absolute;
-  margin-bottom: 20px;
-  top: 330px;
-  right: 0px;
-  width: 35px;
-  height: 20px;
-}
-
-.icone-autori-edit {
-  display: none;
-  position: absolute;
-  margin-top: -50px;
-}
-
-.icone-autori {
-  width: 15px;
-  height: 15px;
-}
 
 @media (min-width: 801px) {
   .fullscreen {
@@ -199,28 +121,5 @@ ion-radio.ios::part(container) {
   }
 }
 
-.center-element {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.titolo-elimina-elemento {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
 
-.card-elimina-elemento {
-  min-height: 40vh;
-  display: grid;
-  font-size: larger;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  width: 95%;
-}
-
-.toast-elemento {
-  text-align: center;
-  color: rgb(255, 255, 255);
-  font-size: larger;
-}
