@@ -3,10 +3,7 @@
     <ion-col>
       <ion-accordion-group>
         <ion-accordion value="first" class="accordion-oggetto">
-          <ion-item
-            slot="header"
-            class="oggetto-anteprima colore-categoria"
-          >
+          <ion-item slot="header" class="oggetto-anteprima colore-categoria">
             <ion-icon name="caret-forward-outline"></ion-icon>
             <ion-label class="cartellino-nome"
               >{{ provenance.name }}
@@ -20,7 +17,9 @@
             </ion-button>
             <ion-modal
               *ngIf="user_role === 'admin'"
-              trigger="modale-elimina-provenienza'{{ provenance.provenanceID }}'"
+              trigger="modale-elimina-provenienza'{{
+                provenance.provenanceID
+              }}'"
             >
               <ng-template>
                 <ion-header>
@@ -231,15 +230,11 @@
               Data dell'ultimo aggiornamento:
             </ion-label>
             <br />
-            <ion-text
-              color="lighter"
-              class="input-form estetica-data"
-              >{{
-                provenance.lastUpdateDate
-                  ? provenance.lastUpdateDate
-                  : "Clicca per aggiungere una data"
-              }}</ion-text
-            >
+            <ion-text color="lighter" class="input-form estetica-data">{{
+              provenance.lastUpdateDate
+                ? provenance.lastUpdateDate
+                : "Clicca per aggiungere una data"
+            }}</ion-text>
           </div>
 
           <div slot="content" *ngIf="user_role === 'admin'">
@@ -268,7 +263,9 @@
             </ion-button>
 
             <ion-modal
-              trigger="modale-elimina-provenienza-2-'{{ provenance.provenanceID }}'"
+              trigger="modale-elimina-provenienza-2-'{{
+                provenance.provenanceID
+              }}'"
             >
               <ng-template>
                 <ion-header>
