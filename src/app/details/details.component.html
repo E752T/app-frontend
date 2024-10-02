@@ -1,14 +1,13 @@
 <body style="overflow-y: scroll">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-title color="primary" style="max-width: 43vw; margin-right: 1rem"
+      <ion-title color="primary" class="titolo"
         >Dettagli dell'oggetto</ion-title
       >
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button
-        class="bottone-crud"
-        style="background-color: yellowgreen"
+        class="bottone-crud btn-green"
         (click)="confirmUpdate()"
         id="salva-oggetto"
       >
@@ -24,8 +23,7 @@
       ></ion-toast>
 
       <ion-button
-        class="bottone-crud"
-        style="background-color: red"
+        class="bottone-crud btn-green"
         id="bottone-elimina-oggetto-{{ objectData?.objectID }}"
         (click)="cancel()"
       >
@@ -65,7 +63,7 @@
                 <ion-icon name="document-text"></ion-icon>
                 Titolo
                 <br />
-                <ion-text style="margin-left: 3rem">
+                <ion-text class="margine-sx">
                   {{ objectData?.title }}
                 </ion-text>
               </ion-text>
@@ -76,7 +74,7 @@
                 Sottotitolo
                 <br />
 
-                <ion-text style="margin-left: 3rem">
+                <ion-text class="margine-sx">
                   {{ objectData?.subtitle }}
                 </ion-text>
               </ion-text>
@@ -446,8 +444,7 @@
     </ion-item>
     <ion-item>
       <svg
-        class="icone-aggiungi-oggetto-modified"
-        style="padding-right: 1rem; max-width: 40px"
+        class="icone-aggiungi-oggetto-modified icona-disponibile"
         version="1.1"
         id="svg2"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -471,7 +468,7 @@
         />
       </svg>
 
-      <ion-label style="max-width: 6rem" class="label-autori spacing-right"
+      <ion-label class="label-autori spacing-right"
         >Disponibile</ion-label
       >
       <ion-toggle
