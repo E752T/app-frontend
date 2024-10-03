@@ -44,11 +44,9 @@ export class DetailsComponent implements OnInit {
   @Input()
   search_input!: string | null | undefined;
 
-
   @Output()
   updateObjects = new EventEmitter<any>();
 
-  
   ngOnInit() {
     this.allCategories = this.dataService.getCategories(); // Ottieni le categorie dal servizio
     console.log('Categorie disponibili in Details:', this.allCategories);
@@ -80,12 +78,22 @@ export class DetailsComponent implements OnInit {
   }
 
   DeleteElement(objectID: any) {
-    this.allDatabase = this.allDatabase?.filter(
-      (element: DatabaseObject) => element.objectID !== objectID
+    this.allDatabase = this.dataService
+      .getAllData()
+      ?.filter((element: DatabaseObject) => element.objectID !== objectID);
+    console.log(
+      'elimina gli oggetti , questi sono i rimanenti',
+      this.allDatabase
     );
-    this.updateObjects.emit(this.allDatabase);
-    this.modalCtrl.dismiss({ confirmed: true });
-    return PostRequest(baseURL + 'DeleteObject/' + objectID);
+
+    this.dataService.removeObject(objectID);
+
+    this.dataService.allDatabase = this.allDatabase;
+    setTimeout(() => {
+      this.cancel();
+      this.tornaIndietro();
+    }, 1500);
+    return PostRequest(baseURL + 'DeleteObject/' + objectID); // OK
   }
 
   getTriggerId(): string {
