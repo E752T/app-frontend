@@ -527,6 +527,72 @@ export class HomePage implements OnInit {
     return this.allDatabase;
   }
 
+  getNewIDObject(elementList: Array<DatabaseObject>): number {
+    let highestID = 0;
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i].objectID > highestID) {
+        highestID = elementList[i].objectID;
+      }
+    }
+    return highestID + 1;
+  }
+
+  CreateObject(): Promise<any> {
+    this.bodyAddObject.objectID = this.getNewIDObject(this.allDatabase);
+    console.log("Nuova ID dell'oggetto", this.bodyAddObject.objectID);
+
+    let newObject = this.bodyAddObject;
+    this.allDatabase.unshift(newObject);
+    this.getItems(this.searchInput);
+
+    console.log('POST api/AddObject/ ', this.bodyAddObject);
+    // Perform the PostRequest
+
+    this.cancel();
+    return PostRequest(baseURL + 'AddObject/', this.bodyAddObject)
+      .then((response) => {
+        this.bodyAddObject = {
+          objectID: 1,
+          authorID: 1,
+          userID: 1,
+          shopkeeperID: 1,
+          categoryID: 1,
+          typeID: 1,
+          warehouseID: 1,
+          provenanceID: 1,
+          geographicalOriginID: 1,
+          publisherID: 1,
+          genere: '',
+          avaiable: false,
+          authorDescription: '',
+          discoveryPlace: '',
+          addedDate: new Date(),
+          lastUpdateDate: new Date(),
+          discoveryDate: new Date(),
+          censusDate: new Date(),
+          sortOrder: 0,
+          cover: '',
+          scan01: '',
+          scan02: '',
+          scan03: '',
+          title: '',
+          subtitle: '',
+          objectNotes: '',
+          warehouseRoom: '',
+          rackNumber: 0,
+          position: 0,
+          htmlDescription1: '',
+          htmlDescription2: '',
+        };
+
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error;
+      });
+  }
+
   /////////////////////////////////////////////////////
   ///////  Autori /////////////////////////////////////
   /////////////////////////////////////////////////////

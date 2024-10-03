@@ -78,6 +78,7 @@ export class DetailsComponent implements OnInit {
   }
 
   DeleteElement(objectID: any) {
+    //////////// ELIMINA OGGETTO DAL DATABASE ///////////////////
     this.allDatabase = this.dataService
       .getAllData()
       ?.filter((element: DatabaseObject) => element.objectID !== objectID);
@@ -87,13 +88,14 @@ export class DetailsComponent implements OnInit {
     );
 
     this.dataService.removeObject(objectID);
-
     this.dataService.allDatabase = this.allDatabase;
+    ////////////////////////////////////////////////////////////////////////////
+
     setTimeout(() => {
       this.cancel();
       this.tornaIndietro();
     }, 1500);
-    return PostRequest(baseURL + 'DeleteObject/' + objectID); // OK
+    return PostRequest(baseURL + 'DeleteObject/' + objectID);
   }
 
   getTriggerId(): string {
