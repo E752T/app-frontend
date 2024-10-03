@@ -34,7 +34,7 @@ export class MessageComponent {
   /////////////////////////////////////////////////////////////////////////////////
   //   CATEGORIE   ////////////////////////////////////////////////////////////////
   // TROVA LA CATEGORIA ASSOCIATA CON QUESTO OGGETTO
-  IDCategoria = this.message?.categoryID;
+  IDCategoria = this.object?.categoryID;
   categorie = this.dataService.getAllCategories();
   categoriaTrovata = this.categorie.find(
     (element) => element.categoryID === this.IDCategoria
@@ -48,7 +48,7 @@ export class MessageComponent {
   // AUTORI  (data binding) ////////////////////////////////////////////////////////
   // TROVA L AUTORE ASSOCIATO CON QUESTO OGGETTO
 
-  IDAutore = this.message?.authorID;
+  IDAutore = this.object?.authorID;
   autori = this.dataService.getAllCategories();
   autoreTrovato = this.autori.find(
     (element) => element.categoryID === this.IDAutore
@@ -61,7 +61,7 @@ export class MessageComponent {
   //////////////////////////////////////////////////////////////////////////////////
   // OGGETTO  //////////////////////////////////////////////////////////////////////
   public bodyAddObject = bodyAddObject;
-  public imageData: string | SafeUrl | undefined = this.message?.cover;
+  public imageData: string | SafeUrl | undefined = this.object?.cover;
 
   ////////////////////////////////////////////////////////////////////////////////
   // LOGIN ///////////////////////////////////////////////////////////////////////
@@ -81,13 +81,32 @@ export class MessageComponent {
     password: '',
     username: '',
   };
+  
   constructor(private dataService: DataService, private router: Router) {
+    // GET User
     this.token_JWT = this.dataService.getTokenJWT();
     this.user_role = this.dataService.getUserRole();
     this.username = this.dataService.getUsername();
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
 
+    console.log('MESSAGGIO OGGETTO ', this.objects);
+
+    // let message = this.dataService.getObjectById( this.message.objectID);
+
+    // GET Category
+    this.categorie = this.dataService.getAllCategories();
+
+    this.categoriaTrovata = this.categorie.find(
+      (element) => element.categoryID === this.object?.categoryID
+    );
+
+    // Verifica se la categoria è stata trovata e ottieni il nome
+    this.nomeCategoria = this.categoriaTrovata
+      ? this.categoriaTrovata.name
+      : 'Categoria non trovata';
+
+    console.log('IDCategoria E categorie ', this.IDCategoria, this.categorie);
     //const base64Data = 'data:image/png;base64,YourBase64ImageDataHere';
     //this.imageData = this.sanitizer.bypassSecurityTrustUrl(base64Data);
   }
