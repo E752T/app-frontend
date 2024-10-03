@@ -4,7 +4,11 @@
       <ion-accordion-group>
         <ion-accordion value="first" class="accordion-oggetto">
           <ion-item slot="header" class="oggetto-anteprima colore-categoria">
-            <ion-icon name="caret-forward-outline" class="icona-freccia-anteprima"></ion-icon>            <ion-label class="cartellino-nome">{{ category.name }} </ion-label>
+            <ion-icon
+              name="caret-forward-outline"
+              class="icona-freccia-anteprima"
+            ></ion-icon>
+            <ion-label class="cartellino-nome">{{ category.name }} </ion-label>
             <ion-button
               *ngIf="user_role === 'admin'"
               id="modale-elimina-categoria-'{{ category.categoryID }}'"
@@ -93,7 +97,7 @@
             </ion-button>
           </ion-item>
 
-          <div slot="content" class="elemento-categoria-dettagli">
+          <div slot="content" class="margine-iniziale">
             <svg
               fill="#000000"
               class="icone-autori"
@@ -104,7 +108,7 @@
                 d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"
               />
             </svg>
-            <ion-label style="font-weight: bold"> Autore: </ion-label>
+            <ion-label class="label-autori"> Nome: </ion-label>
             <ion-input
               *ngIf="user_role === 'admin'"
               class="input-form"
@@ -134,7 +138,7 @@
               />
             </svg>
 
-            <ion-label style="font-weight: bold"> Descrizione: </ion-label>
+            <ion-label class="label-autori"> Descrizione: </ion-label>
             <ion-input
               *ngIf="user_role === 'admin'"
               class="input-form"
@@ -195,9 +199,7 @@
                 stroke-linecap="round"
               />
             </svg>
-            <ion-label style="font-weight: bold; padding-bottom: 1%">
-              Anno di aggiunta:
-            </ion-label>
+            <ion-label class="label-autori"> Anno di aggiunta: </ion-label>
             <br />
             <ion-text class="input-form estetica-data" color="lighter">{{
               category.addedDate ? category.addedDate : "NOT FOUND"
@@ -249,7 +251,7 @@
                 stroke-linecap="round"
               />
             </svg>
-            <ion-label style="font-weight: bold; padding-bottom: 2%">
+            <ion-label class="label-autori">
               Data dell'ultimo aggiornamento:
             </ion-label>
             <br />
