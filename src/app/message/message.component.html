@@ -17,12 +17,14 @@
 
           <ion-card-subtitle
             class="titolo-oggetto"
-            style="color: palegoldenrod; min-height: 2rem"
+            style="color: #edff2bf8; min-height: 1rem; font-size: 12px"
           >
-            {{ message.genere ? message.genere : "Genere Non disponibile " }}
+            {{ message.genere ? message.genere : "Genere non disponibile " }}
           </ion-card-subtitle>
 
-          <ion-card-subtitle class="titolo-oggetto" style="color: palegoldenrod"
+          <ion-card-subtitle
+            class="titolo-oggetto"
+            style="color: palegoldenrod; font-size: 12px"
             >{{ message.avaiable ? "Disponibile " : "Non disponibile " }}
             <img
               src="{{
