@@ -81,7 +81,7 @@ export class MessageComponent {
     password: '',
     username: '',
   };
-  
+
   constructor(private dataService: DataService, private router: Router) {
     // GET User
     this.token_JWT = this.dataService.getTokenJWT();
