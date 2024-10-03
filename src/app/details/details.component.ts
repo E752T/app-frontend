@@ -39,8 +39,8 @@ export class DetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
       let response = this.dataService.getObjectById(this.id);
-      console.log('caricamento dettagli ID ', this.id);
-      console.log('caricamento dettagli OGGETTO ', response);
+      console.log('caricamento dettagli | ID ', this.id);
+      console.log('caricamento dettagli | OGGETTO ', response);
 
       if (response !== null && response !== undefined) {
         this.objectData = response;

@@ -13,7 +13,7 @@
 
 .bottone-crud {
   margin-top: 1rem;
-  min-width: 12vw;
+  min-width: 80px;
   max-width: 10rem;
   border-radius: 15px;
   color: aliceblue;
@@ -39,8 +39,10 @@
 }
 
 .titolo {
-  max-width: 43vw;
+  //max-width: 29vw;
   margin-right: 1rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 .btn-green {
