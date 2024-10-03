@@ -92,6 +92,7 @@ export class HomePage implements OnInit {
   ///////////////////////////////////////////////////////////////////
   //// CONTENITORE VUOTO DELL'USER //////////////////////////////////
   ///////////////////////////////////////////////////////////////////
+
   current_user: any;
   imageAvatar: any;
   user_role: any;
@@ -165,6 +166,7 @@ export class HomePage implements OnInit {
   ///////////////////////////////////////////////////////////////////
 
   bodyAddObject: any; // body di richiesta per un nuovo oggetto da inserire
+  element: DatabaseObject = this.dataService.getBodyAddObject();
 
   allDatabase: DatabaseObject[] = []; // array di tutti gli oggetti
   filteredObjects: DatabaseObject[] = []; // array di tutti gli oggetti filtrati
@@ -512,6 +514,17 @@ export class HomePage implements OnInit {
       throw new Error(`Oggetto con ID ${id} non trovato.`);
     }
     return item;
+  }
+
+  updateObjects(items: any[], itemToDelete: any, key: string) {
+    this.filteredObjects = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    this.allAuthors = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    console.log('Update Database/', this.allDatabase, this.filteredObjects);
+    return this.allDatabase;
   }
 
   /////////////////////////////////////////////////////

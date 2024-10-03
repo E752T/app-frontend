@@ -22,6 +22,17 @@ export class MessageComponent {
 
   @Input() message?: DatabaseObject;
 
+  @Input()
+  object!: DatabaseObject;
+
+  @Input()
+  objects!: Array<DatabaseObject>;
+
+  @Input()
+  search_input!: string | null | undefined;
+
+
+  
   public bodyAddObject = bodyAddObject;
   public imageData: string | SafeUrl | undefined = this.message?.cover;
 

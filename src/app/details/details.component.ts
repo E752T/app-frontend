@@ -1,15 +1,16 @@
 // details.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category, DatabaseObject } from '../services/interfaces.service';
 import { bodyAddObject, DataService } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { PostRequest } from '../services/request.service';
 import { baseURL } from '../enviroenment';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./../app.component.scss', './details.component.scss'],
+  styleUrls: ['./details.component.scss', './../app.component.scss'],
 })
 export class DetailsComponent implements OnInit {
   objectId: string | null = null;
@@ -22,6 +23,8 @@ export class DetailsComponent implements OnInit {
   id: number | undefined;
 
   constructor(
+    private modalCtrl: ModalController,
+
     private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute
@@ -32,6 +35,20 @@ export class DetailsComponent implements OnInit {
   allCategories: Array<Category> = [];
   allDatabase: DatabaseObject[] | undefined = [];
 
+  @Input()
+  object!: DatabaseObject;
+
+  @Input()
+  objects!: Array<DatabaseObject>;
+
+  @Input()
+  search_input!: string | null | undefined;
+
+
+  @Output()
+  updateObjects = new EventEmitter<any>();
+
+  
   ngOnInit() {
     this.allCategories = this.dataService.getCategories(); // Ottieni le categorie dal servizio
     console.log('Categorie disponibili in Details:', this.allCategories);
@@ -57,9 +74,18 @@ export class DetailsComponent implements OnInit {
   }
 
   confirmDelete() {
-    console.log('API DeleteObject/  => ', this.dataService.getObjectData());
+    console.log('API DeleteObject/', this.objectData?.objectID);
     PostRequest(baseURL + 'DeleteObject/', this.objectData?.objectID);
-    this.cancel();
+    //this.tornaIndietro();
+  }
+
+  DeleteElement(objectID: any) {
+    this.allDatabase = this.allDatabase?.filter(
+      (element: DatabaseObject) => element.objectID !== objectID
+    );
+    this.updateObjects.emit(this.allDatabase);
+    this.modalCtrl.dismiss({ confirmed: true });
+    return PostRequest(baseURL + 'DeleteObject/' + objectID);
   }
 
   getTriggerId(): string {
@@ -67,6 +93,10 @@ export class DetailsComponent implements OnInit {
   }
 
   cancel() {
+    this.modalCtrl.dismiss({ confirmed: true });
+  }
+
+  tornaIndietro() {
     this.router.navigate(['']); // Navigates to the root path
   }
 

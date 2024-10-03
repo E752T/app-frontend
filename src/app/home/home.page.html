@@ -601,9 +601,7 @@
             </ion-buttons>
           </ion-toolbar>
           <ion-text class="modale-esci">
-            <br />
-            Ciao {{this.current_user.username}, sei sicuro di voler uscire?
-            <br />
+            Ciao {{this.current_user.username}}, sei sicuro di voler uscire?
           </ion-text>
           <ion-button
             class="center confirm-exit"
@@ -1310,7 +1308,84 @@
           <ion-title class="titolo-categoria">Oggetti </ion-title>
 
           <ion-button
-            *ngIf="user_role=== 'admin'"
+            *ngIf="this.user_role === 'admin'"
+            id="bottone-aggiungi-nuovo-oggetto"
+            class="bottone-aggiungi-nuovo-oggetto"
+            color="lighter"
+            style="width: fit-content; background-color: red"
+            ><ion-icon
+              class="icona-aggiungi-nuovo-oggetto"
+              name="add-circle-outline"
+            ></ion-icon>
+
+            <ion-text style="width: initial">
+              Aggiungi un nuovo oggetto
+            </ion-text>
+          </ion-button>
+
+          <ion-modal
+            trigger="bottone-aggiungi-nuovo-oggetto"
+            (willDismiss)="onWillDismiss($event)"
+          >
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-title color="secondary"
+                      >Aggiungi un nuovo oggetto</ion-title
+                    >
+                  </ion-buttons>
+                  <ion-buttons slot="end">
+                    <ion-button
+                      id="button-add-element"
+                      (click)="CreateAuthor();"
+                      [strong]="true"
+                      >Salva</ion-button
+                    >
+                    <ion-toast
+                      trigger="button-add-element"
+                      message="Nuovo Elemento Aggiunto"
+                      class="toast-elemento"
+                      [duration]="2000"
+                      expand="block"
+                      color="success"
+                    ></ion-toast>
+
+                    <ion-button (click)="cancel()">
+                      <ion-icon name="close-outline"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content class="ion-padding">
+                <ion-item>
+                  <svg
+                    fill="#000000"
+                    class="icone-aggiungi-oggetto"
+                    viewBox="0 0 1920 1920"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1801.441 0v1920H219.03v-439.216h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.47 56.515-56.47h56.514V1029.02h-56.514c-31.196 0-56.515-25.3-56.515-56.471 0-31.172 25.319-56.47 56.515-56.47h56.514V577.254h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.471 56.515-56.471h56.514V0h1582.412Zm-113.03 112.941H332.06v351.373h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.3 56.514 56.471 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.471-56.514 56.471H332.06v326.275h1356.353V112.94ZM640.289 425.201H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Zm0 534.845H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+
+                  <ion-label class="titoli-modale"> Titolo </ion-label>
+
+                  <ion-input
+                    class="input-form"
+                    labelPlacement="stacked"
+                    type="text"
+                    [(ngModel)]="bodyAddObject.title"
+                  ></ion-input>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+
+          <ion-button
+            *ngIf="user_role === 'admin'"
             id="add-new-object-button"
             class="bottone-aggiungi-nuovo-oggetto"
             color="lighter"
@@ -1325,10 +1400,8 @@
             </ion-text>
           </ion-button>
           <ion-modal
-            *ngIf="current_user.role=== 'admin'"
-            trigger="add-new-object-button"
+            trigger="bottone-aggiungi-nuovo-oggetto"
             (willDismiss)="onWillDismiss($event)"
-            class="fullscreen-nuovo-oggetto"
           >
             <ng-template>
               <ion-header>
@@ -1762,8 +1835,13 @@
         <ion-col #grigliaElementi [size]="sizeColumnFilter">
           <ion-row>
             <app-message
-              *ngFor="let message of filteredObjects"
               [message]="message"
+              class="carta-elemento"
+              *ngFor="let message of filteredObjects"
+              [object]="element"
+              [objects]="filteredObjects"
+              (updateObjects)="updateObjects(this.allDatabase, element, 'objectID');"
+              [search_input]="searchInput"
             >
             </app-message>
           </ion-row>
