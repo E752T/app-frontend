@@ -125,6 +125,10 @@ export class DataService implements OnInit {
     return this.allDatabase;
   }
 
+  getAllCategories() {
+    return this.allCategories;
+  }
+
   removeObject(objectID: number) {
     this.allDatabase = this.getAllData().filter(
       (element: DatabaseObject) => element.objectID !== objectID

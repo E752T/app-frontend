@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
-import { DatabaseObject } from '../services/interfaces.service';
+import { Category, DatabaseObject } from '../services/interfaces.service';
 import { bodyAddObject, DataService } from '../services/data.service';
 
 @Component({
@@ -31,11 +31,40 @@ export class MessageComponent {
   @Input()
   search_input!: string | null | undefined;
 
+  /////////////////////////////////////////////////////////////////////////////////
+  //   CATEGORIE   ////////////////////////////////////////////////////////////////
+  // TROVA LA CATEGORIA ASSOCIATA CON QUESTO OGGETTO
+  IDCategoria = this.message?.categoryID;
+  categorie = this.dataService.getAllCategories();
+  categoriaTrovata = this.categorie.find(
+    (element) => element.categoryID === this.IDCategoria
+  );
+  // Verifica se la categoria è stata trovata e ottieni il nome
+  nomeCategoria = this.categoriaTrovata
+    ? this.categoriaTrovata.name
+    : 'Categoria non trovata';
 
-  
+  //////////////////////////////////////////////////////////////////////////////////
+  // AUTORI  (data binding) ////////////////////////////////////////////////////////
+  // TROVA L AUTORE ASSOCIATO CON QUESTO OGGETTO
+
+  IDAutore = this.message?.authorID;
+  autori = this.dataService.getAllCategories();
+  autoreTrovato = this.autori.find(
+    (element) => element.categoryID === this.IDAutore
+  );
+  // Verifica se la categoria è stata trovata e ottieni il nome
+  nomeAutore = this.autoreTrovato
+    ? this.autoreTrovato.name
+    : 'Autore non trovao';
+
+  //////////////////////////////////////////////////////////////////////////////////
+  // OGGETTO  //////////////////////////////////////////////////////////////////////
   public bodyAddObject = bodyAddObject;
   public imageData: string | SafeUrl | undefined = this.message?.cover;
 
+  ////////////////////////////////////////////////////////////////////////////////
+  // LOGIN ///////////////////////////////////////////////////////////////////////
   public token_JWT: string | null;
   public user_role: string | null;
   public token_JWT_success: boolean | null;
@@ -65,5 +94,6 @@ export class MessageComponent {
 
   navigateToDetails(id: number) {
     this.router.navigate(['/details', id]);
+    console.log("categoria dell'oggetto -> ", this.nomeCategoria);
   }
 }
