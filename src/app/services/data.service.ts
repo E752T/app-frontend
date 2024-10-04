@@ -42,16 +42,8 @@ export class DataService implements OnInit {
   // Objects
   public allDatabase: Array<DatabaseObject> = [];
   public filteredObjects: Array<DatabaseObject> = [];
-  private allCategories: Array<Category> = [];
-  private allAuthors: Array<Author> = [];
-  private allTypeObjects: Array<TypeObject> = [];
-  private allGeographicalOrigins: Array<GeographicalOrigin> = [];
-  private allPublishers: Array<Publisher> = [];
-  private allShopkeepers: Array<Shopkeeper> = [];
-  private allProvenances: Array<Provenance> = [];
-  private allWarehouse: Array<Warehouse> = [];
 
-  // AUTORI
+  // Authors /////////////////////////////////////////////////////////////
   public body_add_author = {
     authorID: 0,
     name: '',
@@ -63,6 +55,8 @@ export class DataService implements OnInit {
     telephone2: '',
     notes: '',
   };
+
+  private allAuthors: Array<Author> = [];
 
   setAuthors(authors: Array<Author>) {
     this.allAuthors = authors;
@@ -76,7 +70,8 @@ export class DataService implements OnInit {
     this.allAuthors.push(author);
   }
 
-  // Categories
+  // Categories /////////////////////////////////////////////////////////////
+  private allCategories: Array<Category> = [];
 
   setCategories(categories: Array<Category>) {
     this.allCategories = categories;
@@ -86,12 +81,98 @@ export class DataService implements OnInit {
     return this.allCategories;
   }
 
-  addCategory(author: Author): void {
-    this.allAuthors.push(author);
+  addCategory(category: Category): void {
+    this.allCategories.push(category);
   }
 
-  ////////////////////////////////////
-  ////////////// USER ////////////////
+  // TypeObject /////////////////////////////////////////////////////////////
+  private allTypeObjects: Array<TypeObject> = [];
+
+  setTypeObjects(typeObjects: Array<TypeObject>) {
+    this.allTypeObjects = typeObjects;
+  }
+
+  getTypeObjects(): Array<TypeObject> {
+    return this.allTypeObjects;
+  }
+
+  addTypeObject(typeObject: TypeObject): void {
+    this.allTypeObjects.push(typeObject);
+  }
+
+  // GeographicalOrigin /////////////////////////////////////////////////////////////
+  private allGeographicalOrigins: Array<GeographicalOrigin> = [];
+
+  setGeographicalOrigins(geographicalOrigins: Array<GeographicalOrigin>) {
+    this.allGeographicalOrigins = geographicalOrigins;
+  }
+
+  getGeographicalOrigins(): Array<GeographicalOrigin> {
+    return this.allGeographicalOrigins;
+  }
+
+  addGeographicalOrigin(geographicalOrigin: GeographicalOrigin): void {
+    this.allGeographicalOrigins.push(geographicalOrigin);
+  }
+  // Publisher /////////////////////////////////////////////////////////////
+  private allPublishers: Array<Publisher> = [];
+
+  setPublishers(publishers: Array<Publisher>) {
+    this.allPublishers = publishers;
+  }
+
+  getPublishers(): Array<Publisher> {
+    return this.allPublishers;
+  }
+
+  addPublisher(publisher: Publisher): void {
+    this.allPublishers.push(publisher);
+  }
+  // Shopkeeper /////////////////////////////////////////////////////////////
+  private allShopkeepers: Array<Shopkeeper> = [];
+
+  setShopkeepers(shopkeepers: Array<Shopkeeper>) {
+    this.allShopkeepers = shopkeepers;
+  }
+
+  getShopkeepers(): Array<Shopkeeper> {
+    return this.allShopkeepers;
+  }
+
+  addShopkeeper(shopkeeper: Shopkeeper): void {
+    this.allShopkeepers.push(shopkeeper);
+  }
+  // Provenance /////////////////////////////////////////////////////////////
+  private allProvenances: Array<Provenance> = [];
+
+  setProvenances(provenances: Array<Provenance>) {
+    this.allProvenances = provenances;
+  }
+
+  getProvenances(): Array<Provenance> {
+    return this.allProvenances;
+  }
+
+  addProvenance(provenance: Provenance): void {
+    this.allProvenances.push(provenance);
+  }
+
+  // Warehouse /////////////////////////////////////////////////////////////
+  private allWarehouses: Array<Warehouse> = [];
+
+  setWarehouses(warehouses: Array<Warehouse>) {
+    this.allWarehouses = warehouses;
+  }
+
+  getWarehouses(): Array<Warehouse> {
+    return this.allWarehouses;
+  }
+
+  addWarehouse(warehouse: Warehouse): void {
+    this.allWarehouses.push(warehouse);
+  }
+
+  // User /////////////////////////////////////////////////////////////
 
   private current_user: User = {
     admin: 0,
