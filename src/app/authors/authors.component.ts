@@ -94,16 +94,6 @@ export class AuthorsComponent {
     return PostRequest(baseURL + 'DeleteAuthor/' + objectID);
   }
 
-  getNewID(elementList: Array<Author>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].authorID > highestID) {
-        highestID = elementList[i].authorID;
-      }
-    }
-    return highestID + 1;
-  }
-
   UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdateAuthor/', this.author);
   }

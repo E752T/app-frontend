@@ -76,15 +76,7 @@ export class ProvenancesComponent {
     return PostRequest(baseURL + 'DeleteProvenance/' + objectID);
   }
 
-  getNewID(elementList: Array<Provenance>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].provenanceID > highestID) {
-        highestID = elementList[i].provenanceID;
-      }
-    }
-    return highestID + 1;
-  }
+
 
   UpdateElement(): Promise<any> {
     console.log('POST api/UpdateProvenance/ ', this.provenance);

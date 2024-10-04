@@ -78,15 +78,6 @@ export class TypeObjectComponent {
     return PostRequest(baseURL + 'DeleteTypeObject/' + typeID);
   }
 
-  getNewID(elementList: Array<TypeObject>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].typeID > highestID) {
-        highestID = elementList[i].typeID;
-      }
-    }
-    return highestID + 1;
-  }
 
   UpdateElement(): Promise<any> {
     console.log('Update Type Objects');

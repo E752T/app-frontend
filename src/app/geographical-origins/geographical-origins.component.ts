@@ -78,15 +78,7 @@ export class GeographicalOriginComponent {
     return PostRequest(baseURL + 'DeleteGeographicalOrigin/' + objectID);
   }
 
-  getNewID(elementList: Array<GeographicalOrigin>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].geographicalOriginID > highestID) {
-        highestID = elementList[i].geographicalOriginID;
-      }
-    }
-    return highestID + 1;
-  }
+
 
   UpdateElement(): Promise<any> {
     console.log(

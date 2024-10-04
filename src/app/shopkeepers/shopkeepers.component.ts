@@ -84,15 +84,6 @@ export class ShopkeepersComponent {
     return PostRequest(baseURL + 'DeleteShopkeeper/' + objectID);
   }
 
-  getNewID(elementList: Array<Shopkeeper>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].shopkeeperID > highestID) {
-        highestID = elementList[i].shopkeeperID;
-      }
-    }
-    return highestID + 1;
-  }
 
   UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdateShopkeeper/', this.shopkeeper);

@@ -98,15 +98,6 @@ export class EditorsComponent {
     return PostRequest(baseURL + 'UpdatePublisher/', this.publisher);
   }
 
-  getNewID(elementList: Array<Publisher>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].publisherID > highestID) {
-        highestID = elementList[i].publisherID;
-      }
-    }
-    return highestID + 1;
-  }
 
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });

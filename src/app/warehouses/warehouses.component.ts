@@ -87,16 +87,6 @@ export class WarehouseComponent {
     return PostRequest(baseURL + 'UpdateWarehouse/', this.warehouse);
   }
 
-  getNewID(elementList: Array<Warehouse>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].warehouseID > highestID) {
-        highestID = elementList[i].warehouseID;
-      }
-    }
-    return highestID + 1;
-  }
-
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });
   }
