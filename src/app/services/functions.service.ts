@@ -29,6 +29,18 @@ export class FunctionsService {
     return foundObject ? foundObject[key] : 1;
   }
 
+  private getNewID(elementList: any[], idKey: string): number {
+    let highestID = 0;
+
+    for (let i = 0; i < elementList.length; i++) {
+      if (elementList[i][idKey] > highestID) {
+        highestID = elementList[i][idKey];
+      }
+    }
+
+    return highestID + 1;
+  }
+
   ///////////////////////////////////////////////////////////////////////
   // AUTORI
   public body_add_author = {
@@ -44,8 +56,9 @@ export class FunctionsService {
   };
 
   public CreateAuthor(): Promise<any> {
-    this.body_add_author.authorID = this.getNewIDAuthor(
-      this.dataService.getAuthors()
+    this.body_add_author.authorID = this.getNewID(
+      this.dataService.getAuthors(),
+      'authorID'
     );
 
     this.dataService.addAuthor(this.body_add_author);
@@ -75,17 +88,5 @@ export class FunctionsService {
       telephone2: '',
       notes: '',
     };
-  }
-
-  private getNewIDAuthor(elementList: any[]): number {
-    let highestID = 0;
-
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].authorID > highestID) {
-        highestID = elementList[i].authorID;
-      }
-    }
-
-    return highestID + 1;
   }
 }
