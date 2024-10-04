@@ -544,8 +544,6 @@ export class HomePage implements OnInit {
     return highestID + 1;
   }
 
-
-
   CreateObject(): Promise<any> {
     this.bodyAddObject.objectID = this.getNewIDObject(this.allDatabase);
     console.log("Nuova ID dell'oggetto", this.bodyAddObject.objectID);

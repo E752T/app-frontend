@@ -26,9 +26,7 @@ export class FunctionsService {
       | 'userID'
   ) {
     const foundObject = array.find((obj) => obj.name === name);
-    return foundObject
-      ? foundObject[key]
-      : 'Nessun oggetto trovato con quel nome';
+    return foundObject ? foundObject[key] : 1;
   }
 
   ///////////////////////////////////////////////////////////////////////

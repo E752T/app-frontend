@@ -182,8 +182,13 @@ export class DetailsComponent implements OnInit {
       //this.objectData.geographicalOriginID = geographicalOriginID;
       //this.objectData.userID = userID;
 
-      console.log('API UpdateObjectArchive => ', this.objectData);
+      console.log(
+        'API with confirmUpdate() | UpdateObjectArchive => ',
+        this.objectData
+      );
       PostRequest(baseURL + 'UpdateObjectArchive/', this.objectData);
+    } else {
+      console.log('Oggetto non trovato, impossibile da aggiornare ');
     }
   }
 
