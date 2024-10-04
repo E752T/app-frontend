@@ -43,7 +43,7 @@ export class DetailsComponent implements OnInit {
   nomeAutore: any;
   nomeEsercente: any;
   nomeTipoDiOggetto: any;
-  body_add_author = this.functionsService.body_add_author;
+  body_add_author = this.dataService.body_add_author;
   /////////////////////////////////////////////////////////////////
 
   constructor(

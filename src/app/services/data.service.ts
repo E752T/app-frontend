@@ -55,6 +55,18 @@ export class DataService implements OnInit {
   //////////////////////////////////////////
   ////////////// AUTORI ////////////////
 
+  public body_add_author = {
+    authorID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
+  
   private allAuthors: Array<Author> = [];
 
   setAuthors(authors: Array<Author>) {

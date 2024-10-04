@@ -9,8 +9,12 @@ import { baseURL } from '../enviroenment';
 export class FunctionsService {
   constructor(private dataService: DataService) {}
 
-  // Trovami l'ID di un oggetto dato in input il nome e l'array dove cercare
+  /////////////////////////////////////////////////////////////////////////
+  // FUNZIONI GENERALI ////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////
+
   findIdByName(
+    // Trovami l'ID di un oggetto dato in input il nome e l'array dove cercare
     array: any[],
     name: string,
     key:
@@ -29,44 +33,45 @@ export class FunctionsService {
     return foundObject ? foundObject[key] : 1;
   }
 
-  private getNewID(elementList: any[], idKey: string): number {
+  private getNewID(
+    elementList: any[],
+    key:
+      | 'authorID'
+      | 'categoryID'
+      | 'provenanceID'
+      | 'shopkeeperID'
+      | 'geographicalOriginID'
+      | 'typeID'
+      | 'warehouseID'
+      | 'publisherID'
+      | 'geographicalOriginID'
+      | 'userID'
+  ): number {
     let highestID = 0;
 
     for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i][idKey] > highestID) {
-        highestID = elementList[i][idKey];
+      if (elementList[i][key] > highestID) {
+        highestID = elementList[i][key];
       }
     }
 
     return highestID + 1;
   }
 
-  ///////////////////////////////////////////////////////////////////////
-  // AUTORI
-  public body_add_author = {
-    authorID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
-  };
+  /////////////////////////////////////////////////////////////////////////
+  // AUTORI  //////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////
 
   public CreateAuthor(): Promise<any> {
-    this.body_add_author.authorID = this.getNewID(
+    this.dataService.body_add_author.authorID = this.getNewID(
       this.dataService.getAuthors(),
       'authorID'
     );
 
-    this.dataService.addAuthor(this.body_add_author);
+    this.dataService.addAuthor(this.dataService.body_add_author);
 
-    // Esegui la richiesta Post
-    return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
+    return PostRequest(baseURL + 'AddAuthor/', this.dataService.body_add_author)
       .then((response) => {
-        // Reset bodyAddAuthor a null dopo la PostRequest
         this.resetBodyAddAuthor();
         return response;
       })
@@ -77,7 +82,7 @@ export class FunctionsService {
   }
 
   private resetBodyAddAuthor(): void {
-    this.body_add_author = {
+    this.dataService.body_add_author = {
       authorID: 0,
       name: '',
       addedDate: today,
