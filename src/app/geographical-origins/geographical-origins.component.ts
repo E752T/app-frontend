@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { GeographicalOrigin } from '../services/interfaces.service';
+import { GeographicalOrigin } from '../services/data.service';
 import { DataService, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { baseURL } from '../enviroenment';

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { DetailsComponent } from './details.component';
-import { DatabaseObject } from '../services/interfaces.service';
+import { DatabaseObject } from '../services/data.service';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule],

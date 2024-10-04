@@ -5,7 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { baseURL } from '../enviroenment';
 import { DataService, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
-import { TypeObject } from '../services/interfaces.service';
+import { TypeObject } from '../services/data.service';
 
 @Component({
   selector: 'app-type-objects',

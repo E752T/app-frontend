@@ -5,7 +5,7 @@ import {
   Author,
   Category,
   DatabaseObject,
-} from '../services/interfaces.service';
+} from '../services/data.service';
 import { DataService, today } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { PostRequest } from '../services/request.service';

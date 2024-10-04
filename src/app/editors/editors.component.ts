@@ -11,7 +11,7 @@ import { ModalController } from '@ionic/angular';
 import { baseURL } from '../enviroenment';
 import { DataService, today } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
-import { Publisher } from '../services/interfaces.service';
+import { Publisher } from '../services/data.service';
 
 @Component({
   selector: 'app-editors',

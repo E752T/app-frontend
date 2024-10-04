@@ -31,7 +31,7 @@ import {
   Warehouse,
   TypeObject,
   User,
-} from '../services/interfaces.service';
+} from '../services/data.service';
 
 import { baseURL } from '../enviroenment';
 
@@ -810,6 +810,7 @@ export class HomePage implements OnInit {
   ).then((res) => {
     console.log('Publisher inviati dal database', res);
     this.allPublishers = res;
+    this.dataService.setPublishers(this.allPublishers);
     return (this.filteredPublishers = this.allPublishers);
   });
 
@@ -906,6 +907,7 @@ export class HomePage implements OnInit {
   ).then((res) => {
     console.log('Shopkeeper inviati dal database', res);
     this.allShopkeepers = res;
+    this.dataService.setShopkeepers(this.allShopkeepers);
     return (this.filteredShopkeepers = this.allShopkeepers);
   });
 
@@ -1001,6 +1003,7 @@ export class HomePage implements OnInit {
   ).then((res) => {
     console.log('Warehouse inviati dal database', res);
     this.allWarehouses = res;
+    this.dataService.setWarehouses(this.allWarehouses);
     return (this.filteredWarehouses = this.allWarehouses);
   });
 
@@ -1093,6 +1096,7 @@ export class HomePage implements OnInit {
   ).then((res) => {
     console.log('Provenance inviati dal database', res);
     this.allProvenances = res;
+    this.dataService.setProvenances(this.allProvenances);
     return (this.filteredProvenances = this.allProvenances);
   });
 
@@ -1179,6 +1183,7 @@ export class HomePage implements OnInit {
   ).then((res) => {
     console.log('GeographicalOrigin inviati dal database', res);
     this.allGeographicalOrigins = res;
+    this.dataService.setGeographicalOrigins(this.allGeographicalOrigins);
     return (this.filteredGeographicalOrigins = this.allGeographicalOrigins);
   });
 
@@ -1272,6 +1277,7 @@ export class HomePage implements OnInit {
   ).then((res) => {
     console.log('TypeObject inviati dal database', res);
     this.allTypeObjects = res;
+    this.dataService.setTypeObjects(this.allTypeObjects);
     return (this.filteredTypeObjects = this.allTypeObjects);
   });
 

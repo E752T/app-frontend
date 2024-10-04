@@ -12,7 +12,7 @@ import { OverlayEventDetail } from '@ionic/core';
 import { baseURL } from '../enviroenment';
 import { today, DataService } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
-import { Category } from '../services/interfaces.service';
+import { Category } from '../services/data.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

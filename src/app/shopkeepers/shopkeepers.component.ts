@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { baseURL } from '../enviroenment';
-import { Shopkeeper } from '../services/interfaces.service';
+import { Shopkeeper } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { DataService, today } from '../services/data.service';
 
@@ -41,29 +41,7 @@ export class ShopkeepersComponent {
   @Output()
   updateShopkeepers = new EventEmitter<any>();
 
-  body_add_shopkeeper: Shopkeeper = {
-    shopkeeperID: 0,
-    uniqueName: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    telephone1: '',
-    telephone2: '',
-    email: '',
-    notes: '',
-  };
-
-  body_update_shopkeeper: Shopkeeper = {
-    shopkeeperID: 0,
-    uniqueName: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    telephone1: '',
-    telephone2: '',
-    email: '',
-    notes: '',
-  };
+  body_add_shopkeeper = this.dataService.body_add_shopkeeper;
 
   DeleteElement(objectID: any) {
     this.shopkeepers = this.shopkeepers.filter(

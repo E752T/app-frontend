@@ -10,7 +10,7 @@ import { Platform } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 
-import { Author } from '../services/interfaces.service';
+import { Author } from '../services/data.service';
 import { PostRequest } from '../services/request.service';
 import { DataService, today } from '../services/data.service';
 import { baseURL } from '../enviroenment';

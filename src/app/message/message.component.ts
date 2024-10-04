@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
-import { Category, DatabaseObject } from '../services/interfaces.service';
+import { Category, DatabaseObject } from '../services/data.service';
 import { bodyAddObject, DataService } from '../services/data.service';
 
 @Component({
