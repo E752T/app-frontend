@@ -68,13 +68,7 @@ export class GeographicalOriginComponent {
     return PostRequest(baseURL + 'DeleteGeographicalOrigin/' + objectID);
   }
 
-
-
   UpdateElement(): Promise<any> {
-    console.log(
-      'POST api/UpdateGeographicalOrigin/ ',
-      this.geographical_origin
-    );
     return PostRequest(
       baseURL + 'UpdateGeographicalOrigin/',
       this.geographical_origin

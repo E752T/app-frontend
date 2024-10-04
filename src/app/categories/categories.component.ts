@@ -77,23 +77,8 @@ export class CategoriesComponent {
     return PostRequest(baseURL + 'DeleteCategory/' + categoryID);
   }
 
-  confirmDeleteCategory() {
-    this.DeleteCategory(this.category?.categoryID);
-    this.modalCtrl.dismiss({ confirmed: true });
-  }
-
-  UpdateCategoryAPI(): Promise<any> {
+  UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdateCategory/', this.category);
-  }
-
-  getNewCategoryID(elementList: Array<Category>): number {
-    let highestID = 0;
-    for (let i = 0; i < elementList.length; i++) {
-      if (elementList[i].categoryID > highestID) {
-        highestID = elementList[i].categoryID;
-      }
-    }
-    return highestID + 1;
   }
 
   cancel() {

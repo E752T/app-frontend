@@ -9,7 +9,7 @@ import { DataService, today } from '../services/data.service';
 @Component({
   selector: 'app-shopkeepers',
   templateUrl: './shopkeepers.component.html',
-  styleUrls: ['./../app.component.scss','./shopkeepers.component.scss'],
+  styleUrls: ['./../app.component.scss', './shopkeepers.component.scss'],
 })
 export class ShopkeepersComponent {
   private platform = inject(Platform);
@@ -73,7 +73,6 @@ export class ShopkeepersComponent {
     this.modalCtrl.dismiss({ confirmed: true });
     return PostRequest(baseURL + 'DeleteShopkeeper/' + objectID);
   }
-
 
   UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdateShopkeeper/', this.shopkeeper);

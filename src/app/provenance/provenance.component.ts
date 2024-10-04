@@ -66,10 +66,7 @@ export class ProvenancesComponent {
     return PostRequest(baseURL + 'DeleteProvenance/' + objectID);
   }
 
-
-
   UpdateElement(): Promise<any> {
-    console.log('POST api/UpdateProvenance/ ', this.provenance);
     return PostRequest(baseURL + 'UpdateProvenance/', this.provenance);
   }
 

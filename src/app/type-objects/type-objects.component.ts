@@ -65,12 +65,10 @@ export class TypeObjectComponent {
     );
     this.updateTypeObject.emit(this.type_objects);
     this.modalCtrl.dismiss({ confirmed: true });
-    console.log('DeleteTypeObject ', this.type_objects);
     return PostRequest(baseURL + 'DeleteTypeObject/' + typeID);
   }
 
   UpdateElement(): Promise<any> {
-    console.log('Update Type Objects');
     return PostRequest(baseURL + 'UpdateTypeObject/', this.type_object);
   }
 

@@ -16,7 +16,7 @@ import { Publisher } from '../services/interfaces.service';
 @Component({
   selector: 'app-editors',
   templateUrl: './editors.component.html',
-  styleUrls: ['./../app.component.scss','./editors.component.scss'],
+  styleUrls: ['./../app.component.scss', './editors.component.scss'],
 })
 export class EditorsComponent {
   public token_JWT: string | null;
@@ -24,7 +24,6 @@ export class EditorsComponent {
   public token_JWT_success: boolean | null;
   public username: string | null = localStorage.getItem('username');
   public body_login: any;
-
 
   constructor(
     private modalCtrl: ModalController,
@@ -83,11 +82,9 @@ export class EditorsComponent {
     return PostRequest(baseURL + 'DeletePublisher/' + objectID);
   }
 
-
   UpdateElement(): Promise<any> {
     return PostRequest(baseURL + 'UpdatePublisher/', this.publisher);
   }
-
 
   cancel() {
     this.modalCtrl.dismiss({ confirmed: false });

@@ -3,11 +3,9 @@ import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  UrlTree,
   Router,
 } from '@angular/router';
 import { DataService } from './services/data.service';
-import { ModalController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root',
@@ -16,24 +14,9 @@ export class AuthGuard implements CanActivate {
   public token_JWT: string | null;
   public user_role: string | null;
   public username: string | null = localStorage.getItem('username');
+  public body_login: any;
 
-  public body_login: {
-    shopkeeper: string | null;
-    email: string | null;
-    password: string | null;
-    username: string | null;
-  } = {
-    shopkeeper: '',
-    email: '',
-    password: '',
-    username: '',
-  };
-
-  constructor(
-    private modalCtrl: ModalController,
-    private dataService: DataService,
-    private router: Router
-  ) {
+  constructor(private dataService: DataService, private router: Router) {
     this.token_JWT = this.dataService.getTokenJWT();
     this.user_role = this.dataService.getUserRole();
     this.username = this.dataService.getUsername();
