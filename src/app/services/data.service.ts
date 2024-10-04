@@ -20,7 +20,8 @@ import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root', // Questo rende il servizio disponibile in tutta l'app
+  providedIn: 'root',
+  // Questo rende il servizio disponibile in tutta l'app
 })
 export class DataService implements OnInit {
   private username: string | null = null;
@@ -49,6 +50,22 @@ export class DataService implements OnInit {
 
   getCategories(): Array<Category> {
     return this.allCategories;
+  }
+
+  //////////////////////////////////////////
+  ////////////// AUTORI ////////////////
+
+  private allAuthors: Array<Author> = [];
+
+  setAuthors(authors: Array<Author>) {
+    this.allAuthors = authors;
+  }
+
+  getAuthors(): Array<Author> {
+    return this.allAuthors;
+  }
+  addAuthor(author: Author): void {
+    this.allAuthors.push(author);
   }
 
   ////////////////////////////////////
@@ -123,10 +140,6 @@ export class DataService implements OnInit {
 
   getAllData() {
     return this.allDatabase;
-  }
-
-  getAllCategories() {
-    return this.allCategories;
   }
 
   removeObject(objectID: number) {

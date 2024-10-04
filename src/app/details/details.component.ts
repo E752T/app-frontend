@@ -1,40 +1,68 @@
 // details.component.ts
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Category, DatabaseObject } from '../services/interfaces.service';
-import { bodyAddObject, DataService } from '../services/data.service';
+import {
+  Author,
+  Category,
+  DatabaseObject,
+} from '../services/interfaces.service';
+import { bodyAddObject, DataService, today } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { PostRequest } from '../services/request.service';
 import { baseURL } from '../enviroenment';
 import { ModalController } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core';
+import { FunctionsService } from '../services/functions.service';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss', './../app.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  objectId: string | null = null;
-  objectData: DatabaseObject | null = null;
+  /////////////////////////////////////////////////////////////////
+  // User
+  public user_role: string | null; // ruolo dell'utente
+
+  /////////////////////////////////////////////////////////////////
+  // Database degli oggetti
   bodyAddObject = bodyAddObject;
+  objectId: string | null = null; // id dell'oggetto
+  objectData: DatabaseObject | null = null; // dati dell'oggetto
 
   private dataSubject = new BehaviorSubject<any[]>([]);
   public data$ = this.dataSubject.asObservable();
-  public user_role: string | null;
-  id: number | undefined;
+
+  id: number | undefined; // id dell'oggetto
+
+  /////////////////////////////////////////////////////////////////
+  // Database degli altri elementi che non sono oggetti
+  // nomi delle categorie esterne all'oggetto ottenibili interpolando
+  // le ID dentro gli oggetti e gli altri Database
+  nomeCategoria: any;
+  nomeAutore: any;
+  nomeEsercente: any;
+  nomeTipoDiOggetto: any;
+  body_add_author = this.functionsService.body_add_author;
+  /////////////////////////////////////////////////////////////////
 
   constructor(
     private modalCtrl: ModalController,
-
     private dataService: DataService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private functionsService: FunctionsService
   ) {
-    this.user_role = this.dataService.getUserRole();
-    this.objectData = this.dataService.getObjectData();
+    this.user_role = this.dataService.getUserRole(); // prendi il ruolo dell'utente
+    this.objectData = this.dataService.getObjectData(); // prendi i dati dell'oggetto selezionato
   }
-  allCategories: Array<Category> = [];
-  allDatabase: DatabaseObject[] | undefined = [];
 
+  /////////////////////////////////////////////////////////////////
+  // inizializzazione dei database delle varie categorie
+  allDatabase: DatabaseObject[] | undefined = [];
+  allCategories: Array<Category> = [];
+  allAuthors: Array<Author> = [];
+
+  /////////////////////////////////////////////////////////////////
   @Input()
   object!: DatabaseObject;
 
@@ -46,29 +74,75 @@ export class DetailsComponent implements OnInit {
 
   @Output()
   updateObjects = new EventEmitter<any>();
+  /////////////////////////////////////////////////////////////////
 
   ngOnInit() {
+    /////////////////////////////////////////////////////////////////
+    // Database Esterni
+    // prendi gli oggetti del databasee dal dataService
     this.allCategories = this.dataService.getCategories(); // Ottieni le categorie dal servizio
-    console.log('Categorie disponibili in Details:', this.allCategories);
+    this.allAuthors = this.dataService.getAuthors(); // Ottieni gli autori
+    /////////////////////////////////////////////////////////////////
 
     this.route.params.subscribe((params) => {
-      this.id = +params['id'];
-      let response = this.dataService.getObjectById(this.id);
-
-      console.log(
-        'caricamento dettagli | ID ',
-        this.id,
-        ' | OGGETTO ',
-        response
-      );
-
+      this.id = +params['id']; // estrai l' ID dal URL
+      let response = this.dataService.getObjectById(this.id); // prendi i dati di un oggetto con specifica ID
+      //console.log('Dettagli dell'oggetto con   | ID ', this.id, ' | OGGETTO ', response);
       if (response !== null && response !== undefined) {
-        this.objectData = response;
-        this.dataService.setObjectData(this.objectData);
-      } else {
-        this.dataService.setObjectData(null);
+        this.objectData = response; // associa ad objectData la risposta di dataService l'oggetto
+        this.dataService.setObjectData(this.objectData); // salva objectData su dataService
+
+        /////////////////////////////////////////////////////////////////////////////////
+        // CATEGORIE
+        // Trova la categoria associata con questo oggetto dal database
+        const IDCategoria = this.objectData.categoryID;
+        let elementoTrovato_1 = this.allCategories.find(
+          (categoria) => categoria.categoryID === IDCategoria
+        );
+
+        if (elementoTrovato_1) {
+          this.nomeCategoria = elementoTrovato_1.name;
+        } else {
+          this.nomeCategoria = 'Categoria non trovata';
+        }
+        /////////////////////////////////////////////////////////////////////////////////
+
+        /////////////////////////////////////////////////////////////////////////////////
+        // AUTORI
+        // Trova la categoria associata con questo oggetto dal database
+        const IDautore = this.objectData.authorID;
+        let elementoTrovato = this.allAuthors.find(
+          (elemento) => elemento.authorID === IDautore
+        );
+
+        if (elementoTrovato) {
+          this.nomeAutore = elementoTrovato.name;
+        } else {
+          this.nomeAutore = 'Autore non trovata';
+        }
+        /////////////////////////////////////////////////////////////////////////////////
       }
     });
+  }
+
+  addAuthor(filteredAuthors: any[]) {
+    this.functionsService
+      .CreateAuthor()
+      .then((response) => {
+        console.log('Autore aggiunto con successo:', response);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta dell'autore:", error);
+      });
+  }
+
+  messageDismissModal: string = '';
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      this.messageDismissModal = ``;
+    }
   }
 
   confirmUpdate() {

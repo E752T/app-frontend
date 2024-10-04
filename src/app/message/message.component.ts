@@ -31,33 +31,6 @@ export class MessageComponent {
   @Input()
   search_input!: string | null | undefined;
 
-  /////////////////////////////////////////////////////////////////////////////////
-  //   CATEGORIE   ////////////////////////////////////////////////////////////////
-  // TROVA LA CATEGORIA ASSOCIATA CON QUESTO OGGETTO
-  IDCategoria = this.object?.categoryID;
-  categorie = this.dataService.getAllCategories();
-  categoriaTrovata = this.categorie.find(
-    (element) => element.categoryID === this.IDCategoria
-  );
-  // Verifica se la categoria è stata trovata e ottieni il nome
-  nomeCategoria = this.categoriaTrovata
-    ? this.categoriaTrovata.name
-    : 'Categoria non trovata';
-
-  //////////////////////////////////////////////////////////////////////////////////
-  // AUTORI  (data binding) ////////////////////////////////////////////////////////
-  // TROVA L AUTORE ASSOCIATO CON QUESTO OGGETTO
-
-  IDAutore = this.object?.authorID;
-  autori = this.dataService.getAllCategories();
-  autoreTrovato = this.autori.find(
-    (element) => element.categoryID === this.IDAutore
-  );
-  // Verifica se la categoria è stata trovata e ottieni il nome
-  nomeAutore = this.autoreTrovato
-    ? this.autoreTrovato.name
-    : 'Autore non trovao';
-
   //////////////////////////////////////////////////////////////////////////////////
   // OGGETTO  //////////////////////////////////////////////////////////////////////
   public bodyAddObject = bodyAddObject;
@@ -90,29 +63,11 @@ export class MessageComponent {
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
 
-    console.log('MESSAGGIO OGGETTO ', this.objects);
-
-    // let message = this.dataService.getObjectById( this.message.objectID);
-
-    // GET Category
-    this.categorie = this.dataService.getAllCategories();
-
-    this.categoriaTrovata = this.categorie.find(
-      (element) => element.categoryID === this.object?.categoryID
-    );
-
-    // Verifica se la categoria è stata trovata e ottieni il nome
-    this.nomeCategoria = this.categoriaTrovata
-      ? this.categoriaTrovata.name
-      : 'Categoria non trovata';
-
-    console.log('IDCategoria E categorie ', this.IDCategoria, this.categorie);
     //const base64Data = 'data:image/png;base64,YourBase64ImageDataHere';
     //this.imageData = this.sanitizer.bypassSecurityTrustUrl(base64Data);
   }
 
   navigateToDetails(id: number) {
     this.router.navigate(['/details', id]);
-    console.log("categoria dell'oggetto -> ", this.nomeCategoria);
   }
 }

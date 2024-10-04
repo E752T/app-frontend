@@ -8,6 +8,7 @@ import {
   RefresherCustomEvent,
   ToastController,
 } from '@ionic/angular';
+
 import { ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuController } from '@ionic/angular';
@@ -233,6 +234,22 @@ export class HomePage implements OnInit {
     | undefined;
 
   @ViewChild('popover') popover: any;
+
+  convertDate(dateString: string): { date: string; time: string } {
+    // Creiamo un oggetto Date a partire dalla stringa fornita
+    const date = new Date(dateString);
+
+    // Estraiamo la data nel formato YYYY-MM-DD
+    const formattedDate = date.toISOString().split('T')[0];
+
+    // Estraiamo l'ora nel formato HH:mm:ss
+    const formattedTime = date.toTimeString().split(' ')[0];
+
+    return {
+      date: formattedDate,
+      time: formattedTime,
+    };
+  }
 
   /////////////////////////////////////////////////////////////
   ////////////   CREDENZIALI    ///////////////////////////////
@@ -605,6 +622,8 @@ export class HomePage implements OnInit {
   ).then((res) => {
     console.log('Author inviati dal database', res);
     this.allAuthors = res;
+    this.dataService.setAuthors(this.allAuthors);
+
     return (this.filteredAuthors = this.allAuthors);
   });
 
@@ -651,7 +670,6 @@ export class HomePage implements OnInit {
     this.getAuthors(this.searchInput);
     console.log('POST api/AddAuthor/ ', this.body_add_author);
     // Perform the PostRequest
-
     this.cancel();
     return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
       .then((response) => {
@@ -1121,7 +1139,7 @@ export class HomePage implements OnInit {
         this.body_add_provenance = {
           provenanceID: 0,
           name: '',
-          addedDate: today,
+          addedDate: today, // this.convertDate(today),
           lastUpdateDate: today,
           description: '',
         };
