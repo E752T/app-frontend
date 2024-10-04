@@ -202,15 +202,25 @@ export class HomePage implements OnInit {
   }
 
   onFileSelected(event: Event) {
-    // funzione che prende il file immagine selezionato
-    // e lo associa alla variabile imageUrl
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageUrl = reader.result;
+        // Verifica se objectData è definito
+        this.imageUrl = reader.result as string;
+
+        console.log(this.imageUrl);
+        if (this.imageUrl) {
+          // Associa il risultato del caricamento all'oggetto objectData.cover
+          this.bodyAddObject.cover = this.imageUrl;
+        } else {
+          console.error('objectData non è definito.');
+        }
       };
+      // Legge il file come URL di dati
       reader.readAsDataURL(file);
+    } else {
+      console.error('Nessun file selezionato.');
     }
   }
 

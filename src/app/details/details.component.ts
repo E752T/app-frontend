@@ -198,25 +198,23 @@ export class DetailsComponent implements OnInit {
     //this.tornaIndietro();
   }
 
-  DeleteElement(objectID: any) {
-    //////////// ELIMINA OGGETTO DAL DATABASE ///////////////////
+  async DeleteElement(objectID: any) {
+    // Effettua la richiesta per eliminare l'oggetto dal server
+    await PostRequest(baseURL + 'DeleteObject/' + objectID);
+
+    // Elimina l'oggetto dal database locale
+    this.dataService.removeObject(objectID);
+
+    // Aggiorna la lista degli oggetti nel frontend
     this.allDatabase = this.dataService
       .getAllData()
       ?.filter((element: DatabaseObject) => element.objectID !== objectID);
-    console.log(
-      'elimina gli oggetti , questi sono i rimanenti',
-      this.allDatabase
-    );
 
-    this.dataService.removeObject(objectID);
-    this.dataService.allDatabase = this.allDatabase;
-    ////////////////////////////////////////////////////////////////////////////
+    console.log('Oggetti rimanenti dopo eliminazione:', this.allDatabase);
 
-    setTimeout(() => {
-      this.cancel();
-      this.tornaIndietro();
-    }, 1500);
-    return PostRequest(baseURL + 'DeleteObject/' + objectID);
+    // Esegui eventuali operazioni di cancellazione o navigazione
+    this.cancel();
+    this.tornaIndietro();
   }
 
   getTriggerId(): string {

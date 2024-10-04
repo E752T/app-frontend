@@ -1637,7 +1637,9 @@
                     color="success"
                     style="margin-right: 15vw"
                     id="{{bodyAddObject.avaiable }}"
-                  >
+                    value="{{ bodyAddObject.avaiable }}"
+                    [(ngModel)]="bodyAddObject.avaiable"
+                    >
                   </ion-toggle>
                 </ion-item>
 
