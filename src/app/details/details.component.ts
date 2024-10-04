@@ -33,6 +33,7 @@ export class DetailsComponent implements OnInit {
   public data$ = this.dataSubject.asObservable();
 
   id: number | undefined; // id dell'oggetto
+  messageDismissModal: string = '';
 
   /////////////////////////////////////////////////////////////////
   // Database degli altri elementi che non sono oggetti
@@ -136,8 +137,6 @@ export class DetailsComponent implements OnInit {
       });
   }
 
-  messageDismissModal: string = '';
-
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
@@ -146,8 +145,46 @@ export class DetailsComponent implements OnInit {
   }
 
   confirmUpdate() {
-    console.log('API UpdateObjectArchive => ', this.objectData);
-    PostRequest(baseURL + 'UpdateObjectArchive/', this.objectData);
+    // trova l'ID dell'autore da mettere nell'oggetto
+    let authorID = this.functionsService.findIdByName(
+      this.dataService.getAuthors(),
+      this.nomeAutore,
+      'authorID'
+    );
+
+    let categoryID = this.functionsService.findIdByName(
+      this.dataService.getCategories(),
+      this.nomeCategoria,
+      'categoryID'
+    );
+
+    let typeID = this.functionsService.findIdByName(
+      this.dataService.getAuthors(), ///////////////////////////////////
+      this.nomeTipoDiOggetto,
+      'typeID'
+    );
+
+    let shopkeeperID = this.functionsService.findIdByName(
+      this.dataService.getAuthors(), ///////////////////////////////////
+      this.nomeEsercente,
+      'shopkeeperID'
+    );
+
+    if (this.objectData) {
+      // aggiungi le ID all'oggetto prendendole dagli array del progetto
+      this.objectData.authorID = authorID;
+      this.objectData.shopkeeperID = shopkeeperID;
+      this.objectData.categoryID = categoryID;
+      this.objectData.typeID = typeID;
+
+      //this.objectData.warehouseID = warehouseID;
+      //this.objectData.publisherID = publisherID;
+      //this.objectData.geographicalOriginID = geographicalOriginID;
+      //this.objectData.userID = userID;
+
+      console.log('API UpdateObjectArchive => ', this.objectData);
+      PostRequest(baseURL + 'UpdateObjectArchive/', this.objectData);
+    }
   }
 
   confirmDelete() {

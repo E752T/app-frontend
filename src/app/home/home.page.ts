@@ -3,11 +3,7 @@
 //////////////////////////////////////////////////////////////
 
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import {
-  ModalController,
-  RefresherCustomEvent,
-  ToastController,
-} from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 
 import { ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +12,6 @@ import { OverlayEventDetail } from '@ionic/core/components';
 import { ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 //////////////////////////////////////////////////////////////
 //////////// LIBRERIE DEL PROGETTO ///////////////////////////
@@ -46,9 +41,7 @@ import { baseURL } from '../enviroenment';
   styleUrls: ['./../app.component.scss', './home.page.scss'], // page style
 })
 export class HomePage implements OnInit {
-  //////////////////////////////////////////////////////////////
   //---------- VARIABILI DEL PROGETTO ------------------------//
-  //////////////////////////////////////////////////////////////
 
   ///////////////////////////////////////////////////////////////////
   ////  FILTRI DI RICERCA   /////////////////////////////////////////
@@ -64,7 +57,6 @@ export class HomePage implements OnInit {
   ///////////////////////////////////////////////////////////////////
   //// MENU ANCORATO ////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
-
   // dimensione della colonna del menuAncorato
   // dove sono presenti i filtri, i bottoni di Assistenza, Account e LogOut
   // default: 0 Dimensione predefinita, poichè inizialmente sia su Desktop che su Mobile
@@ -78,7 +70,6 @@ export class HomePage implements OnInit {
   ///////////////////////////////////////////////////////////////////
   //// CATEGORIE DELL'APPLICAZIONE //////////////////////////////////
   ///////////////////////////////////////////////////////////////////
-
   AdminTables: Array<string> = [
     'Author',
     'Publisher',
@@ -93,7 +84,6 @@ export class HomePage implements OnInit {
   ///////////////////////////////////////////////////////////////////
   //// CONTENITORE VUOTO DELL'USER //////////////////////////////////
   ///////////////////////////////////////////////////////////////////
-
   current_user: any;
   imageAvatar: any;
   user_role: any;
@@ -554,18 +544,26 @@ export class HomePage implements OnInit {
     return highestID + 1;
   }
 
+
+
   CreateObject(): Promise<any> {
     this.bodyAddObject.objectID = this.getNewIDObject(this.allDatabase);
     console.log("Nuova ID dell'oggetto", this.bodyAddObject.objectID);
 
-    let newObject = this.bodyAddObject;
-    this.allDatabase.unshift(newObject);
-    this.getItems(this.searchInput);
+    ////////////////////////////////////////
+    /// PRENDI ID AUTORE dal nome ed inseriscila nel body
+
+    ////////////////////////////////////////
+    /// PRENDI ID CATEGORIA dal nome ed inseriscila nel body
+
+    ////////////////////////////////////////
+    /// PRENDI ID TIPO dal nome ed inseriscila nel body
+
+    this.allDatabase.unshift(this.bodyAddObject); // add new object to the objects array
+    this.getItems(this.searchInput); // get the filtered array on the frontend
 
     console.log('POST api/AddObject/ ', this.bodyAddObject);
-    // Perform the PostRequest
-
-    this.cancel();
+    this.cancel(); // dismiss the modal
     return PostRequest(baseURL + 'AddObject/', this.bodyAddObject)
       .then((response) => {
         this.bodyAddObject = {

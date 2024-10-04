@@ -9,6 +9,28 @@ import { baseURL } from '../enviroenment';
 export class FunctionsService {
   constructor(private dataService: DataService) {}
 
+  // Trovami l'ID di un oggetto dato in input il nome e l'array dove cercare
+  findIdByName(
+    array: any[],
+    name: string,
+    key:
+      | 'authorID'
+      | 'categoryID'
+      | 'provenanceID'
+      | 'shopkeeperID'
+      | 'geographicalOriginID'
+      | 'typeID'
+      | 'warehouseID'
+      | 'publisherID'
+      | 'geographicalOriginID'
+      | 'userID'
+  ) {
+    const foundObject = array.find((obj) => obj.name === name);
+    return foundObject
+      ? foundObject[key]
+      : 'Nessun oggetto trovato con quel nome';
+  }
+
   ///////////////////////////////////////////////////////////////////////
   // AUTORI
   public body_add_author = {
