@@ -1366,7 +1366,7 @@
                     placeholder="Titolo"
                     labelPlacement="stacked"
                     type="text"
-                    [(ngModel)]="bodyAddObject.title"
+                    [(ngModel)]="body_add_object.title"
                   ></ion-input>
                 </ion-item>
 
@@ -1390,7 +1390,7 @@
                     placeholder="Sottotitolo"
                     labelPlacement="stacked"
                     type="text"
-                    [(ngModel)]="bodyAddObject.subtitle"
+                    [(ngModel)]="body_add_object.subtitle"
                   ></ion-input>
                 </ion-item>
 
@@ -1412,8 +1412,8 @@
                     placeholder="Note"
                     class="input-form"
                     maxlength="200"
-                    [(ngModel)]="bodyAddObject.objectNotes"
-                    id="{{ bodyAddObject.objectNotes }}"
+                    [(ngModel)]="body_add_object.objectNotes"
+                    id="{{ body_add_object.objectNotes }}"
                   >
                   </ion-input>
                 </ion-item>
@@ -1437,8 +1437,8 @@
                   <ion-input
                     placeholder="Descrizione dell'autore"
                     class="input-form"
-                    [(ngModel)]="bodyAddObject.authorDescription"
-                    id="{{ bodyAddObject.authorDescription }}"
+                    [(ngModel)]="body_add_object.authorDescription"
+                    id="{{ body_add_object.authorDescription }}"
                   >
                   </ion-input>
                 </ion-item>
@@ -1484,8 +1484,8 @@
                   <ion-input
                     placeholder="Posizione"
                     class="input-form"
-                    id="{{ bodyAddObject.position }}"
-                    [(ngModel)]="bodyAddObject.position"
+                    id="{{ body_add_object.position }}"
+                    [(ngModel)]="body_add_object.position"
                   >
                   </ion-input>
                 </ion-item>
@@ -1511,8 +1511,8 @@
                   <ion-input
                     placeholder="Stanza del magazzino"
                     class="input-form"
-                    id="{{ bodyAddObject.warehouseRoom }}"
-                    [(ngModel)]="bodyAddObject.warehouseRoom"
+                    id="{{ body_add_object.warehouseRoom }}"
+                    [(ngModel)]="body_add_object.warehouseRoom"
                   >
                   </ion-input>
                 </ion-item>
@@ -1553,8 +1553,8 @@
                   <ion-input
                     placeholder="Ordinamento"
                     class="input-form"
-                    id="{{ bodyAddObject.sortOrder }}"
-                    [(ngModel)]="bodyAddObject.sortOrder"
+                    id="{{ body_add_object.sortOrder }}"
+                    [(ngModel)]="body_add_object.sortOrder"
                   >
                   </ion-input>
                 </ion-item>
@@ -1599,8 +1599,8 @@
                   <ion-input
                     placeholder="Numero dell'armadio"
                     class="input-form"
-                    id="{{ bodyAddObject.rackNumber }}"
-                    [(ngModel)]="bodyAddObject.rackNumber"
+                    id="{{ body_add_object.rackNumber }}"
+                    [(ngModel)]="body_add_object.rackNumber"
                   >
                   </ion-input>
                 </ion-item>
@@ -1640,9 +1640,9 @@
                   <ion-toggle
                     color="success"
                     style="margin-right: 15vw"
-                    id="{{bodyAddObject.avaiable }}"
-                    value="{{ bodyAddObject.avaiable }}"
-                    [(ngModel)]="bodyAddObject.avaiable"
+                    id="{{body_add_object.avaiable }}"
+                    value="{{ body_add_object.avaiable }}"
+                    [(ngModel)]="body_add_object.avaiable"
                   >
                   </ion-toggle>
                 </ion-item>
@@ -1694,8 +1694,8 @@
                       placeholder="Generi"
                       [multiple]="false"
                       color="primary"
-                      value="{{ bodyAddObject.genere }}"
-                      [(ngModel)]="bodyAddObject.genere"
+                      value="{{ body_add_object.genere }}"
+                      [(ngModel)]="body_add_object.genere"
                     >
                       <ion-select-option value="Romanzo"
                         >Romanzo</ion-select-option

@@ -25,7 +25,7 @@ export class DetailsComponent implements OnInit {
 
   /////////////////////////////////////////////////////////////////
   // Database degli oggetti
-  bodyAddObject = this.dataService.bodyAddObject;
+  body_add_object = this.dataService.body_add_object;
   objectId: string | null = null; // id dell'oggetto
   objectData: DatabaseObject | null = null; // dati dell'oggetto
 

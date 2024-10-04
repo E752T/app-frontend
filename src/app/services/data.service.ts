@@ -420,7 +420,6 @@ export class DataService implements OnInit {
   // Warehouse /////////////////////////////////////////////////////////////
   private allWarehouses: Array<Warehouse> = [];
 
-
   body_add_warehouse: Warehouse = {
     warehouseID: 0,
     name: '',
@@ -444,7 +443,7 @@ export class DataService implements OnInit {
     telephone2: '',
     notes: '',
   };
-  
+
   setWarehouses(warehouses: Array<Warehouse>) {
     this.allWarehouses = warehouses;
   }
@@ -582,11 +581,11 @@ export class DataService implements OnInit {
     return this.filteredObjects;
   }
 
-  getBodyAddObject() {
-    return this.bodyAddObject;
+  get_body_add_object() {
+    return this.body_add_object;
   }
 
-  bodyAddObject: DatabaseObject = {
+  body_add_object: DatabaseObject = {
     objectID: 1,
     authorID: 1,
     userID: 1,
@@ -676,7 +675,7 @@ const datePipe = new DatePipe('en-US');
 export const today = new Date(); // datePipe.transform(new Date(), 'yyyy-MM-dd');
 
 //---------------- DATABASE INITIALIZATION ----------------
-export let bodyModifyObject: DatabaseObject = {
+export let body_update_object: DatabaseObject = {
   objectID: 1,
   authorID: 1,
   userID: 1,
@@ -710,7 +709,7 @@ export let bodyModifyObject: DatabaseObject = {
   htmlDescription2: '',
 };
 
-export let bodyAddObject: DatabaseObject = {
+export let body_add_object: DatabaseObject = {
   objectID: 1,
   authorID: 1,
   userID: 1,
@@ -742,152 +741,4 @@ export let bodyAddObject: DatabaseObject = {
   position: 0,
   htmlDescription1: '',
   htmlDescription2: '',
-};
-
-export let bodyAddGeographicalOrigin: GeographicalOrigin = {
-  geographicalOriginID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-};
-
-export let bodyModifyGeographicalOrigin: GeographicalOrigin = {
-  geographicalOriginID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-};
-
-export let bodyAddTypeObject: TypeObject = {
-  typeID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-};
-
-export let bodyModifyTypeObject: TypeObject = {
-  typeID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-};
-
-export let bodyAddShopkeeper: Shopkeeper = {
-  shopkeeperID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  uniqueName: '',
-  description: '',
-  notes: '',
-  email: '',
-  telephone1: '',
-  telephone2: '',
-};
-
-export let bodyModifyShopkeeper: Shopkeeper = {
-  shopkeeperID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  uniqueName: '',
-  description: '',
-  notes: '',
-  email: '',
-  telephone1: '',
-  telephone2: '',
-};
-
-export let bodyAddWarehouse: Warehouse = {
-  warehouseID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-  email: '',
-  telephone1: '',
-  telephone2: '',
-  notes: '',
-};
-
-export let bodyModifyWarehouse: Warehouse = {
-  warehouseID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-  email: '',
-  telephone1: '',
-  telephone2: '',
-  notes: '',
-};
-
-export let bodyAddPublisher: Publisher = {
-  publisherID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-  email: '',
-  telephone1: '',
-  telephone2: '',
-  notes: '',
-};
-
-export let bodyModifyPublisher: Publisher = {
-  publisherID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-  email: '',
-  telephone1: '',
-  telephone2: '',
-  notes: '',
-};
-
-export let bodyAddProvenance: Provenance = {
-  provenanceID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-};
-
-export let bodyModifyProvenance: Provenance = {
-  provenanceID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-};
-
-export let bodyAddCategory: Category = {
-  categoryID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-};
-
-export let bodyModifyCategory: Category = {
-  categoryID: 0,
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  name: '',
-  description: '',
-};
-
-export let bodyAddAuthor: Author = {
-  authorID: 0,
-  name: '',
-  addedDate: today,
-  lastUpdateDate: today,
-  description: '',
-  email: '',
-  telephone1: '',
-  telephone2: '',
-  notes: '',
 };

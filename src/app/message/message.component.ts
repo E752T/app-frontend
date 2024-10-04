@@ -9,7 +9,7 @@ import {
 
 import { Platform } from '@ionic/angular';
 import { Category, DatabaseObject } from '../services/data.service';
-import { bodyAddObject, DataService } from '../services/data.service';
+import { body_add_object, DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-message',
@@ -33,7 +33,7 @@ export class MessageComponent {
 
   //////////////////////////////////////////////////////////////////////////////////
   // OGGETTO  //////////////////////////////////////////////////////////////////////
-  public bodyAddObject = bodyAddObject;
+  public body_add_object = body_add_object;
   public imageData: string | SafeUrl | undefined = this.object?.cover;
 
   ////////////////////////////////////////////////////////////////////////////////

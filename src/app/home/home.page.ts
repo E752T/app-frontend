@@ -156,8 +156,8 @@ export class HomePage implements OnInit {
   //// OGGETTI DEL DATABASE  ////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////
 
-  bodyAddObject: any; // body di richiesta per un nuovo oggetto da inserire
-  element: DatabaseObject = this.dataService.getBodyAddObject();
+  body_add_object: any; // body di richiesta per un nuovo oggetto da inserire
+  element: DatabaseObject = this.dataService.get_body_add_object();
 
   allDatabase: DatabaseObject[] = []; // array di tutti gli oggetti
   filteredObjects: DatabaseObject[] = []; // array di tutti gli oggetti filtrati
@@ -196,7 +196,7 @@ export class HomePage implements OnInit {
     // prendi il ruolo dell'utente, quindi se è un admin o no
     this.user_role = this.dataService.getUserRole();
     // prendi le credenziali inserite nel login
-    this.bodyAddObject = this.dataService.getBodyAddObject();
+    this.body_add_object = this.dataService.get_body_add_object();
     // elimina tutte le variabili salvate nel browser
     this.clearData();
   }
@@ -212,7 +212,7 @@ export class HomePage implements OnInit {
         console.log(this.imageUrl);
         if (this.imageUrl) {
           // Associa il risultato del caricamento all'oggetto objectData.cover
-          this.bodyAddObject.cover = this.imageUrl;
+          this.body_add_object.cover = this.imageUrl;
         } else {
           console.error('objectData non è definito.');
         }
@@ -555,8 +555,8 @@ export class HomePage implements OnInit {
   }
 
   CreateObject(): Promise<any> {
-    this.bodyAddObject.objectID = this.getNewIDObject(this.allDatabase);
-    console.log("Nuova ID dell'oggetto", this.bodyAddObject.objectID);
+    this.body_add_object.objectID = this.getNewIDObject(this.allDatabase);
+    console.log("Nuova ID dell'oggetto", this.body_add_object.objectID);
 
     ////////////////////////////////////////
     /// PRENDI ID AUTORE dal nome ed inseriscila nel body
@@ -567,14 +567,14 @@ export class HomePage implements OnInit {
     ////////////////////////////////////////
     /// PRENDI ID TIPO dal nome ed inseriscila nel body
 
-    this.allDatabase.unshift(this.bodyAddObject); // add new object to the objects array
+    this.allDatabase.unshift(this.body_add_object); // add new object to the objects array
     this.getItems(this.searchInput); // get the filtered array on the frontend
 
-    console.log('POST api/AddObject/ ', this.bodyAddObject);
+    console.log('POST api/AddObject/ ', this.body_add_object);
     this.cancel(); // dismiss the modal
-    return PostRequest(baseURL + 'AddObject/', this.bodyAddObject)
+    return PostRequest(baseURL + 'AddObject/', this.body_add_object)
       .then((response) => {
-        this.bodyAddObject = {
+        this.body_add_object = {
           objectID: 1,
           authorID: 1,
           userID: 1,
