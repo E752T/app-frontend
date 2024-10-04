@@ -1485,6 +1485,7 @@
                     placeholder="Posizione"
                     class="input-form"
                     id="{{ bodyAddObject.position }}"
+                    [(ngModel)]="bodyAddObject.position"
                   >
                   </ion-input>
                 </ion-item>
@@ -1511,6 +1512,7 @@
                     placeholder="Stanza del magazzino"
                     class="input-form"
                     id="{{ bodyAddObject.warehouseRoom }}"
+                    [(ngModel)]="bodyAddObject.warehouseRoom"
                   >
                   </ion-input>
                 </ion-item>
@@ -1552,6 +1554,7 @@
                     placeholder="Ordinamento"
                     class="input-form"
                     id="{{ bodyAddObject.sortOrder }}"
+                    [(ngModel)]="bodyAddObject.sortOrder"
                   >
                   </ion-input>
                 </ion-item>
@@ -1597,6 +1600,7 @@
                     placeholder="Numero dell'armadio"
                     class="input-form"
                     id="{{ bodyAddObject.rackNumber }}"
+                    [(ngModel)]="bodyAddObject.rackNumber"
                   >
                   </ion-input>
                 </ion-item>
@@ -1639,7 +1643,7 @@
                     id="{{bodyAddObject.avaiable }}"
                     value="{{ bodyAddObject.avaiable }}"
                     [(ngModel)]="bodyAddObject.avaiable"
-                    >
+                  >
                   </ion-toggle>
                 </ion-item>
 
@@ -1691,6 +1695,7 @@
                       [multiple]="false"
                       color="primary"
                       value="{{ bodyAddObject.genere }}"
+                      [(ngModel)]="bodyAddObject.genere"
                     >
                       <ion-select-option value="Romanzo"
                         >Romanzo</ion-select-option
