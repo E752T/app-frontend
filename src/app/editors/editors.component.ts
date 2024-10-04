@@ -48,29 +48,8 @@ export class EditorsComponent {
   @Output()
   updatePublishers = new EventEmitter<any>();
 
-  body_add_publisher: Publisher = {
-    publisherID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
-  };
-
-  body_update_publisher: Publisher = {
-    publisherID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
-  };
+  body_add_publisher = this.dataService.body_add_publisher;
+  body_update_publisher = this.dataService.body_update_publisher;
 
   DeleteElement(objectID: any) {
     this.publishers.filter(

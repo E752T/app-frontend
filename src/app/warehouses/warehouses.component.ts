@@ -40,29 +40,8 @@ export class WarehouseComponent {
   @Output()
   updateWarehouses = new EventEmitter<any>();
 
-  body_add_warehouse: Warehouse = {
-    warehouseID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
-  };
-
-  body_update_warehouse: Warehouse = {
-    warehouseID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
-  };
+  body_add_warehouse = this.dataService.body_add_warehouse;
+  body_update_warehouse = this.dataService.body_update_warehouse;
 
   DeleteElement(objectID: any) {
     this.warehouses.filter(

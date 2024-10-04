@@ -51,21 +51,9 @@ export class CategoriesComponent {
   @Output()
   updateCategories = new EventEmitter<any>();
 
-  body_add_category: Category = {
-    categoryID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
+  body_add_category = this.dataService.body_add_category;
+  body_update_category = this.dataService.body_update_category;
 
-  body_update_category: Category = {
-    categoryID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
 
   DeleteCategory(categoryID: any) {
     console.log('POST DeleteAuthor : body =>', this.category);

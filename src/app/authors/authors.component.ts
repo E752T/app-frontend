@@ -50,29 +50,8 @@ export class AuthorsComponent {
   @Output()
   updateAuthors = new EventEmitter<any>();
 
-  body_add_author: Author = {
-    authorID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
-  };
-
-  body_update_author: Author = {
-    authorID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-    email: '',
-    telephone1: '',
-    telephone2: '',
-    notes: '',
-  };
+  body_add_author = this.dataService.body_add_author;
+  body_update_author = this.dataService.body_update_author;
 
   DeleteElement(objectID: any) {
     this.authors = this.authors.filter(

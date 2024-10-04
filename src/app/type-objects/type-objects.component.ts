@@ -43,21 +43,8 @@ export class TypeObjectComponent {
   @Output()
   updateTypeObject = new EventEmitter<any>();
 
-  body_add_type_object: TypeObject = {
-    typeID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
-
-  body_update_type_object: TypeObject = {
-    typeID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
+  body_add_type_object = this.dataService.body_add_type_object;
+  body_update_type_object = this.dataService.body_update_type_object;
 
   DeleteElement(typeID: any) {
     this.type_objects = this.type_objects.filter(

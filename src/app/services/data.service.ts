@@ -169,18 +169,6 @@ export class DataService implements OnInit {
     this.initializeData();
   }
 
-  body_add_shopkeeper: Shopkeeper = {
-    shopkeeperID: 0,
-    uniqueName: '',
-    addedDate: this.today,
-    lastUpdateDate: this.today,
-    description: '',
-    telephone1: '',
-    telephone2: '',
-    email: '',
-    notes: '',
-  };
-
   // VARIABILI
   // User
   private username: string | null = null;
@@ -195,6 +183,18 @@ export class DataService implements OnInit {
 
   // Authors /////////////////////////////////////////////////////////////
   public body_add_author = {
+    authorID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
+
+  public body_update_author: Author = {
     authorID: 0,
     name: '',
     addedDate: today,
@@ -223,6 +223,22 @@ export class DataService implements OnInit {
   // Categories /////////////////////////////////////////////////////////////
   private allCategories: Array<Category> = [];
 
+  public body_add_category: Category = {
+    categoryID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  public body_update_category: Category = {
+    categoryID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
   setCategories(categories: Array<Category>) {
     this.allCategories = categories;
   }
@@ -237,7 +253,21 @@ export class DataService implements OnInit {
 
   // TypeObject /////////////////////////////////////////////////////////////
   private allTypeObjects: Array<TypeObject> = [];
+  body_add_type_object: TypeObject = {
+    typeID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
 
+  body_update_type_object: TypeObject = {
+    typeID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
   setTypeObjects(typeObjects: Array<TypeObject>) {
     this.allTypeObjects = typeObjects;
   }
@@ -253,6 +283,22 @@ export class DataService implements OnInit {
   // GeographicalOrigin /////////////////////////////////////////////////////////////
   private allGeographicalOrigins: Array<GeographicalOrigin> = [];
 
+  body_add_geographical_origin: GeographicalOrigin = {
+    geographicalOriginID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  body_update_geographical_origin: GeographicalOrigin = {
+    geographicalOriginID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
   setGeographicalOrigins(geographicalOrigins: Array<GeographicalOrigin>) {
     this.allGeographicalOrigins = geographicalOrigins;
   }
@@ -266,6 +312,30 @@ export class DataService implements OnInit {
   }
   // Publisher /////////////////////////////////////////////////////////////
   private allPublishers: Array<Publisher> = [];
+
+  public body_add_publisher: Publisher = {
+    publisherID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
+
+  public body_update_publisher: Publisher = {
+    publisherID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
 
   setPublishers(publishers: Array<Publisher>) {
     this.allPublishers = publishers;
@@ -281,6 +351,30 @@ export class DataService implements OnInit {
   // Shopkeeper /////////////////////////////////////////////////////////////
   private allShopkeepers: Array<Shopkeeper> = [];
 
+  body_add_shopkeeper: Shopkeeper = {
+    shopkeeperID: 0,
+    uniqueName: '',
+    addedDate: this.today,
+    lastUpdateDate: this.today,
+    description: '',
+    telephone1: '',
+    telephone2: '',
+    email: '',
+    notes: '',
+  };
+
+  body_update_shopkeeper: Shopkeeper = {
+    shopkeeperID: 0,
+    uniqueName: '',
+    addedDate: this.today,
+    lastUpdateDate: this.today,
+    description: '',
+    telephone1: '',
+    telephone2: '',
+    email: '',
+    notes: '',
+  };
+
   setShopkeepers(shopkeepers: Array<Shopkeeper>) {
     this.allShopkeepers = shopkeepers;
   }
@@ -294,6 +388,22 @@ export class DataService implements OnInit {
   }
   // Provenance /////////////////////////////////////////////////////////////
   private allProvenances: Array<Provenance> = [];
+
+  body_add_provenance: Provenance = {
+    provenanceID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
+
+  body_update_provenance: Provenance = {
+    provenanceID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+  };
 
   setProvenances(provenances: Array<Provenance>) {
     this.allProvenances = provenances;
@@ -310,6 +420,31 @@ export class DataService implements OnInit {
   // Warehouse /////////////////////////////////////////////////////////////
   private allWarehouses: Array<Warehouse> = [];
 
+
+  body_add_warehouse: Warehouse = {
+    warehouseID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
+
+  body_update_warehouse: Warehouse = {
+    warehouseID: 0,
+    name: '',
+    addedDate: today,
+    lastUpdateDate: today,
+    description: '',
+    email: '',
+    telephone1: '',
+    telephone2: '',
+    notes: '',
+  };
+  
   setWarehouses(warehouses: Array<Warehouse>) {
     this.allWarehouses = warehouses;
   }

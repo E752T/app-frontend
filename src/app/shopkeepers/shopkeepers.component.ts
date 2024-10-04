@@ -42,6 +42,7 @@ export class ShopkeepersComponent {
   updateShopkeepers = new EventEmitter<any>();
 
   body_add_shopkeeper = this.dataService.body_add_shopkeeper;
+  body_update_shopkeeper = this.dataService.body_update_shopkeeper;
 
   DeleteElement(objectID: any) {
     this.shopkeepers = this.shopkeepers.filter(

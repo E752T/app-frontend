@@ -41,21 +41,9 @@ export class ProvenancesComponent {
   @Output()
   updateProvenances = new EventEmitter<any>();
 
-  body_add_provenance: Provenance = {
-    provenanceID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
+  body_add_provenance = this.dataService.body_add_provenance;
+  body_update_provenance = this.dataService.body_update_provenance;
 
-  body_update_provenance: Provenance = {
-    provenanceID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
 
   DeleteElement(objectID: any) {
     this.provenances = this.provenances.filter(

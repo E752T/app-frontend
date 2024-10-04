@@ -43,21 +43,9 @@ export class GeographicalOriginComponent {
   @Output()
   updateGeographicalOrigins = new EventEmitter<any>();
 
-  body_add_geographical_origin: GeographicalOrigin = {
-    geographicalOriginID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
+  body_add_geographical_origin = this.dataService.body_add_geographical_origin;
+  body_update_geographical_origin = this.dataService.body_update_geographical_origin;
 
-  body_update_geographical_origin: GeographicalOrigin = {
-    geographicalOriginID: 0,
-    name: '',
-    addedDate: today,
-    lastUpdateDate: today,
-    description: '',
-  };
 
   DeleteElement(objectID: any) {
     this.geographical_origins = this.geographical_origins.filter(
