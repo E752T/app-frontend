@@ -629,7 +629,6 @@ export class HomePage implements OnInit {
     console.log('Author inviati dal database', res);
     this.allAuthors = res;
     this.dataService.setAuthors(this.allAuthors);
-
     return (this.filteredAuthors = this.allAuthors);
   });
 
@@ -700,14 +699,12 @@ export class HomePage implements OnInit {
   }
 
   updateAuthors(items: any[], itemToDelete: any, key: string) {
-    this.filteredAuthors = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
     this.allAuthors = items.filter(
       (element) => element[key] !== itemToDelete[key]
     );
-    console.log('Update Authors/', this.allAuthors, this.filteredAuthors);
-    return this.allAuthors;
+    this.getCategories('');
+    this.filteredAuthors = this.allAuthors;
+    return this.filteredAuthors;
   }
 
   /////////////////////////////////////////////////////
