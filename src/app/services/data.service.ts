@@ -24,14 +24,6 @@ import { Observable } from 'rxjs';
   // Questo rende il servizio disponibile in tutta l'app
 })
 export class DataService implements OnInit {
-  private username: string | null = null;
-  private userRole: string | null = null;
-  private tokenJWT: string | null = null;
-  private tokenJWTsuccess: boolean | null = null;
-  private bodyLogin: any = {};
-  public allDatabase: Array<DatabaseObject> = [];
-  public filteredObjects: Array<DatabaseObject> = [];
-
   constructor(private http: HttpClient) {}
 
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
@@ -39,22 +31,27 @@ export class DataService implements OnInit {
     this.initializeData();
   }
 
-  //////////////////////////////////////////
-  ////////////// CATEGIRIES ////////////////
+  // VARIABILI
+  // User
+  private username: string | null = null;
+  private userRole: string | null = null;
+  private tokenJWT: string | null = null;
+  private tokenJWTsuccess: boolean | null = null;
+  private bodyLogin: any = {};
 
+  // Objects
+  public allDatabase: Array<DatabaseObject> = [];
+  public filteredObjects: Array<DatabaseObject> = [];
   private allCategories: Array<Category> = [];
+  private allAuthors: Array<Author> = [];
+  private allTypeObjects: Array<TypeObject> = [];
+  private allGeographicalOrigins: Array<GeographicalOrigin> = [];
+  private allPublishers: Array<Publisher> = [];
+  private allShopkeepers: Array<Shopkeeper> = [];
+  private allProvenances: Array<Provenance> = [];
+  private allWarehouse: Array<Warehouse> = [];
 
-  setCategories(categories: Array<Category>) {
-    this.allCategories = categories;
-  }
-
-  getCategories(): Array<Category> {
-    return this.allCategories;
-  }
-
-  //////////////////////////////////////////
-  ////////////// AUTORI ////////////////
-
+  // AUTORI
   public body_add_author = {
     authorID: 0,
     name: '',
@@ -66,8 +63,6 @@ export class DataService implements OnInit {
     telephone2: '',
     notes: '',
   };
-  
-  private allAuthors: Array<Author> = [];
 
   setAuthors(authors: Array<Author>) {
     this.allAuthors = authors;
@@ -76,7 +71,22 @@ export class DataService implements OnInit {
   getAuthors(): Array<Author> {
     return this.allAuthors;
   }
+
   addAuthor(author: Author): void {
+    this.allAuthors.push(author);
+  }
+
+  // Categories
+
+  setCategories(categories: Array<Category>) {
+    this.allCategories = categories;
+  }
+
+  getCategories(): Array<Category> {
+    return this.allCategories;
+  }
+
+  addCategory(author: Author): void {
     this.allAuthors.push(author);
   }
 
@@ -107,8 +117,50 @@ export class DataService implements OnInit {
     return this.current_user;
   }
 
-  //////////////////////////////////////////
-  ////////////// OBJECTS DATABASE  /////////
+  ////////////////////////////////////////////////////////////////////
+  // LOGIN
+  setUsername(username: string): void {
+    this.username = username;
+  }
+
+  getUsername(): string | null {
+    return this.username;
+  }
+
+  setUserRole(role: string): void {
+    this.userRole = role;
+  }
+
+  getUserRole(): string | null {
+    return this.userRole;
+  }
+
+  setTokenJWT(token: string): void {
+    this.tokenJWT = token;
+  }
+
+  getTokenJWT(): string | null {
+    return this.tokenJWT;
+  }
+
+  setTokenJWTsuccess(token_JWT_success: boolean): void {
+    this.tokenJWTsuccess = token_JWT_success;
+  }
+
+  getTokenJWTsuccess(): boolean | null {
+    return this.tokenJWTsuccess;
+  }
+
+  setBodyLogin(body: any): void {
+    this.bodyLogin = body;
+  }
+
+  getBodyLogin(): any {
+    return this.bodyLogin;
+  }
+
+  ////////////////////////////////////////////////////////////////////
+  // OBJECTS DATABASE
 
   getObjectById(id: number): DatabaseObject | undefined | null {
     let response = this.allDatabase.find((obj) => obj.objectID === id);
@@ -236,18 +288,6 @@ export class DataService implements OnInit {
     htmlDescription2: '',
   };
 
-  setUsername(username: string): void {
-    this.username = username;
-  }
-
-  getUsername(): string | null {
-    return this.username;
-  }
-
-  setUserRole(role: string): void {
-    this.userRole = role;
-  }
-
   getObjectData(): DatabaseObject | null {
     return this.objectData;
   }
@@ -256,34 +296,6 @@ export class DataService implements OnInit {
     if (objectData) {
       this.objectData = objectData;
     }
-  }
-
-  getUserRole(): string | null {
-    return this.userRole;
-  }
-
-  setTokenJWT(token: string): void {
-    this.tokenJWT = token;
-  }
-
-  getTokenJWT(): string | null {
-    return this.tokenJWT;
-  }
-
-  setTokenJWTsuccess(token_JWT_success: boolean): void {
-    this.tokenJWTsuccess = token_JWT_success;
-  }
-
-  getTokenJWTsuccess(): boolean | null {
-    return this.tokenJWTsuccess;
-  }
-
-  setBodyLogin(body: any): void {
-    this.bodyLogin = body;
-  }
-
-  getBodyLogin(): any {
-    return this.bodyLogin;
   }
 }
 
@@ -299,40 +311,6 @@ export const today = new Date(); // datePipe.transform(new Date(), 'yyyy-MM-dd')
 
 //---------------- DATABASE INITIALIZATION ----------------
 export let bodyModifyObject: DatabaseObject = {
-  objectID: 1,
-  authorID: 1,
-  userID: 1,
-  shopkeeperID: 1,
-  categoryID: 1,
-  typeID: 1,
-  warehouseID: 1,
-  provenanceID: 1,
-  geographicalOriginID: 1,
-  publisherID: 1,
-  genere: '',
-  avaiable: false,
-  authorDescription: '',
-  discoveryPlace: '',
-  addedDate: new Date(),
-  lastUpdateDate: new Date(),
-  discoveryDate: new Date(),
-  censusDate: new Date(),
-  sortOrder: 0,
-  cover: '',
-  scan01: '',
-  scan02: '',
-  scan03: '',
-  title: '',
-  subtitle: '',
-  objectNotes: '',
-  warehouseRoom: '',
-  rackNumber: 0,
-  position: 0,
-  htmlDescription1: '',
-  htmlDescription2: '',
-};
-
-export let bodyAddObject: DatabaseObject = {
   objectID: 1,
   authorID: 1,
   userID: 1,
