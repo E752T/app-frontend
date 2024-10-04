@@ -25,18 +25,8 @@ export class CategoriesComponent {
   public user_role: string | null;
   public token_JWT_success: boolean | null;
   public username: string | null = localStorage.getItem('username');
+  public body_login: any;
 
-  public body_login: {
-    shopkeeper: string | null;
-    email: string | null;
-    password: string | null;
-    username: string | null;
-  } = {
-    shopkeeper: '',
-    email: '',
-    password: '',
-    username: '',
-  };
   constructor(
     private http: HttpClient,
     private modalCtrl: ModalController,

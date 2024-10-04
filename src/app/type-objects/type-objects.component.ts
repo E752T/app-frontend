@@ -10,7 +10,7 @@ import { TypeObject } from '../services/interfaces.service';
 @Component({
   selector: 'app-type-objects',
   templateUrl: './type-objects.component.html',
-  styleUrls: ['./../app.component.scss','./type-objects.component.scss'],
+  styleUrls: ['./../app.component.scss', './type-objects.component.scss'],
 })
 export class TypeObjectComponent {
   private platform = inject(Platform);
@@ -18,18 +18,8 @@ export class TypeObjectComponent {
   public user_role: string | null;
   public token_JWT_success: boolean | null;
   public username: string | null = localStorage.getItem('username');
+  public body_login: any;
 
-  public body_login: {
-    shopkeeper: string | null;
-    email: string | null;
-    password: string | null;
-    username: string | null;
-  } = {
-    shopkeeper: '',
-    email: '',
-    password: '',
-    username: '',
-  };
   constructor(
     private modalCtrl: ModalController,
     private dataService: DataService
@@ -40,6 +30,7 @@ export class TypeObjectComponent {
     this.token_JWT_success = this.dataService.getTokenJWTsuccess();
     this.body_login = this.dataService.getBodyLogin();
   }
+
   @Input()
   type_object!: TypeObject;
 
@@ -77,7 +68,6 @@ export class TypeObjectComponent {
     console.log('DeleteTypeObject ', this.type_objects);
     return PostRequest(baseURL + 'DeleteTypeObject/' + typeID);
   }
-
 
   UpdateElement(): Promise<any> {
     console.log('Update Type Objects');
