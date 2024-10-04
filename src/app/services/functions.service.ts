@@ -30,7 +30,7 @@ export class FunctionsService {
       | 'userID'
   ) {
     const foundObject = array.find((obj) => obj.name === name);
-    return foundObject ? foundObject[key] : 1;
+    return foundObject ? foundObject[key] : null;
   }
 
   private getNewID(
