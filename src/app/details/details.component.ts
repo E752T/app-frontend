@@ -27,7 +27,6 @@ import { ScreenService } from '../services/screen.service';
   styleUrls: ['./details.component.scss', './../app.component.scss'],
 })
 export class DetailsComponent implements OnInit {
-  
   /////////////////////////////////////////////////////////////////
   // User
   public user_role: string | null; // ruolo dell'utente
