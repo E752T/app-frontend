@@ -62,7 +62,6 @@ export class DetailsComponent implements OnInit {
   allAuthors: Array<Author> = [];
   filteredObjects: Array<Author> = [];
 
-  /////////////////////////////////////////////////////////////////
   @Input()
   object!: DatabaseObject;
 
@@ -77,15 +76,12 @@ export class DetailsComponent implements OnInit {
 
   @Output() objectDeleted = new EventEmitter<any>();
 
-  /////////////////////////////////////////////////////////////////
-
   ngOnInit() {
     /////////////////////////////////////////////////////////////////
     // Database Esterni
     // prendi gli oggetti del databasee dal dataService
     this.allCategories = this.dataService.getCategories(); // Ottieni le categorie dal servizio
     this.allAuthors = this.dataService.getAuthors(); // Ottieni gli autori
-    /////////////////////////////////////////////////////////////////
 
     this.route.params.subscribe((params) => {
       this.id = +params['id']; // estrai l' ID dal URL
@@ -94,6 +90,8 @@ export class DetailsComponent implements OnInit {
       if (response !== null && response !== undefined) {
         this.objectData = response; // associa ad objectData la risposta di dataService l'oggetto
         this.dataService.setObjectData(this.objectData); // salva objectData su dataService
+
+        // CARICA I DATI DELLE ALTRE TABELLE ASSOCIATE CON QUESTO OGGETTO
 
         /////////////////////////////////////////////////////////////////////////////////
         // CATEGORIE
@@ -136,7 +134,10 @@ export class DetailsComponent implements OnInit {
   }
 
   confirmUpdate() {
+    // Aggiurna un ogetto e tutte le informazioni ad esso legate
+
     // trova l'ID dell'autore da mettere nell'oggetto
+    // dato il nome di input dell'autore scelto
     let authorID = this.functionsService.findIdByName(
       this.dataService.getAuthors(),
       this.nomeAutore,
@@ -161,8 +162,8 @@ export class DetailsComponent implements OnInit {
       'shopkeeperID'
     );
 
+    // aggiungi le ID all'oggetto prendendole dagli array del progetto
     if (this.objectData) {
-      // aggiungi le ID all'oggetto prendendole dagli array del progetto
       this.objectData.authorID = authorID;
       this.objectData.shopkeeperID = shopkeeperID;
       this.objectData.categoryID = categoryID;
@@ -173,32 +174,17 @@ export class DetailsComponent implements OnInit {
       //this.objectData.geographicalOriginID = geographicalOriginID;
       //this.objectData.userID = userID;
 
-      console.log(
-        'API with confirmUpdate() | UpdateObjectArchive => ',
-        this.objectData
-      );
+      console.log('UpdateObjectArchive => ', this.objectData);
       PostRequest(baseURL + 'UpdateObjectArchive/', this.objectData);
     } else {
-      console.log('Oggetto non trovato, impossibile da aggiornare ');
+      console.log('Oggetto non trovato, impossibile da aggiornare...');
     }
   }
 
   confirmDelete() {
+    // elimina un oggetto prendendo l'ID dell'oggetto da eliminare
     console.log('API DeleteObject/', this.objectData?.objectID);
     PostRequest(baseURL + 'DeleteObject/', this.objectData?.objectID);
-    //this.tornaIndietro();
-  }
-
-  async DeleteElement(objectID: any) {
-    this.dataService.removeObject(objectID);
-
-    this.updateObjects.emit(this.dataService.filteredObjects);
-    this.cancel();
-    this.tornaIndietro();
-
-    console.log('database aggiornato ', this.dataService.allDatabase);
-
-    return PostRequest(baseURL + 'DeleteObject/' + objectID);
   }
 
   getTriggerId(): string {
@@ -214,6 +200,7 @@ export class DetailsComponent implements OnInit {
   }
 
   onFileSelected(event: Event) {
+    // associa ad una variabile il file dell'immagine selezionata
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -233,6 +220,24 @@ export class DetailsComponent implements OnInit {
     }
   }
 
+  async DeleteElement(objectID: any) {
+    this.dataService.removeObject(objectID);
+
+    this.updateObjects.emit(this.dataService.filteredObjects);
+    this.cancel();
+    this.tornaIndietro();
+
+    console.log(
+      'Elemento dal Database eliminato ',
+      this.dataService.allDatabase
+    );
+
+    return PostRequest(baseURL + 'DeleteObject/' + objectID);
+  }
+
+  // Funzioni per aggiungere i vari elementi direttamente su dettagli
+  // attarverso i botoni e le modali
+
   addAuthor() {
     this.functionsService
       .CreateAuthor()
@@ -244,7 +249,6 @@ export class DetailsComponent implements OnInit {
       });
   }
 
-
   addCategory() {
     this.functionsService
       .CreateCategory()
@@ -255,5 +259,4 @@ export class DetailsComponent implements OnInit {
         console.error("Errore durante l'aggiunta della categoria:", error);
       });
   }
-
 }
