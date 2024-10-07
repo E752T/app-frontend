@@ -587,6 +587,144 @@
         />
       </svg>
 
+      <ion-label class="label-autori spacing-right">Tipo di oggetto</ion-label>
+
+      <ion-text *ngIf="user_role !== 'admin'">
+        {{ this.nomeTipoDiOggetto }}</ion-text
+      >
+
+      <ion-list
+        *ngIf="user_role === 'admin'"
+        class="margine-scheda move-to-left"
+      >
+        <ion-item class="seleziona-generi">
+          <ion-select
+            class="center"
+            placeholder="Seleziona tipo"
+            [multiple]="false"
+            value="{{ this.nomeTipoDiOggetto }}"
+            [(ngModel)]="this.nomeTipoDiOggetto"
+            color="primary"
+          >
+            <ion-select-option
+              *ngFor="let name of allTypeObjects"
+              [value]="name.name"
+            >
+              {{ name.name }}
+            </ion-select-option>
+          </ion-select>
+
+          <ion-button
+            *ngIf="user_role === 'admin'"
+            id="bottone-aggiungi-nuovo-tipo"
+            class="bottone-aggiungi-nuovo-oggetto"
+            color="white"
+            style="background-color: white; color: #000000"
+            ><ion-icon
+              class="icona-aggiungi-elemento"
+              name="add-circle-outline"
+            ></ion-icon>
+            <ion-text class="testo-aggiungi-nuovo">
+              Aggiungi un nuovo Tipo di oggetti
+            </ion-text>
+          </ion-button>
+
+          <ion-modal
+            *ngIf="user_role === 'admin'"
+            trigger="bottone-aggiungi-nuovo-tipo"
+            (willDismiss)="onWillDismiss($event)"
+            class="ion-padding"
+          >
+            <ng-template>
+              <ion-header style="width: 100% !important">
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-title color="secondary" class="titolo-modale-aggiungi"
+                      >Aggiungi un nuovo Tipo di oggetti</ion-title
+                    >
+                  </ion-buttons>
+                  <ion-buttons slot="end">
+                    <ion-button
+                      id="button-add-element"
+                      [strong]="true"
+                      (click)="addType()"
+                      >Salva</ion-button
+                    >
+                    <ion-toast
+                      trigger="button-add-element"
+                      message="Nuovo Elemento Aggiunto"
+                      class="toast-elemento"
+                      [duration]="2000"
+                      expand="block"
+                      color="success"
+                    ></ion-toast>
+
+                    <ion-button (click)="cancel()">
+                      <ion-icon name="close-outline"></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+
+              <ion-content class="ion-padding">
+                <ion-item>
+                  <svg
+                    fill="#000000"
+                    class="icone-autori"
+                    viewBox="0 0 32 32"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"
+                    />
+                  </svg>
+                  <ion-label class="label-autori"> Nome </ion-label>
+                  <ion-input
+                    class="input-form"
+                    type="text"
+                    [(ngModel)]="body_add_type_object.name"
+                  ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <svg
+                    fill="#000000"
+                    class="icone-autori"
+                    viewBox="0 0 1920 1920"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1801.441 0v1920H219.03v-439.216h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.47 56.515-56.47h56.514V1029.02h-56.514c-31.196 0-56.515-25.3-56.515-56.471 0-31.172 25.319-56.47 56.515-56.47h56.514V577.254h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.471 56.515-56.471h56.514V0h1582.412Zm-113.03 112.941H332.06v351.373h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.3 56.514 56.471 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.471-56.514 56.471H332.06v326.275h1356.353V112.94ZM640.289 425.201H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Zm0 534.845H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Z"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <ion-label class="label-autori"> Descrizione </ion-label>
+
+                  <ion-input
+                    class="input-form"
+                    type="text"
+                    [(ngModel)]="body_add_type_object.description"
+                  ></ion-input>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+
+    <ion-item>
+      <svg
+        fill="#000000"
+        class="icone-aggiungi-oggetto"
+        viewBox="0 0 1920 1920"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1801.441 0v1920H219.03v-439.216h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.47 56.515-56.47h56.514V1029.02h-56.514c-31.196 0-56.515-25.3-56.515-56.471 0-31.172 25.319-56.47 56.515-56.47h56.514V577.254h-56.514c-31.196 0-56.515-25.299-56.515-56.47 0-31.172 25.319-56.471 56.515-56.471h56.514V0h1582.412Zm-113.03 112.941H332.06v351.373h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.3 56.514 56.471 0 31.172-25.318 56.47-56.514 56.47H332.06v338.824h56.515c31.196 0 56.514 25.299 56.514 56.47 0 31.172-25.318 56.471-56.514 56.471H332.06v326.275h1356.353V112.94ZM640.289 425.201H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Zm0 534.845H1388.9v112.94H640.288v-112.94Zm0 214.83h639.439v112.94h-639.44v-112.94Z"
+          fill-rule="evenodd"
+        />
+      </svg>
+
       <ion-label class="label-autori spacing-right">Sottotitolo</ion-label>
 
       <ion-text *ngIf="user_role !== 'admin'">

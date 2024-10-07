@@ -93,6 +93,7 @@ ion-content {
   overflow: auto;
   //min-height: 1100px;
   overflow-y: scroll;
+  scrollbar-width: thin;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -273,6 +274,7 @@ ion-button.bottone-accedi {
 
 .grandezza-colonna-menu {
   overflow-y: scroll;
+  scrollbar-width: thin;
 }
 
 .icona-aggiungi-nuovo-oggetto {
@@ -305,8 +307,6 @@ ion-button.bottone-accedi {
   display: table;
   clear: both;
 }
-
-
 
 .titoli-modale {
   margin-bottom: 15px;
