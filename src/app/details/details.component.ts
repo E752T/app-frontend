@@ -19,6 +19,7 @@ import { baseURL } from '../enviroenment';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
 import { FunctionsService } from '../services/functions.service';
+import { ScreenService } from '../services/screen.service';
 
 @Component({
   selector: 'app-details',
@@ -26,6 +27,7 @@ import { FunctionsService } from '../services/functions.service';
   styleUrls: ['./details.component.scss', './../app.component.scss'],
 })
 export class DetailsComponent implements OnInit {
+  
   /////////////////////////////////////////////////////////////////
   // User
   public user_role: string | null; // ruolo dell'utente
@@ -86,7 +88,8 @@ export class DetailsComponent implements OnInit {
     private dataService: DataService,
     private router: Router,
     private route: ActivatedRoute,
-    private functionsService: FunctionsService
+    private functionsService: FunctionsService,
+    public screenService: ScreenService
   ) {
     this.user_role = this.dataService.getUserRole(); // prendi il ruolo dell'utente
     this.objectData = this.dataService.getObjectData(); // prendi i dati dell'oggetto selezionato
