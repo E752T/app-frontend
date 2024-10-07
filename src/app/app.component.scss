@@ -14,6 +14,7 @@
   letter-spacing: 1px;
   font-size: small;
   font-family: Georgia, "Times New Roman", Times, serif;
+  margin-left: 1rem;
 }
 
 .spacing-right {
@@ -32,6 +33,8 @@
   display: flex !important;
   align-content: center !important;
   align-items: center !important;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .div-svg-input:hover .icone-autori-edit {
@@ -158,8 +161,8 @@
   margin-top: 1rem;
 }
 
-.label-anno-di-pubblicazione{
-  margin-left:4rem;
+.label-anno-di-pubblicazione {
+  margin-left: 4rem;
   margin-bottom: 0rem;
   font-size: smaller;
 }
