@@ -40,6 +40,8 @@ export class DetailsComponent implements OnInit {
   nomeEsercente: any;
   nomeTipoDiOggetto: any;
   body_add_author = this.dataService.body_add_author;
+  body_add_category = this.dataService.body_add_category;
+
   /////////////////////////////////////////////////////////////////
 
   constructor(
@@ -124,17 +126,6 @@ export class DetailsComponent implements OnInit {
         /////////////////////////////////////////////////////////////////////////////////
       }
     });
-  }
-
-  addAuthor(filteredAuthors: any[]) {
-    this.functionsService
-      .CreateAuthor()
-      .then((response) => {
-        console.log('Autore aggiunto con successo:', response);
-      })
-      .catch((error) => {
-        console.error("Errore durante l'aggiunta dell'autore:", error);
-      });
   }
 
   onWillDismiss(event: Event) {
@@ -241,4 +232,28 @@ export class DetailsComponent implements OnInit {
       console.error('Nessun file selezionato.');
     }
   }
+
+  addAuthor() {
+    this.functionsService
+      .CreateAuthor()
+      .then((response) => {
+        console.log('Autore aggiunto con successo:', response);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta dell'autore:", error);
+      });
+  }
+
+
+  addCategory() {
+    this.functionsService
+      .CreateCategory()
+      .then((response) => {
+        console.log('Categoria aggiunta con successo:', response);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta della categoria:", error);
+      });
+  }
+
 }

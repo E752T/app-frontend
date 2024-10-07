@@ -94,4 +94,40 @@ export class FunctionsService {
       notes: '',
     };
   }
+
+  /////////////////////////////////////////////////////////////////////////
+  // CATEGORIE  //////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////
+
+  public CreateCategory(): Promise<any> {
+    this.dataService.body_add_category.categoryID = this.getNewID(
+      this.dataService.getCategories(),
+      'categoryID'
+    );
+
+    this.dataService.addCategory(this.dataService.body_add_category);
+
+    return PostRequest(
+      baseURL + 'AddAuthor/',
+      this.dataService.body_add_category
+    )
+      .then((response) => {
+        this.resetBodyAddCategory();
+        return response;
+      })
+      .catch((error) => {
+        console.error('Error in PostRequest: ', error);
+        throw error;
+      });
+  }
+
+  private resetBodyAddCategory(): void {
+    this.dataService.body_add_category = {
+      categoryID: 0,
+      name: '',
+      addedDate: today,
+      lastUpdateDate: today,
+      description: '',
+    };
+  }
 }

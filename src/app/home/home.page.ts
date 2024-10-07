@@ -658,35 +658,39 @@ export class HomePage implements OnInit {
     return highestID + 1;
   }
 
-  CreateAuthor(): Promise<any> {
-    this.body_add_author.authorID = this.getNewIDAuthor(this.filteredAuthors);
-    let newAuthor = this.body_add_author;
-    this.allAuthors.unshift(newAuthor);
-    this.getAuthors(this.searchInput);
-    console.log('POST api/AddAuthor/ ', this.body_add_author);
-    // Perform the PostRequest
-    this.cancel();
-    return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
-      .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
-        this.body_add_author = {
-          authorID: 0,
-          name: '',
-          addedDate: today,
-          lastUpdateDate: today,
-          description: '',
-          email: '',
-          telephone1: '',
-          telephone2: '',
-          notes: '',
-        };
-        return response;
-      })
-      .catch((error) => {
-        console.error('Error in PostRequest: ', error);
-        throw error;
-      });
+  public addAuthor() {
+    this.dataService.addAuthor(this.body_add_author);
   }
+
+  // CreateAuthor(): Promise<any> {
+  //   this.body_add_author.authorID = this.getNewIDAuthor(this.filteredAuthors);
+  //   let newAuthor = this.body_add_author;
+  //   this.allAuthors.unshift(newAuthor);
+  //   this.getAuthors(this.searchInput);
+  //   console.log('POST api/AddAuthor/ ', this.body_add_author);
+  //   // Perform the PostRequest
+  //   this.cancel();
+  //   return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
+  //     .then((response) => {
+  //       // Reset bodyAddAuthor to null after the PostRequest
+  //       this.body_add_author = {
+  //         authorID: 0,
+  //         name: '',
+  //         addedDate: today,
+  //         lastUpdateDate: today,
+  //         description: '',
+  //         email: '',
+  //         telephone1: '',
+  //         telephone2: '',
+  //         notes: '',
+  //       };
+  //       return response;
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error in PostRequest: ', error);
+  //       throw error;
+  //     });
+  // }
 
   updateAuthors(items: any[], itemToDelete: any, key: string) {
     this.allAuthors = items.filter(
