@@ -1767,7 +1767,7 @@
               *ngFor="let message of filteredObjects"
               [object]="element"
               [objects]="filteredObjects"
-              (updateObjects)="updateObjects(this.allDatabase, element, 'objectID');"
+              (updateObjects)="updateObjects(this.filteredObjects, element, 'objectID');"
               [search_input]="searchInput"
             >
             </app-message>

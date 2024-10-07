@@ -537,17 +537,7 @@ export class DataService implements OnInit {
   }
 
   private initializeData() {
-    // inizializzare i dati del database con un obervable
-    this.getAllDatabase().subscribe({
-      next: (data) => {
-        this.allDatabase = data;
-        this.filteredObjects = this.allDatabase;
-      },
-      error: (error) => {
-        console.error('Errore nel recupero del database:', error);
-        this.filteredObjects = []; // Gestione dell'errore
-      },
-    });
+    this.getAllDatabase(); // inizializzare i dati del database con un obervable
   }
 
   getAllDatabase(): Observable<Array<DatabaseObject>> {
@@ -572,9 +562,13 @@ export class DataService implements OnInit {
   }
 
   removeObject(objectID: number) {
-    this.allDatabase = this.getAllData().filter(
-      (element: DatabaseObject) => element.objectID !== objectID
+    const index = this.allDatabase.findIndex(
+      (element: DatabaseObject) => element.objectID === objectID
     );
+
+    if (index !== -1) {
+      this.allDatabase.splice(index, 1);
+    }
   }
 
   getFilteredObjects(): Array<DatabaseObject> {
@@ -672,9 +666,9 @@ export let body_login: LoginObject = {
 };
 
 const datePipe = new DatePipe('en-US');
-export const today = new Date(); // datePipe.transform(new Date(), 'yyyy-MM-dd');
-
+export const today = new Date();
 //---------------- DATABASE INITIALIZATION ----------------
+
 export let body_update_object: DatabaseObject = {
   objectID: 1,
   authorID: 1,

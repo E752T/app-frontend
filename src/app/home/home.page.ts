@@ -159,8 +159,8 @@ export class HomePage implements OnInit {
   body_add_object: any; // body di richiesta per un nuovo oggetto da inserire
   element: DatabaseObject = this.dataService.get_body_add_object();
 
-  allDatabase: DatabaseObject[] = []; // array di tutti gli oggetti
-  filteredObjects: DatabaseObject[] = []; // array di tutti gli oggetti filtrati
+  allDatabase = this.dataService.allDatabase; // array di tutti gli oggetti
+  filteredObjects = this.dataService.filteredObjects; // array di tutti gli oggetti filtrati
   imageUrl: string | ArrayBuffer | null = null; // url immagine
 
   ///////////////////////////////////////////////////////////////////
@@ -171,6 +171,7 @@ export class HomePage implements OnInit {
     this.toggleMenu(); // controlla e modifica il menù se è o meno ancorato
     this.current_user = this.dataService.getCurrentUser(); // prendi le credenziali inserite nel login
     console.log('This current user ', this.current_user);
+    console.log('Filtered Object in Hom.Page ', this.filteredObjects);
 
     // prendi gli oggetti dal database non appena li invia
     this.dataService.getAllDatabase().subscribe((data: DatabaseObject[]) => {
@@ -533,17 +534,6 @@ export class HomePage implements OnInit {
     return item;
   }
 
-  updateObjects(items: any[], itemToDelete: any, key: string) {
-    this.filteredObjects = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    this.allAuthors = items.filter(
-      (element) => element[key] !== itemToDelete[key]
-    );
-    console.log('Update Database/', this.allDatabase, this.filteredObjects);
-    return this.allDatabase;
-  }
-
   getNewIDObject(elementList: Array<DatabaseObject>): number {
     let highestID = 0;
     for (let i = 0; i < elementList.length; i++) {
@@ -702,9 +692,18 @@ export class HomePage implements OnInit {
     this.allAuthors = items.filter(
       (element) => element[key] !== itemToDelete[key]
     );
-    this.getCategories('');
+    this.getAuthors('');
     this.filteredAuthors = this.allAuthors;
     return this.filteredAuthors;
+  }
+
+  updateObjects(items: any[], itemToDelete: any, key: string) {
+    this.filteredObjects = items.filter(
+      (element) => element[key] !== itemToDelete[key]
+    );
+    //this.getItems('');
+    console.log('updateObjects ', this.filteredObjects);
+    return this.filteredObjects;
   }
 
   /////////////////////////////////////////////////////

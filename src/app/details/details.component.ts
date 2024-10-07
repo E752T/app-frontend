@@ -1,11 +1,7 @@
 // details.component.ts
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-  Author,
-  Category,
-  DatabaseObject,
-} from '../services/data.service';
+import { Author, Category, DatabaseObject } from '../services/data.service';
 import { DataService, today } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { PostRequest } from '../services/request.service';
@@ -62,6 +58,7 @@ export class DetailsComponent implements OnInit {
   allDatabase: DatabaseObject[] | undefined = [];
   allCategories: Array<Category> = [];
   allAuthors: Array<Author> = [];
+  filteredObjects: Array<Author> = [];
 
   /////////////////////////////////////////////////////////////////
   @Input()
@@ -75,6 +72,9 @@ export class DetailsComponent implements OnInit {
 
   @Output()
   updateObjects = new EventEmitter<any>();
+
+  @Output() objectDeleted = new EventEmitter<any>();
+
   /////////////////////////////////////////////////////////////////
 
   ngOnInit() {
@@ -199,22 +199,15 @@ export class DetailsComponent implements OnInit {
   }
 
   async DeleteElement(objectID: any) {
-    // Effettua la richiesta per eliminare l'oggetto dal server
-    await PostRequest(baseURL + 'DeleteObject/' + objectID);
-
-    // Elimina l'oggetto dal database locale
     this.dataService.removeObject(objectID);
 
-    // Aggiorna la lista degli oggetti nel frontend
-    this.allDatabase = this.dataService
-      .getAllData()
-      ?.filter((element: DatabaseObject) => element.objectID !== objectID);
-
-    console.log('Oggetti rimanenti dopo eliminazione:', this.allDatabase);
-
-    // Esegui eventuali operazioni di cancellazione o navigazione
+    this.updateObjects.emit(this.dataService.filteredObjects);
     this.cancel();
     this.tornaIndietro();
+
+    console.log('database aggiornato ', this.dataService.allDatabase);
+
+    return PostRequest(baseURL + 'DeleteObject/' + objectID);
   }
 
   getTriggerId(): string {
