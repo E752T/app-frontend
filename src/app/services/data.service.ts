@@ -6,6 +6,8 @@ import { Injectable, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs';
 
+// FILE con Interfaccie, Body per richieste, funzioni SET e GET
+
 export interface User {
   admin: number;
   username: string;

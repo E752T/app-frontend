@@ -662,36 +662,6 @@ export class HomePage implements OnInit {
     this.dataService.addAuthor(this.body_add_author);
   }
 
-  // CreateAuthor(): Promise<any> {
-  //   this.body_add_author.authorID = this.getNewIDAuthor(this.filteredAuthors);
-  //   let newAuthor = this.body_add_author;
-  //   this.allAuthors.unshift(newAuthor);
-  //   this.getAuthors(this.searchInput);
-  //   console.log('POST api/AddAuthor/ ', this.body_add_author);
-  //   // Perform the PostRequest
-  //   this.cancel();
-  //   return PostRequest(baseURL + 'AddAuthor/', this.body_add_author)
-  //     .then((response) => {
-  //       // Reset bodyAddAuthor to null after the PostRequest
-  //       this.body_add_author = {
-  //         authorID: 0,
-  //         name: '',
-  //         addedDate: today,
-  //         lastUpdateDate: today,
-  //         description: '',
-  //         email: '',
-  //         telephone1: '',
-  //         telephone2: '',
-  //         notes: '',
-  //       };
-  //       return response;
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error in PostRequest: ', error);
-  //       throw error;
-  //     });
-  // }
-
   updateAuthors(items: any[], itemToDelete: any, key: string) {
     this.allAuthors = items.filter(
       (element) => element[key] !== itemToDelete[key]
@@ -773,7 +743,6 @@ export class HomePage implements OnInit {
 
     return PostRequest(baseURL + 'AddCategory/', this.body_add_category)
       .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
         this.body_add_category = {
           categoryID: 0,
           name: '',
@@ -865,7 +834,7 @@ export class HomePage implements OnInit {
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddPublisher/', this.body_add_publisher)
       .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
+        
         this.body_add_publisher = {
           publisherID: 0,
           name: '',
@@ -961,7 +930,7 @@ export class HomePage implements OnInit {
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddShopkeeper/', this.body_add_shopkeeper)
       .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
+        
         this.body_add_shopkeeper = {
           shopkeeperID: 0,
           uniqueName: '',
@@ -1055,7 +1024,7 @@ export class HomePage implements OnInit {
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddWarehouse/', this.body_add_warehouse)
       .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
+        
         this.body_add_warehouse = {
           warehouseID: 0,
           name: '',
@@ -1145,7 +1114,7 @@ export class HomePage implements OnInit {
     console.log('AddProvenance/ -->  ', this.body_add_provenance);
     return PostRequest(baseURL + 'AddProvenance/', this.body_add_provenance)
       .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
+        
         this.body_add_provenance = {
           provenanceID: 0,
           name: '',
@@ -1239,7 +1208,7 @@ export class HomePage implements OnInit {
       this.body_add_geographical_origin
     )
       .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
+        
         this.body_add_geographical_origin = {
           geographicalOriginID: 0,
           name: '',
@@ -1325,7 +1294,7 @@ export class HomePage implements OnInit {
     // Perform the PostRequest
     return PostRequest(baseURL + 'AddType/', this.body_add_type_object)
       .then((response) => {
-        // Reset bodyAddAuthor to null after the PostRequest
+        
         this.body_add_type_object = {
           typeID: 0,
           name: '',

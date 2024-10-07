@@ -1,7 +1,17 @@
 // details.component.ts
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Author, Category, DatabaseObject } from '../services/data.service';
+import {
+  Author,
+  Category,
+  DatabaseObject,
+  GeographicalOrigin,
+  Provenance,
+  Publisher,
+  Shopkeeper,
+  TypeObject,
+  Warehouse,
+} from '../services/data.service';
 import { DataService, today } from '../services/data.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { PostRequest } from '../services/request.service';
@@ -9,6 +19,7 @@ import { baseURL } from '../enviroenment';
 import { ModalController } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core';
 import { FunctionsService } from '../services/functions.service';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -39,10 +50,36 @@ export class DetailsComponent implements OnInit {
   nomeAutore: any;
   nomeEsercente: any;
   nomeTipoDiOggetto: any;
+  nomeOrigin: any;
+  nomeProvenance: any;
+  nomePublisher: any;
+  nomeWarehouse: any;
+
+  // carica i corpi delle richieste vuoti da riempire
   body_add_author = this.dataService.body_add_author;
   body_add_category = this.dataService.body_add_category;
+  body_add_geographical_origin = this.dataService.body_add_geographical_origin;
+  body_add_provenance = this.dataService.body_add_provenance;
+  body_add_publisher = this.dataService.body_add_publisher;
+  body_add_shopkeeper = this.dataService.body_add_shopkeeper;
+  body_add_type_object = this.dataService.body_add_type_object;
+  body_add_warehouse = this.dataService.body_add_warehouse;
 
   /////////////////////////////////////////////////////////////////
+
+  /////////////////////////////////////////////////////////////////
+  // inizializzazione dei database delle varie categorie
+  allDatabase: DatabaseObject[] | undefined = [];
+  filteredObjects: Array<Author> = [];
+
+  allCategories: Array<Category> = [];
+  allAuthors: Array<Author> = [];
+  allGeographicalOrigins: Array<GeographicalOrigin> = [];
+  allProvenances: Array<Provenance> = [];
+  allPublishers: Array<Publisher> = [];
+  allShopkeepers: Array<Shopkeeper> = [];
+  allTypeObjects: Array<TypeObject> = [];
+  allWarehouses: Array<Warehouse> = [];
 
   constructor(
     private modalCtrl: ModalController,
@@ -54,13 +91,6 @@ export class DetailsComponent implements OnInit {
     this.user_role = this.dataService.getUserRole(); // prendi il ruolo dell'utente
     this.objectData = this.dataService.getObjectData(); // prendi i dati dell'oggetto selezionato
   }
-
-  /////////////////////////////////////////////////////////////////
-  // inizializzazione dei database delle varie categorie
-  allDatabase: DatabaseObject[] | undefined = [];
-  allCategories: Array<Category> = [];
-  allAuthors: Array<Author> = [];
-  filteredObjects: Array<Author> = [];
 
   @Input()
   object!: DatabaseObject;
@@ -82,6 +112,12 @@ export class DetailsComponent implements OnInit {
     // prendi gli oggetti del databasee dal dataService
     this.allCategories = this.dataService.getCategories(); // Ottieni le categorie dal servizio
     this.allAuthors = this.dataService.getAuthors(); // Ottieni gli autori
+    this.allGeographicalOrigins = this.dataService.getGeographicalOrigins(); // Ottieni gli autori
+    this.allProvenances = this.dataService.getProvenances(); // Ottieni gli autori
+    this.allPublishers = this.dataService.getPublishers(); // Ottieni gli autori
+    this.allShopkeepers = this.dataService.getShopkeepers(); // Ottieni gli autori
+    this.allTypeObjects = this.dataService.getTypeObjects(); // Ottieni gli autori
+    this.allWarehouses = this.dataService.getWarehouses(); // Ottieni gli autori
 
     this.route.params.subscribe((params) => {
       this.id = +params['id']; // estrai l' ID dal URL
@@ -97,29 +133,112 @@ export class DetailsComponent implements OnInit {
         // CATEGORIE
         // Trova la categoria associata con questo oggetto dal database
         const IDCategoria = this.objectData.categoryID;
-        let elementoTrovato_1 = this.allCategories.find(
+        let categoria_trovata = this.allCategories.find(
           (categoria) => categoria.categoryID === IDCategoria
         );
 
-        if (elementoTrovato_1) {
-          this.nomeCategoria = elementoTrovato_1.name;
+        if (categoria_trovata) {
+          this.nomeCategoria = categoria_trovata.name;
         } else {
           this.nomeCategoria = 'Categoria non trovata';
         }
         /////////////////////////////////////////////////////////////////////////////////
-
         /////////////////////////////////////////////////////////////////////////////////
         // AUTORI
         // Trova la categoria associata con questo oggetto dal database
         const IDautore = this.objectData.authorID;
-        let elementoTrovato = this.allAuthors.find(
+        let autore_trovato = this.allAuthors.find(
           (elemento) => elemento.authorID === IDautore
         );
 
-        if (elementoTrovato) {
-          this.nomeAutore = elementoTrovato.name;
+        if (autore_trovato) {
+          this.nomeAutore = autore_trovato.name;
         } else {
           this.nomeAutore = 'Autore non trovata';
+        }
+        /////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////
+        // Esercenti / Shopkeeper
+        // Trova la categoria associata con questo oggetto dal database
+        const shopkeeperID = this.objectData.shopkeeperID;
+        let esercente_trovato = this.allShopkeepers.find(
+          (elemento) => elemento.shopkeeperID === shopkeeperID
+        );
+
+        if (esercente_trovato) {
+          this.nomeEsercente = esercente_trovato.uniqueName;
+        } else {
+          this.nomeEsercente = 'Esercente non trovato';
+        }
+        /////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////
+        // Publisher / Editori
+        // Trova la categoria associata con questo oggetto dal database
+        const publisherID = this.objectData.publisherID;
+        let publisher_trovato = this.allPublishers.find(
+          (elemento) => elemento.publisherID === publisherID
+        );
+
+        if (publisher_trovato) {
+          this.nomePublisher = publisher_trovato.name;
+        } else {
+          this.nomePublisher = 'Publisher non trovato';
+        }
+        /////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////
+        // Tipo
+        // Trova la categoria associata con questo oggetto dal database
+        const typeID = this.objectData.typeID;
+        let tipoTrovato = this.allTypeObjects.find(
+          (elemento) => elemento.typeID === typeID
+        );
+
+        if (tipoTrovato) {
+          this.nomeTipoDiOggetto = tipoTrovato.name;
+        } else {
+          this.nomeTipoDiOggetto = 'Tipo non trovato';
+        }
+        /////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////
+        // Origine
+        // Trova la categoria associata con questo oggetto dal database
+        const geographicalOriginID = this.objectData.geographicalOriginID;
+        let origineTrovata = this.allGeographicalOrigins.find(
+          (elemento) => elemento.geographicalOriginID === geographicalOriginID
+        );
+
+        if (origineTrovata) {
+          this.nomeOrigin = origineTrovata.name;
+        } else {
+          this.nomeOrigin = 'Origine non trovata';
+        }
+        /////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////
+        // Provenienza
+        // Trova la categoria associata con questo oggetto dal database
+        const provenanceID = this.objectData.provenanceID;
+        let provenienzaTrovata = this.allProvenances.find(
+          (elemento) => elemento.provenanceID === provenanceID
+        );
+
+        if (provenienzaTrovata) {
+          this.nomeProvenance = provenienzaTrovata.name;
+        } else {
+          this.nomeProvenance = 'Origine non trovata';
+        }
+        /////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////
+        // Magazzini
+        // Trova la categoria associata con questo oggetto dal database
+        const warehouseID = this.objectData.warehouseID;
+        let magazzinoTrovato = this.allWarehouses.find(
+          (elemento) => elemento.warehouseID === warehouseID
+        );
+
+        if (magazzinoTrovato) {
+          this.nomeWarehouse = magazzinoTrovato.name;
+        } else {
+          this.nomeWarehouse = 'Magazzino non trovata';
         }
         /////////////////////////////////////////////////////////////////////////////////
       }
@@ -151,16 +270,49 @@ export class DetailsComponent implements OnInit {
     );
 
     let typeID = this.functionsService.findIdByName(
-      this.dataService.getAuthors(), ///////////////////////////////////
+      this.dataService.getTypeObjects(),
       this.nomeTipoDiOggetto,
       'typeID'
     );
 
     let shopkeeperID = this.functionsService.findIdByName(
-      this.dataService.getAuthors(), ///////////////////////////////////
+      this.dataService.getShopkeepers(),
       this.nomeEsercente,
       'shopkeeperID'
     );
+
+    let warehouseID = this.functionsService.findIdByName(
+      this.dataService.getWarehouses(),
+      this.nomeWarehouse,
+      'warehouseID'
+    );
+
+    let publisherID = this.functionsService.findIdByName(
+      this.dataService.getPublishers(),
+      this.nomePublisher,
+      'publisherID'
+    );
+
+    let geographicalOriginID = this.functionsService.findIdByName(
+      this.dataService.getGeographicalOrigins(),
+      this.nomeOrigin,
+      'geographicalOriginID'
+    );
+
+    ////////////////////////////////////////////////////////
+
+    // console.log(' --> nomeEsercente ', this.nomeEsercente);
+    // console.log(' --> getShopkeepers ', this.dataService.getShopkeepers());
+
+    ////////////////////////////////////////////////////////
+
+    console.log('nuovo authorID', authorID);
+    console.log('nuovo categoryID', categoryID);
+    console.log('nuovo shopkeeperID', shopkeeperID);
+    console.log('nuovo typeID', typeID);
+    console.log('nuovo warehouseID', warehouseID);
+    console.log('nuovo publisherID', publisherID);
+    console.log('nuovo geographicalOriginID', geographicalOriginID);
 
     // aggiungi le ID all'oggetto prendendole dagli array del progetto
     if (this.objectData) {
@@ -168,10 +320,10 @@ export class DetailsComponent implements OnInit {
       this.objectData.shopkeeperID = shopkeeperID;
       this.objectData.categoryID = categoryID;
       this.objectData.typeID = typeID;
+      this.objectData.warehouseID = warehouseID;
+      this.objectData.publisherID = publisherID;
+      this.objectData.geographicalOriginID = geographicalOriginID;
 
-      //this.objectData.warehouseID = warehouseID;
-      //this.objectData.publisherID = publisherID;
-      //this.objectData.geographicalOriginID = geographicalOriginID;
       //this.objectData.userID = userID;
 
       console.log('UpdateObjectArchive => ', this.objectData);
@@ -235,8 +387,10 @@ export class DetailsComponent implements OnInit {
     return PostRequest(baseURL + 'DeleteObject/' + objectID);
   }
 
+  /////////////////////////////////////////////////////////////////////////////
   // Funzioni per aggiungere i vari elementi direttamente su dettagli
   // attarverso i botoni e le modali
+  /////////////////////////////////////////////////////////////////////////////
 
   addAuthor() {
     this.functionsService
@@ -257,6 +411,72 @@ export class DetailsComponent implements OnInit {
       })
       .catch((error) => {
         console.error("Errore durante l'aggiunta della categoria:", error);
+      });
+  }
+
+  addOrigin() {
+    this.functionsService
+      .CreateOrigin()
+      .then((response) => {
+        console.log('Origine aggiunta con successo:', response);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta Origine:", error);
+      });
+  }
+
+  addPublisher() {
+    this.functionsService
+      .CreatePublisher()
+      .then((response) => {
+        console.log('Publisher aggiunta con successo:', response);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta Publisher:", error);
+      });
+  }
+
+  addProvenance() {
+    this.functionsService
+      .CreateProvenance()
+      .then((response) => {
+        console.log('Provenance aggiunta con successo:', response);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta Provenance:", error);
+      });
+  }
+
+  addShopkeeper() {
+    this.functionsService
+      .CreateShopkeeper()
+      .then((response) => {
+        console.log('Shopkeeper aggiunta con successo:', response);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta Shopkeeper:", error);
+      });
+  }
+
+  addWarehouse() {
+    this.functionsService
+      .CreateWarehouse()
+      .then((response) => {
+        console.log('Warehouse aggiunta con successo:', response);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta Warehouse:", error);
+      });
+  }
+
+  addType() {
+    this.functionsService
+      .CreateType()
+      .then((response) => {
+        console.log('Type aggiunta con successo:', response);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'aggiunta Type:", error);
       });
   }
 }
