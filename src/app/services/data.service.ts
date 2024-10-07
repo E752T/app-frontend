@@ -557,10 +557,6 @@ export class DataService implements OnInit {
     });
   }
 
-  getAllData() {
-    return this.allDatabase;
-  }
-
   removeObject(objectID: number) {
     const index = this.allDatabase.findIndex(
       (element: DatabaseObject) => element.objectID === objectID
@@ -569,10 +565,6 @@ export class DataService implements OnInit {
     if (index !== -1) {
       this.allDatabase.splice(index, 1);
     }
-  }
-
-  getFilteredObjects(): Array<DatabaseObject> {
-    return this.filteredObjects;
   }
 
   get_body_add_object() {
