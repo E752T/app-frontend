@@ -299,6 +299,12 @@ export class DetailsComponent implements OnInit {
       'geographicalOriginID'
     );
 
+    let provenanceID = this.functionsService.findIdByName(
+      this.dataService.getProvenances(),
+      this.nomeProvenance,
+      'provenanceID'
+    );
+
     ////////////////////////////////////////////////////////
 
     // console.log(' --> nomeEsercente ', this.nomeEsercente);
@@ -307,6 +313,8 @@ export class DetailsComponent implements OnInit {
     ////////////////////////////////////////////////////////
 
     console.log('nuovo authorID', authorID);
+    console.log('nuovo provenanceID', provenanceID);
+
     console.log('nuovo categoryID', categoryID);
     console.log('nuovo shopkeeperID', shopkeeperID);
     console.log('nuovo typeID', typeID);
@@ -323,6 +331,7 @@ export class DetailsComponent implements OnInit {
       this.objectData.warehouseID = warehouseID;
       this.objectData.publisherID = publisherID;
       this.objectData.geographicalOriginID = geographicalOriginID;
+      this.objectData.provenanceID = provenanceID;
 
       //this.objectData.userID = userID;
 
